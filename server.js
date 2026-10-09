@@ -166,6 +166,69 @@ async function saveImageToStorage(key, coverUrl, imageData) {
   return coverUrl || null;
 }
 
+const ytCache = {};
+
+async function resolveYouTubeVideo(query) {
+  const norm = normalizeKey(query);
+  if (ytCache[norm]) return ytCache[norm];
+
+  const searchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
+  return new Promise((resolve) => {
+    let resolved = false;
+    const safeResolve = (resVal) => {
+      if (resolved) return;
+      resolved = true;
+      if (resVal) ytCache[norm] = resVal;
+      resolve(resVal);
+    };
+
+    const req = https.get(searchUrl, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept-Language': 'en-US,en;q=0.9'
+      },
+      timeout: 8000
+    }, (res) => {
+      let html = '';
+      res.on('data', chunk => {
+        html += chunk;
+        const match = html.match(/\/watch\?v=([a-zA-Z0-9_-]{11})/) || html.match(/"videoId":"([a-zA-Z0-9_-]{11})"/);
+        if (match) {
+          const videoId = match[1];
+          safeResolve({
+            videoId,
+            embedUrl: `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=0`,
+            watchUrl: `https://www.youtube.com/watch?v=${videoId}`
+          });
+          req.destroy();
+        }
+      });
+      res.on('end', () => {
+        const match = html.match(/\/watch\?v=([a-zA-Z0-9_-]{11})/) || html.match(/"videoId":"([a-zA-Z0-9_-]{11})"/);
+        if (match) {
+          const videoId = match[1];
+          safeResolve({
+            videoId,
+            embedUrl: `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=0`,
+            watchUrl: `https://www.youtube.com/watch?v=${videoId}`
+          });
+        } else {
+          safeResolve(null);
+        }
+      });
+    });
+
+    req.on('error', () => {
+      safeResolve(null);
+    });
+
+    req.on('timeout', () => {
+      req.destroy();
+      safeResolve(null);
+    });
+  });
+}
+
 const MIME_TYPES = {
   '.html': 'text/html; charset=UTF-8',
   '.js': 'application/javascript; charset=UTF-8',
@@ -237,6 +300,25 @@ const server = http.createServer(async (req, res) => {
       res.end('Image Not Found');
       return;
     }
+  }
+
+  // GET /api/youtube?q=... -> Resolve YouTube video ID for listening
+  if (pathname === '/api/youtube' && req.method === 'GET') {
+    const q = urlObj.searchParams.get('q') || '';
+    if (!q) {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'Missing query' }));
+      return;
+    }
+
+    const result = await resolveYouTubeVideo(q);
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    if (result) {
+      res.end(JSON.stringify({ success: true, ...result }));
+    } else {
+      res.end(JSON.stringify({ success: false, error: 'Video not found' }));
+    }
+    return;
   }
 
   // GET /api/catalog?q=... -> Check if album is cached in storage
@@ -343,6 +425,8 @@ const server = http.createServer(async (req, res) => {
           year: data.year || '',
           playtime: data.playtime || '',
           trackCount: data.trackCount || 0,
+          firstTrackTitle: data.firstTrackTitle || '',
+          youtubeVideoId: data.youtubeVideoId || '',
           coverUrl: storedCoverUrl,
           alternatives: processedAlternatives.length > 0 ? processedAlternatives : (data.alternatives || []),
           updatedAt: Date.now()

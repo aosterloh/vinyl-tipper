@@ -75,6 +75,45 @@ const priceUsedEl = document.getElementById("price-used");
 const priceUsedNoteEl = document.getElementById("price-used-note");
 const linksUsedEl = document.getElementById("links-used");
 
+// Embedded YouTube Listening Station elements (below fav heart)
+const heroYtBox = document.getElementById("hero-yt-box");
+const ytTrackTitle = document.getElementById("yt-track-title");
+const heroYtIframe = document.getElementById("hero-yt-iframe");
+const heroYtLink = document.getElementById("hero-yt-link");
+
+async function loadYouTubeTrack1(artist, albumTitle, firstTrackTitle = "", existingVideoId = "") {
+  if (!heroYtBox || !heroYtIframe) return null;
+
+  const displayTitle = firstTrackTitle ? `"${firstTrackTitle}"` : albumTitle;
+  ytTrackTitle.textContent = displayTitle;
+
+  // 1. If videoId is already cached/known in storage:
+  if (existingVideoId) {
+    heroYtIframe.src = `https://www.youtube-nocookie.com/embed/${existingVideoId}?autoplay=0`;
+    heroYtLink.href = `https://www.youtube.com/watch?v=${existingVideoId}`;
+    heroYtBox.classList.remove("hidden");
+    return existingVideoId;
+  }
+
+  // 2. Otherwise query /api/youtube to resolve video ID
+  const query = `${artist} ${firstTrackTitle || albumTitle}`.trim();
+  try {
+    const res = await fetch(`/api/youtube?q=${encodeURIComponent(query)}`);
+    if (res.ok) {
+      const data = await res.json();
+      if (data.success && data.videoId) {
+        heroYtIframe.src = data.embedUrl || `https://www.youtube-nocookie.com/embed/${data.videoId}?autoplay=0`;
+        heroYtLink.href = data.watchUrl || `https://www.youtube.com/watch?v=${data.videoId}`;
+        heroYtBox.classList.remove("hidden");
+        return data.videoId;
+      }
+    }
+  } catch (e) {
+    console.warn("YouTube resolution error:", e);
+  }
+  return null;
+}
+
 // Direct store search link generators for German vinyl market
 function getNewVinylLinks(title, artist) {
   const query = `${artist} ${title}`.trim();
@@ -552,6 +591,14 @@ async function appraiseAlbum(albumName) {
     // Immediate image from storage
     albumCoverImg.src = cached.coverUrl || generateSvgCover(cached.title, cached.artist);
 
+    // Load Track 1 YouTube Listening Station below fav heart
+    loadYouTubeTrack1(cached.artist, cached.title, cached.firstTrackTitle, cached.youtubeVideoId).then(vId => {
+      if (vId && !cached.youtubeVideoId) {
+        cached.youtubeVideoId = vId;
+        saveAlbumToCache(cached);
+      }
+    });
+
     // Initial real-time pricing pulse
     priceNewEl.innerHTML = `<span class="links-loading-pulse">⚡ Live pricing...</span>`;
     priceNewNoteEl.textContent = "Checking German retail reissues";
@@ -619,21 +666,23 @@ async function appraiseAlbum(albumName) {
 Evaluate this album for vinyl collectors: "${albumName}".
 Provide accurate information in Germany for vinyl pressings:
 1. Exact album title and artist.
-2. Primary musical genre & release year.
-3. Total playtime (e.g. "47 min 23 sec").
-4. Total number of tracks/songs (integer).
-5. Realistic German vinyl market street prices:
+2. Title of the very first song (track 1) on the album.
+3. Primary musical genre & release year.
+4. Total playtime (e.g. "47 min 23 sec").
+5. Total number of tracks/songs (integer).
+6. Realistic German vinyl market street prices:
    - New vinyl: Average price in Germany retail record stores in EUR (e.g., "€28 – €34").
    - Used vinyl: Average second-hand price in Germany (Flohmärkte, Discogs DE, local shops) in EUR for a VG+/EX copy (e.g., "€14 – €22").
    - Short condition notes.
-6. 3 alternative vinyl albums in the exact same or closely related genre that fans would love. Include for each: title, artist, genre, playtime, number of tracks/songs, new vinyl price in Germany (EUR), used vinyl price in Germany (EUR).
-7. Concise search term for album cover lookup (artist + album title).
+7. 3 alternative vinyl albums in the exact same or closely related genre that fans would love. Include for each: title, artist, genre, playtime, number of tracks/songs, new vinyl price in Germany (EUR), used vinyl price in Germany (EUR).
+8. Concise search term for album cover lookup (artist + album title).
 
 Return strictly a valid JSON object matching this schema:
 {
   "album": {
     "title": "string",
     "artist": "string",
+    "firstTrackTitle": "First song title on the album (track 1)",
     "genre": "string",
     "year": 1969,
     "playtime": "string",
@@ -703,6 +752,25 @@ Return strictly a valid JSON object matching this schema:
 
     heroFavBtn.classList.toggle("active", isFavorited(album.title, album.artist));
 
+    // Load Track 1 YouTube Listening Station below fav heart
+    loadYouTubeTrack1(album.artist, album.title, album.firstTrackTitle).then(vId => {
+      if (vId) {
+        album.youtubeVideoId = vId;
+        saveAlbumToCache({
+          title: album.title,
+          artist: album.artist,
+          genre: album.genre,
+          year: album.year,
+          playtime: album.playtime,
+          trackCount: album.trackCount,
+          firstTrackTitle: album.firstTrackTitle,
+          youtubeVideoId: vId,
+          coverUrl: albumCoverImg.src,
+          alternatives: alternatives
+        });
+      }
+    });
+
     // Save initial record to database
     saveAlbumToCache({
       title: album.title,
@@ -711,6 +779,8 @@ Return strictly a valid JSON object matching this schema:
       year: album.year,
       playtime: album.playtime,
       trackCount: album.trackCount,
+      firstTrackTitle: album.firstTrackTitle,
+      youtubeVideoId: album.youtubeVideoId || '',
       coverUrl: albumCoverImg.src,
       alternatives: alternatives
     });
@@ -729,6 +799,8 @@ Return strictly a valid JSON object matching this schema:
           year: album.year,
           playtime: album.playtime,
           trackCount: album.trackCount,
+          firstTrackTitle: album.firstTrackTitle,
+          youtubeVideoId: album.youtubeVideoId || '',
           coverUrl: highRes,
           alternatives: alternatives
         });

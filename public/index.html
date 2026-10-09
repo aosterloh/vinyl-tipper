@@ -131,17 +131,38 @@
           </div>
 
           <div class="album-hero-info">
-            <div class="album-header-row">
-              <span id="album-genre-badge" class="genre-pill">Rock</span>
-              <span id="album-year" class="year-pill">1969</span>
-              <button id="hero-fav-btn" class="heart-btn" type="button" aria-label="Favorite this album" title="Save to My Fav Vinyl">
-                <svg class="heart-icon-svg" viewBox="0 0 24 24" width="20" height="20">
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                </svg>
-              </button>
+            <div class="album-hero-header-section">
+              <div class="album-hero-text-col">
+                <div class="album-header-row">
+                  <span id="album-genre-badge" class="genre-pill">Rock</span>
+                  <span id="album-year" class="year-pill">1969</span>
+                </div>
+                <h2 id="album-title" class="album-title">Album Title</h2>
+                <h3 id="album-artist" class="album-artist">Artist Name</h3>
+              </div>
+
+              <div class="album-hero-right-col">
+                <button id="hero-fav-btn" class="heart-btn" type="button" aria-label="Favorite this album" title="Save to My Fav Vinyl">
+                  <svg class="heart-icon-svg" viewBox="0 0 24 24" width="20" height="20">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                  </svg>
+                </button>
+
+                <!-- Embedded YouTube Listening Station for Track 1 below fav heart -->
+                <div id="hero-yt-box" class="hero-yt-box hidden">
+                  <div class="hero-yt-header">
+                    <span class="yt-badge">▶ Track 1</span>
+                    <span id="yt-track-title" class="yt-track-title">Listening Preview</span>
+                  </div>
+                  <div class="hero-yt-frame-wrap">
+                    <iframe id="hero-yt-iframe" class="hero-yt-iframe" src="" title="YouTube Track 1 preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  </div>
+                  <a id="hero-yt-link" class="hero-yt-link" href="#" target="_blank" rel="noopener noreferrer">
+                    Listen on YouTube ↗
+                  </a>
+                </div>
+              </div>
             </div>
-            <h2 id="album-title" class="album-title">Album Title</h2>
-            <h3 id="album-artist" class="album-artist">Artist Name</h3>
 
             <!-- Key Specs: Playtime & Number of songs -->
             <div class="album-meta-grid">
