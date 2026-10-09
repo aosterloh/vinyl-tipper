@@ -1,0 +1,22 @@
+# Secrets and Environment Variables
+.env
+.env*
+*.env
+!*.env.example
+
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# System & OS artifacts
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+logs/
+
+# Firebase cache
+.firebase/

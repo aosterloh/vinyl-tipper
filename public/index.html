@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vinyl Tipper</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- AUTHENTICATION GATE (Visible when logged out) -->
+  <div id="auth-gate" class="auth-gate-overlay">
+    <div class="auth-card">
+      <div class="vinyl-logo-mark">
+        <div class="mini-record">
+          <div class="mini-record-grooves"></div>
+          <div class="mini-record-center"></div>
+        </div>
+      </div>
+      <h1 class="auth-title">Vinyl Tipper</h1>
+      <p class="auth-subtitle">Vinyl Appraisal & Crate Recommendations</p>
+      <div class="auth-notice">
+        <span class="badge-googler">@google.com</span> Corporate Authentication
+      </div>
+      <button id="google-signin-btn" class="google-auth-btn" type="button">
+        <svg class="google-icon" viewBox="0 0 24 24" width="20" height="20">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+        </svg>
+        Sign in with Google
+      </button>
+      <div id="auth-error-msg" class="auth-error-msg hidden"></div>
+    </div>
+  </div>
+
+  <!-- MAIN APPLICATION SHELL -->
+  <div id="app-shell" class="app-shell hidden">
+    <!-- Top Navigation Bar -->
+    <header class="top-nav">
+      <div class="nav-brand">
+        <div class="brand-disc"></div>
+        <span class="brand-name">VINYL TIPPER</span>
+      </div>
+
+      <div class="nav-controls">
+        <!-- Search Memory Counter Indicator -->
+        <div id="memory-counter" class="memory-counter" title="Searches in memory bank">
+          <span class="counter-label">Crate Memory:</span>
+          <span id="counter-value" class="counter-value">0 / 5</span>
+          <div id="counter-dots" class="counter-dots">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          </div>
+        </div>
+
+        <!-- My Fav Vinyl Button -->
+        <button id="favs-btn" class="nav-favs-btn" type="button" aria-label="My Fav Vinyl" title="View Favorite Vinyl Records">
+          <span class="favs-heart-icon">❤️</span>
+          <span class="favs-btn-text">My Fav Vinyl</span>
+          <span id="favs-count-badge" class="favs-count-badge hidden">0</span>
+        </button>
+
+        <!-- Light / Dark Theme Switch (Per gemini.md) -->
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Light / Dark Theme">
+          <span class="theme-icon light-icon">☀️</span>
+          <span class="theme-icon dark-icon">🌙</span>
+        </button>
+
+        <!-- API Key / Quota Diagnostics Gear -->
+        <button id="key-modal-btn" class="nav-icon-btn" aria-label="API Diagnostics" title="API Key & Quota Settings">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </button>
+
+        <!-- User Profile -->
+        <div class="user-profile">
+          <img id="user-avatar" class="user-avatar" src="" alt="User" />
+          <button id="signout-btn" class="signout-btn" type="button" title="Sign Out">Sign out</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Flow -->
+    <main class="main-content">
+      <!-- Search Input Area (Clean & Minimalist) -->
+      <section class="search-section">
+        <form id="search-form" class="search-form">
+          <div class="search-bar-wrap">
+            <span class="search-icon">🔍</span>
+            <input 
+              type="text" 
+              id="album-input" 
+              class="album-input" 
+              placeholder="Drop an album name... (e.g. Abbey Road, Discovery, Kind of Blue)" 
+              autocomplete="off" 
+              required
+            />
+            <button type="submit" id="search-submit-btn" class="search-btn">Appraise</button>
+          </div>
+        </form>
+        <div class="quick-chips">
+          <span class="chip" data-album="Abbey Road">Abbey Road</span>
+          <span class="chip" data-album="Discovery">Discovery</span>
+          <span class="chip" data-album="Kind of Blue">Kind of Blue</span>
+          <span class="chip" data-album="Rumours">Rumours</span>
+          <span class="chip" data-album="The Dark Side of the Moon">Dark Side of the Moon</span>
+        </div>
+      </section>
+
+      <!-- Loading State Indicator -->
+      <div id="loading-state" class="loading-state hidden">
+        <div class="spinning-vinyl">
+          <div class="grooves"></div>
+          <div class="label-circle"></div>
+        </div>
+        <p class="loading-text">Evaluating Germany street prices & alternatives...</p>
+      </div>
+
+      <!-- Main Appraisal Results Section -->
+      <section id="results-section" class="results-section hidden">
+        <!-- Hero Album Appraisal Card -->
+        <div class="album-hero-card">
+          <div class="album-hero-media">
+            <div class="vinyl-sleeve-wrapper">
+              <img id="album-cover-img" class="vinyl-sleeve-img" src="" alt="Album Cover" />
+              <div class="vinyl-record-peek"></div>
+            </div>
+          </div>
+
+          <div class="album-hero-info">
+            <div class="album-header-row">
+              <span id="album-genre-badge" class="genre-pill">Rock</span>
+              <span id="album-year" class="year-pill">1969</span>
+              <button id="hero-fav-btn" class="heart-btn" type="button" aria-label="Favorite this album" title="Save to My Fav Vinyl">
+                <svg class="heart-icon-svg" viewBox="0 0 24 24" width="20" height="20">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+              </button>
+            </div>
+            <h2 id="album-title" class="album-title">Album Title</h2>
+            <h3 id="album-artist" class="album-artist">Artist Name</h3>
+
+            <!-- Key Specs: Playtime & Number of songs -->
+            <div class="album-meta-grid">
+              <div class="meta-item">
+                <span class="meta-label">Total Playtime</span>
+                <span id="album-playtime" class="meta-value">47 min 23 sec</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Number of Songs</span>
+                <span id="album-tracks" class="meta-value">17 tracks</span>
+              </div>
+            </div>
+
+            <!-- German Street Prices -->
+            <div class="pricing-container">
+              <div class="price-box new-price">
+                <div class="price-header">
+                  <span class="price-badge">NEW VINYL</span>
+                  <span class="price-location">Germany Market</span>
+                </div>
+                <div id="price-new" class="price-figure">€29 – €35</div>
+                <div id="price-new-note" class="price-subnote">Standard German retail reissue</div>
+                <div id="links-new" class="buy-links-row"></div>
+              </div>
+
+              <div class="price-box used-price">
+                <div class="price-header">
+                  <span class="price-badge">USED VINYL</span>
+                  <span class="price-location">Germany Market</span>
+                </div>
+                <div id="price-used" class="price-figure">€14 – €22</div>
+                <div id="price-used-note" class="price-subnote">VG+ / EX condition</div>
+                <div id="links-used" class="buy-links-row"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Genre Alternatives Section -->
+        <div class="alternatives-section">
+          <div class="section-title-row">
+            <h3 class="section-heading">3 Alternatives in Genre</h3>
+            <span id="alternatives-genre-name" class="section-subheading">Classic Rock</span>
+          </div>
+
+          <div id="alternatives-grid" class="alternatives-grid">
+            <!-- Dynamically populated with 3 clean alternative cards -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom Recommendations Carousel Section -->
+      <section id="recommendations-section" class="recommendations-section">
+        <div class="recommendations-header">
+          <div class="header-left">
+            <h3 class="rec-title">Your Vinyl Crate</h3>
+            <span class="rec-subtitle">Personalized recommendations for returning collectors</span>
+          </div>
+          <div class="carousel-nav-buttons">
+            <button id="rec-prev-btn" class="nav-arrow-btn" aria-label="Previous">◀</button>
+            <button id="rec-next-btn" class="nav-arrow-btn" aria-label="Next">▶</button>
+          </div>
+        </div>
+
+        <!-- Locked view when < 5 searches -->
+        <div id="rec-locked-banner" class="rec-locked-banner">
+          <div class="locked-icon">🔒</div>
+          <div class="locked-content">
+            <p class="locked-title">Your Taste Engine is warming up</p>
+            <p id="locked-progress-msg" class="locked-desc">Search 5 albums to unlock your personalized vinyl covers carousel.</p>
+          </div>
+        </div>
+
+        <!-- Carousel Track with Covers Only (per user requirement) -->
+        <div id="rec-carousel-container" class="rec-carousel-container hidden">
+          <div id="rec-track" class="rec-track">
+            <!-- Vinyl covers only will be injected here -->
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- IN-APP QUOTA & GEMINI API KEY DIAGNOSTICS MODAL (MANDATORY per gemini.md) -->
+  <dialog id="diagnostics-modal" class="diagnostics-dialog">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <span class="modal-warning-icon">⚙️</span>
+          <h3 id="modal-title">API Key Settings</h3>
+        </div>
+        <button id="close-modal-btn" class="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div id="diag-error-box" class="diag-error-box hidden">
+          <div class="diag-error-title"><strong id="diag-model-name">API Diagnostics</strong></div>
+          <div class="diag-error-desc" id="diag-error-message">HTTP 429: Quota Limit Exceeded</div>
+        </div>
+
+        <p class="modal-text">
+          Enter your API Key below. Keys are stored safely in your browser's <code>localStorage</code>.
+        </p>
+
+        <div class="key-input-group">
+          <label for="custom-api-key" class="input-label">API Key</label>
+          <input 
+            type="password" 
+            id="custom-api-key" 
+            class="key-input" 
+            placeholder="AIzaSy..." 
+            spellcheck="false"
+          />
+          <div class="key-hint">
+            Need a key? Get one free at 
+            <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer">aistudio.google.com/app/apikey</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button id="clear-key-btn" class="btn-secondary" type="button">Remove Key</button>
+        <button id="save-key-btn" class="btn-primary" type="button">Save & Resume</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- MY FAV VINYL SLIDE-OVER DRAWER -->
+  <div id="favs-drawer-container" class="favs-drawer-container hidden">
+    <div id="favs-drawer-backdrop" class="favs-drawer-backdrop"></div>
+    <aside class="favs-drawer-panel">
+      <div class="favs-drawer-header">
+        <div class="favs-drawer-title-row">
+          <span class="favs-header-heart">❤️</span>
+          <h3 class="favs-drawer-title">My Fav Vinyl</h3>
+          <span id="favs-drawer-count" class="favs-drawer-count">0 albums</span>
+        </div>
+        <button id="close-favs-drawer-btn" class="modal-close-btn" aria-label="Close Favorites">&times;</button>
+      </div>
+
+      <div id="favs-drawer-list" class="favs-drawer-list">
+        <!-- Rendered dynamically -->
+      </div>
+    </aside>
+  </div>
+
+  <!-- FIREBASE AND CLIENT APPLICATION SCRIPT -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>

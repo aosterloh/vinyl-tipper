@@ -1,0 +1,13 @@
+{
+  "name": "vinyl-tipper",
+  "version": "1.0.0",
+  "description": "Minimalist vinyl appraiser and recommendation engine powered by Gemini 3.8 Flash",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["vinyl", "gemini", "gemini-3.8-flash", "firebase-auth", "music"],
+  "author": "",
+  "license": "ISC"
+}
