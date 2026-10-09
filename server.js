@@ -49,6 +49,123 @@ function getNextKey() {
   return key;
 }
 
+const DATA_DIR = path.join(__dirname, 'data');
+const IMAGES_DIR = path.join(DATA_DIR, 'images');
+const CATALOG_FILE = path.join(DATA_DIR, 'catalog.json');
+
+function ensureDataDirs() {
+  try {
+    if (!fs.existsSync(DATA_DIR)) {
+      fs.mkdirSync(DATA_DIR, { recursive: true });
+    }
+    if (!fs.existsSync(IMAGES_DIR)) {
+      fs.mkdirSync(IMAGES_DIR, { recursive: true });
+    }
+  } catch (e) {
+    console.warn('Error creating data directories:', e.message);
+  }
+}
+
+function normalizeKey(str) {
+  return (str || '')
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]/g, ' ')
+    .trim()
+    .replace(/\s+/g, ' ');
+}
+
+function loadCatalog() {
+  try {
+    ensureDataDirs();
+    if (fs.existsSync(CATALOG_FILE)) {
+      return JSON.parse(fs.readFileSync(CATALOG_FILE, 'utf8'));
+    }
+  } catch (e) {
+    console.warn('Error reading catalog:', e.message);
+  }
+  return {};
+}
+
+function saveCatalog(catalog) {
+  try {
+    ensureDataDirs();
+    fs.writeFileSync(CATALOG_FILE, JSON.stringify(catalog, null, 2), 'utf8');
+  } catch (e) {
+    console.warn('Error saving catalog:', e.message);
+  }
+}
+
+// Download or decode image and persist directly to disk storage
+async function saveImageToStorage(key, coverUrl, imageData) {
+  try {
+    ensureDataDirs();
+    const safeKey = key.replace(/[^a-z0-9]/gi, '_').substring(0, 60);
+
+    // 1. If base64/data URL image is provided directly by frontend
+    if (imageData && typeof imageData === 'string') {
+      const match = imageData.match(/^data:image\/([a-zA-Z0-9+]+);base64,(.+)$/);
+      if (match) {
+        const rawExt = match[1].toLowerCase();
+        const ext = rawExt === 'svg+xml' ? 'svg' : (rawExt === 'jpeg' ? 'jpg' : rawExt);
+        const filename = `${safeKey}.${ext}`;
+        const filePath = path.join(IMAGES_DIR, filename);
+        fs.writeFileSync(filePath, Buffer.from(match[2], 'base64'));
+        return `/api/images/${filename}`;
+      } else if (imageData.startsWith('<svg')) {
+        const filename = `${safeKey}.svg`;
+        const filePath = path.join(IMAGES_DIR, filename);
+        fs.writeFileSync(filePath, imageData, 'utf8');
+        return `/api/images/${filename}`;
+      }
+    }
+
+    // 2. If remote HTTP/HTTPS image URL is provided, download and store locally
+    if (coverUrl && typeof coverUrl === 'string' && (coverUrl.startsWith('http://') || coverUrl.startsWith('https://'))) {
+      const parsed = new URL(coverUrl);
+      const extMatch = parsed.pathname.match(/\.(jpe?g|png|webp|gif|svg)$/i);
+      const ext = extMatch ? extMatch[1].toLowerCase() : 'jpg';
+      const filename = `${safeKey}.${ext}`;
+      const filePath = path.join(IMAGES_DIR, filename);
+
+      const client = coverUrl.startsWith('https:') ? https : http;
+      await new Promise((resolve, reject) => {
+        const req = client.get(coverUrl, { timeout: 8000 }, (res) => {
+          if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+            const redirectClient = res.headers.location.startsWith('https:') ? https : http;
+            redirectClient.get(res.headers.location, { timeout: 8000 }, (rRes) => {
+              if (rRes.statusCode === 200) {
+                const stream = fs.createWriteStream(filePath);
+                rRes.pipe(stream);
+                stream.on('finish', () => { stream.close(); resolve(); });
+                stream.on('error', reject);
+              } else {
+                reject(new Error(`Redirect download failed with ${rRes.statusCode}`));
+              }
+            }).on('error', reject);
+            return;
+          }
+          if (res.statusCode === 200) {
+            const stream = fs.createWriteStream(filePath);
+            res.pipe(stream);
+            stream.on('finish', () => { stream.close(); resolve(); });
+            stream.on('error', reject);
+          } else {
+            reject(new Error(`Download failed with ${res.statusCode}`));
+          }
+        });
+        req.on('error', reject);
+        req.on('timeout', () => { req.destroy(); reject(new Error('Download timeout')); });
+      });
+
+      return `/api/images/${filename}`;
+    }
+  } catch (err) {
+    console.warn(`[storage] Image caching notice for ${key}:`, err.message);
+  }
+  return coverUrl || null;
+}
+
 const MIME_TYPES = {
   '.html': 'text/html; charset=UTF-8',
   '.js': 'application/javascript; charset=UTF-8',
@@ -98,6 +215,153 @@ const server = http.createServer(async (req, res) => {
       apiKey: pool[0] || null,
       keyCount: pool.length
     }));
+    return;
+  }
+
+  // Serve locally cached album covers from persistent storage
+  if (pathname.startsWith('/api/images/')) {
+    const filename = path.basename(pathname);
+    const imagePath = path.join(IMAGES_DIR, filename);
+
+    if (fs.existsSync(imagePath)) {
+      const ext = path.extname(imagePath).toLowerCase();
+      const contentType = MIME_TYPES[ext] || 'image/jpeg';
+      res.writeHead(200, {
+        'Content-Type': contentType,
+        'Cache-Control': 'public, max-age=31536000, immutable'
+      });
+      fs.createReadStream(imagePath).pipe(res);
+      return;
+    } else {
+      res.writeHead(404, { 'Content-Type': 'text/plain' });
+      res.end('Image Not Found');
+      return;
+    }
+  }
+
+  // GET /api/catalog?q=... -> Check if album is cached in storage
+  if (pathname === '/api/catalog' && req.method === 'GET') {
+    const q = urlObj.searchParams.get('q') || '';
+    const normQ = normalizeKey(q);
+    const catalog = loadCatalog();
+
+    let found = null;
+    if (catalog[normQ]) {
+      found = catalog[normQ];
+    } else {
+      for (const key of Object.keys(catalog)) {
+        const item = catalog[key];
+        const itemFull = normalizeKey((item.artist || '') + ' ' + (item.title || ''));
+        const itemTitle = normalizeKey(item.title || '');
+        if (key === normQ || itemFull === normQ || itemTitle === normQ || (itemTitle.length > 3 && normQ.includes(itemTitle))) {
+          found = item;
+          break;
+        }
+      }
+    }
+
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    if (found) {
+      res.end(JSON.stringify({ hit: true, album: found }));
+    } else {
+      res.end(JSON.stringify({ hit: false }));
+    }
+    return;
+  }
+
+  // POST /api/catalog -> Save album details & image to storage
+  if (pathname === '/api/catalog' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', async () => {
+      try {
+        const data = JSON.parse(body);
+        if (!data.title) {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: 'Missing title' }));
+          return;
+        }
+
+        const primaryKey = normalizeKey((data.artist || '') + ' ' + data.title);
+        const titleKey = normalizeKey(data.title);
+
+        // Save album cover to local disk storage
+        let storedCoverUrl = data.coverUrl || '';
+        if (data.imageData || (storedCoverUrl && (storedCoverUrl.startsWith('http://') || storedCoverUrl.startsWith('https://')))) {
+          const localUrl = await saveImageToStorage(primaryKey, storedCoverUrl, data.imageData);
+          if (localUrl) storedCoverUrl = localUrl;
+        }
+
+        // Cache alternative covers too and index alternatives in catalog
+        const processedAlternatives = [];
+        if (Array.isArray(data.alternatives)) {
+          for (let i = 0; i < data.alternatives.length; i++) {
+            const alt = data.alternatives[i];
+            let altCover = alt.coverUrl || '';
+            const altKey = normalizeKey((alt.artist || '') + ' ' + alt.title);
+            if (alt.imageData || (altCover && (altCover.startsWith('http://') || altCover.startsWith('https://')))) {
+              const localAltUrl = await saveImageToStorage(altKey, altCover, alt.imageData);
+              if (localAltUrl) altCover = localAltUrl;
+            }
+            const altRecord = {
+              title: alt.title,
+              artist: alt.artist || '',
+              genre: alt.genre || '',
+              playtime: alt.playtime || '',
+              trackCount: alt.trackCount || 0,
+              coverUrl: altCover,
+              coverSearchTerm: alt.coverSearchTerm || '',
+              streetPriceGermany: alt.streetPriceGermany || null
+            };
+            processedAlternatives.push(altRecord);
+
+            // Also index each alternative in catalog if not already present
+            if (altKey) {
+              const currentCatalog = loadCatalog();
+              if (!currentCatalog[altKey]) {
+                currentCatalog[altKey] = {
+                  title: alt.title,
+                  artist: alt.artist || '',
+                  genre: alt.genre || '',
+                  playtime: alt.playtime || '',
+                  trackCount: alt.trackCount || 0,
+                  coverUrl: altCover,
+                  alternatives: [],
+                  updatedAt: Date.now()
+                };
+                saveCatalog(currentCatalog);
+              }
+            }
+          }
+        }
+
+        const catalog = loadCatalog();
+        const record = {
+          title: data.title,
+          artist: data.artist || '',
+          genre: data.genre || '',
+          year: data.year || '',
+          playtime: data.playtime || '',
+          trackCount: data.trackCount || 0,
+          coverUrl: storedCoverUrl,
+          alternatives: processedAlternatives.length > 0 ? processedAlternatives : (data.alternatives || []),
+          updatedAt: Date.now()
+        };
+
+        catalog[primaryKey] = record;
+        if (titleKey && !catalog[titleKey]) {
+          catalog[titleKey] = record;
+        }
+
+        saveCatalog(catalog);
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: true, key: primaryKey, coverUrl: storedCoverUrl }));
+      } catch (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: err.message }));
+      }
+    });
     return;
   }
 

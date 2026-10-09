@@ -416,12 +416,235 @@ async function callGeminiFlash(promptText) {
   throw new Error("Missing API Key");
 }
 
+// ============================================================================
+// STORAGE & REAL-TIME PRICE CACHING ENGINE
+// ============================================================================
+function normalizeCatalogKey(str) {
+  return (str || '')
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]/g, ' ')
+    .trim()
+    .replace(/\s+/g, ' ');
+}
+
+async function checkAlbumCache(query) {
+  const normKey = normalizeCatalogKey(query);
+  
+  // 1. Check client-side storage cache first (0ms)
+  try {
+    const localRaw = localStorage.getItem(`vinyl_catalog_${normKey}`);
+    if (localRaw) {
+      const parsed = JSON.parse(localRaw);
+      if (parsed && parsed.title) return parsed;
+    }
+  } catch (e) {}
+
+  // 2. Check server-side persistent catalog storage
+  try {
+    const res = await fetch(`/api/catalog?q=${encodeURIComponent(query)}`);
+    if (res.ok) {
+      const data = await res.json();
+      if (data.hit && data.album) {
+        try {
+          localStorage.setItem(`vinyl_catalog_${normKey}`, JSON.stringify(data.album));
+        } catch (e) {}
+        return data.album;
+      }
+    }
+  } catch (e) {
+    console.warn("Catalog storage lookup warning:", e);
+  }
+
+  return null;
+}
+
+// Convert image URL to base64 Data URL for persistent storage caching
+async function imageUrlToDataUrl(url) {
+  if (!url || typeof url !== 'string' || url.startsWith('data:')) return url;
+  if (url.startsWith('/api/images/')) return null; // Already hosted from local storage
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.crossOrigin = 'Anonymous';
+    img.onload = () => {
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.naturalWidth || 400;
+        canvas.height = img.naturalHeight || 400;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        resolve(canvas.toDataURL('image/jpeg', 0.85));
+      } catch (e) {
+        resolve(null);
+      }
+    };
+    img.onerror = () => resolve(null);
+    img.src = url;
+  });
+}
+
+async function saveAlbumToCache(album) {
+  if (!album || !album.title) return;
+  const primaryKey = normalizeCatalogKey((album.artist || '') + ' ' + album.title);
+  const titleKey = normalizeCatalogKey(album.title);
+
+  // If album has coverUrl, attempt converting to base64 for persistent disk storage
+  let imageData = null;
+  if (album.coverUrl && !album.coverUrl.startsWith('/api/images/')) {
+    imageData = await imageUrlToDataUrl(album.coverUrl).catch(() => null);
+  }
+
+  // 1. Save in server database & persistent storage
+  try {
+    const res = await fetch("/api/catalog", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...album,
+        imageData: imageData
+      })
+    });
+    if (res.ok) {
+      const respData = await res.json();
+      if (respData.coverUrl) {
+        album.coverUrl = respData.coverUrl;
+      }
+    }
+  } catch (e) {
+    console.warn("Catalog storage save error:", e);
+  }
+
+  // 2. Save in client localStorage
+  try {
+    const payloadStr = JSON.stringify(album);
+    localStorage.setItem(`vinyl_catalog_${primaryKey}`, payloadStr);
+    if (titleKey) {
+      localStorage.setItem(`vinyl_catalog_${titleKey}`, payloadStr);
+    }
+  } catch (e) {}
+}
+
+// Focused micro-call to Gemini specifically for real-time German vinyl prices
+async function fetchRealTimePrices(albumTitle, artist) {
+  const prompt = `You are a real-time vinyl market specialist in Germany.
+Evaluate the current real-time street prices in EUR in Germany for vinyl record pressing:
+Album: "${albumTitle}"
+Artist: "${artist}"
+
+Provide realistic current German market prices in EUR:
+- New vinyl: Average price in Germany retail record stores (e.g. "€28 – €34").
+- Used vinyl: Average second-hand price in Germany for VG+/EX condition (e.g. "€14 – €22").
+- Condition note (short).
+
+Return strictly a valid JSON object matching this schema:
+{
+  "streetPriceGermany": {
+    "newEur": "€28 – €34",
+    "usedEur": "€14 – €22",
+    "conditionNote": "VG+ / EX condition"
+  }
+}`;
+
+  try {
+    const data = await callGeminiFlash(prompt);
+    if (data && data.streetPriceGermany) {
+      return data.streetPriceGermany;
+    }
+  } catch (err) {
+    console.warn("Real-time price lookup error:", err);
+  }
+  return null;
+}
+
 async function appraiseAlbum(albumName) {
   if (!albumName || !albumName.trim()) return;
 
   loadingState.classList.remove("hidden");
   resultsSection.classList.add("hidden");
 
+  // =========================================================================
+  // STEP 1: CHECK STORAGE DATABASE (CACHE HIT -> 0ms LOAD)
+  // =========================================================================
+  const cached = await checkAlbumCache(albumName);
+
+  if (cached) {
+    loadingState.classList.add("hidden");
+    resultsSection.classList.remove("hidden");
+
+    // Instantly load all static information from database
+    albumTitleEl.textContent = cached.title;
+    albumArtistEl.textContent = cached.artist;
+    albumGenreEl.textContent = cached.genre || "Vinyl";
+    albumYearEl.textContent = cached.year || "";
+    albumPlaytimeEl.textContent = cached.playtime || "N/A";
+    albumTracksEl.textContent = `${cached.trackCount || 0} tracks`;
+
+    // Immediate image from storage
+    albumCoverImg.src = cached.coverUrl || generateSvgCover(cached.title, cached.artist);
+
+    // Initial real-time pricing pulse
+    priceNewEl.innerHTML = `<span class="links-loading-pulse">⚡ Live pricing...</span>`;
+    priceNewNoteEl.textContent = "Checking German retail reissues";
+    linksNewEl.innerHTML = `<span class="links-loading-pulse">🔍 Resolving German shops...</span>`;
+
+    priceUsedEl.innerHTML = `<span class="links-loading-pulse">⚡ Live pricing...</span>`;
+    priceUsedNoteEl.textContent = "Checking second-hand collector markets";
+    linksUsedEl.innerHTML = `<span class="links-loading-pulse">🔍 Searching second-hand markets...</span>`;
+
+    currentAlbumData = {
+      title: cached.title,
+      artist: cached.artist,
+      genre: cached.genre,
+      year: cached.year,
+      playtime: cached.playtime,
+      trackCount: cached.trackCount,
+      coverUrl: albumCoverImg.src,
+      streetPriceGermany: null
+    };
+
+    heroFavBtn.classList.toggle("active", isFavorited(cached.title, cached.artist));
+
+    // Render cached alternatives immediately from database
+    alternativesGenreName.textContent = cached.genre || "";
+    renderAlternativesProgressive(cached.alternatives || []);
+
+    // Async stream in store search links
+    asyncResearchBuyLinks(cached.title, cached.artist);
+
+    // Async fetch ONLY real-time prices live
+    fetchRealTimePrices(cached.title, cached.artist).then(freshPrices => {
+      if (freshPrices) {
+        priceNewEl.textContent = freshPrices.newEur || "€29";
+        priceNewNoteEl.textContent = "German retail reissue";
+        priceUsedEl.textContent = freshPrices.usedEur || "€15";
+        priceUsedNoteEl.textContent = freshPrices.conditionNote || "VG+ / EX condition";
+        if (currentAlbumData) {
+          currentAlbumData.streetPriceGermany = freshPrices;
+        }
+      } else {
+        priceNewEl.textContent = "€29";
+        priceUsedEl.textContent = "€15";
+      }
+    });
+
+    // Save to user memory bank
+    saveSearchToMemory({
+      title: cached.title,
+      artist: cached.artist,
+      genre: cached.genre,
+      year: cached.year,
+      playtime: cached.playtime,
+      trackCount: cached.trackCount,
+      coverUrl: albumCoverImg.src,
+      timestamp: Date.now()
+    });
+
+    return;
+  }
+
+  // =========================================================================
+  // STEP 2: CACHE MISS -> FULL APPRAISAL & WRITE TO STORAGE
+  // =========================================================================
   const prompt = `You are an expert vinyl record specialist and discographer in Germany.
 Evaluate this album for vinyl collectors: "${albumName}".
 Provide accurate information in Germany for vinyl pressings:
@@ -479,7 +702,6 @@ Return strictly a valid JSON object matching this schema:
     loadingState.classList.add("hidden");
     resultsSection.classList.remove("hidden");
 
-    // Populate Core Typography & Playtime / Tracks immediately
     albumTitleEl.textContent = album.title;
     albumArtistEl.textContent = album.artist;
     albumGenreEl.textContent = album.genre || "Vinyl";
@@ -487,7 +709,6 @@ Return strictly a valid JSON object matching this schema:
     albumPlaytimeEl.textContent = album.playtime || "N/A";
     albumTracksEl.textContent = `${album.trackCount || 0} tracks`;
 
-    // Populate Price Figures with initial market pulse
     priceNewEl.textContent = album.streetPriceGermany?.newEur || "€29";
     priceNewNoteEl.textContent = "German retail reissue";
     linksNewEl.innerHTML = `<span class="links-loading-pulse">🔍 Finding German retail links...</span>`;
@@ -510,8 +731,19 @@ Return strictly a valid JSON object matching this schema:
       streetPriceGermany: album.streetPriceGermany
     };
 
-    // Sync hero heart button state
     heroFavBtn.classList.toggle("active", isFavorited(album.title, album.artist));
+
+    // Save initial record to database
+    saveAlbumToCache({
+      title: album.title,
+      artist: album.artist,
+      genre: album.genre,
+      year: album.year,
+      playtime: album.playtime,
+      trackCount: album.trackCount,
+      coverUrl: albumCoverImg.src,
+      alternatives: alternatives
+    });
 
     fetchAlbumCover(album.coverSearchTerm || album.title, album.artist, album.title).then(highRes => {
       if (highRes) {
@@ -519,10 +751,20 @@ Return strictly a valid JSON object matching this schema:
         if (currentAlbumData && currentAlbumData.title === album.title) {
           currentAlbumData.coverUrl = highRes;
         }
+        // Save complete record with high-res image to storage database
+        saveAlbumToCache({
+          title: album.title,
+          artist: album.artist,
+          genre: album.genre,
+          year: album.year,
+          playtime: album.playtime,
+          trackCount: album.trackCount,
+          coverUrl: highRes,
+          alternatives: alternatives
+        });
       }
     });
 
-    // Populate 3 Alternative Skeletons right away
     alternativesGenreName.textContent = album.genre || "";
     renderAlternativesProgressive(alternatives);
 
@@ -586,7 +828,22 @@ function renderAlternativesProgressive(alternatives) {
 
   alternatives.slice(0, 3).forEach(async (alt, idx) => {
     try {
-      const coverUrl = await fetchAlbumCover(alt.coverSearchTerm || alt.title, alt.artist, alt.title);
+      const coverUrl = (alt.coverUrl && !alt.coverUrl.startsWith("data:image/svg"))
+        ? alt.coverUrl
+        : await fetchAlbumCover(alt.coverSearchTerm || alt.title, alt.artist, alt.title);
+      alt.coverUrl = coverUrl;
+
+      // Persist alternative record to storage database so subsequent lookups hit storage immediately
+      saveAlbumToCache({
+        title: alt.title,
+        artist: alt.artist || '',
+        genre: alt.genre || '',
+        playtime: alt.playtime || '',
+        trackCount: alt.trackCount || 0,
+        coverUrl: coverUrl,
+        alternatives: []
+      });
+
       const card = document.createElement("div");
       card.className = "alt-card fade-in";
 

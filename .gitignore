@@ -20,3 +20,6 @@ logs/
 
 # Firebase cache
 .firebase/
+
+# Local database cache
+data/
