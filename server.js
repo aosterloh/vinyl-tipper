@@ -52,6 +52,7 @@ function getNextKey() {
 const DATA_DIR = path.join(__dirname, 'data');
 const IMAGES_DIR = path.join(DATA_DIR, 'images');
 const CATALOG_FILE = path.join(DATA_DIR, 'catalog.json');
+const LAST_SESSION_FILE = path.join(DATA_DIR, 'last_session.json');
 
 function ensureDataDirs() {
   try {
@@ -63,6 +64,27 @@ function ensureDataDirs() {
     }
   } catch (e) {
     console.warn('Error creating data directories:', e.message);
+  }
+}
+
+function loadLastSession() {
+  try {
+    ensureDataDirs();
+    if (fs.existsSync(LAST_SESSION_FILE)) {
+      return JSON.parse(fs.readFileSync(LAST_SESSION_FILE, 'utf8'));
+    }
+  } catch (e) {
+    console.warn('Error reading last session file:', e.message);
+  }
+  return null;
+}
+
+function saveLastSession(sessionData) {
+  try {
+    ensureDataDirs();
+    fs.writeFileSync(LAST_SESSION_FILE, JSON.stringify(sessionData, null, 2), 'utf8');
+  } catch (e) {
+    console.warn('Error saving last session file:', e.message);
   }
 }
 
@@ -296,10 +318,48 @@ const server = http.createServer(async (req, res) => {
       fs.createReadStream(imagePath).pipe(res);
       return;
     } else {
-      res.writeHead(404, { 'Content-Type': 'text/plain' });
-      res.end('Image Not Found');
+      res.writeHead(404, {
+        'Content-Type': 'text/plain',
+        'X-Cover-Missing': 'true'
+      });
+      res.end('Image Not Found in Storage');
       return;
     }
+  }
+
+  // GET /api/session/last-album -> Retrieve last displayed album across sessions & server restarts
+  if (pathname === '/api/session/last-album' && req.method === 'GET') {
+    const lastSession = loadLastSession();
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ success: true, lastAlbum: lastSession }));
+    return;
+  }
+
+  // POST /api/session/last-album -> Save last displayed album
+  if (pathname === '/api/session/last-album' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', () => {
+      try {
+        const payload = JSON.parse(body);
+        if (payload && (payload.query || payload.title)) {
+          saveLastSession({
+            query: payload.query,
+            title: payload.title,
+            artist: payload.artist,
+            updatedAt: Date.now()
+          });
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ success: true }));
+          return;
+        }
+      } catch (err) {
+        console.warn('Failed to parse last session payload:', err.message);
+      }
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'Invalid payload' }));
+    });
+    return;
   }
 
   // GET /api/youtube?q=... -> Resolve YouTube video ID for listening

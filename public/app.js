@@ -75,6 +75,34 @@ const priceUsedEl = document.getElementById("price-used");
 const priceUsedNoteEl = document.getElementById("price-used-note");
 const linksUsedEl = document.getElementById("links-used");
 
+// Auto-healing hero cover: If storage cover 404s or fails to load, retrieve live from internet
+let isRecoveringHeroCover = false;
+if (albumCoverImg) {
+  albumCoverImg.addEventListener("error", async () => {
+    if (isRecoveringHeroCover) return;
+    if (!currentAlbumData || !currentAlbumData.title) return;
+
+    isRecoveringHeroCover = true;
+    console.warn(`[storage] Hero cover failed to load for "${currentAlbumData.title}", retrieving live from internet...`);
+
+    try {
+      const freshCover = await fetchAlbumCover(currentAlbumData.title, currentAlbumData.artist, currentAlbumData.title);
+      if (freshCover && !freshCover.startsWith("data:image/svg") && freshCover !== albumCoverImg.src) {
+        albumCoverImg.src = freshCover;
+        currentAlbumData.coverUrl = freshCover;
+        // Re-persist healed cover to database and server storage
+        saveAlbumToCache(currentAlbumData);
+      } else {
+        albumCoverImg.src = generateSvgCover(currentAlbumData.title, currentAlbumData.artist);
+      }
+    } catch (err) {
+      console.warn("Hero cover recovery error:", err);
+    } finally {
+      setTimeout(() => { isRecoveringHeroCover = false; }, 1500);
+    }
+  });
+}
+
 // Embedded YouTube Listening Station elements (below fav heart)
 const heroYtBox = document.getElementById("hero-yt-box");
 const ytTrackTitle = document.getElementById("yt-track-title");
@@ -233,6 +261,9 @@ onAuthStateChanged(auth, async (user) => {
     // Load User Search History Memory Bank & Favorites
     loadUserMemory();
     loadUserFavorites();
+
+    // Restore last displayed album to continue where user left off after last session / restart
+    restoreLastSessionAlbum();
   } else {
     currentUser = null;
     userFavorites = [];
@@ -601,8 +632,85 @@ Return strictly a valid JSON object matching this schema:
   return null;
 }
 
+// ============================================================================
+// SESSION CONTINUITY ENGINE (REMEMBER LAST DISPLAYED ALBUM)
+// ============================================================================
+function recordLastDisplayedAlbum(query, album) {
+  if (!album && !query) return;
+  const sessionRecord = {
+    query: query || (album?.artist ? `${album.artist} ${album.title}` : album?.title) || "",
+    title: album?.title || "",
+    artist: album?.artist || "",
+    timestamp: Date.now()
+  };
+
+  // 1. Persist to client localStorage (survives page reloads & browser restarts)
+  try {
+    localStorage.setItem("vinyl_last_displayed_album", JSON.stringify(sessionRecord));
+  } catch (e) {}
+
+  // 2. Persist to server data/last_session.json (survives server restart & cross-device)
+  try {
+    fetch("/api/session/last-album", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(sessionRecord)
+    }).catch(() => {});
+  } catch (e) {}
+}
+
+let hasRestoredSessionAlbum = false;
+
+async function restoreLastSessionAlbum() {
+  if (hasRestoredSessionAlbum) return;
+  hasRestoredSessionAlbum = true;
+
+  let target = null;
+
+  // 1. Check client localStorage first (0ms instantaneous)
+  try {
+    const local = localStorage.getItem("vinyl_last_displayed_album");
+    if (local) {
+      target = JSON.parse(local);
+    }
+  } catch (e) {}
+
+  // 2. Fallback to server data/last_session.json (if cookies cleared or server restarted)
+  if (!target || (!target.query && !target.title)) {
+    try {
+      const res = await fetch("/api/session/last-album");
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success && data.lastAlbum && (data.lastAlbum.query || data.lastAlbum.title)) {
+          target = data.lastAlbum;
+        }
+      }
+    } catch (e) {}
+  }
+
+  if (target && (target.query || target.title)) {
+    const displayLabel = (target.artist && target.title)
+      ? `${target.artist} - ${target.title}`
+      : (target.title || target.query);
+
+    if (albumInput) {
+      albumInput.value = displayLabel;
+    }
+
+    const appraisalQuery = target.query || `${target.artist || ''} ${target.title || ''}`.trim();
+    if (appraisalQuery) {
+      // Appraise album: loads immediately from persistent storage catalog
+      appraiseAlbum(appraisalQuery);
+    }
+  }
+}
+
 async function appraiseAlbum(albumName) {
   if (!albumName || !albumName.trim()) return;
+
+  if (albumInput && !albumInput.value) {
+    albumInput.value = albumName;
+  }
 
   loadingState.classList.remove("hidden");
   resultsSection.classList.add("hidden");
@@ -691,6 +799,9 @@ async function appraiseAlbum(albumName) {
       coverUrl: albumCoverImg.src,
       timestamp: Date.now()
     });
+
+    // Remember last displayed album across sessions & server restarts
+    recordLastDisplayedAlbum(albumName, cached);
 
     return;
   }
@@ -865,6 +976,9 @@ Return strictly a valid JSON object matching this schema:
       timestamp: Date.now()
     });
 
+    // Remember last displayed album across sessions & server restarts
+    recordLastDisplayedAlbum(albumName, album);
+
   } catch (error) {
     console.error("Appraisal failed:", error);
     loadingState.classList.add("hidden");
@@ -979,6 +1093,28 @@ function renderAlternativesProgressive(alternatives) {
             coverUrl: coverUrl,
             streetPriceGermany: alt.streetPriceGermany
           });
+        });
+      }
+
+      // Auto-healing: If alternative cover fails to load from storage, retrieve from internet
+      const altImg = card.querySelector(".alt-cover-img");
+      if (altImg) {
+        altImg.addEventListener("error", async () => {
+          if (altImg.dataset.recovering) return;
+          altImg.dataset.recovering = "true";
+          console.warn(`[storage] Alternative cover failed for "${alt.title}", retrieving from internet...`);
+          try {
+            const fresh = await fetchAlbumCover(alt.coverSearchTerm || alt.title, alt.artist, alt.title);
+            if (fresh && !fresh.startsWith("data:image/svg")) {
+              altImg.src = fresh;
+              alt.coverUrl = fresh;
+              if (currentAlbumData) {
+                saveAlbumToCache(currentAlbumData);
+              }
+            } else {
+              altImg.src = generateSvgCover(alt.title, alt.artist);
+            }
+          } catch (e) {}
         });
       }
 
@@ -1517,9 +1653,30 @@ function renderFavoritesRecommendations() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    card.querySelector(".rec-inspect-btn").addEventListener("click", triggerAppraisal);
-    card.querySelector(".rec-card-title").addEventListener("click", triggerAppraisal);
-    card.querySelector(".rec-card-cover").addEventListener("click", triggerAppraisal);
+    const inspectBtn = card.querySelector(".rec-inspect-btn");
+    if (inspectBtn) inspectBtn.addEventListener("click", triggerAppraisal);
+    const titleEl = card.querySelector(".rec-card-title");
+    if (titleEl) titleEl.addEventListener("click", triggerAppraisal);
+
+    const recCoverImg = card.querySelector(".rec-card-cover");
+    if (recCoverImg) {
+      recCoverImg.addEventListener("click", triggerAppraisal);
+      recCoverImg.addEventListener("error", async () => {
+        if (recCoverImg.dataset.recovering) return;
+        recCoverImg.dataset.recovering = "true";
+        console.warn(`[storage] Recommendation cover failed for "${rec.title}", retrieving from internet...`);
+        try {
+          const fresh = await fetchAlbumCover(rec.coverSearchTerm || rec.title, rec.artist, rec.title);
+          if (fresh && !fresh.startsWith("data:image/svg")) {
+            recCoverImg.src = fresh;
+            rec.coverUrl = fresh;
+            saveAlbumToCache(rec);
+          } else {
+            recCoverImg.src = generateSvgCover(rec.title, rec.artist);
+          }
+        } catch (e) {}
+      });
+    }
 
     // Heart toggle button on recommendation card
     card.querySelector(".rec-fav-btn").addEventListener("click", (e) => {
