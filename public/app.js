@@ -537,6 +537,37 @@ function normalizeCatalogKey(str) {
     .replace(/\s+/g, ' ');
 }
 
+// Strict normalized fuzzy check to ensure recommendations never duplicate saved favorites
+function isAlbumInFavorites(title, artist = '') {
+  if (!title || !Array.isArray(userFavorites) || userFavorites.length === 0) return false;
+  const cleanTitle = normalizeCatalogKey(title);
+  const cleanArtist = normalizeCatalogKey(artist || '');
+
+  return userFavorites.some(fav => {
+    const favTitle = normalizeCatalogKey(fav.title);
+    const favArtist = normalizeCatalogKey(fav.artist || '');
+
+    // 1. Exact title match
+    if (cleanTitle === favTitle) return true;
+
+    // 2. Prefix / containment match for albums with reissue, deluxe, or edition tags
+    if (favTitle.length >= 4 && cleanTitle.length >= 4) {
+      if (cleanTitle.startsWith(favTitle) || favTitle.startsWith(cleanTitle)) {
+        if (!cleanArtist || !favArtist || cleanArtist === favArtist || cleanArtist.includes(favArtist) || favArtist.includes(cleanArtist)) {
+          return true;
+        }
+      }
+      if (cleanTitle.includes(favTitle) || favTitle.includes(cleanTitle)) {
+        if (!cleanArtist || !favArtist || cleanArtist === favArtist || cleanArtist.includes(favArtist) || favArtist.includes(cleanArtist)) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  });
+}
+
 async function checkAlbumCache(query) {
   const normKey = normalizeCatalogKey(query);
   
@@ -842,6 +873,11 @@ async function appraiseAlbum(albumName) {
   // =========================================================================
   // STEP 2: CACHE MISS -> FULL APPRAISAL & WRITE TO STORAGE
   // =========================================================================
+  const favAltTitles = (userFavorites || []).map(f => `"${f.title}" by ${f.artist || 'Unknown'}`).join(", ");
+  const favAltExclusionPrompt = favAltTitles.length > 0
+    ? `\nCRITICAL EXCLUSION RULE FOR ALTERNATIVES:\nDO NOT suggest any albums that are in the user's saved favorites list (${favAltTitles})! Every alternative must be a different album they do not have saved.\n`
+    : "";
+
   const prompt = `You are an expert vinyl record specialist and discographer in Germany.
 Evaluate this album for vinyl collectors: "${albumName}".
 Provide accurate information in Germany for vinyl pressings:
@@ -854,8 +890,8 @@ Provide accurate information in Germany for vinyl pressings:
    - New vinyl: Average price in Germany retail record stores in EUR (e.g., "€28 – €34").
    - Used vinyl: Average second-hand price in Germany (Flohmärkte, Discogs DE, local shops) in EUR for a VG+/EX copy (e.g., "€14 – €22").
    - Short condition notes.
-7. 3 alternative vinyl albums in the exact same or closely related genre that fans would love. Include for each: title, artist, genre, playtime, number of tracks/songs, new vinyl price in Germany (EUR), used vinyl price in Germany (EUR).
-8. Concise search term for album cover lookup (artist + album title).
+7. 4 to 5 alternative vinyl albums in the exact same or closely related genre that fans would love.${favAltTitles.length > 0 ? ` (CRITICAL: Do NOT suggest any albums from the user's favorites list: ${favAltTitles})` : ""} Include for each: title, artist, genre, playtime, number of tracks/songs, new vinyl price in Germany (EUR), used vinyl price in Germany (EUR).
+8. Concise search term for album cover lookup (artist + album title).${favAltExclusionPrompt}
 
 Return strictly a valid JSON object matching this schema:
 {
@@ -1040,7 +1076,20 @@ async function asyncResearchBuyLinks(title, artist) {
 
 // Render skeleton placeholders first, then pop in cards as artwork resolves
 function renderAlternativesProgressive(alternatives) {
-  alternativesGrid.innerHTML = [1, 2, 3].map(() => `
+  // Strict programmatic filter: omit any album from userFavorites
+  const cleanAlternatives = (alternatives || []).filter(alt => !isAlbumInFavorites(alt.title, alt.artist));
+  const toRender = cleanAlternatives.slice(0, 3);
+
+  if (toRender.length === 0) {
+    alternativesGrid.innerHTML = `
+      <p class="empty-state-text" style="grid-column: 1 / -1; text-align: center; color: var(--text-muted); padding: 1.5rem;">
+        No other alternative recommendations found for this genre.
+      </p>
+    `;
+    return;
+  }
+
+  alternativesGrid.innerHTML = toRender.map(() => `
     <div class="alt-card-skeleton">
       <div class="skeleton-box skeleton-cover"></div>
       <div class="skeleton-box skeleton-title"></div>
@@ -1051,7 +1100,7 @@ function renderAlternativesProgressive(alternatives) {
 
   const skeletons = Array.from(alternativesGrid.querySelectorAll(".alt-card-skeleton"));
 
-  alternatives.slice(0, 3).forEach(async (alt, idx) => {
+  toRender.forEach(async (alt, idx) => {
     try {
       const coverUrl = (alt.coverUrl && !alt.coverUrl.startsWith("data:image/svg"))
         ? alt.coverUrl
@@ -1246,11 +1295,15 @@ async function generateRecommendations() {
   if (userSearches.length < 5) return;
 
   const sampleSearches = userSearches.slice(0, 10).map(s => `${s.artist} - ${s.title} (${s.genre})`).join("; ");
+  const favsExclusions = (userFavorites || []).map(f => `"${f.title}" by ${f.artist || 'Unknown'}`).join(", ");
+  const exclusionText = favsExclusions.length > 0
+    ? `\n\nCRITICAL EXCLUSION RULE: The user has already favorited these albums: ${favsExclusions}. You MUST NOT recommend any of them! Every recommendation must be a different album they do not have saved.`
+    : '';
 
   const recPrompt = `The user is an avid vinyl record collector in Germany with this recent search history:
-${sampleSearches}
+${sampleSearches}${exclusionText}
 
-Based on this musical taste profile, recommend 8 curated must-have vinyl albums for their collection crate.
+Based on this musical taste profile, recommend 12 curated must-have vinyl albums for their collection crate.
 Return strictly a valid JSON object:
 {
   "recommendations": [
@@ -1265,8 +1318,10 @@ Return strictly a valid JSON object:
 
   try {
     const data = await callGeminiFlash(recPrompt);
-    const recs = data.recommendations || [];
-    await renderRecommendationCarousel(recs);
+    const rawRecs = data.recommendations || [];
+    // Strict programmatic filter against user favorites
+    const cleanRecs = rawRecs.filter(item => !isAlbumInFavorites(item.title, item.artist));
+    await renderRecommendationCarousel(cleanRecs.slice(0, 8));
   } catch (err) {
     console.warn("Could not generate recommendations yet:", err);
   }
@@ -1275,8 +1330,10 @@ Return strictly a valid JSON object:
 // Render Vinyl Covers Only in Bottom Carousel (User Requirement)
 async function renderRecommendationCarousel(recs) {
   recTrack.innerHTML = "";
+  // Programmatic safeguard: omit any album from userFavorites
+  const cleanRecs = (recs || []).filter(item => !isAlbumInFavorites(item.title, item.artist));
 
-  for (const item of recs) {
+  for (const item of cleanRecs) {
     const coverUrl = await fetchAlbumCover(item.coverSearchTerm || item.title, item.artist, item.title);
 
     const coverEl = document.createElement("div");
@@ -1357,11 +1414,7 @@ function saveUserFavorites() {
 }
 
 function isFavorited(title, artist) {
-  if (!title) return false;
-  return userFavorites.some(
-    f => f.title.toLowerCase() === title.toLowerCase() && 
-         (artist ? f.artist.toLowerCase() === artist.toLowerCase() : true)
-  );
+  return isAlbumInFavorites(title, artist);
 }
 
 function toggleFavorite(album) {
@@ -1538,15 +1591,20 @@ async function generateFavoritesRecommendations() {
   expandRecsBtn.classList.add("hidden");
 
   const favsSummary = userFavorites.map((f, i) => `${i + 1}. "${f.title}" by ${f.artist || 'Unknown'} (${f.genre || 'Vinyl'}${f.year ? ', ' + f.year : ''})`).join("\n");
+  const favTitlesList = userFavorites.map(f => `"${f.title}"`).join(", ");
 
   const prompt = `You are a legendary German vinyl crate-digger and record connoisseur curator.
 The user has saved these favorite records in their personal vinyl collection:
 ${favsSummary}
 
 Synthesize the musical taste, sonic aesthetic, instrumentation, production qualities, and genre intersections across ALL these saved favorite albums.
-Recommend exactly 10 vinyl records that would be must-haves for their physical record shelf.
+Recommend 14 distinct vinyl records that would be must-haves for their physical record shelf.
 
-For each of the 10 recommendations, provide:
+CRITICAL EXCLUSION RULE:
+DO NOT recommend any of the albums that are already in the user's saved favorites list (${favTitlesList}), or alternative editions/reissues of them!
+Every recommendation MUST be a fresh discovery or complementary album that the user does NOT already have in their favorites list.
+
+For each of the 14 recommendations, provide:
 1. "title": Exact album title.
 2. "artist": Exact artist name.
 3. "genre": Musical genre / sub-genre.
@@ -1582,7 +1640,9 @@ Return strictly a valid JSON object matching this schema:
   try {
     const data = await callGeminiFlash(prompt);
     if (data && Array.isArray(data.recommendations) && data.recommendations.length > 0) {
-      cachedFavRecs = data.recommendations;
+      // Deterministic filter: strictly exclude any album in the favorites list
+      const nonFavs = data.recommendations.filter(rec => !isAlbumInFavorites(rec.title, rec.artist));
+      cachedFavRecs = nonFavs;
       lastFavsSignature = currentSig;
       isRecsExpanded = false;
       recsModalLoading.classList.add("hidden");
@@ -1607,8 +1667,22 @@ Return strictly a valid JSON object matching this schema:
 function renderFavoritesRecommendations() {
   if (!favRecsList) return;
 
-  const countToShow = isRecsExpanded ? Math.min(10, cachedFavRecs.length) : Math.min(5, cachedFavRecs.length);
-  const items = cachedFavRecs.slice(0, countToShow);
+  // Strict filter: omit any album from userFavorites
+  const cleanRecs = (cachedFavRecs || []).filter(rec => !isAlbumInFavorites(rec.title, rec.artist));
+  
+  if (cleanRecs.length === 0) {
+    favRecsList.innerHTML = `
+      <div class="favs-empty-state">
+        <span class="favs-empty-icon">🎵</span>
+        <p class="favs-empty-text">No recommendations available that aren't already in your favorites.</p>
+      </div>
+    `;
+    if (expandRecsBtn) expandRecsBtn.classList.add("hidden");
+    return;
+  }
+
+  const countToShow = isRecsExpanded ? Math.min(10, cleanRecs.length) : Math.min(5, cleanRecs.length);
+  const items = cleanRecs.slice(0, countToShow);
 
   favRecsList.innerHTML = "";
 
@@ -1742,7 +1816,7 @@ function renderFavoritesRecommendations() {
   });
 
   // Expand / Collapse button state
-  if (cachedFavRecs.length > 5) {
+  if (cleanRecs.length > 5) {
     expandRecsBtn.classList.remove("hidden");
     expandRecsBtn.textContent = isRecsExpanded ? "Show Top 5 ▲" : "Expand to 10 Recommendations ▼";
   } else {
