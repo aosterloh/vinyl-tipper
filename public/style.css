@@ -1791,21 +1791,127 @@ body {
   font-size: 15px;
 }
 
-.recs-drawer-panel {
-  width: 540px;
-  max-width: 95vw;
+/* Curated Recommendations Pop-up Modal */
+.fav-recs-modal-container {
+  position: fixed;
+  inset: 0;
+  z-index: 2100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.fav-recs-modal-container.hidden {
+  display: none !important;
+}
+
+.fav-recs-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.fav-recs-modal-dialog {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 680px;
+  max-height: 88vh;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modalPopIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalPopIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.fav-recs-modal-header {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-elevated);
+  flex-shrink: 0;
+}
+
+.fav-recs-header-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .recs-header-icon {
   font-size: 24px;
 }
 
-.recs-drawer-subtitle {
-  font-size: 12px;
+.fav-recs-modal-title {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.recs-modal-subtitle {
+  font-size: 13px;
   color: var(--text-muted);
   margin-top: 2px;
 }
 
+/* Dedicated Pop-up Modal Loading State */
+.recs-modal-loading {
+  padding: 64px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.recs-modal-loading.hidden {
+  display: none !important;
+}
+
+.recs-loading-message {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  max-width: 460px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.recs-loading-subtext {
+  font-size: 13px;
+  color: var(--text-muted);
+  max-width: 440px;
+  line-height: 1.45;
+}
+
+/* Recommendations List inside Pop-up Modal */
+.fav-recs-modal-list,
 .fav-recs-list {
   flex: 1;
   overflow-y: auto;
@@ -1813,6 +1919,11 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  max-height: calc(88vh - 150px);
+}
+
+.fav-recs-modal-list.hidden {
+  display: none !important;
 }
 
 /* Recommendation Card */
@@ -2019,12 +2130,14 @@ body {
   stroke: #EA4335;
 }
 
+.fav-recs-modal-footer,
 .recs-drawer-footer {
   padding: 16px 24px;
   border-top: 1px solid var(--border-light);
   display: flex;
   justify-content: center;
   background-color: var(--bg-surface);
+  flex-shrink: 0;
 }
 
 .expand-recs-btn {

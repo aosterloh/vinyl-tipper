@@ -265,31 +265,44 @@
     </aside>
   </div>
 
-  <!-- 5-10 CURATED VINYL RECOMMENDATIONS SLIDE-OVER DRAWER -->
-  <div id="fav-recs-drawer-container" class="favs-drawer-container hidden">
-    <div id="fav-recs-drawer-backdrop" class="favs-drawer-backdrop"></div>
-    <aside class="favs-drawer-panel recs-drawer-panel">
-      <div class="favs-drawer-header">
-        <div class="favs-drawer-title-row">
+  <!-- 5-10 CURATED VINYL RECOMMENDATIONS POP-UP MODAL -->
+  <div id="fav-recs-modal-container" class="fav-recs-modal-container hidden" role="dialog" aria-modal="true" aria-labelledby="recs-modal-title">
+    <div id="fav-recs-modal-backdrop" class="fav-recs-modal-backdrop"></div>
+    <div class="fav-recs-modal-dialog">
+      <!-- Modal Header -->
+      <div class="fav-recs-modal-header">
+        <div class="fav-recs-header-title-wrap">
           <span class="recs-header-icon">✨</span>
           <div>
-            <h3 class="favs-drawer-title">Curated Vinyl Recommendations</h3>
-            <p id="recs-drawer-subtitle" class="recs-drawer-subtitle">Derived from your saved favorites</p>
+            <h3 id="recs-modal-title" class="fav-recs-modal-title">Curated Vinyl Recommendations</h3>
+            <p id="recs-modal-subtitle" class="recs-modal-subtitle">Derived from your saved favorites</p>
           </div>
         </div>
-        <button id="close-fav-recs-drawer-btn" class="modal-close-btn" aria-label="Close Recommendations">&times;</button>
+        <button id="close-fav-recs-modal-btn" class="modal-close-btn" aria-label="Close Recommendations">&times;</button>
       </div>
 
-      <div id="fav-recs-list" class="fav-recs-list">
+      <!-- Loading State inside Modal -->
+      <div id="recs-modal-loading" class="recs-modal-loading hidden">
+        <div class="spinning-vinyl">
+          <div class="grooves"></div>
+          <div class="label-circle"></div>
+        </div>
+        <p class="recs-loading-message">Getting your personalized recommendations based on your saved albums</p>
+        <span class="recs-loading-subtext">Evaluating sonic aesthetics, genres, and artist lineage across your saved collection...</span>
+      </div>
+
+      <!-- Recommendations List inside Modal -->
+      <div id="fav-recs-list" class="fav-recs-modal-list">
         <!-- Rendered dynamically -->
       </div>
 
-      <div class="recs-drawer-footer">
+      <!-- Modal Footer -->
+      <div class="fav-recs-modal-footer">
         <button id="expand-recs-btn" class="expand-recs-btn hidden" type="button">
           Expand to 10 Recommendations ▼
         </button>
       </div>
-    </aside>
+    </div>
   </div>
 
   <!-- FIREBASE AND CLIENT APPLICATION SCRIPT -->

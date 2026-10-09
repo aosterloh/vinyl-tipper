@@ -148,12 +148,14 @@ const recTrack = document.getElementById("rec-track");
 const recPrevBtn = document.getElementById("rec-prev-btn");
 const recNextBtn = document.getElementById("rec-next-btn");
 
-// Curated Vinyl Recommendations Elements (3+ Favorites)
+// Curated Vinyl Recommendations Elements (3+ Favorites Modal)
 const favRecsBtn = document.getElementById("fav-recs-btn");
-const favRecsDrawerContainer = document.getElementById("fav-recs-drawer-container");
-const favRecsDrawerBackdrop = document.getElementById("fav-recs-drawer-backdrop");
-const closeFavRecsDrawerBtn = document.getElementById("close-fav-recs-drawer-btn");
-const recsDrawerSubtitle = document.getElementById("recs-drawer-subtitle");
+const favRecsModalContainer = document.getElementById("fav-recs-modal-container");
+const favRecsModalBackdrop = document.getElementById("fav-recs-modal-backdrop");
+const closeFavRecsModalBtn = document.getElementById("close-fav-recs-modal-btn");
+const recsModalTitle = document.getElementById("recs-modal-title");
+const recsModalSubtitle = document.getElementById("recs-modal-subtitle");
+const recsModalLoading = document.getElementById("recs-modal-loading");
 const favRecsList = document.getElementById("fav-recs-list");
 const expandRecsBtn = document.getElementById("expand-recs-btn");
 
@@ -281,13 +283,47 @@ function triggerDiagnosticsError(model, errorType, message) {
 // ============================================================================
 async function fetchAlbumCover(query, artist = "", fallbackTitle = "") {
   try {
-    const searchTerm = `${query} ${artist}`.trim();
-    const url = `https://itunes.apple.com/search?term=${encodeURIComponent(searchTerm)}&entity=album&limit=1`;
+    const cleanTitle = (fallbackTitle || query || "").trim();
+    const searchTerm = `${cleanTitle} ${artist}`.trim();
+    const url = `https://itunes.apple.com/search?term=${encodeURIComponent(searchTerm)}&entity=album&limit=6`;
     const res = await fetch(url);
     if (res.ok) {
       const data = await res.json();
       if (data.results && data.results.length > 0) {
-        const rawArtwork = data.results[0].artworkUrl100;
+        const targetTitleLower = cleanTitle.toLowerCase();
+        const wantsInstrumental = targetTitleLower.includes("instrumental");
+        const wantsRemix = targetTitleLower.includes("remix");
+        const wantsLive = targetTitleLower.includes("live");
+
+        let bestResult = null;
+        let bestScore = -999;
+
+        for (const item of data.results) {
+          const collName = (item.collectionName || "").toLowerCase();
+          const artName = (item.artistName || "").toLowerCase();
+          let score = 10;
+
+          // Penalize instrumentals/karaoke/tributes unless the user asked for them
+          if (!wantsInstrumental && (collName.includes("instrumental") || collName.includes("karaoke"))) score -= 50;
+          if (!wantsRemix && (collName.includes("remix") || collName.includes("remixed"))) score -= 25;
+          if (collName.includes("tribute")) score -= 50;
+          if (!wantsLive && collName.includes("live at") && !targetTitleLower.includes("live at")) score -= 15;
+
+          // Priority for exact or starting title match
+          if (collName === targetTitleLower) score += 40;
+          else if (collName.startsWith(targetTitleLower)) score += 20;
+
+          // Priority for artist match
+          if (artist && artName.includes(artist.toLowerCase())) score += 20;
+
+          if (score > bestScore) {
+            bestScore = score;
+            bestResult = item;
+          }
+        }
+
+        const chosen = bestResult || data.results[0];
+        const rawArtwork = chosen?.artworkUrl100;
         if (rawArtwork) {
           // Request high resolution 600x600 artwork
           return rawArtwork.replace("100x100bb.jpg", "600x600bb.jpg");
@@ -1291,18 +1327,20 @@ favsDrawerBackdrop.addEventListener("click", () => {
 });
 
 // ============================================================================
-// 11. CURATED VINYL RECOMMENDATIONS (3+ FAVORITES UNLOCKED)
+// 11. CURATED VINYL RECOMMENDATIONS (3+ FAVORITES UNLOCKED POP-UP MODAL)
 // ============================================================================
 async function openFavoritesRecommendations() {
   if (userFavorites.length < 3) return;
-  favRecsDrawerContainer.classList.remove("hidden");
+  favRecsModalContainer.classList.remove("hidden");
 
-  if (recsDrawerSubtitle) {
-    recsDrawerSubtitle.textContent = `Derived from your ${userFavorites.length} saved favorites`;
+  if (recsModalSubtitle) {
+    recsModalSubtitle.textContent = `Derived from your ${userFavorites.length} saved favorites`;
   }
 
   const currentSig = userFavorites.map(f => `${f.title}:${f.artist}`).sort().join("|");
   if (cachedFavRecs.length > 0 && lastFavsSignature === currentSig) {
+    recsModalLoading.classList.add("hidden");
+    favRecsList.classList.remove("hidden");
     renderFavoritesRecommendations();
     return;
   }
@@ -1315,15 +1353,10 @@ async function generateFavoritesRecommendations() {
 
   const currentSig = userFavorites.map(f => `${f.title}:${f.artist}`).sort().join("|");
 
-  // Render skeleton loading state
-  favRecsList.innerHTML = [1, 2, 3, 4, 5].map(() => `
-    <div class="alt-card-skeleton" style="padding: 16px; border-radius: var(--radius-md);">
-      <div class="skeleton-box" style="height: 64px; width: 64px; border-radius: 4px; float: left; margin-right: 14px;"></div>
-      <div class="skeleton-box" style="height: 18px; width: 60%; margin-bottom: 8px;"></div>
-      <div class="skeleton-box" style="height: 14px; width: 40%; margin-bottom: 12px;"></div>
-      <div class="skeleton-box" style="height: 38px; width: 100%; border-radius: 4px;"></div>
-    </div>
-  `).join("");
+  // Show dedicated modal loading state displaying:
+  // "Getting your personalized recommendations based on your saved albums"
+  recsModalLoading.classList.remove("hidden");
+  favRecsList.classList.add("hidden");
   expandRecsBtn.classList.add("hidden");
 
   const favsSummary = userFavorites.map((f, i) => `${i + 1}. "${f.title}" by ${f.artist || 'Unknown'} (${f.genre || 'Vinyl'}${f.year ? ', ' + f.year : ''})`).join("\n");
@@ -1374,12 +1407,16 @@ Return strictly a valid JSON object matching this schema:
       cachedFavRecs = data.recommendations;
       lastFavsSignature = currentSig;
       isRecsExpanded = false;
+      recsModalLoading.classList.add("hidden");
+      favRecsList.classList.remove("hidden");
       renderFavoritesRecommendations();
     } else {
       throw new Error("No recommendations returned");
     }
   } catch (err) {
     console.error("Failed to generate recommendations:", err);
+    recsModalLoading.classList.add("hidden");
+    favRecsList.classList.remove("hidden");
     favRecsList.innerHTML = `
       <div class="favs-empty-state">
         <span class="favs-empty-icon">⚠️</span>
@@ -1472,9 +1509,9 @@ function renderFavoritesRecommendations() {
       });
     }
 
-    // Appraise button or clicking title/cover loads album in main view
+    // Appraise button or clicking title/cover loads album in main view and closes modal
     const triggerAppraisal = () => {
-      favRecsDrawerContainer.classList.add("hidden");
+      favRecsModalContainer.classList.add("hidden");
       albumInput.value = `${rec.artist} - ${rec.title}`;
       appraiseAlbum(`${rec.artist} ${rec.title}`);
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1513,22 +1550,29 @@ function renderFavoritesRecommendations() {
   }
 }
 
-// Curated Recommendations Drawer controls
+// Curated Recommendations Pop-up Modal controls
 if (favRecsBtn) {
   favRecsBtn.addEventListener("click", openFavoritesRecommendations);
 }
 
-if (closeFavRecsDrawerBtn) {
-  closeFavRecsDrawerBtn.addEventListener("click", () => {
-    favRecsDrawerContainer.classList.add("hidden");
+if (closeFavRecsModalBtn) {
+  closeFavRecsModalBtn.addEventListener("click", () => {
+    favRecsModalContainer.classList.add("hidden");
   });
 }
 
-if (favRecsDrawerBackdrop) {
-  favRecsDrawerBackdrop.addEventListener("click", () => {
-    favRecsDrawerContainer.classList.add("hidden");
+if (favRecsModalBackdrop) {
+  favRecsModalBackdrop.addEventListener("click", () => {
+    favRecsModalContainer.classList.add("hidden");
   });
 }
+
+// Close pop-up modal on Escape key press
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && favRecsModalContainer && !favRecsModalContainer.classList.contains("hidden")) {
+    favRecsModalContainer.classList.add("hidden");
+  }
+});
 
 if (expandRecsBtn) {
   expandRecsBtn.addEventListener("click", () => {
