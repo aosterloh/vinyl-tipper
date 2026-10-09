@@ -60,6 +60,31 @@ const albumInput = document.getElementById("album-input");
 const loadingState = document.getElementById("loading-state");
 const resultsSection = document.getElementById("results-section");
 
+// Floating AI Thinking Banner Elements & Lifecycle
+const aiThinkingBanner = document.getElementById("ai-thinking-banner");
+let activeAiRequests = 0;
+let aiBannerHideTimer = null;
+
+function showAiThinkingBanner() {
+  if (aiBannerHideTimer) {
+    clearTimeout(aiBannerHideTimer);
+    aiBannerHideTimer = null;
+  }
+  if (aiThinkingBanner) {
+    aiThinkingBanner.classList.remove("hidden");
+  }
+}
+
+function hideAiThinkingBanner() {
+  if (activeAiRequests <= 0 && aiThinkingBanner) {
+    aiBannerHideTimer = setTimeout(() => {
+      if (activeAiRequests <= 0 && aiThinkingBanner) {
+        aiThinkingBanner.classList.add("hidden");
+      }
+    }, 350);
+  }
+}
+
 // Hero appraisal elements
 const albumCoverImg = document.getElementById("album-cover-img");
 const albumTitleEl = document.getElementById("album-title");
@@ -414,82 +439,90 @@ function escapeXml(unsafe) {
 // 7. GEMINI 3.8 FLASH APPRAISAL ENGINE
 // ============================================================================
 async function callGeminiFlash(promptText) {
-  const customKey = getActiveApiKey();
+  activeAiRequests++;
+  showAiThinkingBanner();
 
-  // If client provided a key directly
-  if (customKey) {
-    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${encodeURIComponent(customKey)}`;
-    const payload = {
-      contents: [{ parts: [{ text: promptText }] }],
-      generationConfig: {
-        response_mime_type: "application/json",
-        temperature: 0.2
-      }
-    };
+  try {
+    const customKey = getActiveApiKey();
 
-    const res = await fetch(endpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-
-    if (!res.ok) {
-      const errJson = await res.json().catch(() => ({}));
-      const errMsg = errJson.error?.message || `HTTP ${res.status} error`;
-      if (res.status === 429) {
-        triggerDiagnosticsError(MODEL_NAME, "429: Quota Limit Exceeded", errMsg);
-      } else if (res.status === 403 || res.status === 401) {
-        triggerDiagnosticsError(MODEL_NAME, `${res.status}: Permission Denied`, errMsg);
-      } else {
-        triggerDiagnosticsError(MODEL_NAME, `HTTP ${res.status}`, errMsg);
-      }
-      throw new Error(errMsg);
-    }
-
-    const data = await res.json();
-    const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text;
-    if (!rawText) throw new Error("No response content from Gemini 3.8 Flash");
-    return JSON.parse(rawText);
-  }
-
-  // If server has key configured, use server proxy
-  if (hasServerKey) {
-    const res = await fetch("/api/gemini", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+    // If client provided a key directly
+    if (customKey) {
+      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${encodeURIComponent(customKey)}`;
+      const payload = {
         contents: [{ parts: [{ text: promptText }] }],
         generationConfig: {
           response_mime_type: "application/json",
           temperature: 0.2
         }
-      })
-    });
+      };
 
-    if (!res.ok) {
-      const errJson = await res.json().catch(() => ({}));
-      const errMsg = errJson.error?.message || `HTTP ${res.status} proxy error`;
-      if (res.status === 429) {
-        triggerDiagnosticsError(MODEL_NAME, "429: Quota Limit Exceeded", errMsg);
-      } else {
-        triggerDiagnosticsError(MODEL_NAME, `HTTP ${res.status}`, errMsg);
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if (!res.ok) {
+        const errJson = await res.json().catch(() => ({}));
+        const errMsg = errJson.error?.message || `HTTP ${res.status} error`;
+        if (res.status === 429) {
+          triggerDiagnosticsError(MODEL_NAME, "429: Quota Limit Exceeded", errMsg);
+        } else if (res.status === 403 || res.status === 401) {
+          triggerDiagnosticsError(MODEL_NAME, `${res.status}: Permission Denied`, errMsg);
+        } else {
+          triggerDiagnosticsError(MODEL_NAME, `HTTP ${res.status}`, errMsg);
+        }
+        throw new Error(errMsg);
       }
-      throw new Error(errMsg);
+
+      const data = await res.json();
+      const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (!rawText) throw new Error("No response content from Gemini 3.8 Flash");
+      return JSON.parse(rawText);
     }
 
-    const data = await res.json();
-    const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text;
-    if (!rawText) throw new Error("No response content from Gemini proxy");
-    return JSON.parse(rawText);
-  }
+    // If server has key configured, use server proxy
+    if (hasServerKey) {
+      const res = await fetch("/api/gemini", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: promptText }] }],
+          generationConfig: {
+            response_mime_type: "application/json",
+            temperature: 0.2
+          }
+        })
+      });
 
-  // No API key configured at all -> prompt user via modal
-  triggerDiagnosticsError(
-    "", 
-    "API_KEY_REQUIRED", 
-    "Please paste your API Key to run appraisals."
-  );
-  throw new Error("Missing API Key");
+      if (!res.ok) {
+        const errJson = await res.json().catch(() => ({}));
+        const errMsg = errJson.error?.message || `HTTP ${res.status} proxy error`;
+        if (res.status === 429) {
+          triggerDiagnosticsError(MODEL_NAME, "429: Quota Limit Exceeded", errMsg);
+        } else {
+          triggerDiagnosticsError(MODEL_NAME, `HTTP ${res.status}`, errMsg);
+        }
+        throw new Error(errMsg);
+      }
+
+      const data = await res.json();
+      const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (!rawText) throw new Error("No response content from Gemini proxy");
+      return JSON.parse(rawText);
+    }
+
+    // No API key configured at all -> prompt user via modal
+    triggerDiagnosticsError(
+      "", 
+      "API_KEY_REQUIRED", 
+      "Please paste your API Key to run appraisals."
+    );
+    throw new Error("Missing API Key");
+  } finally {
+    activeAiRequests--;
+    hideAiThinkingBanner();
+  }
 }
 
 // ============================================================================
@@ -1119,9 +1152,12 @@ function renderAlternativesProgressive(alternatives) {
       }
 
       card.addEventListener("click", () => {
+        card.classList.add("card-loading-active");
+        showAiThinkingBanner();
         albumInput.value = `${alt.artist} - ${alt.title}`;
         appraiseAlbum(`${alt.artist} ${alt.title}`);
         window.scrollTo({ top: 0, behavior: "smooth" });
+        setTimeout(() => { card.classList.remove("card-loading-active"); }, 2500);
       });
 
       if (skeletons[idx] && skeletons[idx].parentNode) {
@@ -1254,9 +1290,12 @@ async function renderRecommendationCarousel(recs) {
 
     // Clicking a vinyl cover flips/loads that album into main appraiser
     coverEl.addEventListener("click", () => {
+      coverEl.classList.add("card-loading-active");
+      showAiThinkingBanner();
       albumInput.value = `${item.artist} - ${item.title}`;
       appraiseAlbum(`${item.artist} ${item.title}`);
       window.scrollTo({ top: 0, behavior: "smooth" });
+      setTimeout(() => { coverEl.classList.remove("card-loading-active"); }, 2500);
     });
 
     recTrack.appendChild(coverEl);
@@ -1279,12 +1318,14 @@ searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const query = albumInput.value.trim();
   if (query) {
+    showAiThinkingBanner();
     appraiseAlbum(query);
   }
 });
 
 document.querySelectorAll(".chip").forEach(chip => {
   chip.addEventListener("click", () => {
+    showAiThinkingBanner();
     const album = chip.getAttribute("data-album");
     albumInput.value = album;
     appraiseAlbum(album);
@@ -1427,6 +1468,7 @@ function renderFavsDrawerList() {
     card.addEventListener("click", (e) => {
       if (e.target.closest(".fav-card-remove-btn")) return;
       favsDrawerContainer.classList.add("hidden");
+      showAiThinkingBanner();
       albumInput.value = `${fav.artist} - ${fav.title}`;
       appraiseAlbum(`${fav.artist} ${fav.title}`);
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1648,6 +1690,7 @@ function renderFavoritesRecommendations() {
     // Appraise button or clicking title/cover loads album in main view and closes modal
     const triggerAppraisal = () => {
       favRecsModalContainer.classList.add("hidden");
+      showAiThinkingBanner();
       albumInput.value = `${rec.artist} - ${rec.title}`;
       appraiseAlbum(`${rec.artist} ${rec.title}`);
       window.scrollTo({ top: 0, behavior: "smooth" });
