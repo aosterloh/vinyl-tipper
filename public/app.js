@@ -109,16 +109,18 @@ const recTrack = document.getElementById("rec-track");
 const recPrevBtn = document.getElementById("rec-prev-btn");
 const recNextBtn = document.getElementById("rec-next-btn");
 
-// Diagnostics Modal elements
-const diagnosticsModal = document.getElementById("diagnostics-modal");
-const keyModalBtn = document.getElementById("key-modal-btn");
-const closeModalBtn = document.getElementById("close-modal-btn");
-const saveKeyBtn = document.getElementById("save-key-btn");
-const clearKeyBtn = document.getElementById("clear-key-btn");
-const customApiKeyInput = document.getElementById("custom-api-key");
-const diagErrorBox = document.getElementById("diag-error-box");
-const diagErrorModel = document.getElementById("diag-model-name");
-const diagErrorMsg = document.getElementById("diag-error-message");
+// Curated Vinyl Recommendations Elements (3+ Favorites)
+const favRecsBtn = document.getElementById("fav-recs-btn");
+const favRecsDrawerContainer = document.getElementById("fav-recs-drawer-container");
+const favRecsDrawerBackdrop = document.getElementById("fav-recs-drawer-backdrop");
+const closeFavRecsDrawerBtn = document.getElementById("close-fav-recs-drawer-btn");
+const recsDrawerSubtitle = document.getElementById("recs-drawer-subtitle");
+const favRecsList = document.getElementById("fav-recs-list");
+const expandRecsBtn = document.getElementById("expand-recs-btn");
+
+let cachedFavRecs = [];
+let isRecsExpanded = false;
+let lastFavsSignature = "";
 
 // ============================================================================
 // 3. THEME MANAGEMENT (LIGHT & DARK MODE PROTOCOL)
@@ -230,41 +232,9 @@ function getActiveApiKey() {
   return null;
 }
 
-keyModalBtn.addEventListener("click", () => {
-  diagErrorBox.classList.add("hidden");
-  customApiKeyInput.value = localStorage.getItem("gemini_api_key") || "";
-  diagnosticsModal.showModal();
-});
-
-closeModalBtn.addEventListener("click", () => {
-  diagnosticsModal.close();
-});
-
-saveKeyBtn.addEventListener("click", () => {
-  const key = customApiKeyInput.value.trim();
-  if (key) {
-    localStorage.setItem("gemini_api_key", key);
-  } else {
-    localStorage.removeItem("gemini_api_key");
-  }
-  diagnosticsModal.close();
-});
-
-clearKeyBtn.addEventListener("click", () => {
-  customApiKeyInput.value = "";
-  localStorage.removeItem("gemini_api_key");
-  diagnosticsModal.close();
-});
-
-// MANDATORY IN-APP ERROR NOTIFICATION (per gemini.md)
+// Graceful error notification without user-facing key prompts
 function triggerDiagnosticsError(model, errorType, message) {
-  if (diagErrorModel) {
-    diagErrorModel.textContent = "API Diagnostics";
-  }
-  diagErrorMsg.textContent = `${errorType}: ${message}`;
-  diagErrorBox.classList.remove("hidden");
-  customApiKeyInput.value = localStorage.getItem("gemini_api_key") || "";
-  diagnosticsModal.showModal();
+  console.warn(`[diagnostics] ${errorType}: ${message}`);
 }
 
 // ============================================================================
@@ -1144,8 +1114,21 @@ function updateFavsUI() {
     favsCountBadge.classList.add("hidden");
   }
 
+  // 5 Vinyl Recommendations button (Unlocked once user has 3+ fav saves)
+  if (favRecsBtn) {
+    if (count >= 3) {
+      favRecsBtn.classList.remove("hidden");
+    } else {
+      favRecsBtn.classList.add("hidden");
+    }
+  }
+
   if (favsDrawerCount) {
     favsDrawerCount.textContent = `${count} album${count === 1 ? '' : 's'}`;
+  }
+
+  if (recsDrawerSubtitle) {
+    recsDrawerSubtitle.textContent = `Derived from your ${count} saved favorites`;
   }
 
   // Update hero button state if current album is loaded
@@ -1236,7 +1219,254 @@ favsDrawerBackdrop.addEventListener("click", () => {
 });
 
 // ============================================================================
-// 11. INITIALIZATION
+// 11. CURATED VINYL RECOMMENDATIONS (3+ FAVORITES UNLOCKED)
+// ============================================================================
+async function openFavoritesRecommendations() {
+  if (userFavorites.length < 3) return;
+  favRecsDrawerContainer.classList.remove("hidden");
+
+  if (recsDrawerSubtitle) {
+    recsDrawerSubtitle.textContent = `Derived from your ${userFavorites.length} saved favorites`;
+  }
+
+  const currentSig = userFavorites.map(f => `${f.title}:${f.artist}`).sort().join("|");
+  if (cachedFavRecs.length > 0 && lastFavsSignature === currentSig) {
+    renderFavoritesRecommendations();
+    return;
+  }
+
+  await generateFavoritesRecommendations();
+}
+
+async function generateFavoritesRecommendations() {
+  if (userFavorites.length < 3) return;
+
+  const currentSig = userFavorites.map(f => `${f.title}:${f.artist}`).sort().join("|");
+
+  // Render skeleton loading state
+  favRecsList.innerHTML = [1, 2, 3, 4, 5].map(() => `
+    <div class="alt-card-skeleton" style="padding: 16px; border-radius: var(--radius-md);">
+      <div class="skeleton-box" style="height: 64px; width: 64px; border-radius: 4px; float: left; margin-right: 14px;"></div>
+      <div class="skeleton-box" style="height: 18px; width: 60%; margin-bottom: 8px;"></div>
+      <div class="skeleton-box" style="height: 14px; width: 40%; margin-bottom: 12px;"></div>
+      <div class="skeleton-box" style="height: 38px; width: 100%; border-radius: 4px;"></div>
+    </div>
+  `).join("");
+  expandRecsBtn.classList.add("hidden");
+
+  const favsSummary = userFavorites.map((f, i) => `${i + 1}. "${f.title}" by ${f.artist || 'Unknown'} (${f.genre || 'Vinyl'}${f.year ? ', ' + f.year : ''})`).join("\n");
+
+  const prompt = `You are a legendary German vinyl crate-digger and record connoisseur curator.
+The user has saved these favorite records in their personal vinyl collection:
+${favsSummary}
+
+Synthesize the musical taste, sonic aesthetic, instrumentation, production qualities, and genre intersections across ALL these saved favorite albums.
+Recommend exactly 10 vinyl records that would be must-haves for their physical record shelf.
+
+For each of the 10 recommendations, provide:
+1. "title": Exact album title.
+2. "artist": Exact artist name.
+3. "genre": Musical genre / sub-genre.
+4. "year": Release year (number).
+5. "score": Integer from 75 to 100 representing how strongly this vinyl matches and complements their specific collection of favorites. Rank from highest match score to lower.
+6. "matchReason": 1 to 2 sentences explaining why this vinyl is a good match, explicitly connecting back to the artists, genres, or production aesthetics in their saved favorites.
+7. "playtime": Total album runtime (e.g. "44 min").
+8. "trackCount": Number of tracks (integer).
+9. "streetPriceGermany": { "newEur": "€28 – €34", "usedEur": "€14 – €22" } realistic German vinyl market prices in EUR.
+10. "coverSearchTerm": Search query for album sleeve artwork (Artist Album).
+
+Return strictly a valid JSON object matching this schema:
+{
+  "recommendations": [
+    {
+      "title": "string",
+      "artist": "string",
+      "genre": "string",
+      "year": 1975,
+      "score": 98,
+      "matchReason": "string",
+      "playtime": "string",
+      "trackCount": 10,
+      "streetPriceGermany": {
+        "newEur": "€28 – €34",
+        "usedEur": "€14 – €22"
+      },
+      "coverSearchTerm": "Artist Album"
+    }
+  ]
+}`;
+
+  try {
+    const data = await callGeminiFlash(prompt);
+    if (data && Array.isArray(data.recommendations) && data.recommendations.length > 0) {
+      cachedFavRecs = data.recommendations;
+      lastFavsSignature = currentSig;
+      isRecsExpanded = false;
+      renderFavoritesRecommendations();
+    } else {
+      throw new Error("No recommendations returned");
+    }
+  } catch (err) {
+    console.error("Failed to generate recommendations:", err);
+    favRecsList.innerHTML = `
+      <div class="favs-empty-state">
+        <span class="favs-empty-icon">⚠️</span>
+        <p class="favs-empty-text">Unable to curate recommendations right now. Please try again in a moment.</p>
+      </div>
+    `;
+  }
+}
+
+function renderFavoritesRecommendations() {
+  if (!favRecsList) return;
+
+  const countToShow = isRecsExpanded ? Math.min(10, cachedFavRecs.length) : Math.min(5, cachedFavRecs.length);
+  const items = cachedFavRecs.slice(0, countToShow);
+
+  favRecsList.innerHTML = "";
+
+  items.forEach((rec) => {
+    const card = document.createElement("div");
+    card.className = "rec-card fade-in";
+
+    const isFav = isFavorited(rec.title, rec.artist);
+    const scoreVal = Math.min(100, Math.max(0, rec.score || 95));
+
+    card.innerHTML = `
+      <div class="rec-card-top">
+        <img class="rec-card-cover" src="${rec.coverUrl || generateSvgCover(rec.title, rec.artist)}" alt="${escapeXml(rec.title)}" loading="lazy" />
+        <div class="rec-card-main">
+          <div class="rec-card-header-row">
+            <h4 class="rec-card-title" title="${escapeXml(rec.title)}">${escapeXml(rec.title)}</h4>
+            <span class="rec-score-pill" title="Affinity match score: ${scoreVal}/100">
+              🎯 ${scoreVal}/100
+            </span>
+          </div>
+          <span class="rec-card-artist">${escapeXml(rec.artist)}</span>
+          <div class="rec-card-meta">
+            <span>${escapeXml(rec.genre || 'Vinyl')}</span>
+            ${rec.year ? `<span>• ${rec.year}</span>` : ''}
+            ${rec.playtime ? `<span>• ⏱️ ${escapeXml(rec.playtime)}</span>` : ''}
+            ${rec.trackCount ? `<span>• 🎵 ${rec.trackCount} songs</span>` : ''}
+          </div>
+        </div>
+      </div>
+
+      <div class="rec-match-box">
+        <strong>Why it's a good match:</strong> ${escapeXml(rec.matchReason || 'Matches the sonic aesthetic and songwriting style in your collection.')}
+      </div>
+
+      <div class="rec-card-bottom">
+        <div class="rec-pricing-tags">
+          <div class="rec-price-item">
+            <span class="rec-price-label">New (DE)</span>
+            <span class="rec-price-val">${escapeXml(rec.streetPriceGermany?.newEur || '€28')}</span>
+          </div>
+          <div class="rec-price-item">
+            <span class="rec-price-label">Used (DE)</span>
+            <span class="rec-price-val">${escapeXml(rec.streetPriceGermany?.usedEur || '€15')}</span>
+          </div>
+        </div>
+        <div class="rec-card-actions">
+          <button class="rec-inspect-btn" type="button" title="Appraise this record">
+            Appraise ↗
+          </button>
+          <button class="rec-fav-btn ${isFav ? 'active' : ''}" type="button" title="Favorite this vinyl">
+            <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          </button>
+        </div>
+      </div>
+    `;
+
+    // Fetch and cache high-res sleeve cover asynchronously
+    if (!rec.coverUrl || rec.coverUrl.startsWith("data:image/svg")) {
+      fetchAlbumCover(rec.coverSearchTerm || rec.title, rec.artist, rec.title).then(cover => {
+        if (cover) {
+          rec.coverUrl = cover;
+          const coverImg = card.querySelector(".rec-card-cover");
+          if (coverImg) coverImg.src = cover;
+          // Save recommended album & cover to persistent storage catalog
+          saveAlbumToCache({
+            title: rec.title,
+            artist: rec.artist,
+            genre: rec.genre,
+            year: rec.year,
+            playtime: rec.playtime,
+            trackCount: rec.trackCount,
+            coverUrl: cover,
+            alternatives: []
+          });
+        }
+      });
+    }
+
+    // Appraise button or clicking title/cover loads album in main view
+    const triggerAppraisal = () => {
+      favRecsDrawerContainer.classList.add("hidden");
+      albumInput.value = `${rec.artist} - ${rec.title}`;
+      appraiseAlbum(`${rec.artist} ${rec.title}`);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    card.querySelector(".rec-inspect-btn").addEventListener("click", triggerAppraisal);
+    card.querySelector(".rec-card-title").addEventListener("click", triggerAppraisal);
+    card.querySelector(".rec-card-cover").addEventListener("click", triggerAppraisal);
+
+    // Heart toggle button on recommendation card
+    card.querySelector(".rec-fav-btn").addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleFavorite({
+        title: rec.title,
+        artist: rec.artist,
+        genre: rec.genre,
+        year: rec.year,
+        playtime: rec.playtime,
+        trackCount: rec.trackCount,
+        coverUrl: rec.coverUrl || "",
+        streetPriceGermany: rec.streetPriceGermany
+      });
+      const newFavState = isFavorited(rec.title, rec.artist);
+      card.querySelector(".rec-fav-btn").classList.toggle("active", newFavState);
+    });
+
+    favRecsList.appendChild(card);
+  });
+
+  // Expand / Collapse button state
+  if (cachedFavRecs.length > 5) {
+    expandRecsBtn.classList.remove("hidden");
+    expandRecsBtn.textContent = isRecsExpanded ? "Show Top 5 ▲" : "Expand to 10 Recommendations ▼";
+  } else {
+    expandRecsBtn.classList.add("hidden");
+  }
+}
+
+// Curated Recommendations Drawer controls
+if (favRecsBtn) {
+  favRecsBtn.addEventListener("click", openFavoritesRecommendations);
+}
+
+if (closeFavRecsDrawerBtn) {
+  closeFavRecsDrawerBtn.addEventListener("click", () => {
+    favRecsDrawerContainer.classList.add("hidden");
+  });
+}
+
+if (favRecsDrawerBackdrop) {
+  favRecsDrawerBackdrop.addEventListener("click", () => {
+    favRecsDrawerContainer.classList.add("hidden");
+  });
+}
+
+if (expandRecsBtn) {
+  expandRecsBtn.addEventListener("click", () => {
+    isRecsExpanded = !isRecsExpanded;
+    renderFavoritesRecommendations();
+  });
+}
+
+// ============================================================================
+// 12. INITIALIZATION
 // ============================================================================
 initTheme();
 checkServerConfig();
