@@ -350,13 +350,53 @@ function triggerDiagnosticsError(model, errorType, message) {
 }
 
 // ============================================================================
-// 6. ALBUM COVER ART RESOLVER (iTunes API with SVG Vinyl Fallback)
+// 6. ALBUM COVER ART RESOLVER (iTunes API + Deezer Public JSONP + SVG Fallback)
 // ============================================================================
+function fetchDeezerCoverJsonp(query) {
+  return new Promise((resolve) => {
+    try {
+      const cbName = `dz_cb_${Date.now()}_${Math.floor(Math.random() * 100000)}`;
+      const script = document.createElement("script");
+      const timer = setTimeout(() => {
+        try { delete window[cbName]; } catch (e) {}
+        script.remove();
+        resolve(null);
+      }, 3500);
+
+      window[cbName] = (data) => {
+        clearTimeout(timer);
+        try { delete window[cbName]; } catch (e) {}
+        script.remove();
+        if (data && Array.isArray(data.data) && data.data.length > 0) {
+          const item = data.data[0];
+          const cover = item.cover_xl || item.cover_big || item.cover_medium;
+          resolve(cover || null);
+        } else {
+          resolve(null);
+        }
+      };
+
+      script.src = `https://api.deezer.com/search/album?q=${encodeURIComponent(query)}&output=jsonp&callback=${cbName}`;
+      script.onerror = () => {
+        clearTimeout(timer);
+        try { delete window[cbName]; } catch (e) {}
+        script.remove();
+        resolve(null);
+      };
+      document.head.appendChild(script);
+    } catch (e) {
+      resolve(null);
+    }
+  });
+}
+
 async function fetchAlbumCover(query, artist = "", fallbackTitle = "") {
+  const cleanTitle = (fallbackTitle || query || "").trim();
+  const searchCombo = `${cleanTitle} ${artist}`.trim();
+
+  // 1. Primary: iTunes Search API
   try {
-    const cleanTitle = (fallbackTitle || query || "").trim();
-    const searchTerm = `${cleanTitle} ${artist}`.trim();
-    const url = `https://itunes.apple.com/search?term=${encodeURIComponent(searchTerm)}&entity=album&limit=6`;
+    const url = `https://itunes.apple.com/search?term=${encodeURIComponent(searchCombo)}&entity=album&limit=6`;
     const res = await fetch(url);
     if (res.ok) {
       const data = await res.json();
@@ -402,10 +442,18 @@ async function fetchAlbumCover(query, artist = "", fallbackTitle = "") {
       }
     }
   } catch (err) {
-    console.warn("Cover art fetch fallback for", query, err);
+    console.warn("iTunes cover art fetch error:", searchCombo, err);
   }
 
-  // Stylish SVG Vinyl Sleeve Fallback
+  // 2. Secondary: Deezer Public JSONP (Reliably has indie/underground vinyl pressings like Deadringer)
+  try {
+    const deezerCover = await fetchDeezerCoverJsonp(searchCombo);
+    if (deezerCover) return deezerCover;
+  } catch (err) {
+    console.warn("Deezer cover art fallback error:", searchCombo, err);
+  }
+
+  // 3. Stylish SVG Vinyl Sleeve Fallback
   return generateSvgCover(fallbackTitle || query, artist);
 }
 
@@ -844,9 +892,15 @@ async function appraiseAlbum(albumName) {
 
     heroFavBtn.classList.toggle("active", isFavorited(cached.title, cached.artist));
 
-    // Render cached alternatives immediately from database
+    // Check if cached alternatives exist and have at least 3 valid recommendations
     alternativesGenreName.textContent = cached.genre || "";
-    renderAlternativesProgressive(cached.alternatives || []);
+    const validAlts = (cached.alternatives || []).filter(alt => !isAlbumInFavorites(alt.title, alt.artist));
+    if (validAlts.length >= 3) {
+      renderAlternativesProgressive(cached.alternatives);
+    } else {
+      // Re-curate missing alternatives on-the-fly using Gemini Flash
+      fetchMissingAlternatives(cached);
+    }
 
     // Async stream in store search links
     asyncResearchBuyLinks(cached.title, cached.artist);
@@ -1235,6 +1289,82 @@ function renderAlternativesProgressive(alternatives) {
   });
 }
 
+// Fetch and curate fresh alternative recommendations when a cached album lacks them
+async function fetchMissingAlternatives(cached) {
+  if (!cached) return;
+  alternativesGenreName.textContent = cached.genre || "";
+
+  // 1. Immediately render skeleton placeholders so UI is responsive
+  alternativesGrid.innerHTML = `
+    <div class="alt-card-skeleton">
+      <div class="skeleton-box skeleton-cover"></div>
+      <div class="skeleton-box skeleton-title"></div>
+      <div class="skeleton-box skeleton-artist"></div>
+      <div class="skeleton-box skeleton-meta"></div>
+    </div>
+    <div class="alt-card-skeleton">
+      <div class="skeleton-box skeleton-cover"></div>
+      <div class="skeleton-box skeleton-title"></div>
+      <div class="skeleton-box skeleton-artist"></div>
+      <div class="skeleton-box skeleton-meta"></div>
+    </div>
+    <div class="alt-card-skeleton">
+      <div class="skeleton-box skeleton-cover"></div>
+      <div class="skeleton-box skeleton-title"></div>
+      <div class="skeleton-box skeleton-artist"></div>
+      <div class="skeleton-box skeleton-meta"></div>
+    </div>
+  `;
+
+  try {
+    const favAltTitles = (userFavorites || []).map(f => `"${f.title}" by ${f.artist || 'Unknown'}`).join(", ");
+    const favAltExclusionPrompt = favAltTitles.length > 0
+      ? `\nCRITICAL EXCLUSION RULE:\nDO NOT suggest "${cached.title}" by ${cached.artist || ''} and DO NOT suggest any albums in the user's saved favorites list (${favAltTitles})! Every alternative must be a different album they do not have saved.\n`
+      : `\nCRITICAL EXCLUSION RULE:\nDO NOT suggest "${cached.title}" by ${cached.artist || ''}!\n`;
+
+    const prompt = `You are an expert vinyl record specialist and discographer in Germany.
+For the vinyl album "${cached.title}" by "${cached.artist || 'Unknown'}" (genre / style: ${cached.genre || "Vinyl"}), recommend 4 to 5 essential alternative vinyl albums in the same or closely related musical style for vinyl collectors in Germany.${favAltExclusionPrompt}
+For each alternative album, provide:
+- Exact album title and artist.
+- Primary genre.
+- Total playtime (e.g. "44 min").
+- Total track count (integer).
+- Realistic German vinyl prices: new vinyl (EUR) and used vinyl (EUR).
+- Concise coverSearchTerm (artist + album title).
+
+Return strictly a valid JSON object matching this schema:
+{
+  "alternatives": [
+    {
+      "title": "string",
+      "artist": "string",
+      "genre": "string",
+      "playtime": "string",
+      "trackCount": 10,
+      "streetPriceGermany": {
+        "newEur": "€28 – €34",
+        "usedEur": "€14 – €22"
+      },
+      "coverSearchTerm": "Artist Album"
+    }
+  ]
+}`;
+
+    const data = await callGeminiFlash(prompt);
+    const newAlternatives = data?.alternatives || [];
+    if (newAlternatives.length > 0) {
+      cached.alternatives = newAlternatives;
+      saveAlbumToCache(cached);
+      renderAlternativesProgressive(newAlternatives);
+    } else {
+      renderAlternativesProgressive(cached.alternatives || []);
+    }
+  } catch (err) {
+    console.error("fetchMissingAlternatives failed:", err);
+    renderAlternativesProgressive(cached.alternatives || []);
+  }
+}
+
 // ============================================================================
 // 8. USER MEMORY BANK & 5-SEARCH RECOMMENDATIONS CAROUSEL
 // ============================================================================
@@ -1345,21 +1475,32 @@ Return strictly a valid JSON object:
   }
 }
 
+let carouselRenderSeq = 0;
+
 // Render Vinyl Covers Only in Bottom Carousel (User Requirement)
 async function renderRecommendationCarousel(recs) {
+  const currentSeq = ++carouselRenderSeq;
   recTrack.innerHTML = "";
-  // Programmatic safeguard: omit any album from userFavorites
-  const cleanRecs = (recs || []).filter(item => !isAlbumInFavorites(item.title, item.artist));
 
-  for (const item of cleanRecs) {
-    const coverUrl = await fetchAlbumCover(item.coverSearchTerm || item.title, item.artist, item.title);
+  // Strict programmatic deduplication & exclusion of userFavorites
+  const seen = new Set();
+  const cleanRecs = [];
+  for (const item of (recs || [])) {
+    if (!item || !item.title) continue;
+    if (isAlbumInFavorites(item.title, item.artist)) continue;
+    const key = normalizeCatalogKey(item.title + ' ' + (item.artist || ''));
+    if (seen.has(key)) continue;
+    seen.add(key);
+    cleanRecs.push(item);
+  }
 
+  // Pre-create placeholder slots immediately in DOM to prevent layout shifts & interleaving
+  const slotElements = cleanRecs.map((item) => {
     const coverEl = document.createElement("div");
     coverEl.className = "rec-cover-item";
-    coverEl.setAttribute("data-tooltip", `${item.artist} — ${item.title}`);
-
+    coverEl.setAttribute("data-tooltip", `${item.artist || ''} — ${item.title}`);
     coverEl.innerHTML = `
-      <img class="rec-cover-img" src="${coverUrl}" alt="${escapeXml(item.title)}" loading="lazy" />
+      <img class="rec-cover-img" src="${generateSvgCover(item.title, item.artist)}" alt="${escapeXml(item.title)}" loading="lazy" />
       <div class="rec-cover-disc-hint"></div>
     `;
 
@@ -1374,7 +1515,26 @@ async function renderRecommendationCarousel(recs) {
     });
 
     recTrack.appendChild(coverEl);
-  }
+    return { item, coverEl };
+  });
+
+  // Hydrate high-res artwork asynchronously in parallel (iTunes + Deezer JSONP fallback)
+  await Promise.all(slotElements.map(async ({ item, coverEl }) => {
+    try {
+      const coverUrl = (item.coverUrl && !item.coverUrl.startsWith("data:image/svg"))
+        ? item.coverUrl
+        : await fetchAlbumCover(item.coverSearchTerm || item.title, item.artist, item.title);
+
+      // If a newer carousel render sequence started while waiting, abort mutation
+      if (currentSeq !== carouselRenderSeq) return;
+
+      if (coverUrl) {
+        const img = coverEl.querySelector(".rec-cover-img");
+        if (img) img.src = coverUrl;
+        item.coverUrl = coverUrl;
+      }
+    } catch (e) {}
+  }));
 }
 
 // Carousel Scroll Navigation
