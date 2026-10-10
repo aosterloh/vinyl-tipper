@@ -241,6 +241,8 @@ function initTheme() {
 // ============================================================================
 googleSignInBtn.addEventListener("click", async () => {
   authErrorMsg.classList.add("hidden");
+  googleSignInBtn.disabled = true;
+  googleSignInBtn.style.opacity = "0.7";
   try {
     const result = await signInWithPopup(auth, provider);
     const user = result.user;
@@ -255,6 +257,9 @@ googleSignInBtn.addEventListener("click", async () => {
     } else {
       showAuthError(error.message || "Authentication failed. Please try again.");
     }
+  } finally {
+    googleSignInBtn.disabled = false;
+    googleSignInBtn.style.opacity = "1";
   }
 });
 
@@ -1573,9 +1578,9 @@ function updateFavsUI() {
     favsDrawerCount.textContent = `${count} album${count === 1 ? '' : 's'}`;
   }
 
-  if (recsDrawerSubtitle) {
+  if (recsModalSubtitle) {
     const topCount = Math.min(count, 3);
-    recsDrawerSubtitle.textContent = `Derived from your last ${topCount} liked album${topCount === 1 ? '' : 's'}`;
+    recsModalSubtitle.textContent = `Derived from your last ${topCount} liked album${topCount === 1 ? '' : 's'}`;
   }
 
   // Update hero button state if current album is loaded
@@ -1784,6 +1789,7 @@ Return strictly a valid JSON object matching this schema:
           <p class="favs-empty-text">Unable to curate recommendations right now. Please try again in a moment.</p>
         </div>
       `;
+    }
   }
 }
 
