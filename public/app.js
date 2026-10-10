@@ -6,6 +6,12 @@ import {
   signOut, 
   onAuthStateChanged 
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { 
+  getFirestore, 
+  doc, 
+  getDoc, 
+  setDoc 
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 // ============================================================================
 // 1. FIREBASE AUTHENTICATION CONFIGURATION (MANDATORY per gemini.md)
@@ -20,6 +26,7 @@ export const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({ 
   hd: 'google.com', 
@@ -290,7 +297,7 @@ onAuthStateChanged(auth, async (user) => {
     
     // Load User Search History Memory Bank & Favorites
     loadUserMemory();
-    loadUserFavorites();
+    await loadUserFavorites();
 
     // Restore last displayed album to continue where user left off after last session / restart
     restoreLastSessionAlbum();
@@ -1416,7 +1423,7 @@ function getRecommendationsStorageKey() {
   return currentUser ? `vinyl_tipper_recs_${currentUser.uid}` : "vinyl_tipper_recs_guest";
 }
 
-function saveRecommendationsToStorage(recs, signature) {
+async function saveRecommendationsToStorage(recs, signature) {
   const sig = signature || getLast3LikedSignature();
   const payload = {
     signature: sig,
@@ -1428,6 +1435,14 @@ function saveRecommendationsToStorage(recs, signature) {
   } catch (e) {}
 
   if (currentUser) {
+    try {
+      const userRef = doc(db, "users", currentUser.uid);
+      await setDoc(userRef, {
+        recommendationsJson: JSON.stringify(payload),
+        updatedAt: Date.now()
+      }, { merge: true });
+    } catch (e) {}
+
     fetch('/api/recommendations', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -1452,7 +1467,27 @@ async function loadAndDisplayCachedRecommendations() {
     if (raw) cachedPayload = JSON.parse(raw);
   } catch (e) {}
 
-  // 2. Fallback to server storage if localStorage is empty
+  // 2. Fallback to Firestore if localStorage is empty
+  if (!cachedPayload || !Array.isArray(cachedPayload.recommendations) || cachedPayload.recommendations.length === 0) {
+    try {
+      const userRef = doc(db, "users", currentUser.uid);
+      const userSnap = await getDoc(userRef);
+      if (userSnap.exists()) {
+        const d = userSnap.data();
+        if (d.recommendationsJson) {
+          const parsed = JSON.parse(d.recommendationsJson);
+          if (parsed && Array.isArray(parsed.recommendations) && parsed.recommendations.length > 0) {
+            cachedPayload = parsed;
+            try {
+              localStorage.setItem(getRecommendationsStorageKey(), JSON.stringify(cachedPayload));
+            } catch (e) {}
+          }
+        }
+      }
+    } catch (e) {}
+  }
+
+  // 3. Fallback to server storage if still empty
   if (!cachedPayload || !Array.isArray(cachedPayload.recommendations) || cachedPayload.recommendations.length === 0) {
     try {
       const res = await fetch(`/api/recommendations?uid=${encodeURIComponent(currentUser.uid)}`);
@@ -1468,7 +1503,7 @@ async function loadAndDisplayCachedRecommendations() {
     } catch (e) {}
   }
 
-  // 3. Immediately render recommendations if found
+  // 4. Immediately render recommendations if found
   if (cachedPayload && Array.isArray(cachedPayload.recommendations) && cachedPayload.recommendations.length > 0) {
     const clean = cachedPayload.recommendations.filter(r => !isAlbumInFavorites(r.title, r.artist));
     if (clean.length > 0) {
@@ -1493,13 +1528,13 @@ async function loadAndDisplayCachedRecommendations() {
     }
   }
 
-  // 4. If no cache exists yet, but user has liked albums, trigger initial generation
+  // 5. If no cache exists yet, but user has liked albums, trigger initial generation
   if (userFavorites.length > 0) {
     generateFavoritesRecommendations(true);
   }
 }
 
-function loadUserFavorites() {
+async function loadUserFavorites() {
   const key = getFavsStorageKey();
   try {
     const raw = localStorage.getItem(key);
@@ -1508,12 +1543,98 @@ function loadUserFavorites() {
     userFavorites = [];
   }
   updateFavsUI();
+
+  if (currentUser) {
+    // 1. Sync from Firestore
+    try {
+      const userRef = doc(db, "users", currentUser.uid);
+      const userSnap = await getDoc(userRef);
+      if (userSnap.exists()) {
+        const d = userSnap.data();
+        let firestoreFavs = [];
+        if (d.favoritesJson) {
+          try { firestoreFavs = JSON.parse(d.favoritesJson); } catch (e) {}
+        } else if (Array.isArray(d.favorites)) {
+          firestoreFavs = d.favorites;
+        }
+
+        if (Array.isArray(firestoreFavs) && firestoreFavs.length > 0) {
+          if (userFavorites.length === 0) {
+            userFavorites = firestoreFavs;
+            localStorage.setItem(key, JSON.stringify(userFavorites));
+            updateFavsUI();
+            loadAndDisplayCachedRecommendations();
+          } else {
+            let merged = false;
+            for (const f of firestoreFavs) {
+              if (!isAlbumInFavorites(f.title, f.artist)) {
+                userFavorites.push(f);
+                merged = true;
+              }
+            }
+            if (merged) {
+              localStorage.setItem(key, JSON.stringify(userFavorites));
+              updateFavsUI();
+              saveUserFavoritesToFirestore();
+            }
+          }
+        } else if (userFavorites.length > 0) {
+          saveUserFavoritesToFirestore();
+        }
+      } else if (userFavorites.length > 0) {
+        saveUserFavoritesToFirestore();
+      }
+    } catch (err) {
+      console.warn("Firestore sync notice:", err);
+    }
+
+    // 2. Fallback sync with server API if Firestore had no favorites
+    if (userFavorites.length === 0) {
+      try {
+        const res = await fetch(`/api/favorites?uid=${encodeURIComponent(currentUser.uid)}`);
+        if (res.ok) {
+          const json = await res.json();
+          if (Array.isArray(json.data) && json.data.length > 0) {
+            userFavorites = json.data;
+            localStorage.setItem(key, JSON.stringify(userFavorites));
+            updateFavsUI();
+            saveUserFavoritesToFirestore();
+            loadAndDisplayCachedRecommendations();
+          }
+        }
+      } catch (e) {}
+    }
+  }
+}
+
+async function saveUserFavoritesToFirestore() {
+  if (!currentUser) return;
+  try {
+    const userRef = doc(db, "users", currentUser.uid);
+    await setDoc(userRef, {
+      favoritesJson: JSON.stringify(userFavorites),
+      updatedAt: Date.now()
+    }, { merge: true });
+  } catch (err) {
+    console.warn("Firestore save error:", err);
+  }
 }
 
 function saveUserFavorites() {
   const key = getFavsStorageKey();
   localStorage.setItem(key, JSON.stringify(userFavorites));
   updateFavsUI();
+  saveUserFavoritesToFirestore();
+  if (currentUser) {
+    fetch('/api/favorites', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        uid: currentUser.uid,
+        favorites: userFavorites
+      })
+    }).catch(() => {});
+  }
 }
 
 function isFavorited(title, artist) {

@@ -54,6 +54,7 @@ const IMAGES_DIR = path.join(DATA_DIR, 'images');
 const CATALOG_FILE = path.join(DATA_DIR, 'catalog.json');
 const LAST_SESSION_FILE = path.join(DATA_DIR, 'last_session.json');
 const RECOMMENDATIONS_FILE = path.join(DATA_DIR, 'recommendations.json');
+const FAVORITES_FILE = path.join(DATA_DIR, 'favorites.json');
 
 function ensureDataDirs() {
   try {
@@ -107,6 +108,27 @@ function saveStoredRecommendations(allRecs) {
     fs.writeFileSync(RECOMMENDATIONS_FILE, JSON.stringify(allRecs, null, 2), 'utf8');
   } catch (e) {
     console.warn('Error saving recommendations file:', e.message);
+  }
+}
+
+function loadStoredFavorites() {
+  try {
+    ensureDataDirs();
+    if (fs.existsSync(FAVORITES_FILE)) {
+      return JSON.parse(fs.readFileSync(FAVORITES_FILE, 'utf8'));
+    }
+  } catch (e) {
+    console.warn('Error reading favorites file:', e.message);
+  }
+  return {};
+}
+
+function saveStoredFavorites(allFavs) {
+  try {
+    ensureDataDirs();
+    fs.writeFileSync(FAVORITES_FILE, JSON.stringify(allFavs, null, 2), 'utf8');
+  } catch (e) {
+    console.warn('Error saving favorites file:', e.message);
   }
 }
 
@@ -416,6 +438,40 @@ const server = http.createServer(async (req, res) => {
         }
       } catch (err) {
         console.warn('Failed to parse recommendations payload:', err.message);
+      }
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'Invalid payload' }));
+    });
+    return;
+  }
+
+  // GET /api/favorites?uid=... -> Retrieve user's saved favorites
+  if (pathname === '/api/favorites' && req.method === 'GET') {
+    const uid = urlObj.searchParams.get('uid') || 'default';
+    const allFavs = loadStoredFavorites();
+    const userFavs = allFavs[uid] || [];
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ success: true, data: userFavs }));
+    return;
+  }
+
+  // POST /api/favorites -> Save user's favorites
+  if (pathname === '/api/favorites' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', () => {
+      try {
+        const payload = JSON.parse(body);
+        const uid = payload.uid || 'default';
+        const favorites = Array.isArray(payload.favorites) ? payload.favorites : [];
+        const allFavs = loadStoredFavorites();
+        allFavs[uid] = favorites;
+        saveStoredFavorites(allFavs);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: true, count: favorites.length }));
+        return;
+      } catch (err) {
+        console.warn('Failed to parse favorites payload:', err.message);
       }
       res.writeHead(400, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: false, error: 'Invalid payload' }));
