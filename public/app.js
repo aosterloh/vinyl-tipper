@@ -1423,6 +1423,81 @@ function getRecommendationsStorageKey() {
   return currentUser ? `vinyl_tipper_recs_${currentUser.uid}` : "vinyl_tipper_recs_guest";
 }
 
+async function fetchUserFromFirestore(uid) {
+  if (!uid) return null;
+  // 1. Try Firestore SDK first
+  try {
+    const userRef = doc(db, "users", uid);
+    const snap = await getDoc(userRef);
+    if (snap.exists()) {
+      const d = snap.data();
+      let favs = [];
+      let recs = null;
+      if (d.favoritesJson) {
+        try { favs = JSON.parse(d.favoritesJson); } catch (e) {}
+      } else if (Array.isArray(d.favorites)) {
+        favs = d.favorites;
+      }
+      if (d.recommendationsJson) {
+        try { recs = JSON.parse(d.recommendationsJson); } catch (e) {}
+      }
+      return { favorites: favs, recommendations: recs };
+    }
+  } catch (err) {
+    console.warn("Firestore SDK read fallback to REST:", err?.message || err);
+  }
+
+  // 2. Guaranteed fallback via direct Firestore REST API
+  try {
+    const url = `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents/users/${uid}?key=${firebaseConfig.apiKey}`;
+    const res = await fetch(url);
+    if (res.ok) {
+      const docData = await res.json();
+      let favs = [];
+      let recs = null;
+      if (docData.fields && docData.fields.favoritesJson && docData.fields.favoritesJson.stringValue) {
+        try { favs = JSON.parse(docData.fields.favoritesJson.stringValue); } catch (e) {}
+      }
+      if (docData.fields && docData.fields.recommendationsJson && docData.fields.recommendationsJson.stringValue) {
+        try { recs = JSON.parse(docData.fields.recommendationsJson.stringValue); } catch (e) {}
+      }
+      return { favorites: favs, recommendations: recs };
+    }
+  } catch (restErr) {
+    console.warn("Firestore REST read error:", restErr?.message || restErr);
+  }
+  return null;
+}
+
+async function saveRecommendationsToFirestore(payload) {
+  if (!currentUser) return;
+  const jsonStr = JSON.stringify(payload);
+
+  // 1. Try Firestore SDK
+  try {
+    const userRef = doc(db, "users", currentUser.uid);
+    await setDoc(userRef, {
+      recommendationsJson: jsonStr,
+      updatedAt: Date.now()
+    }, { merge: true });
+  } catch (e) {}
+
+  // 2. Direct Firestore REST API PATCH
+  try {
+    const patchUrl = `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents/users/${currentUser.uid}?updateMask.fieldPaths=recommendationsJson&updateMask.fieldPaths=updatedAt&key=${firebaseConfig.apiKey}`;
+    fetch(patchUrl, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        fields: {
+          recommendationsJson: { stringValue: jsonStr },
+          updatedAt: { integerValue: String(Date.now()) }
+        }
+      })
+    }).catch(() => {});
+  } catch (e) {}
+}
+
 async function saveRecommendationsToStorage(recs, signature) {
   const sig = signature || getLast3LikedSignature();
   const payload = {
@@ -1435,13 +1510,7 @@ async function saveRecommendationsToStorage(recs, signature) {
   } catch (e) {}
 
   if (currentUser) {
-    try {
-      const userRef = doc(db, "users", currentUser.uid);
-      await setDoc(userRef, {
-        recommendationsJson: JSON.stringify(payload),
-        updatedAt: Date.now()
-      }, { merge: true });
-    } catch (e) {}
+    saveRecommendationsToFirestore(payload);
 
     fetch('/api/recommendations', {
       method: 'POST',
@@ -1469,22 +1538,16 @@ async function loadAndDisplayCachedRecommendations() {
 
   // 2. Fallback to Firestore if localStorage is empty
   if (!cachedPayload || !Array.isArray(cachedPayload.recommendations) || cachedPayload.recommendations.length === 0) {
-    try {
-      const userRef = doc(db, "users", currentUser.uid);
-      const userSnap = await getDoc(userRef);
-      if (userSnap.exists()) {
-        const d = userSnap.data();
-        if (d.recommendationsJson) {
-          const parsed = JSON.parse(d.recommendationsJson);
-          if (parsed && Array.isArray(parsed.recommendations) && parsed.recommendations.length > 0) {
-            cachedPayload = parsed;
-            try {
-              localStorage.setItem(getRecommendationsStorageKey(), JSON.stringify(cachedPayload));
-            } catch (e) {}
-          }
-        }
+    const cloudData = await fetchUserFromFirestore(currentUser.uid);
+    if (cloudData && cloudData.recommendations) {
+      const parsed = cloudData.recommendations;
+      if (parsed && Array.isArray(parsed.recommendations) && parsed.recommendations.length > 0) {
+        cachedPayload = parsed;
+        try {
+          localStorage.setItem(getRecommendationsStorageKey(), JSON.stringify(cachedPayload));
+        } catch (e) {}
       }
-    } catch (e) {}
+    }
   }
 
   // 3. Fallback to server storage if still empty
@@ -1542,81 +1605,97 @@ async function loadUserFavorites() {
   } catch (e) {
     userFavorites = [];
   }
+
+  // Migration safeguard: if signed-in user has 0 favorites in user-scoped key, check guest key
+  if (userFavorites.length === 0) {
+    try {
+      const guestRaw = localStorage.getItem("vinyl_tipper_favs_guest");
+      if (guestRaw) {
+        const guestFavs = JSON.parse(guestRaw);
+        if (Array.isArray(guestFavs) && guestFavs.length > 0) {
+          userFavorites = guestFavs;
+          localStorage.setItem(key, JSON.stringify(userFavorites));
+        }
+      }
+    } catch (e) {}
+  }
+
   updateFavsUI();
 
   if (currentUser) {
-    // 1. Sync from Firestore
-    try {
-      const userRef = doc(db, "users", currentUser.uid);
-      const userSnap = await getDoc(userRef);
-      if (userSnap.exists()) {
-        const d = userSnap.data();
-        let firestoreFavs = [];
-        if (d.favoritesJson) {
-          try { firestoreFavs = JSON.parse(d.favoritesJson); } catch (e) {}
-        } else if (Array.isArray(d.favorites)) {
-          firestoreFavs = d.favorites;
-        }
+    const cloudData = await fetchUserFromFirestore(currentUser.uid);
+    if (cloudData && Array.isArray(cloudData.favorites)) {
+      const cloudFavs = cloudData.favorites;
 
-        if (Array.isArray(firestoreFavs) && firestoreFavs.length > 0) {
-          if (userFavorites.length === 0) {
-            userFavorites = firestoreFavs;
-            localStorage.setItem(key, JSON.stringify(userFavorites));
-            updateFavsUI();
-            loadAndDisplayCachedRecommendations();
-          } else {
-            let merged = false;
-            for (const f of firestoreFavs) {
-              if (!isAlbumInFavorites(f.title, f.artist)) {
-                userFavorites.push(f);
-                merged = true;
-              }
-            }
-            if (merged) {
-              localStorage.setItem(key, JSON.stringify(userFavorites));
-              updateFavsUI();
-              saveUserFavoritesToFirestore();
+      if (cloudFavs.length > 0) {
+        if (userFavorites.length === 0) {
+          // Fresh device / new origin (e.g. vinyl-tipper.web.app): hydrate from cloud!
+          userFavorites = cloudFavs;
+          localStorage.setItem(key, JSON.stringify(userFavorites));
+          updateFavsUI();
+          loadAndDisplayCachedRecommendations();
+        } else {
+          // Reconcile: merge local and cloud items
+          let localChanged = false;
+          for (const cf of cloudFavs) {
+            if (!isAlbumInFavorites(cf.title, cf.artist)) {
+              userFavorites.push(cf);
+              localChanged = true;
             }
           }
-        } else if (userFavorites.length > 0) {
-          saveUserFavoritesToFirestore();
+          if (localChanged) {
+            localStorage.setItem(key, JSON.stringify(userFavorites));
+            updateFavsUI();
+          }
+
+          // If local has MORE items than cloud had (e.g. 13 vs 3 on localhost),
+          // push the complete merged collection to cloud immediately!
+          if (userFavorites.length > cloudFavs.length || localChanged) {
+            await saveUserFavoritesToFirestore();
+          }
         }
       } else if (userFavorites.length > 0) {
-        saveUserFavoritesToFirestore();
+        // Cloud is empty but local has items: upload to cloud!
+        await saveUserFavoritesToFirestore();
       }
-    } catch (err) {
-      console.warn("Firestore sync notice:", err);
-    }
-
-    // 2. Fallback sync with server API if Firestore had no favorites
-    if (userFavorites.length === 0) {
-      try {
-        const res = await fetch(`/api/favorites?uid=${encodeURIComponent(currentUser.uid)}`);
-        if (res.ok) {
-          const json = await res.json();
-          if (Array.isArray(json.data) && json.data.length > 0) {
-            userFavorites = json.data;
-            localStorage.setItem(key, JSON.stringify(userFavorites));
-            updateFavsUI();
-            saveUserFavoritesToFirestore();
-            loadAndDisplayCachedRecommendations();
-          }
-        }
-      } catch (e) {}
+    } else if (userFavorites.length > 0) {
+      // Cloud record not found yet: upload local favorites!
+      await saveUserFavoritesToFirestore();
     }
   }
 }
 
 async function saveUserFavoritesToFirestore() {
   if (!currentUser) return;
+  const jsonStr = JSON.stringify(userFavorites);
+
+  // 1. Try Firestore SDK
   try {
     const userRef = doc(db, "users", currentUser.uid);
     await setDoc(userRef, {
-      favoritesJson: JSON.stringify(userFavorites),
+      favoritesJson: jsonStr,
       updatedAt: Date.now()
     }, { merge: true });
   } catch (err) {
-    console.warn("Firestore save error:", err);
+    console.warn("Firestore SDK save fallback to REST:", err?.message || err);
+  }
+
+  // 2. Direct Firestore REST API PATCH (Guaranteed to succeed across all origins)
+  try {
+    const patchUrl = `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents/users/${currentUser.uid}?updateMask.fieldPaths=favoritesJson&updateMask.fieldPaths=updatedAt&key=${firebaseConfig.apiKey}`;
+    await fetch(patchUrl, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        fields: {
+          favoritesJson: { stringValue: jsonStr },
+          updatedAt: { integerValue: String(Date.now()) }
+        }
+      })
+    });
+    console.log(`[Crate Sync] Cloud crate synchronized successfully (${userFavorites.length} albums)`);
+  } catch (e) {
+    console.warn("Firestore REST PATCH error:", e);
   }
 }
 
