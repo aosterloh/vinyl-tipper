@@ -83,8 +83,8 @@ case "$TARGET" in
   firebase)
     echo "Deploying frontend to Firebase Hosting (${FIREBASE_PROJECT})..."
     firebase use "${FIREBASE_PROJECT}"
-    firebase deploy --only hosting
-    FIREBASE_URL="https://${FIREBASE_PROJECT}.web.app"
+    firebase deploy --only hosting:vinyl-tipper
+    FIREBASE_URL="https://${SERVICE_NAME}.web.app"
     authorize_domain "$FIREBASE_URL"
     echo "Firebase deployment complete: ${FIREBASE_URL}"
     ;;
@@ -92,21 +92,40 @@ case "$TARGET" in
   cloudrun)
     echo "Deploying to Google Cloud Run (${GCP_PROJECT} in ${GCP_REGION})..."
     gcloud config set project "${GCP_PROJECT}"
-    gcloud builds submit --tag "gcr.io/${GCP_PROJECT}/${SERVICE_NAME}"
+    
+    ENV_YAML="/tmp/vinyl-tipper-env-${GCP_PROJECT}.yaml"
+    > "$ENV_YAML"
+    if [ -f .env ]; then
+      G_KEY=$(grep '^GEMINI_API_KEY=' .env | cut -d '=' -f2- | tr -d '\r\n')
+      G_KEYS=$(grep '^GEMINI_API_KEYS=' .env | cut -d '=' -f2- | tr -d '\r\n')
+      if [ -n "$G_KEY" ]; then echo "GEMINI_API_KEY: '${G_KEY}'" >> "$ENV_YAML"; fi
+      if [ -n "$G_KEYS" ]; then echo "GEMINI_API_KEYS: '${G_KEYS}'" >> "$ENV_YAML"; fi
+    fi
+
     gcloud run deploy "${SERVICE_NAME}" \
-      --image "gcr.io/${GCP_PROJECT}/${SERVICE_NAME}" \
+      --source . \
       --platform managed \
       --region "${GCP_REGION}" \
-      --allow-unauthenticated \
-      --port 8080
+      --project "${GCP_PROJECT}" \
+      --env-vars-file "$ENV_YAML" \
+      --port 8080 \
+      --quiet
     
-    SERVICE_URL=$(gcloud run services describe "${SERVICE_NAME}" --platform managed --region "${GCP_REGION}" --format 'value(status.url)')
+    rm -f "$ENV_YAML"
+    
+    SERVICE_URL=$(gcloud run services describe "${SERVICE_NAME}" --platform managed --region "${GCP_REGION}" --project "${GCP_PROJECT}" --format 'value(status.url)')
     authorize_domain "$SERVICE_URL"
     echo "Cloud Run deployment complete: ${SERVICE_URL}"
     ;;
 
+  all|cloud)
+    echo "Running full cloud deployment (Cloud Run + Firebase Hosting)..."
+    "$0" cloudrun
+    "$0" firebase
+    ;;
+
   *)
-    echo "Usage: $0 [local|docker|firebase|cloudrun]"
+    echo "Usage: $0 [local|docker|firebase|cloudrun|all|cloud]"
     exit 1
     ;;
 esac

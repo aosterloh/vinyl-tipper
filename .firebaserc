@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "techno-machine"
+  },
+  "targets": {
+    "techno-machine": {
+      "hosting": {
+        "vinyl-tipper": [
+          "vinyl-tipper"
+        ]
+      }
+    }
   }
 }

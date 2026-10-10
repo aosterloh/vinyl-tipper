@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "target": "vinyl-tipper",
     "public": "public",
     "ignore": [
       "firebase.json",
