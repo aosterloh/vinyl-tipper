@@ -53,6 +53,7 @@ const DATA_DIR = path.join(__dirname, 'data');
 const IMAGES_DIR = path.join(DATA_DIR, 'images');
 const CATALOG_FILE = path.join(DATA_DIR, 'catalog.json');
 const LAST_SESSION_FILE = path.join(DATA_DIR, 'last_session.json');
+const RECOMMENDATIONS_FILE = path.join(DATA_DIR, 'recommendations.json');
 
 function ensureDataDirs() {
   try {
@@ -85,6 +86,27 @@ function saveLastSession(sessionData) {
     fs.writeFileSync(LAST_SESSION_FILE, JSON.stringify(sessionData, null, 2), 'utf8');
   } catch (e) {
     console.warn('Error saving last session file:', e.message);
+  }
+}
+
+function loadStoredRecommendations() {
+  try {
+    ensureDataDirs();
+    if (fs.existsSync(RECOMMENDATIONS_FILE)) {
+      return JSON.parse(fs.readFileSync(RECOMMENDATIONS_FILE, 'utf8'));
+    }
+  } catch (e) {
+    console.warn('Error reading recommendations file:', e.message);
+  }
+  return {};
+}
+
+function saveStoredRecommendations(allRecs) {
+  try {
+    ensureDataDirs();
+    fs.writeFileSync(RECOMMENDATIONS_FILE, JSON.stringify(allRecs, null, 2), 'utf8');
+  } catch (e) {
+    console.warn('Error saving recommendations file:', e.message);
   }
 }
 
@@ -355,6 +377,45 @@ const server = http.createServer(async (req, res) => {
         }
       } catch (err) {
         console.warn('Failed to parse last session payload:', err.message);
+      }
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'Invalid payload' }));
+    });
+    return;
+  }
+
+  // GET /api/recommendations?uid=... -> Retrieve cached recommendations
+  if (pathname === '/api/recommendations' && req.method === 'GET') {
+    const uid = urlObj.searchParams.get('uid') || 'default';
+    const allRecs = loadStoredRecommendations();
+    const userRec = allRecs[uid] || null;
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ success: true, data: userRec }));
+    return;
+  }
+
+  // POST /api/recommendations -> Save cached recommendations
+  if (pathname === '/api/recommendations' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', () => {
+      try {
+        const payload = JSON.parse(body);
+        const uid = payload.uid || 'default';
+        if (payload && Array.isArray(payload.recommendations)) {
+          const allRecs = loadStoredRecommendations();
+          allRecs[uid] = {
+            signature: payload.signature || '',
+            recommendations: payload.recommendations,
+            updatedAt: Date.now()
+          };
+          saveStoredRecommendations(allRecs);
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ success: true }));
+          return;
+        }
+      } catch (err) {
+        console.warn('Failed to parse recommendations payload:', err.message);
       }
       res.writeHead(400, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: false, error: 'Invalid payload' }));
