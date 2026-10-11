@@ -3705,7 +3705,7 @@ function initPwa() {
       } else if (isIos && pwaIosModal) {
         pwaIosModal.classList.remove("hidden");
       } else {
-        alert("To install Vinyl Tipper as an app: open your browser menu (⋮ or Share) and select 'Install Vinyl Tipper' or 'Add to Home Screen'.");
+        alert("To install Vinyl Hound as an app: open your browser menu (⋮ or Share) and select 'Install Vinyl Hound' or 'Add to Home Screen'.");
       }
     });
   }
@@ -3725,7 +3725,7 @@ function initPwa() {
 
   // 6. Installed event listener
   window.addEventListener("appinstalled", () => {
-    console.log("[PWA] Vinyl Tipper was successfully installed!");
+    console.log("[PWA] Vinyl Hound was successfully installed!");
     if (pwaInstallBtn) {
       pwaInstallBtn.classList.add("hidden");
     }

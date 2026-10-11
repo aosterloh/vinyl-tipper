@@ -1,6 +1,6 @@
 {
-  "name": "Vinyl Tipper - AI Record Store & DJ",
-  "short_name": "Vinyl Tipper",
+  "name": "Vinyl Hound - AI Record Store & DJ",
+  "short_name": "Vinyl Hound",
   "description": "AI-powered vinyl record recommendation engine, crate-digger price guide, and continuous Vinyl DJ turntable player.",
   "start_url": "/",
   "scope": "/",
