@@ -769,6 +769,131 @@ body {
   color: var(--text-secondary);
 }
 
+/* -------------------------------------------------------------------------- */
+/* Collector Score Pill & 30-Word Verdict Card (Unified 1-100 System)         */
+/* -------------------------------------------------------------------------- */
+.score-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background-color: rgba(52, 168, 83, 0.12);
+  color: #34A853;
+  border: 1px solid rgba(52, 168, 83, 0.35);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  cursor: default;
+}
+
+.score-pill-badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.score-tier-high {
+  background-color: rgba(52, 168, 83, 0.12);
+  color: #34A853;
+  border-color: rgba(52, 168, 83, 0.35);
+}
+
+.score-tier-mid {
+  background-color: rgba(26, 115, 232, 0.12);
+  color: #1A73E8;
+  border-color: rgba(26, 115, 232, 0.35);
+}
+
+.score-tier-fair {
+  background-color: rgba(251, 188, 4, 0.14);
+  color: #E37400;
+  border-color: rgba(251, 188, 4, 0.4);
+}
+
+[data-theme="dark"] .score-tier-high {
+  background-color: rgba(52, 168, 83, 0.2);
+  color: #4ade80;
+  border-color: rgba(52, 168, 83, 0.4);
+}
+
+[data-theme="dark"] .score-tier-mid {
+  background-color: rgba(26, 115, 232, 0.22);
+  color: #60a5fa;
+  border-color: rgba(26, 115, 232, 0.45);
+}
+
+[data-theme="dark"] .score-tier-fair {
+  background-color: rgba(251, 188, 4, 0.2);
+  color: #fbbf24;
+  border-color: rgba(251, 188, 4, 0.45);
+}
+
+.score-pill-icon {
+  font-size: 13px;
+  line-height: 1;
+}
+
+.score-pill-val {
+  font-weight: 800;
+}
+
+.score-pill-max {
+  font-size: 10px;
+  opacity: 0.75;
+  font-weight: 600;
+}
+
+.hero-verdict-card {
+  margin-top: 4px;
+  padding: 12px 16px;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid #34A853;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition-fast);
+}
+
+[data-theme="dark"] .hero-verdict-card {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.08);
+  border-left-color: #4ade80;
+}
+
+.verdict-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.verdict-tag {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.verdict-consensus {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.verdict-text {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  margin: 0;
+  font-style: italic;
+}
+
 .album-meta-grid {
   display: flex;
   gap: 20px;

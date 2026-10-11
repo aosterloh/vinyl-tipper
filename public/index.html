@@ -139,9 +139,25 @@
                 <div class="album-header-row">
                   <span id="album-genre-badge" class="genre-pill">Rock</span>
                   <span id="album-year" class="year-pill">1969</span>
+                  <div id="hero-score-badge" class="score-pill-badge score-tier-high" title="Vinyl Collector Consensus (0-100)">
+                    <span class="score-pill-icon">🎯</span>
+                    <span id="hero-score-val" class="score-pill-val">94</span>
+                    <span class="score-pill-max">/100</span>
+                  </div>
                 </div>
                 <h2 id="album-title" class="album-title">Album Title</h2>
                 <h3 id="album-artist" class="album-artist">Artist Name</h3>
+
+                <!-- 30-Word Collector Verdict Summary -->
+                <div id="hero-verdict-card" class="hero-verdict-card">
+                  <div class="verdict-header">
+                    <span class="verdict-tag">⚖️ Collector Verdict</span>
+                    <span id="hero-discogs-consensus" class="verdict-consensus">4.6/5 Discogs community</span>
+                  </div>
+                  <p id="hero-verdict-text" class="verdict-text">
+                    An indisputable analog landmark. Outstanding dynamic range and immersive spatial separation make this essential for any physical vinyl shelf.
+                  </p>
+                </div>
               </div>
 
               <div class="album-hero-right-col">
@@ -302,6 +318,6 @@
   </div>
 
   <!-- FIREBASE AND CLIENT APPLICATION SCRIPT -->
-  <script type="module" src="app.js?v=2.4"></script>
+  <script type="module" src="app.js?v=2.5"></script>
 </body>
 </html>
