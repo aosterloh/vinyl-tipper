@@ -1729,21 +1729,12 @@ async function saveAlbumToCache(album) {
   const primaryKey = normalizeCatalogKey((album.artist || '') + ' ' + album.title);
   const titleKey = normalizeCatalogKey(album.title);
 
-  // If album has coverUrl, attempt converting to base64 for persistent disk storage
-  let imageData = null;
-  if (album.coverUrl && !album.coverUrl.startsWith('/api/images/')) {
-    imageData = await imageUrlToDataUrl(album.coverUrl).catch(() => null);
-  }
-
-  // 1. Save in server database & persistent storage
+  // 1. Save in server database (Option A: direct CDN URLs)
   try {
     const res = await fetch("/api/catalog", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        ...album,
-        imageData: imageData
-      })
+      body: JSON.stringify(album)
     });
     if (res.ok) {
       const respData = await res.json();

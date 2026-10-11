@@ -79,7 +79,7 @@ self.addEventListener('fetch', (event) => {
       caches.match(req).then((cached) => {
         if (cached) return cached;
         return fetch(req).then((networkRes) => {
-          if (networkRes.status === 200) {
+          if (networkRes.status === 200 || networkRes.type === 'opaque') {
             const clone = networkRes.clone();
             caches.open(CACHE_NAME).then((cache) => cache.put(req, clone));
           }

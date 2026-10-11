@@ -698,24 +698,23 @@ const server = http.createServer(async (req, res) => {
         const primaryKey = normalizeKey((data.artist || '') + ' ' + data.title);
         const titleKey = normalizeKey(data.title);
 
-        // Save album cover to local disk storage
+        // Storage Strategy (Option A): Direct CDN URLs with PWA client-side caching
+        // Direct HTTPS URLs (Apple/iTunes, Deezer, etc.) are kept as-is without consuming server disk or RAM.
         let storedCoverUrl = data.coverUrl || '';
-        if (data.imageData || (storedCoverUrl && (storedCoverUrl.startsWith('http://') || storedCoverUrl.startsWith('https://')))) {
-          const localUrl = await saveImageToStorage(primaryKey, storedCoverUrl, data.imageData);
-          if (localUrl) storedCoverUrl = localUrl;
+        if (!storedCoverUrl && data.imageData && typeof data.imageData === 'string' && data.imageData.startsWith('data:')) {
+          storedCoverUrl = data.imageData;
         }
 
-        // Cache alternative covers too and index alternatives in catalog
+        // Cache alternative covers and index alternatives in catalog
         const processedAlternatives = [];
         if (Array.isArray(data.alternatives)) {
           for (let i = 0; i < data.alternatives.length; i++) {
             const alt = data.alternatives[i];
             let altCover = alt.coverUrl || '';
-            const altKey = normalizeKey((alt.artist || '') + ' ' + alt.title);
-            if (alt.imageData || (altCover && (altCover.startsWith('http://') || altCover.startsWith('https://')))) {
-              const localAltUrl = await saveImageToStorage(altKey, altCover, alt.imageData);
-              if (localAltUrl) altCover = localAltUrl;
+            if (!altCover && alt.imageData && typeof alt.imageData === 'string' && alt.imageData.startsWith('data:')) {
+              altCover = alt.imageData;
             }
+            const altKey = normalizeKey((alt.artist || '') + ' ' + alt.title);
             const altRecord = {
               title: alt.title,
               artist: alt.artist || '',
