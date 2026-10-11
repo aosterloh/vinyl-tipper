@@ -782,6 +782,10 @@ function renderDjQueueList() {
 async function loadYouTubeTrack1(artist, albumTitle, firstTrackTitle = "", existingVideoId = "") {
   if (!heroYtBox || !heroYtIframe) return null;
 
+  // Immediately unhide hero DJ box and bottom deck bar so controls are visible
+  heroYtBox.classList.remove("hidden");
+  if (djDeckBar && !djState.isDeckMinimized) djDeckBar.classList.remove("hidden");
+
   // Build the DJ queue with current album and alternatives
   if (currentAlbumData) {
     djState.queue = buildDjQueue(currentAlbumData, currentAlbumData.alternatives || [], djState.mode);
@@ -792,7 +796,7 @@ async function loadYouTubeTrack1(artist, albumTitle, firstTrackTitle = "", exist
 
   // Pre-load track 0
   const firstItem = djState.queue[0];
-  const query = firstItem ? firstItem.searchQuery : `${artist} ${firstTrackTitle || albumTitle}`.trim();
+  const query = firstItem ? firstItem.searchQuery : `${artist} ${firstTrackTitle || albumTitle} audio`.trim();
   const displayTitle = firstItem ? firstItem.displayTitle : (firstTrackTitle ? `"${firstTrackTitle}"` : albumTitle);
   if (ytTrackTitle) ytTrackTitle.textContent = `${artist} — ${displayTitle}`;
 
@@ -808,8 +812,6 @@ async function loadYouTubeTrack1(artist, albumTitle, firstTrackTitle = "", exist
   if (vId) {
     heroYtIframe.src = `https://www.youtube-nocookie.com/embed/${vId}?enablejsapi=1&autoplay=0&origin=${encodeURIComponent(window.location.origin)}`;
     if (heroYtLink) heroYtLink.href = `https://www.youtube.com/watch?v=${vId}`;
-    heroYtBox.classList.remove("hidden");
-    if (djDeckBar && !djState.isDeckMinimized) djDeckBar.classList.remove("hidden");
     updateDjDeckUI();
     setTimeout(initYouTubePlayer, 600);
     return vId;
@@ -1934,6 +1936,8 @@ Respond strictly in valid JSON matching this schema:
     linksNewEl.innerHTML = `<span class="links-loading-pulse">🔍 Loading store links...</span>`;
     linksUsedEl.innerHTML = `<span class="links-loading-pulse">🔍 Loading second-hand markets...</span>`;
 
+    const standoutSong = rec.firstTrackTitle || rec.standoutTrack || "Track 1";
+
     currentAlbumData = {
       title: rec.title,
       artist: rec.artist,
@@ -1941,6 +1945,8 @@ Respond strictly in valid JSON matching this schema:
       year: rec.year,
       playtime: rec.playtime,
       trackCount: rec.trackCount,
+      firstTrackTitle: standoutSong,
+      youtubeVideoId: "",
       collectorScore: rec.collectorScore,
       coverUrl: albumCoverImg.src,
       streetPriceGermany: rec.streetPriceGermany,
@@ -1972,7 +1978,11 @@ Respond strictly in valid JSON matching this schema:
     });
 
     // 2. YouTube listening station
-    loadYouTubeTrack1(rec.artist, rec.title, rec.firstTrackTitle || rec.standoutTrack);
+    loadYouTubeTrack1(rec.artist, rec.title, standoutSong).then(vId => {
+      if (vId && currentAlbumData) {
+        currentAlbumData.youtubeVideoId = vId;
+      }
+    });
 
     // 3. Store buy links (JPC, HHV, Amazon, Discogs, eBay)
     asyncResearchBuyLinks(rec.title, rec.artist);
