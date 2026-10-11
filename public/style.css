@@ -308,6 +308,112 @@ body {
   background-color: #34A853;
 }
 
+/* -------------------------------------------------------------------------- */
+/* Region & Shop Localization Selector                                       */
+/* -------------------------------------------------------------------------- */
+.region-selector-wrapper {
+  position: relative;
+}
+
+.region-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-light);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.region-toggle-btn:hover {
+  background-color: var(--bg-subtle);
+  border-color: var(--border-medium);
+}
+
+.region-flag {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.region-code {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.region-caret {
+  font-size: 10px;
+  color: var(--text-muted);
+  transition: transform var(--transition-fast);
+}
+
+.region-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 220px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 1000;
+  animation: fadeIn 0.15s ease-out;
+}
+
+.region-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 13px;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color var(--transition-fast);
+  width: 100%;
+}
+
+.region-menu-item:hover {
+  background-color: var(--bg-elevated);
+}
+
+.region-menu-item.active {
+  background-color: rgba(26, 115, 232, 0.1);
+  color: #1A73E8;
+  font-weight: 700;
+}
+
+[data-theme="dark"] .region-menu-item.active {
+  background-color: rgba(66, 133, 244, 0.2);
+  color: #8ab4f8;
+}
+
+.region-menu-item .item-flag {
+  font-size: 16px;
+}
+
+.region-menu-item .item-name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.region-menu-item .item-curr {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
 .theme-toggle-btn {
   background: var(--bg-elevated);
   border: 1px solid var(--border-light);
@@ -1189,6 +1295,159 @@ body {
 
 .alt-price-val.used {
   color: var(--accent-used);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Price Area In-Context Loading Animation & Shimmer                          */
+/* -------------------------------------------------------------------------- */
+.price-skeleton-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.price-skeleton-bar {
+  height: 28px;
+  width: 140px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, var(--bg-subtle) 0%, var(--bg-surface) 50%, var(--bg-subtle) 100%);
+  background-size: 200% 100%;
+  animation: shimmerSweep 1.5s infinite;
+}
+
+.price-scanning-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.price-scanning-radar {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #1A73E8;
+  box-shadow: 0 0 0 0 rgba(26, 115, 232, 0.7);
+  animation: radarPulse 1.4s infinite;
+}
+
+.price-scanning-radar.green {
+  background-color: #34A853;
+  box-shadow: 0 0 0 0 rgba(52, 168, 83, 0.7);
+  animation: radarPulseGreen 1.4s infinite;
+}
+
+@keyframes radarPulse {
+  0% { box-shadow: 0 0 0 0 rgba(26, 115, 232, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(26, 115, 232, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(26, 115, 232, 0); }
+}
+
+@keyframes radarPulseGreen {
+  0% { box-shadow: 0 0 0 0 rgba(52, 168, 83, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(52, 168, 83, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(52, 168, 83, 0); }
+}
+
+@keyframes shimmerSweep {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 3 Alternatives Area Animated Skeleton Cards                               */
+/* -------------------------------------------------------------------------- */
+.alt-card-skeleton {
+  background-color: var(--bg-elevated);
+  border: 1px dashed var(--border-medium);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+  min-height: 140px;
+}
+
+.alt-skeleton-media {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+}
+
+.alt-skeleton-sleeve {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--bg-subtle) 0%, var(--bg-surface) 100%);
+  position: relative;
+  z-index: 2;
+  box-shadow: var(--shadow-sm);
+}
+
+.alt-skeleton-vinyl {
+  position: absolute;
+  top: 5px;
+  right: -6px;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #2a2a2a 0%, #151515 60%, #050505 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  z-index: 1;
+  animation: vinylSlowSpin 3.5s linear infinite;
+}
+
+.alt-skeleton-vinyl-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(26, 115, 232, 0.35);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.alt-skeleton-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.alt-skeleton-line {
+  height: 12px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--bg-subtle) 0%, var(--bg-surface) 50%, var(--bg-subtle) 100%);
+  background-size: 200% 100%;
+  animation: shimmerSweep 1.5s infinite;
+}
+
+.alt-skeleton-line.title {
+  width: 85%;
+  height: 16px;
+}
+
+.alt-skeleton-line.artist {
+  width: 55%;
+}
+
+.alt-skeleton-line.meta {
+  width: 40%;
+  height: 10px;
+}
+
+@keyframes vinylSlowSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* ==========================================================================

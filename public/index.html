@@ -39,18 +39,6 @@
 
   <!-- MAIN APPLICATION SHELL -->
   <div id="app-shell" class="app-shell hidden">
-    <!-- Floating Global AI Thinking Banner -->
-    <div id="ai-thinking-banner" class="ai-thinking-banner hidden" role="status" aria-live="polite">
-      <div class="ai-banner-inner">
-        <span class="ai-banner-sparkle">✨</span>
-        <span class="ai-banner-text">Using AI to get that for you. It will be just a few seconds.</span>
-        <div class="ai-banner-pulse-dot"></div>
-      </div>
-      <div class="ai-banner-shimmer-track">
-        <div class="ai-banner-shimmer-bar"></div>
-      </div>
-    </div>
-
     <!-- Top Navigation Bar -->
     <header class="top-nav">
       <div class="nav-brand">
@@ -71,6 +59,37 @@
           <span class="recs-sparkle-icon">✨</span>
           <span class="recs-btn-text">Vinyl Recommendations</span>
         </button>
+
+        <!-- Region & Localized Shop Selector -->
+        <div class="region-selector-wrapper">
+          <button id="region-toggle-btn" class="region-toggle-btn" type="button" aria-haspopup="true" aria-expanded="false" title="Change Vinyl Market Region & Shop Links">
+            <span id="region-current-flag" class="region-flag">🇩🇪</span>
+            <span id="region-current-code" class="region-code">DE</span>
+            <span class="region-caret">▾</span>
+          </button>
+          <div id="region-dropdown-menu" class="region-dropdown-menu hidden" role="menu">
+            <button class="region-menu-item active" type="button" data-region="DE">
+              <span class="item-flag">🇩🇪</span>
+              <span class="item-name">Germany / EU</span>
+              <span class="item-curr">(€ EUR)</span>
+            </button>
+            <button class="region-menu-item" type="button" data-region="US">
+              <span class="item-flag">🇺🇸</span>
+              <span class="item-name">United States</span>
+              <span class="item-curr">($ USD)</span>
+            </button>
+            <button class="region-menu-item" type="button" data-region="UK">
+              <span class="item-flag">🇬🇧</span>
+              <span class="item-name">United Kingdom</span>
+              <span class="item-curr">(£ GBP)</span>
+            </button>
+            <button class="region-menu-item" type="button" data-region="GLOBAL">
+              <span class="item-flag">🌐</span>
+              <span class="item-name">Worldwide / Global</span>
+              <span class="item-curr">($ USD)</span>
+            </button>
+          </div>
+        </div>
 
         <!-- Light / Dark Theme Switch (Per gemini.md) -->
         <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Light / Dark Theme">
@@ -200,17 +219,17 @@
               <div class="price-box new-price">
                 <div class="price-header">
                   <span class="price-badge">NEW VINYL</span>
-                  <span class="price-location">Germany Market</span>
+                  <span id="price-new-market" class="price-location">Germany Market</span>
                 </div>
                 <div id="price-new" class="price-figure">€29 – €35</div>
-                <div id="price-new-note" class="price-subnote">Standard German retail reissue</div>
+                <div id="price-new-note" class="price-subnote">Standard retail reissue</div>
                 <div id="links-new" class="buy-links-row"></div>
               </div>
 
               <div class="price-box used-price">
                 <div class="price-header">
                   <span class="price-badge">USED VINYL</span>
-                  <span class="price-location">Germany Market</span>
+                  <span id="price-used-market" class="price-location">Germany Market</span>
                 </div>
                 <div id="price-used" class="price-figure">€14 – €22</div>
                 <div id="price-used-note" class="price-subnote">VG+ / EX condition</div>
@@ -318,6 +337,6 @@
   </div>
 
   <!-- FIREBASE AND CLIENT APPLICATION SCRIPT -->
-  <script type="module" src="app.js?v=2.5"></script>
+  <script type="module" src="app.js?v=2.6"></script>
 </body>
 </html>

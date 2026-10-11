@@ -604,7 +604,9 @@ const server = http.createServer(async (req, res) => {
           trackCount: data.trackCount || 0,
           firstTrackTitle: data.firstTrackTitle || '',
           youtubeVideoId: data.youtubeVideoId || '',
+          collectorScore: data.collectorScore || null,
           coverUrl: storedCoverUrl,
+          streetPriceGermany: data.streetPriceGermany || null,
           alternatives: processedAlternatives.length > 0 ? processedAlternatives : (data.alternatives || []),
           updatedAt: Date.now()
         };

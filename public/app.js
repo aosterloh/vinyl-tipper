@@ -67,29 +67,15 @@ const albumInput = document.getElementById("album-input");
 const loadingState = document.getElementById("loading-state");
 const resultsSection = document.getElementById("results-section");
 
-// Floating AI Thinking Banner Elements & Lifecycle
-const aiThinkingBanner = document.getElementById("ai-thinking-banner");
+// Floating AI Thinking Banner disabled per user request in favor of in-context animations
 let activeAiRequests = 0;
-let aiBannerHideTimer = null;
 
 function showAiThinkingBanner() {
-  if (aiBannerHideTimer) {
-    clearTimeout(aiBannerHideTimer);
-    aiBannerHideTimer = null;
-  }
-  if (aiThinkingBanner) {
-    aiThinkingBanner.classList.remove("hidden");
-  }
+  // Intentionally no-op: in-context animations in price and alternative areas visualize loading
 }
 
 function hideAiThinkingBanner() {
-  if (activeAiRequests <= 0 && aiThinkingBanner) {
-    aiBannerHideTimer = setTimeout(() => {
-      if (activeAiRequests <= 0 && aiThinkingBanner) {
-        aiThinkingBanner.classList.add("hidden");
-      }
-    }, 350);
-  }
+  // Intentionally no-op
 }
 
 // Hero appraisal elements
@@ -214,23 +200,366 @@ async function loadYouTubeTrack1(artist, albumTitle, firstTrackTitle = "", exist
   return null;
 }
 
-// Direct store search link generators for German vinyl market
+// ============================================================================
+// WORLDWIDE STORE REGISTRY & REGIONAL LOCALIZATION ENGINE
+// ============================================================================
+export const STORE_REGISTRY = {
+  DE: {
+    code: "DE",
+    name: "Germany / EU",
+    flag: "🇩🇪",
+    currency: "EUR",
+    symbol: "€",
+    rate: 1.0,
+    marketLabel: "Germany / EU Market",
+    getNewLinks: (title, artist) => {
+      const query = `${artist} ${title}`.trim();
+      return [
+        { name: "jpc.de", url: `https://www.jpc.de/s/${encodeURIComponent(query)}` },
+        { name: "HHV.de", url: `https://www.hhv.de/shop/de/records/suche?term=${encodeURIComponent(query)}` },
+        { name: "Amazon.de", url: `https://www.amazon.de/s?k=${encodeURIComponent(query + ' vinyl')}` }
+      ];
+    },
+    getUsedLinks: (title, artist) => {
+      const query = `${artist} ${title}`.trim();
+      return [
+        { name: "Discogs", url: `https://www.discogs.com/sell/list?q=${encodeURIComponent(query)}&format=Vinyl` },
+        { name: "eBay.de", url: `https://www.ebay.de/sch/i.html?_nkw=${encodeURIComponent(query + ' vinyl')}&_sop=12` },
+        { name: "Kleinanzeigen", url: `https://www.kleinanzeigen.de/s-musik-cds/vinyl-${encodeURIComponent(title)}/k0c78` }
+      ];
+    }
+  },
+  US: {
+    code: "US",
+    name: "United States",
+    flag: "🇺🇸",
+    currency: "USD",
+    symbol: "$",
+    rate: 1.08,
+    marketLabel: "US Market",
+    getNewLinks: (title, artist) => {
+      const query = `${artist} ${title}`.trim();
+      return [
+        { name: "Amoeba", url: `https://www.amoeba.com/search/all?search=${encodeURIComponent(query)}` },
+        { name: "Rough Trade US", url: `https://www.roughtrade.com/en-us/search?q=${encodeURIComponent(query)}` },
+        { name: "Amazon US", url: `https://www.amazon.com/s?k=${encodeURIComponent(query + ' vinyl')}` }
+      ];
+    },
+    getUsedLinks: (title, artist) => {
+      const query = `${artist} ${title}`.trim();
+      return [
+        { name: "Discogs (US)", url: `https://www.discogs.com/sell/list?q=${encodeURIComponent(query)}&format=Vinyl&ships_from=United+States` },
+        { name: "eBay US", url: `https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(query + ' vinyl')}&_sop=12` },
+        { name: "Reverb LP", url: `https://reverb.com/marketplace?query=${encodeURIComponent(query + ' vinyl')}` }
+      ];
+    }
+  },
+  UK: {
+    code: "UK",
+    name: "United Kingdom",
+    flag: "🇬🇧",
+    currency: "GBP",
+    symbol: "£",
+    rate: 0.85,
+    marketLabel: "UK Market",
+    getNewLinks: (title, artist) => {
+      const query = `${artist} ${title}`.trim();
+      return [
+        { name: "Banquet", url: `https://www.banquetrecords.com/search?search=${encodeURIComponent(query)}` },
+        { name: "Rough Trade UK", url: `https://www.roughtrade.com/en-gb/search?q=${encodeURIComponent(query)}` },
+        { name: "Amazon UK", url: `https://www.amazon.co.uk/s?k=${encodeURIComponent(query + ' vinyl')}` }
+      ];
+    },
+    getUsedLinks: (title, artist) => {
+      const query = `${artist} ${title}`.trim();
+      return [
+        { name: "Discogs (UK)", url: `https://www.discogs.com/sell/list?q=${encodeURIComponent(query)}&format=Vinyl&ships_from=United+Kingdom` },
+        { name: "eBay UK", url: `https://www.ebay.co.uk/sch/i.html?_nkw=${encodeURIComponent(query + ' vinyl')}&_sop=12` },
+        { name: "Juno Records", url: `https://www.juno.co.uk/search/?q%5Ball%5D%5B%5D=${encodeURIComponent(query)}&music_formats%5B%5D=vinyl` }
+      ];
+    }
+  },
+  GLOBAL: {
+    code: "GLOBAL",
+    name: "Worldwide / Global",
+    flag: "🌐",
+    currency: "USD",
+    symbol: "$",
+    rate: 1.08,
+    marketLabel: "Global Market",
+    getNewLinks: (title, artist) => {
+      const query = `${artist} ${title}`.trim();
+      return [
+        { name: "Bandcamp", url: `https://bandcamp.com/search?q=${encodeURIComponent(query)}&item_type=a` },
+        { name: "Rough Trade", url: `https://www.roughtrade.com/en-us/search?q=${encodeURIComponent(query)}` },
+        { name: "Amazon", url: `https://www.amazon.com/s?k=${encodeURIComponent(query + ' vinyl')}` }
+      ];
+    },
+    getUsedLinks: (title, artist) => {
+      const query = `${artist} ${title}`.trim();
+      return [
+        { name: "Discogs (WW)", url: `https://www.discogs.com/sell/list?q=${encodeURIComponent(query)}&format=Vinyl` },
+        { name: "eBay Global", url: `https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(query + ' vinyl')}&_sop=12` },
+        { name: "MusicStack", url: `https://www.musicstack.com/listings.cgi?find=${encodeURIComponent(query)}` }
+      ];
+    }
+  }
+};
+
+let currentRegion = "DE";
+
+function detectUserRegion() {
+  const saved = localStorage.getItem("vinyl_region");
+  if (saved && STORE_REGISTRY[saved]) {
+    return saved;
+  }
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+    const lang = (navigator.language || "").toLowerCase();
+    if (lang.startsWith("de") || tz.includes("Berlin") || tz.includes("Vienna") || tz.includes("Zurich")) {
+      return "DE";
+    }
+    if (lang.includes("gb") || tz.includes("London")) {
+      return "UK";
+    }
+    if (lang.includes("us") || tz.includes("New_York") || tz.includes("Los_Angeles") || tz.includes("Chicago")) {
+      return "US";
+    }
+  } catch (e) {}
+  return "DE";
+}
+
+function formatRegionalPrice(priceRaw, regionCode = currentRegion) {
+  if (!priceRaw) return "N/A";
+  const reg = STORE_REGISTRY[regionCode] || STORE_REGISTRY.DE;
+  const str = String(priceRaw).trim();
+
+  const matches = str.match(/\d+(?:[.,]\d+)?/g);
+  if (!matches || matches.length === 0) {
+    return str;
+  }
+
+  const convertedNumbers = matches.map(numStr => {
+    const val = parseFloat(numStr.replace(",", "."));
+    if (isNaN(val)) return numStr;
+    return Math.round(val * reg.rate);
+  });
+
+  if (convertedNumbers.length === 1) {
+    return `${reg.symbol}${convertedNumbers[0]}`;
+  } else if (convertedNumbers.length >= 2) {
+    return `${reg.symbol}${convertedNumbers[0]} – ${reg.symbol}${convertedNumbers[1]}`;
+  }
+  return str;
+}
+
 function getNewVinylLinks(title, artist) {
-  const query = `${artist} ${title}`.trim();
-  return [
-    { name: "jpc.de", url: `https://www.jpc.de/s/${encodeURIComponent(query)}` },
-    { name: "HHV.de", url: `https://www.hhv.de/shop/de/records/suche?term=${encodeURIComponent(query)}` },
-    { name: "Amazon.de", url: `https://www.amazon.de/s?k=${encodeURIComponent(query + ' vinyl')}` }
-  ];
+  const reg = STORE_REGISTRY[currentRegion] || STORE_REGISTRY.DE;
+  return reg.getNewLinks(title, artist);
 }
 
 function getUsedVinylLinks(title, artist) {
-  const query = `${artist} ${title}`.trim();
-  return [
-    { name: "Discogs", url: `https://www.discogs.com/sell/list?q=${encodeURIComponent(query)}&format=Vinyl` },
-    { name: "eBay.de", url: `https://www.ebay.de/sch/i.html?_nkw=${encodeURIComponent(query + ' vinyl')}&_sop=12` },
-    { name: "Kleinanzeigen", url: `https://www.kleinanzeigen.de/s-musik-cds/vinyl-${encodeURIComponent(title)}/k0c78` }
-  ];
+  const reg = STORE_REGISTRY[currentRegion] || STORE_REGISTRY.DE;
+  return reg.getUsedLinks(title, artist);
+}
+
+// In-Context Price Area Animated Skeletons
+function renderPriceLoadingSkeletons() {
+  const reg = STORE_REGISTRY[currentRegion] || STORE_REGISTRY.DE;
+  if (priceNewEl) {
+    priceNewEl.innerHTML = `
+      <div class="price-skeleton-wrap">
+        <div class="price-skeleton-bar"></div>
+        <div class="price-scanning-indicator">
+          <span class="price-scanning-radar"></span>
+          <span>Scanning ${escapeXml(reg.name)} stores...</span>
+        </div>
+      </div>
+    `;
+  }
+  if (priceNewNoteEl) {
+    priceNewNoteEl.textContent = `Live market query for ${reg.code} retail reissues`;
+  }
+  if (linksNewEl) {
+    linksNewEl.innerHTML = `<span class="links-loading-pulse">🔍 Resolving ${escapeXml(reg.name)} retail links...</span>`;
+  }
+
+  if (priceUsedEl) {
+    priceUsedEl.innerHTML = `
+      <div class="price-skeleton-wrap">
+        <div class="price-skeleton-bar"></div>
+        <div class="price-scanning-indicator">
+          <span class="price-scanning-radar green"></span>
+          <span>Checking secondary collector markets...</span>
+        </div>
+      </div>
+    `;
+  }
+  if (priceUsedNoteEl) {
+    priceUsedNoteEl.textContent = `Evaluating ${reg.name} condition grading`;
+  }
+  if (linksUsedEl) {
+    linksUsedEl.innerHTML = `<span class="links-loading-pulse">🔍 Searching second-hand markets...</span>`;
+  }
+}
+
+// In-Context 3 Alternatives Animated Skeletons (Spinning Vinyl Records & Grooves)
+function renderAlternativesSkeletons() {
+  if (!alternativesGrid) return;
+  alternativesGrid.innerHTML = `
+    <div class="alt-card-skeleton">
+      <div class="alt-skeleton-media">
+        <div class="alt-skeleton-sleeve"></div>
+        <div class="alt-skeleton-vinyl">
+          <div class="alt-skeleton-vinyl-label"></div>
+        </div>
+      </div>
+      <div class="alt-skeleton-info">
+        <div class="alt-skeleton-line title"></div>
+        <div class="alt-skeleton-line artist"></div>
+        <div class="alt-skeleton-line meta"></div>
+      </div>
+    </div>
+    <div class="alt-card-skeleton">
+      <div class="alt-skeleton-media">
+        <div class="alt-skeleton-sleeve"></div>
+        <div class="alt-skeleton-vinyl">
+          <div class="alt-skeleton-vinyl-label"></div>
+        </div>
+      </div>
+      <div class="alt-skeleton-info">
+        <div class="alt-skeleton-line title"></div>
+        <div class="alt-skeleton-line artist"></div>
+        <div class="alt-skeleton-line meta"></div>
+      </div>
+    </div>
+    <div class="alt-card-skeleton">
+      <div class="alt-skeleton-media">
+        <div class="alt-skeleton-sleeve"></div>
+        <div class="alt-skeleton-vinyl">
+          <div class="alt-skeleton-vinyl-label"></div>
+        </div>
+      </div>
+      <div class="alt-skeleton-info">
+        <div class="alt-skeleton-line title"></div>
+        <div class="alt-skeleton-line artist"></div>
+        <div class="alt-skeleton-line meta"></div>
+      </div>
+    </div>
+  `;
+}
+
+function setRegion(newRegion) {
+  if (!STORE_REGISTRY[newRegion]) return;
+  currentRegion = newRegion;
+  localStorage.setItem("vinyl_region", newRegion);
+
+  const reg = STORE_REGISTRY[newRegion];
+
+  const flagEl = document.getElementById("region-current-flag");
+  const codeEl = document.getElementById("region-current-code");
+  if (flagEl) flagEl.textContent = reg.flag;
+  if (codeEl) codeEl.textContent = reg.code;
+
+  const menuItems = document.querySelectorAll(".region-menu-item");
+  menuItems.forEach(item => {
+    if (item.getAttribute("data-region") === newRegion) {
+      item.classList.add("active");
+    } else {
+      item.classList.remove("active");
+    }
+  });
+
+  const newMarketEl = document.getElementById("price-new-market");
+  const usedMarketEl = document.getElementById("price-used-market");
+  if (newMarketEl) newMarketEl.textContent = reg.marketLabel;
+  if (usedMarketEl) usedMarketEl.textContent = reg.marketLabel;
+
+  refreshActiveAlbumRegionView();
+}
+
+function refreshActiveAlbumRegionView() {
+  if (!currentAlbumData) return;
+
+  const reg = STORE_REGISTRY[currentRegion] || STORE_REGISTRY.DE;
+
+  if (currentAlbumData.streetPriceGermany?.newEur) {
+    priceNewEl.textContent = formatRegionalPrice(currentAlbumData.streetPriceGermany.newEur, currentRegion);
+  } else if (currentAlbumData.baseNewEur) {
+    priceNewEl.textContent = formatRegionalPrice(currentAlbumData.baseNewEur, currentRegion);
+  } else {
+    priceNewEl.textContent = formatRegionalPrice("€29", currentRegion);
+  }
+  if (priceNewNoteEl) {
+    priceNewNoteEl.textContent = `${reg.name} retail reissue`;
+  }
+
+  if (currentAlbumData.streetPriceGermany?.usedEur) {
+    priceUsedEl.textContent = formatRegionalPrice(currentAlbumData.streetPriceGermany.usedEur, currentRegion);
+  } else if (currentAlbumData.baseUsedEur) {
+    priceUsedEl.textContent = formatRegionalPrice(currentAlbumData.baseUsedEur, currentRegion);
+  } else {
+    priceUsedEl.textContent = formatRegionalPrice("€15", currentRegion);
+  }
+  if (priceUsedNoteEl) {
+    priceUsedNoteEl.textContent = currentAlbumData.streetPriceGermany?.conditionNote || "VG+ / EX condition";
+  }
+
+  if (currentAlbumData.title) {
+    const newLinks = getNewVinylLinks(currentAlbumData.title, currentAlbumData.artist);
+    linksNewEl.innerHTML = newLinks.map(link => `
+      <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="buy-link-pill fade-in" title="Buy new on ${escapeXml(link.name)}">
+        ${escapeXml(link.name)} <span class="arrow-icon">↗</span>
+      </a>
+    `).join("");
+
+    const usedLinks = getUsedVinylLinks(currentAlbumData.title, currentAlbumData.artist);
+    linksUsedEl.innerHTML = usedLinks.map(link => `
+      <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="buy-link-pill fade-in" title="Buy used on ${escapeXml(link.name)}">
+        ${escapeXml(link.name)} <span class="arrow-icon">↗</span>
+      </a>
+    `).join("");
+  }
+
+  if (currentAlbumData.alternatives && currentAlbumData.alternatives.length > 0) {
+    renderAlternativesProgressive(currentAlbumData.alternatives);
+  }
+}
+
+function initRegionSelector() {
+  const toggleBtn = document.getElementById("region-toggle-btn");
+  const menu = document.getElementById("region-dropdown-menu");
+  if (!toggleBtn || !menu) return;
+
+  currentRegion = detectUserRegion();
+  setRegion(currentRegion);
+
+  toggleBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isHidden = menu.classList.contains("hidden");
+    menu.classList.toggle("hidden", !isHidden);
+    toggleBtn.setAttribute("aria-expanded", String(isHidden));
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!toggleBtn.contains(e.target) && !menu.contains(e.target)) {
+      menu.classList.add("hidden");
+      toggleBtn.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  const menuItems = menu.querySelectorAll(".region-menu-item");
+  menuItems.forEach(item => {
+    item.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const selected = item.getAttribute("data-region");
+      if (selected) {
+        setRegion(selected);
+      }
+      menu.classList.add("hidden");
+      toggleBtn.setAttribute("aria-expanded", "false");
+    });
+  });
 }
 
 // Alternatives elements
@@ -919,14 +1248,8 @@ async function appraiseAlbum(albumName) {
       }
     });
 
-    // Initial real-time pricing pulse
-    priceNewEl.innerHTML = `<span class="links-loading-pulse">⚡ Live pricing...</span>`;
-    priceNewNoteEl.textContent = "Checking German retail reissues";
-    linksNewEl.innerHTML = `<span class="links-loading-pulse">🔍 Resolving German shops...</span>`;
-
-    priceUsedEl.innerHTML = `<span class="links-loading-pulse">⚡ Live pricing...</span>`;
-    priceUsedNoteEl.textContent = "Checking second-hand collector markets";
-    linksUsedEl.innerHTML = `<span class="links-loading-pulse">🔍 Searching second-hand markets...</span>`;
+    // In-context animated skeleton for price area
+    renderPriceLoadingSkeletons();
 
     currentAlbumData = {
       title: cached.title,
@@ -937,7 +1260,10 @@ async function appraiseAlbum(albumName) {
       trackCount: cached.trackCount,
       collectorScore: cached.collectorScore || null,
       coverUrl: albumCoverImg.src,
-      streetPriceGermany: null
+      streetPriceGermany: cached.streetPriceGermany || null,
+      baseNewEur: cached.streetPriceGermany?.newEur || "€29",
+      baseUsedEur: cached.streetPriceGermany?.usedEur || "€15",
+      alternatives: cached.alternatives || []
     };
 
     heroFavBtn.classList.toggle("active", isFavorited(cached.title, cached.artist));
@@ -948,7 +1274,8 @@ async function appraiseAlbum(albumName) {
     if (validAlts.length >= 3) {
       renderAlternativesProgressive(cached.alternatives);
     } else {
-      // Re-curate missing alternatives on-the-fly using Gemini Flash
+      // In-context animated skeletons for alternatives while resolving
+      renderAlternativesSkeletons();
       fetchMissingAlternatives(cached);
     }
 
@@ -957,17 +1284,22 @@ async function appraiseAlbum(albumName) {
 
     // Async fetch ONLY real-time prices live
     fetchRealTimePrices(cached.title, cached.artist).then(freshPrices => {
+      const reg = STORE_REGISTRY[currentRegion] || STORE_REGISTRY.DE;
       if (freshPrices) {
-        priceNewEl.textContent = freshPrices.newEur || "€29";
-        priceNewNoteEl.textContent = "German retail reissue";
-        priceUsedEl.textContent = freshPrices.usedEur || "€15";
-        priceUsedNoteEl.textContent = freshPrices.conditionNote || "VG+ / EX condition";
         if (currentAlbumData) {
           currentAlbumData.streetPriceGermany = freshPrices;
+          currentAlbumData.baseNewEur = freshPrices.newEur;
+          currentAlbumData.baseUsedEur = freshPrices.usedEur;
         }
+        priceNewEl.textContent = formatRegionalPrice(freshPrices.newEur || "€29", currentRegion);
+        priceNewNoteEl.textContent = `${reg.name} retail reissue`;
+        priceUsedEl.textContent = formatRegionalPrice(freshPrices.usedEur || "€15", currentRegion);
+        priceUsedNoteEl.textContent = freshPrices.conditionNote || "VG+ / EX condition";
+        cached.streetPriceGermany = freshPrices;
+        saveAlbumToCache(cached);
       } else {
-        priceNewEl.textContent = "€29";
-        priceUsedEl.textContent = "€15";
+        priceNewEl.textContent = formatRegionalPrice(currentAlbumData?.baseNewEur || "€29", currentRegion);
+        priceUsedEl.textContent = formatRegionalPrice(currentAlbumData?.baseUsedEur || "€15", currentRegion);
       }
     });
 
@@ -1079,11 +1411,12 @@ Return strictly a valid JSON object matching this schema:
     // Render unified collector score and verdict
     renderCollectorScoreAndVerdict(album.collectorScore);
 
-    priceNewEl.textContent = album.streetPriceGermany?.newEur || "€29";
-    priceNewNoteEl.textContent = "German retail reissue";
-    linksNewEl.innerHTML = `<span class="links-loading-pulse">🔍 Finding German retail links...</span>`;
+    const reg = STORE_REGISTRY[currentRegion] || STORE_REGISTRY.DE;
+    priceNewEl.textContent = formatRegionalPrice(album.streetPriceGermany?.newEur || "€29", currentRegion);
+    priceNewNoteEl.textContent = `${reg.name} retail reissue`;
+    linksNewEl.innerHTML = `<span class="links-loading-pulse">🔍 Resolving ${escapeXml(reg.name)} retail links...</span>`;
 
-    priceUsedEl.textContent = album.streetPriceGermany?.usedEur || "€15";
+    priceUsedEl.textContent = formatRegionalPrice(album.streetPriceGermany?.usedEur || "€15", currentRegion);
     priceUsedNoteEl.textContent = album.streetPriceGermany?.conditionNote || "VG+ / EX condition";
     linksUsedEl.innerHTML = `<span class="links-loading-pulse">🔍 Searching second-hand markets...</span>`;
 
@@ -1099,7 +1432,10 @@ Return strictly a valid JSON object matching this schema:
       trackCount: album.trackCount,
       collectorScore: album.collectorScore,
       coverUrl: albumCoverImg.src,
-      streetPriceGermany: album.streetPriceGermany
+      streetPriceGermany: album.streetPriceGermany,
+      baseNewEur: album.streetPriceGermany?.newEur || "€29",
+      baseUsedEur: album.streetPriceGermany?.usedEur || "€15",
+      alternatives: alternatives
     };
 
     heroFavBtn.classList.toggle("active", isFavorited(album.title, album.artist));
@@ -1118,6 +1454,7 @@ Return strictly a valid JSON object matching this schema:
           firstTrackTitle: album.firstTrackTitle,
           youtubeVideoId: vId,
           collectorScore: album.collectorScore,
+          streetPriceGermany: album.streetPriceGermany,
           coverUrl: albumCoverImg.src,
           alternatives: alternatives
         });
@@ -1135,6 +1472,7 @@ Return strictly a valid JSON object matching this schema:
       firstTrackTitle: album.firstTrackTitle,
       youtubeVideoId: album.youtubeVideoId || '',
       collectorScore: album.collectorScore,
+      streetPriceGermany: album.streetPriceGermany,
       coverUrl: albumCoverImg.src,
       alternatives: alternatives
     });
@@ -1156,6 +1494,7 @@ Return strictly a valid JSON object matching this schema:
           firstTrackTitle: album.firstTrackTitle,
           youtubeVideoId: album.youtubeVideoId || '',
           collectorScore: album.collectorScore,
+          streetPriceGermany: album.streetPriceGermany,
           coverUrl: highRes,
           alternatives: alternatives
         });
@@ -1230,10 +1569,17 @@ function renderAlternativesProgressive(alternatives) {
 
   alternativesGrid.innerHTML = toRender.map(() => `
     <div class="alt-card-skeleton">
-      <div class="skeleton-box skeleton-cover"></div>
-      <div class="skeleton-box skeleton-title"></div>
-      <div class="skeleton-box skeleton-artist"></div>
-      <div class="skeleton-box skeleton-meta"></div>
+      <div class="alt-skeleton-media">
+        <div class="alt-skeleton-sleeve"></div>
+        <div class="alt-skeleton-vinyl">
+          <div class="alt-skeleton-vinyl-label"></div>
+        </div>
+      </div>
+      <div class="alt-skeleton-info">
+        <div class="alt-skeleton-line title"></div>
+        <div class="alt-skeleton-line artist"></div>
+        <div class="alt-skeleton-line meta"></div>
+      </div>
     </div>
   `).join("");
 
@@ -1253,6 +1599,7 @@ function renderAlternativesProgressive(alternatives) {
         genre: alt.genre || '',
         playtime: alt.playtime || '',
         trackCount: alt.trackCount || 0,
+        streetPriceGermany: alt.streetPriceGermany || null,
         coverUrl: coverUrl,
         alternatives: []
       });
@@ -1260,8 +1607,14 @@ function renderAlternativesProgressive(alternatives) {
       const card = document.createElement("div");
       card.className = "alt-card fade-in";
 
-      const newAltLink = `https://www.jpc.de/s/${encodeURIComponent(alt.artist + ' ' + alt.title)}`;
-      const usedAltLink = `https://www.discogs.com/sell/list?q=${encodeURIComponent(alt.artist + ' ' + alt.title)}&format=Vinyl`;
+      const newAltLinks = getNewVinylLinks(alt.title, alt.artist);
+      const usedAltLinks = getUsedVinylLinks(alt.title, alt.artist);
+      const primaryNewStore = newAltLinks[0] || { name: "Store", url: "#" };
+      const primaryUsedStore = usedAltLinks[0] || { name: "Discogs", url: "#" };
+
+      const reg = STORE_REGISTRY[currentRegion] || STORE_REGISTRY.DE;
+      const newPriceStr = formatRegionalPrice(alt.streetPriceGermany?.newEur || '€28', currentRegion);
+      const usedPriceStr = formatRegionalPrice(alt.streetPriceGermany?.usedEur || '€14', currentRegion);
 
       const isFav = isFavorited(alt.title, alt.artist);
 
@@ -1282,20 +1635,20 @@ function renderAlternativesProgressive(alternatives) {
         </div>
         <div class="alt-pricing-row">
           <div class="alt-price-col">
-            <span class="alt-price-tag">New (DE)</span>
-            <span class="alt-price-val new">${escapeXml(alt.streetPriceGermany?.newEur || '€28')}</span>
+            <span class="alt-price-tag">New (${reg.code})</span>
+            <span class="alt-price-val new">${escapeXml(newPriceStr)}</span>
           </div>
           <div class="alt-price-col">
-            <span class="alt-price-tag">Used (DE)</span>
-            <span class="alt-price-val used">${escapeXml(alt.streetPriceGermany?.usedEur || '€14')}</span>
+            <span class="alt-price-tag">Used (${reg.code})</span>
+            <span class="alt-price-val used">${escapeXml(usedPriceStr)}</span>
           </div>
         </div>
         <div class="alt-buy-links">
-          <a href="${newAltLink}" target="_blank" rel="noopener noreferrer" class="alt-buy-link" onclick="event.stopPropagation()" title="Buy new on jpc.de">
-            jpc.de ↗
+          <a href="${primaryNewStore.url}" target="_blank" rel="noopener noreferrer" class="alt-buy-link" onclick="event.stopPropagation()" title="Buy new on ${escapeXml(primaryNewStore.name)}">
+            ${escapeXml(primaryNewStore.name)} ↗
           </a>
-          <a href="${usedAltLink}" target="_blank" rel="noopener noreferrer" class="alt-buy-link" onclick="event.stopPropagation()" title="Buy used on Discogs">
-            Discogs ↗
+          <a href="${primaryUsedStore.url}" target="_blank" rel="noopener noreferrer" class="alt-buy-link" onclick="event.stopPropagation()" title="Buy used on ${escapeXml(primaryUsedStore.name)}">
+            ${escapeXml(primaryUsedStore.name)} ↗
           </a>
         </div>
       `;
@@ -1341,7 +1694,6 @@ function renderAlternativesProgressive(alternatives) {
 
       card.addEventListener("click", () => {
         card.classList.add("card-loading-active");
-        showAiThinkingBanner();
         albumInput.value = `${alt.artist} - ${alt.title}`;
         appraiseAlbum(`${alt.artist} ${alt.title}`);
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1365,26 +1717,7 @@ async function fetchMissingAlternatives(cached) {
   alternativesGenreName.textContent = cached.genre || "";
 
   // 1. Immediately render skeleton placeholders so UI is responsive
-  alternativesGrid.innerHTML = `
-    <div class="alt-card-skeleton">
-      <div class="skeleton-box skeleton-cover"></div>
-      <div class="skeleton-box skeleton-title"></div>
-      <div class="skeleton-box skeleton-artist"></div>
-      <div class="skeleton-box skeleton-meta"></div>
-    </div>
-    <div class="alt-card-skeleton">
-      <div class="skeleton-box skeleton-cover"></div>
-      <div class="skeleton-box skeleton-title"></div>
-      <div class="skeleton-box skeleton-artist"></div>
-      <div class="skeleton-box skeleton-meta"></div>
-    </div>
-    <div class="alt-card-skeleton">
-      <div class="skeleton-box skeleton-cover"></div>
-      <div class="skeleton-box skeleton-title"></div>
-      <div class="skeleton-box skeleton-artist"></div>
-      <div class="skeleton-box skeleton-meta"></div>
-    </div>
-  `;
+  renderAlternativesSkeletons();
 
   try {
     const favAltTitles = (userFavorites || []).map(f => `"${f.title}" by ${f.artist || 'Unknown'}`).join(", ");
@@ -2418,4 +2751,5 @@ if (expandRecsBtn) {
 // 12. INITIALIZATION
 // ============================================================================
 initTheme();
+initRegionSelector();
 checkServerConfig();
