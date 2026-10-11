@@ -3611,3 +3611,126 @@ body {
   }
 }
 
+/* ========================================================================== */
+/* PWA INSTALLATION UI & MODAL                                                */
+/* ========================================================================== */
+.nav-install-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.18), rgba(229, 62, 62, 0.18));
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-install-btn:hover {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.28), rgba(229, 62, 62, 0.28));
+  border-color: rgba(212, 175, 55, 0.8);
+  transform: translateY(-1px);
+}
+
+.install-icon {
+  font-size: 14px;
+}
+
+.pwa-ios-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 9999;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.pwa-ios-card {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: 20px;
+  padding: 28px 24px 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  animation: slideUp 0.25s ease-out;
+}
+
+.pwa-ios-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-light);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pwa-ios-icon-wrap {
+  margin-bottom: 12px;
+}
+
+.pwa-ios-icon {
+  border-radius: 14px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.pwa-ios-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.pwa-ios-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.pwa-ios-steps {
+  text-align: left;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  padding-left: 20px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ios-share-badge, .ios-add-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-medium);
+  border-radius: 6px;
+  padding: 1px 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #007aff;
+}
+
+

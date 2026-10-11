@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="discShine" cx="50%" cy="50%" r="50%" fx="30%" fy="30%">
+      <stop offset="0%" stop-color="#2a2a38"/>
+      <stop offset="45%" stop-color="#14141d"/>
+      <stop offset="75%" stop-color="#242432"/>
+      <stop offset="100%" stop-color="#0e0e14"/>
+    </radialGradient>
+    <radialGradient id="labelGold" cx="45%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#f6d365"/>
+      <stop offset="60%" stop-color="#fda085"/>
+      <stop offset="100%" stop-color="#d4af37"/>
+    </radialGradient>
+    <linearGradient id="needleArm" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e0e0e8"/>
+      <stop offset="100%" stop-color="#8c8c9e"/>
+    </linearGradient>
+    <filter id="vinylShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Background Squircle -->
+  <rect width="512" height="512" rx="112" fill="#0f0f13"/>
+
+  <!-- Turntable Platter Outer Ring -->
+  <circle cx="256" cy="256" r="222" fill="#181822" stroke="#2a2a3a" stroke-width="2" filter="url(#vinylShadow)"/>
+
+  <!-- Vinyl Record Body -->
+  <circle cx="256" cy="256" r="214" fill="url(#discShine)" stroke="#111118" stroke-width="4"/>
+
+  <!-- Sound Grooves (Concentric Circles) -->
+  <circle cx="256" cy="256" r="195" fill="none" stroke="#252535" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="256" cy="256" r="182" fill="none" stroke="#2d2d3e" stroke-width="1.2" opacity="0.7"/>
+  <circle cx="256" cy="256" r="168" fill="none" stroke="#252535" stroke-width="1.8" opacity="0.6"/>
+  <circle cx="256" cy="256" r="154" fill="none" stroke="#2c2c3d" stroke-width="1.2" opacity="0.8"/>
+  <circle cx="256" cy="256" r="140" fill="none" stroke="#252535" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="256" cy="256" r="126" fill="none" stroke="#2c2c3d" stroke-width="1.2" opacity="0.8"/>
+  <circle cx="256" cy="256" r="112" fill="none" stroke="#252535" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Run-out Groove -->
+  <circle cx="256" cy="256" r="94" fill="none" stroke="#1f1f2b" stroke-width="2.5"/>
+
+  <!-- Center Centerpiece Label (Gold / Amber) -->
+  <circle cx="256" cy="256" r="76" fill="url(#labelGold)" stroke="#d4af37" stroke-width="3"/>
+
+  <!-- Center Label Typography Ring & Accents -->
+  <circle cx="256" cy="256" r="66" fill="none" stroke="#683d06" stroke-width="1" stroke-dasharray="4 3" opacity="0.6"/>
+  
+  <!-- Stylized "VT" Micro Brand on Center Label -->
+  <path d="M 238 238 L 246 256 L 254 238" fill="none" stroke="#4a2600" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 260 238 L 274 238 M 267 238 L 267 256" fill="none" stroke="#4a2600" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- Center Spindle Hole -->
+  <circle cx="256" cy="256" r="16" fill="#0f0f13" stroke="#e0e0e8" stroke-width="2.5"/>
+
+  <!-- Sleek Modern Tonearm / Cartridge Needle Overlay -->
+  <g transform="rotate(-30 420 80)">
+    <circle cx="420" cy="80" r="24" fill="#20202c" stroke="#8c8c9e" stroke-width="3"/>
+    <path d="M 420 80 L 320 220" fill="none" stroke="url(#needleArm)" stroke-width="6" stroke-linecap="round"/>
+    <rect x="306" y="214" width="28" height="14" rx="3" transform="rotate(35 320 220)" fill="#e53e3e"/>
+    <circle cx="320" cy="220" r="3" fill="#ffffff"/>
+  </g>
+</svg>

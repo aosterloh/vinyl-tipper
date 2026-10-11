@@ -815,6 +815,55 @@ if (djCloseDeckBtn) {
 }
 
 // ============================================================================
+// AFFILIATE MONETIZATION ENGINE (EBAY, AMAZON, AWIN / JPC, DISCOGS)
+// ============================================================================
+export let AFFILIATE_CONFIG = {
+  ebayCampaignId: "",
+  amazonTagDe: "",
+  amazonTagUs: "",
+  amazonTagUk: "",
+  awinPublisherId: "",
+  discogsAffiliateId: ""
+};
+
+export function buildEbayLink(query, domain = "ebay.de") {
+  const enc = encodeURIComponent(query + " vinyl");
+  let url = `https://www.${domain}/sch/i.html?_nkw=${enc}&_sop=12`;
+  if (AFFILIATE_CONFIG.ebayCampaignId) {
+    url += `&campid=${encodeURIComponent(AFFILIATE_CONFIG.ebayCampaignId)}&toolid=10001&mkevt=1`;
+  }
+  return url;
+}
+
+export function buildAmazonLink(query, domain = "amazon.de", regionalTagKey = "amazonTagDe") {
+  const enc = encodeURIComponent(query + " vinyl");
+  let url = `https://www.${domain}/s?k=${enc}`;
+  const tag = AFFILIATE_CONFIG[regionalTagKey] || AFFILIATE_CONFIG.amazonTagDe || "";
+  if (tag) {
+    url += `&tag=${encodeURIComponent(tag)}`;
+  }
+  return url;
+}
+
+export function buildAwinLink(destUrl, merchantId = "10711") {
+  if (AFFILIATE_CONFIG.awinPublisherId) {
+    return `https://www.awin1.com/cread.php?awinmid=${encodeURIComponent(merchantId)}&awinaffid=${encodeURIComponent(AFFILIATE_CONFIG.awinPublisherId)}&ued=${encodeURIComponent(destUrl)}`;
+  }
+  return destUrl;
+}
+
+export function buildDiscogsLink(query, shipFrom = "") {
+  let url = `https://www.discogs.com/sell/list?q=${encodeURIComponent(query)}&format=Vinyl`;
+  if (shipFrom) {
+    url += `&ships_from=${shipFrom}`;
+  }
+  if (AFFILIATE_CONFIG.discogsAffiliateId) {
+    url += `&utm_campaign=${encodeURIComponent(AFFILIATE_CONFIG.discogsAffiliateId)}`;
+  }
+  return url;
+}
+
+// ============================================================================
 // WORLDWIDE STORE REGISTRY & REGIONAL LOCALIZATION ENGINE
 // ============================================================================
 export const STORE_REGISTRY = {
@@ -828,17 +877,19 @@ export const STORE_REGISTRY = {
     marketLabel: "Germany / EU Market",
     getNewLinks: (title, artist) => {
       const query = `${artist} ${title}`.trim();
+      const jpcUrl = `https://www.jpc.de/s/${encodeURIComponent(query)}`;
+      const hhvUrl = `https://www.hhv.de/shop/de/records/suche?term=${encodeURIComponent(query)}`;
       return [
-        { name: "jpc.de", url: `https://www.jpc.de/s/${encodeURIComponent(query)}` },
-        { name: "HHV.de", url: `https://www.hhv.de/shop/de/records/suche?term=${encodeURIComponent(query)}` },
-        { name: "Amazon.de", url: `https://www.amazon.de/s?k=${encodeURIComponent(query + ' vinyl')}` }
+        { name: "jpc.de", url: buildAwinLink(jpcUrl, "10711") },
+        { name: "HHV.de", url: buildAwinLink(hhvUrl, "10537") },
+        { name: "Amazon.de", url: buildAmazonLink(query, "amazon.de", "amazonTagDe") }
       ];
     },
     getUsedLinks: (title, artist) => {
       const query = `${artist} ${title}`.trim();
       return [
-        { name: "Discogs", url: `https://www.discogs.com/sell/list?q=${encodeURIComponent(query)}&format=Vinyl` },
-        { name: "eBay.de", url: `https://www.ebay.de/sch/i.html?_nkw=${encodeURIComponent(query + ' vinyl')}&_sop=12` },
+        { name: "Discogs", url: buildDiscogsLink(query) },
+        { name: "eBay.de", url: buildEbayLink(query, "ebay.de") },
         { name: "Kleinanzeigen", url: `https://www.kleinanzeigen.de/s-musik-cds/vinyl-${encodeURIComponent(title)}/k0c78` }
       ];
     }
@@ -856,14 +907,14 @@ export const STORE_REGISTRY = {
       return [
         { name: "Amoeba", url: `https://www.amoeba.com/search/all?search=${encodeURIComponent(query)}` },
         { name: "Rough Trade US", url: `https://www.roughtrade.com/en-us/search?q=${encodeURIComponent(query)}` },
-        { name: "Amazon US", url: `https://www.amazon.com/s?k=${encodeURIComponent(query + ' vinyl')}` }
+        { name: "Amazon US", url: buildAmazonLink(query, "amazon.com", "amazonTagUs") }
       ];
     },
     getUsedLinks: (title, artist) => {
       const query = `${artist} ${title}`.trim();
       return [
-        { name: "Discogs (US)", url: `https://www.discogs.com/sell/list?q=${encodeURIComponent(query)}&format=Vinyl&ships_from=United+States` },
-        { name: "eBay US", url: `https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(query + ' vinyl')}&_sop=12` },
+        { name: "Discogs (US)", url: buildDiscogsLink(query, "United+States") },
+        { name: "eBay US", url: buildEbayLink(query, "ebay.com") },
         { name: "Reverb LP", url: `https://reverb.com/marketplace?query=${encodeURIComponent(query + ' vinyl')}` }
       ];
     }
@@ -881,14 +932,14 @@ export const STORE_REGISTRY = {
       return [
         { name: "Banquet", url: `https://www.banquetrecords.com/search?search=${encodeURIComponent(query)}` },
         { name: "Rough Trade UK", url: `https://www.roughtrade.com/en-gb/search?q=${encodeURIComponent(query)}` },
-        { name: "Amazon UK", url: `https://www.amazon.co.uk/s?k=${encodeURIComponent(query + ' vinyl')}` }
+        { name: "Amazon UK", url: buildAmazonLink(query, "amazon.co.uk", "amazonTagUk") }
       ];
     },
     getUsedLinks: (title, artist) => {
       const query = `${artist} ${title}`.trim();
       return [
-        { name: "Discogs (UK)", url: `https://www.discogs.com/sell/list?q=${encodeURIComponent(query)}&format=Vinyl&ships_from=United+Kingdom` },
-        { name: "eBay UK", url: `https://www.ebay.co.uk/sch/i.html?_nkw=${encodeURIComponent(query + ' vinyl')}&_sop=12` },
+        { name: "Discogs (UK)", url: buildDiscogsLink(query, "United+Kingdom") },
+        { name: "eBay UK", url: buildEbayLink(query, "ebay.co.uk") },
         { name: "Juno Records", url: `https://www.juno.co.uk/search/?q%5Ball%5D%5B%5D=${encodeURIComponent(query)}&music_formats%5B%5D=vinyl` }
       ];
     }
@@ -906,14 +957,14 @@ export const STORE_REGISTRY = {
       return [
         { name: "Bandcamp", url: `https://bandcamp.com/search?q=${encodeURIComponent(query)}&item_type=a` },
         { name: "Rough Trade", url: `https://www.roughtrade.com/en-us/search?q=${encodeURIComponent(query)}` },
-        { name: "Amazon", url: `https://www.amazon.com/s?k=${encodeURIComponent(query + ' vinyl')}` }
+        { name: "Amazon", url: buildAmazonLink(query, "amazon.com", "amazonTagUs") }
       ];
     },
     getUsedLinks: (title, artist) => {
       const query = `${artist} ${title}`.trim();
       return [
-        { name: "Discogs (WW)", url: `https://www.discogs.com/sell/list?q=${encodeURIComponent(query)}&format=Vinyl` },
-        { name: "eBay Global", url: `https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(query + ' vinyl')}&_sop=12` },
+        { name: "Discogs (WW)", url: buildDiscogsLink(query) },
+        { name: "eBay Global", url: buildEbayLink(query, "ebay.com") },
         { name: "MusicStack", url: `https://www.musicstack.com/listings.cgi?find=${encodeURIComponent(query)}` }
       ];
     }
@@ -1313,6 +1364,9 @@ async function checkServerConfig() {
       hasServerKey = Boolean(data.hasServerKey);
       if (data.apiKey && !localStorage.getItem("gemini_api_key")) {
         localStorage.setItem("gemini_api_key", data.apiKey);
+      }
+      if (data.affiliates) {
+        AFFILIATE_CONFIG = { ...AFFILIATE_CONFIG, ...data.affiliates };
       }
     }
   } catch (e) {
@@ -3601,8 +3655,88 @@ if (expandRecsBtn) {
 }
 
 // ============================================================================
-// 12. INITIALIZATION
+// 12. PWA INSTALLATION & SERVICE WORKER LIFECYCLE
+// ============================================================================
+let deferredInstallPrompt = null;
+const pwaInstallBtn = document.getElementById("pwa-install-btn");
+const pwaIosModal = document.getElementById("pwa-ios-modal");
+const pwaIosCloseBtn = document.getElementById("pwa-ios-close-btn");
+const pwaIosDoneBtn = document.getElementById("pwa-ios-done-btn");
+
+function initPwa() {
+  // 1. Register Service Worker
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/sw.js").then((reg) => {
+        console.log("[PWA] Service Worker active with scope:", reg.scope);
+      }).catch((err) => {
+        console.warn("[PWA] Service Worker registration note:", err.message);
+      });
+    });
+  }
+
+  // 2. Capture Android / Chrome / Edge Install Prompt
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    if (pwaInstallBtn) {
+      pwaInstallBtn.classList.remove("hidden");
+    }
+  });
+
+  // 3. Detect iOS Safari (no native beforeinstallprompt event)
+  const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  const isStandalone = window.navigator.standalone || window.matchMedia("(display-mode: standalone)").matches;
+
+  // On iOS Safari, show the install button if not already running standalone
+  if (isIos && !isStandalone && pwaInstallBtn) {
+    pwaInstallBtn.classList.remove("hidden");
+  }
+
+  // 4. Handle Install Button click
+  if (pwaInstallBtn) {
+    pwaInstallBtn.addEventListener("click", async () => {
+      if (deferredInstallPrompt) {
+        deferredInstallPrompt.prompt();
+        const { outcome } = await deferredInstallPrompt.userChoice;
+        console.log("[PWA] User choice outcome:", outcome);
+        deferredInstallPrompt = null;
+        pwaInstallBtn.classList.add("hidden");
+      } else if (isIos && pwaIosModal) {
+        pwaIosModal.classList.remove("hidden");
+      } else {
+        alert("To install Vinyl Tipper as an app: open your browser menu (⋮ or Share) and select 'Install Vinyl Tipper' or 'Add to Home Screen'.");
+      }
+    });
+  }
+
+  // 5. iOS Install Modal interactions
+  if (pwaIosCloseBtn && pwaIosModal) {
+    pwaIosCloseBtn.addEventListener("click", () => pwaIosModal.classList.add("hidden"));
+  }
+  if (pwaIosDoneBtn && pwaIosModal) {
+    pwaIosDoneBtn.addEventListener("click", () => pwaIosModal.classList.add("hidden"));
+  }
+  if (pwaIosModal) {
+    pwaIosModal.addEventListener("click", (e) => {
+      if (e.target === pwaIosModal) pwaIosModal.classList.add("hidden");
+    });
+  }
+
+  // 6. Installed event listener
+  window.addEventListener("appinstalled", () => {
+    console.log("[PWA] Vinyl Tipper was successfully installed!");
+    if (pwaInstallBtn) {
+      pwaInstallBtn.classList.add("hidden");
+    }
+  });
+}
+
+// ============================================================================
+// 13. INITIALIZATION
 // ============================================================================
 initTheme();
 initRegionSelector();
 checkServerConfig();
+initPwa();
+

@@ -305,6 +305,7 @@ const MIME_TYPES = {
   '.mjs': 'application/javascript; charset=UTF-8',
   '.css': 'text/css; charset=UTF-8',
   '.json': 'application/json; charset=UTF-8',
+  '.webmanifest': 'application/manifest+json; charset=UTF-8',
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
@@ -466,7 +467,15 @@ const server = http.createServer(async (req, res) => {
     res.end(JSON.stringify({
       hasServerKey: pool.length > 0,
       apiKey: pool[0] || null,
-      keyCount: pool.length
+      keyCount: pool.length,
+      affiliates: {
+        ebayCampaignId: process.env.EBAY_CAMPAIGN_ID || '',
+        amazonTagDe: process.env.AMAZON_TAG_DE || process.env.AMAZON_TAG || '',
+        amazonTagUs: process.env.AMAZON_TAG_US || '',
+        amazonTagUk: process.env.AMAZON_TAG_UK || '',
+        awinPublisherId: process.env.AWIN_PUBLISHER_ID || '',
+        discogsAffiliateId: process.env.DISCOGS_AFFILIATE_ID || ''
+      }
     }));
     return;
   }
