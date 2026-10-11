@@ -118,6 +118,39 @@ case "$TARGET" in
     echo "Cloud Run deployment complete: ${SERVICE_URL}"
     ;;
 
+  alex|vinyl-hound)
+    echo "Deploying to Vinyl Hound (vinyl-hound in europe-west1) for aosterloh@gmail.com..."
+    gcloud config set account "aosterloh@gmail.com"
+    gcloud config set project "vinyl-hound"
+    
+    ENV_YAML="/tmp/vinyl-hound-env.yaml"
+    > "$ENV_YAML"
+    echo "AUTH_MODE: 'public'" >> "$ENV_YAML"
+    if [ -f .env ]; then
+      G_KEY=$(grep '^GEMINI_API_KEY=' .env | cut -d '=' -f2- | tr -d '\r\n')
+      G_KEYS=$(grep '^GEMINI_API_KEYS=' .env | cut -d '=' -f2- | tr -d '\r\n')
+      if [ -n "$G_KEY" ]; then echo "GEMINI_API_KEY: '${G_KEY}'" >> "$ENV_YAML"; fi
+      if [ -n "$G_KEYS" ]; then echo "GEMINI_API_KEYS: '${G_KEYS}'" >> "$ENV_YAML"; fi
+    fi
+
+    gcloud run deploy vinyl-hound \
+      --source . \
+      --platform managed \
+      --region europe-west1 \
+      --project vinyl-hound \
+      --account aosterloh@gmail.com \
+      --allow-unauthenticated \
+      --env-vars-file "$ENV_YAML" \
+      --port 8080 \
+      --quiet
+    
+    rm -f "$ENV_YAML"
+    
+    SERVICE_URL=$(gcloud run services describe vinyl-hound --platform managed --region europe-west1 --project vinyl-hound --format 'value(status.url)')
+    echo "Vinyl Hound Cloud Run deployment complete: ${SERVICE_URL}"
+    echo "Custom domain: https://vinylhound.de"
+    ;;
+
   all|cloud)
     echo "Running full cloud deployment (Cloud Run + Firebase Hosting)..."
     "$0" cloudrun
@@ -125,7 +158,7 @@ case "$TARGET" in
     ;;
 
   *)
-    echo "Usage: $0 [local|docker|firebase|cloudrun|all|cloud]"
+    echo "Usage: $0 [local|docker|firebase|cloudrun|alex|vinyl-hound|all|cloud]"
     exit 1
     ;;
 esac
