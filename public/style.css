@@ -3880,6 +3880,146 @@ body {
   }
 }
 
+/* ==========================================================================
+   PUBLIC GOOGLE AUTH & FAVORITES MODAL SYSTEM
+   ========================================================================== */
+.nav-signin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-full);
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
 
+.nav-signin-btn:hover {
+  background: var(--bg-elevated);
+  border-color: var(--text-muted);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
 
+.google-nav-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
 
+.fav-signin-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.fav-signin-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.fav-signin-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: 20px;
+  padding: 32px 28px 24px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+  text-align: center;
+  z-index: 1;
+  animation: slideUp 0.25s ease-out;
+}
+
+.fav-signin-icon-wrap {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+.fav-signin-title {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.fav-signin-desc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin-bottom: 22px;
+}
+
+.fav-signin-desc strong {
+  color: var(--text-primary);
+}
+
+.modal-signin-btn {
+  width: 100%;
+  padding: 13px 20px;
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.fav-signin-hint {
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Toast Notifications */
+.vinyl-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-full);
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  z-index: 10000;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: all 0.25s ease-out;
+  pointer-events: none;
+}
+
+.vinyl-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}

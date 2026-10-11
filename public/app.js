@@ -27,11 +27,23 @@ export const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-const provider = new GoogleAuthProvider();
-provider.setCustomParameters({ 
-  hd: 'google.com', 
-  prompt: 'select_account' 
-});
+
+// Dynamic Google OAuth Provider based on deployment mode
+function getGoogleProvider() {
+  const p = new GoogleAuthProvider();
+  if (serverAuthMode === "corporate") {
+    p.setCustomParameters({ 
+      hd: 'google.com', 
+      prompt: 'select_account' 
+    });
+  } else {
+    // In public mode: allow any Google account (@gmail.com, etc.)
+    p.setCustomParameters({ 
+      prompt: 'select_account' 
+    });
+  }
+  return p;
+}
 
 // App State
 let currentUser = null;
@@ -39,6 +51,7 @@ let userSearches = [];
 let userFavorites = [];
 let currentAlbumData = null;
 let hasServerKey = false;
+let pendingFavoriteAlbum = null;
 const MODEL_NAME = "gemini-3.8-flash";
 
 // ============================================================================
@@ -50,6 +63,8 @@ const googleSignInBtn = document.getElementById("google-signin-btn");
 const authErrorMsg = document.getElementById("auth-error-msg");
 const signoutBtn = document.getElementById("signout-btn");
 const userAvatar = document.getElementById("user-avatar");
+const userProfileWrap = document.querySelector(".user-profile");
+const navSignInBtn = document.getElementById("nav-signin-btn");
 const themeToggle = document.getElementById("theme-toggle");
 
 // Favorites Elements
@@ -61,6 +76,50 @@ const favsDrawerBackdrop = document.getElementById("favs-drawer-backdrop");
 const closeFavsDrawerBtn = document.getElementById("close-favs-drawer-btn");
 const favsDrawerCount = document.getElementById("favs-drawer-count");
 const favsDrawerList = document.getElementById("favs-drawer-list");
+
+// Sign In Prompt Modal Elements
+const favSignInModal = document.getElementById("fav-signin-modal");
+const favSignInBackdrop = document.getElementById("fav-signin-backdrop");
+const closeFavSignInBtn = document.getElementById("close-fav-signin-btn");
+const modalGoogleSignInBtn = document.getElementById("modal-google-signin-btn");
+const modalSignInError = document.getElementById("modal-signin-error");
+const favTargetAlbumName = document.getElementById("fav-target-album-name");
+const vinylToast = document.getElementById("vinyl-toast");
+
+let toastTimer = null;
+function showToast(message) {
+  if (!vinylToast) return;
+  vinylToast.textContent = message;
+  vinylToast.classList.add("show");
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    vinylToast.classList.remove("show");
+  }, 3200);
+}
+
+function openFavSignInModal(album) {
+  pendingFavoriteAlbum = album;
+  if (favTargetAlbumName && album) {
+    favTargetAlbumName.textContent = album.artist ? `"${album.title}" by ${album.artist}` : `"${album.title}"`;
+  }
+  if (modalSignInError) {
+    modalSignInError.textContent = "";
+    modalSignInError.classList.add("hidden");
+  }
+  if (favSignInModal) {
+    favSignInModal.classList.remove("hidden");
+  }
+}
+
+function closeFavSignInModal() {
+  if (favSignInModal) {
+    favSignInModal.classList.add("hidden");
+  }
+  pendingFavoriteAlbum = null;
+}
+
+if (closeFavSignInBtn) closeFavSignInBtn.addEventListener("click", closeFavSignInModal);
+if (favSignInBackdrop) favSignInBackdrop.addEventListener("click", closeFavSignInModal);
 
 const searchForm = document.getElementById("search-form");
 const albumInput = document.getElementById("album-input");
@@ -1279,68 +1338,142 @@ function initTheme() {
 }
 
 // ============================================================================
-// 4. FIREBASE AUTHENTICATION FLOW (@google.com ONLY)
+// 4. FIREBASE AUTHENTICATION & LOGIN FLOW
 // ============================================================================
-googleSignInBtn.addEventListener("click", async () => {
-  authErrorMsg.classList.add("hidden");
-  googleSignInBtn.disabled = true;
-  googleSignInBtn.style.opacity = "0.7";
+let serverAuthMode = "corporate";
+let serverConfigResolve = null;
+const serverConfigReady = new Promise((resolve) => {
+  serverConfigResolve = resolve;
+});
+
+function updateAuthUI(isLoggedIn) {
+  if (isLoggedIn && currentUser) {
+    if (authGate) authGate.classList.add("hidden");
+    if (appShell) appShell.classList.remove("hidden");
+    if (navSignInBtn) navSignInBtn.classList.add("hidden");
+    if (userProfileWrap) userProfileWrap.classList.remove("hidden");
+    if (signoutBtn) signoutBtn.classList.remove("hidden");
+    if (userAvatar) {
+      userAvatar.src = currentUser.photoURL || createAvatarPlaceholder(currentUser.displayName || currentUser.email);
+      userAvatar.title = `${currentUser.displayName || "User"} (${currentUser.email})`;
+      userAvatar.classList.remove("hidden");
+    }
+  } else {
+    if (userProfileWrap) userProfileWrap.classList.add("hidden");
+    if (signoutBtn) signoutBtn.classList.add("hidden");
+    if (userAvatar) {
+      userAvatar.src = "";
+      userAvatar.classList.add("hidden");
+    }
+
+    if (serverAuthMode === "public") {
+      if (authGate) authGate.classList.add("hidden");
+      if (appShell) appShell.classList.remove("hidden");
+      if (navSignInBtn) navSignInBtn.classList.remove("hidden");
+    } else {
+      if (authGate) authGate.classList.remove("hidden");
+      if (appShell) appShell.classList.add("hidden");
+      if (navSignInBtn) navSignInBtn.classList.add("hidden");
+    }
+  }
+}
+
+async function performGoogleSignIn() {
+  if (authErrorMsg) authErrorMsg.classList.add("hidden");
+  if (modalSignInError) modalSignInError.classList.add("hidden");
+
+  const btns = [googleSignInBtn, modalGoogleSignInBtn, navSignInBtn].filter(Boolean);
+  btns.forEach(b => { b.disabled = true; b.style.opacity = "0.7"; });
+
   try {
-    const result = await signInWithPopup(auth, provider);
+    const p = getGoogleProvider();
+    const result = await signInWithPopup(auth, p);
     const user = result.user;
-    if (!user.email || !user.email.toLowerCase().endsWith("@google.com")) {
+
+    if (serverAuthMode === "corporate" && (!user.email || !user.email.toLowerCase().endsWith("@google.com"))) {
       await signOut(auth);
-      showAuthError(`Access Denied: You authenticated with ${user.email}. Only @google.com accounts are permitted.`);
+      throw new Error(`Access Denied: You authenticated with ${user.email}. Only @google.com accounts are permitted.`);
+    }
+
+    // Success! Close modal if open
+    closeFavSignInModal();
+
+    // If there was a pending album to favorite, save it now!
+    if (pendingFavoriteAlbum) {
+      const albumToFav = pendingFavoriteAlbum;
+      pendingFavoriteAlbum = null;
+      toggleFavorite(albumToFav);
     }
   } catch (error) {
+    if (error.code === "auth/popup-closed-by-user") {
+      console.log("Sign-in popup closed by user.");
+      return;
+    }
     console.error("Sign-in error:", error);
-    if (error.code === "auth/unauthorized-domain") {
-      showAuthError(`Domain authorization required: Add current domain to Firebase Auth project (aosterloh-cs-muc).`);
+    const errorText = error.code === "auth/unauthorized-domain"
+      ? "Domain authorization required: Please ensure this domain is added to authorized domains in Firebase Auth."
+      : (error.message || "Authentication failed. Please try again.");
+
+    if (modalSignInError && favSignInModal && !favSignInModal.classList.contains("hidden")) {
+      modalSignInError.textContent = errorText;
+      modalSignInError.classList.remove("hidden");
     } else {
-      showAuthError(error.message || "Authentication failed. Please try again.");
+      showAuthError(errorText);
     }
   } finally {
-    googleSignInBtn.disabled = false;
-    googleSignInBtn.style.opacity = "1";
+    btns.forEach(b => { b.disabled = false; b.style.opacity = "1"; });
   }
-});
+}
 
-signoutBtn.addEventListener("click", async () => {
-  await signOut(auth);
-});
+if (googleSignInBtn) googleSignInBtn.addEventListener("click", performGoogleSignIn);
+if (modalGoogleSignInBtn) modalGoogleSignInBtn.addEventListener("click", performGoogleSignIn);
+if (navSignInBtn) navSignInBtn.addEventListener("click", performGoogleSignIn);
+
+if (signoutBtn) {
+  signoutBtn.addEventListener("click", async () => {
+    await signOut(auth);
+    currentUser = null;
+    userFavorites = [];
+    updateAuthUI(false);
+    updateFavsUI();
+    showToast("👋 Signed out");
+  });
+}
 
 function showAuthError(msg) {
-  authErrorMsg.textContent = msg;
-  authErrorMsg.classList.remove("hidden");
+  if (authErrorMsg) {
+    authErrorMsg.textContent = msg;
+    authErrorMsg.classList.remove("hidden");
+  }
 }
 
 onAuthStateChanged(auth, async (user) => {
-  // In public mode, never block visitors with an authentication wall
-  if (serverAuthMode === "public") {
-    enablePublicMode();
-    return;
-  }
+  // Wait until server config is loaded so we know serverAuthMode (public vs corporate)
+  await serverConfigReady;
 
   if (user) {
-    if (!user.email || !user.email.toLowerCase().endsWith("@google.com")) {
+    if (serverAuthMode === "corporate" && (!user.email || !user.email.toLowerCase().endsWith("@google.com"))) {
       await signOut(auth);
       showAuthError(`Access Denied: You authenticated with ${user.email}. Only @google.com accounts are permitted.`);
-      authGate.classList.remove("hidden");
-      appShell.classList.add("hidden");
+      updateAuthUI(false);
       return;
     }
 
     currentUser = user;
-    userAvatar.src = user.photoURL || createAvatarPlaceholder(user.displayName || user.email);
-    userAvatar.title = user.email;
-    authGate.classList.add("hidden");
-    appShell.classList.remove("hidden");
-    
+    updateAuthUI(true);
+
     // Load User Search History Memory Bank & Favorites
     loadUserMemory();
     await loadUserFavorites();
 
-    // Restore last displayed album to continue where user left off after last session / restart
+    // If an album favorite was pending during auth resolution, fulfill it now
+    if (pendingFavoriteAlbum) {
+      const albumToFav = pendingFavoriteAlbum;
+      pendingFavoriteAlbum = null;
+      toggleFavorite(albumToFav);
+    }
+
+    // Restore last displayed album to continue where user left off
     restoreLastSessionAlbum();
 
     // Immediately load & display cached recommendations from storage
@@ -1348,10 +1481,14 @@ onAuthStateChanged(auth, async (user) => {
   } else {
     currentUser = null;
     userFavorites = [];
+    updateAuthUI(false);
     updateFavsUI();
-    if (serverAuthMode !== "public") {
-      authGate.classList.remove("hidden");
-      appShell.classList.add("hidden");
+
+    if (serverAuthMode === "public") {
+      loadUserMemory();
+      await loadUserFavorites();
+      restoreLastSessionAlbum();
+      loadAndDisplayCachedRecommendations();
     }
   }
 });
@@ -1364,20 +1501,6 @@ function createAvatarPlaceholder(name) {
 // ============================================================================
 // 5. SERVER CONFIG & GEMINI API KEY MANAGEMENT
 // ============================================================================
-let serverAuthMode = "corporate";
-
-function enablePublicMode() {
-  authGate.classList.add("hidden");
-  appShell.classList.remove("hidden");
-  const userProfile = document.querySelector(".user-profile");
-  if (userProfile) userProfile.classList.add("hidden");
-  if (signoutBtn) signoutBtn.classList.add("hidden");
-  loadUserMemory();
-  loadUserFavorites();
-  restoreLastSessionAlbum();
-  loadAndDisplayCachedRecommendations();
-}
-
 async function checkServerConfig() {
   try {
     const res = await fetch("/api/config");
@@ -1393,13 +1516,13 @@ async function checkServerConfig() {
       if (data.affiliates) {
         AFFILIATE_CONFIG = { ...AFFILIATE_CONFIG, ...data.affiliates };
       }
-
-      if (serverAuthMode === "public") {
-        enablePublicMode();
-      }
     }
   } catch (e) {
     hasServerKey = false;
+  } finally {
+    if (serverConfigResolve) {
+      serverConfigResolve(serverAuthMode);
+    }
   }
 }
 
@@ -3132,6 +3255,20 @@ async function loadUserFavorites() {
         // Cloud is empty but local has items: upload to cloud!
         await saveUserFavoritesToFirestore();
       }
+    } else if (userFavorites.length === 0) {
+      // 2. Fallback to /api/favorites from server disk storage
+      try {
+        const res = await fetch(`/api/favorites?uid=${encodeURIComponent(currentUser.uid)}`);
+        if (res.ok) {
+          const json = await res.json();
+          if (json.success && Array.isArray(json.data) && json.data.length > 0) {
+            userFavorites = json.data;
+            localStorage.setItem(key, JSON.stringify(userFavorites));
+            updateFavsUI();
+            await saveUserFavoritesToFirestore();
+          }
+        }
+      } catch (e) {}
     } else if (userFavorites.length > 0) {
       // Cloud record not found yet: upload local favorites!
       await saveUserFavoritesToFirestore();
@@ -3196,6 +3333,13 @@ function isFavorited(title, artist) {
 
 function toggleFavorite(album) {
   if (!album || !album.title) return;
+
+  // In public mode, prompt Google login if visitor is not authenticated yet
+  if (!currentUser) {
+    openFavSignInModal(album);
+    return;
+  }
+
   const prevSig = getLast3LikedSignature();
 
   const index = userFavorites.findIndex(
@@ -3207,6 +3351,7 @@ function toggleFavorite(album) {
 
   if (index >= 0) {
     userFavorites.splice(index, 1);
+    showToast(`Removed "${album.title}" from crate`);
   } else {
     userFavorites.unshift({
       title: album.title,
@@ -3219,6 +3364,7 @@ function toggleFavorite(album) {
       streetPriceGermany: album.streetPriceGermany || null,
       timestamp: Date.now()
     });
+    showToast(`❤️ Saved "${album.title}" to your crate!`);
   }
 
   saveUserFavorites();
@@ -3285,12 +3431,37 @@ function renderFavsDrawerList() {
   if (!favsDrawerList) return;
 
   if (userFavorites.length === 0) {
-    favsDrawerList.innerHTML = `
-      <div class="favs-empty-state">
-        <span class="favs-empty-icon">🤍</span>
-        <p class="favs-empty-text">No favorites saved yet. Click the heart on any album or alternative to keep it in your personal crate!</p>
-      </div>
-    `;
+    if (!currentUser) {
+      favsDrawerList.innerHTML = `
+        <div class="favs-empty-state">
+          <span class="favs-empty-icon">🤍</span>
+          <p class="favs-empty-text">No favorites saved yet.</p>
+          <p style="font-size: 13px; color: var(--text-secondary); margin-top: 6px; line-height: 1.4;">
+            Sign in with Google to save albums to your personal vinyl crate and sync across all your devices.
+          </p>
+          <button id="drawer-signin-btn" class="google-auth-btn modal-signin-btn" type="button" style="margin-top: 16px; font-size: 13px; padding: 10px 16px;">
+            <svg class="google-icon" viewBox="0 0 24 24" width="16" height="16">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+            </svg>
+            Sign in with Google
+          </button>
+        </div>
+      `;
+      const drawerSignInBtn = document.getElementById("drawer-signin-btn");
+      if (drawerSignInBtn) {
+        drawerSignInBtn.addEventListener("click", performGoogleSignIn);
+      }
+    } else {
+      favsDrawerList.innerHTML = `
+        <div class="favs-empty-state">
+          <span class="favs-empty-icon">🤍</span>
+          <p class="favs-empty-text">No favorites saved yet. Click the heart on any album or alternative to keep it in your personal crate!</p>
+        </div>
+      `;
+    }
     return;
   }
 
