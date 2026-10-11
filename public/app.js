@@ -523,7 +523,7 @@ function refreshActiveAlbumRegionView() {
   }
 
   if (currentAlbumData.alternatives && currentAlbumData.alternatives.length > 0) {
-    renderAlternativesProgressive(currentAlbumData.alternatives);
+    renderAlternativesProgressive(currentAlbumData.alternatives, currentAlbumData.currentAltOffset || 0);
   }
 }
 
@@ -566,6 +566,7 @@ function initRegionSelector() {
 // Alternatives elements
 const alternativesGenreName = document.getElementById("alternatives-genre-name");
 const alternativesGrid = document.getElementById("alternatives-grid");
+const shuffleAltsBtn = document.getElementById("shuffle-alts-btn");
 
 // Memory & Recommendations elements
 const memoryCounter = document.getElementById("memory-counter");
@@ -1264,7 +1265,8 @@ async function appraiseAlbum(albumName) {
       streetPriceGermany: cached.streetPriceGermany || null,
       baseNewEur: cached.streetPriceGermany?.newEur || "€29",
       baseUsedEur: cached.streetPriceGermany?.usedEur || "€15",
-      alternatives: cached.alternatives || []
+      alternatives: cached.alternatives || [],
+      currentAltOffset: 0
     };
 
     heroFavBtn.classList.toggle("active", isFavorited(cached.title, cached.artist));
@@ -1273,7 +1275,7 @@ async function appraiseAlbum(albumName) {
     alternativesGenreName.textContent = cached.genre || "";
     const validAlts = (cached.alternatives || []).filter(alt => !isAlbumInFavorites(alt.title, alt.artist));
     if (validAlts.length >= 3) {
-      renderAlternativesProgressive(cached.alternatives);
+      renderAlternativesProgressive(cached.alternatives, 0);
     } else {
       // In-context animated skeletons for alternatives while resolving
       renderAlternativesSkeletons();
@@ -1348,7 +1350,7 @@ Provide accurate information in Germany for vinyl pressings:
    - New vinyl: Average price in Germany retail record stores in EUR (e.g., "€28 – €34").
    - Used vinyl: Average second-hand price in Germany (Flohmärkte, Discogs DE, local shops) in EUR for a VG+/EX copy (e.g., "€14 – €22").
    - Short condition notes.
-8. 4 to 5 alternative vinyl albums in the exact same or closely related genre that fans would love.${favAltTitles.length > 0 ? ` (CRITICAL: Do NOT suggest any albums from the user's favorites list: ${favAltTitles})` : ""} Include for each: title, artist, genre, playtime, number of tracks/songs, new vinyl price in Germany (EUR), used vinyl price in Germany (EUR).
+8. 6 to 8 alternative vinyl albums in the exact same or closely related genre that fans would love for physical crate digging discovery.${favAltTitles.length > 0 ? ` (CRITICAL: Do NOT suggest any albums from the user's favorites list: ${favAltTitles})` : ""} Include for each: title, artist, genre, playtime, number of tracks/songs, new vinyl price in Germany (EUR), used vinyl price in Germany (EUR).
 9. Concise search term for album cover lookup (artist + album title).${favAltExclusionPrompt}
 
 Return strictly a valid JSON object matching this schema:
@@ -1435,8 +1437,8 @@ Return strictly a valid JSON object matching this schema:
       coverUrl: albumCoverImg.src,
       streetPriceGermany: album.streetPriceGermany,
       baseNewEur: album.streetPriceGermany?.newEur || "€29",
-      baseUsedEur: album.streetPriceGermany?.usedEur || "€15",
-      alternatives: alternatives
+      alternatives: alternatives,
+      currentAltOffset: 0
     };
 
     heroFavBtn.classList.toggle("active", isFavorited(album.title, album.artist));
@@ -1503,7 +1505,7 @@ Return strictly a valid JSON object matching this schema:
     });
 
     alternativesGenreName.textContent = album.genre || "";
-    renderAlternativesProgressive(alternatives);
+    renderAlternativesProgressive(alternatives, 0);
 
     // =========================================================================
     // PHASE 2: ASYNC MARKET RESEARCH & STORE LINKS
@@ -1553,11 +1555,26 @@ async function asyncResearchBuyLinks(title, artist) {
   `).join("");
 }
 
-// Render skeleton placeholders first, then pop in cards as artwork resolves
-function renderAlternativesProgressive(alternatives) {
+// Render skeleton placeholders first, then pop in cards as artwork resolves from pool
+function renderAlternativesProgressive(alternatives, shuffleOffset = 0) {
   // Strict programmatic filter: omit any album from userFavorites
   const cleanAlternatives = (alternatives || []).filter(alt => !isAlbumInFavorites(alt.title, alt.artist));
-  const toRender = cleanAlternatives.slice(0, 3);
+  const total = cleanAlternatives.length;
+
+  let toRender = [];
+  if (total <= 3) {
+    toRender = cleanAlternatives;
+  } else {
+    const start = (shuffleOffset || 0) % total;
+    for (let i = 0; i < 3; i++) {
+      toRender.push(cleanAlternatives[(start + i) % total]);
+    }
+  }
+
+  if (currentAlbumData) {
+    currentAlbumData.currentAltOffset = shuffleOffset;
+    currentAlbumData.displayedAlternatives = toRender;
+  }
 
   if (toRender.length === 0) {
     alternativesGrid.innerHTML = `
@@ -1712,8 +1729,8 @@ function renderAlternativesProgressive(alternatives) {
   });
 }
 
-// Fetch and curate fresh alternative recommendations when a cached album lacks them
-async function fetchMissingAlternatives(cached) {
+// Fetch and curate fresh alternative recommendations when a cached album lacks them or to expand pool
+async function fetchMissingAlternatives(cached, forceExpand = false) {
   if (!cached) return;
   alternativesGenreName.textContent = cached.genre || "";
 
@@ -1727,7 +1744,7 @@ async function fetchMissingAlternatives(cached) {
       : `\nCRITICAL EXCLUSION RULE:\nDO NOT suggest "${cached.title}" by ${cached.artist || ''}!\n`;
 
     const prompt = `You are an expert vinyl record specialist and discographer in Germany.
-For the vinyl album "${cached.title}" by "${cached.artist || 'Unknown'}" (genre / style: ${cached.genre || "Vinyl"}), recommend 4 to 5 essential alternative vinyl albums in the same or closely related musical style for vinyl collectors in Germany.${favAltExclusionPrompt}
+For the vinyl album "${cached.title}" by "${cached.artist || 'Unknown'}" (genre / style: ${cached.genre || "Vinyl"}), recommend 6 to 8 essential alternative vinyl albums in the same or closely related musical style for vinyl collectors in Germany.${favAltExclusionPrompt}
 For each alternative album, provide:
 - Exact album title and artist.
 - Primary genre.
@@ -1757,15 +1774,33 @@ Return strictly a valid JSON object matching this schema:
     const data = await callGeminiFlash(prompt);
     const newAlternatives = data?.alternatives || [];
     if (newAlternatives.length > 0) {
-      cached.alternatives = newAlternatives;
+      // Merge with existing alternatives pool (deduplicating by normalized title & artist)
+      const existing = Array.isArray(cached.alternatives) ? [...cached.alternatives] : [];
+      const seen = new Set(existing.map(a => normalizeCatalogKey((a.artist || '') + ' ' + a.title)));
+
+      for (const fresh of newAlternatives) {
+        const key = normalizeCatalogKey((fresh.artist || '') + ' ' + fresh.title);
+        if (!seen.has(key)) {
+          seen.add(key);
+          existing.push(fresh);
+        }
+      }
+
+      cached.alternatives = existing.length > 0 ? existing : newAlternatives;
       saveAlbumToCache(cached);
-      renderAlternativesProgressive(newAlternatives);
+
+      if (currentAlbumData && currentAlbumData.title === cached.title) {
+        currentAlbumData.alternatives = cached.alternatives;
+      }
+
+      const offset = forceExpand ? 3 : (currentAlbumData?.currentAltOffset || 0);
+      renderAlternativesProgressive(cached.alternatives, offset);
     } else {
-      renderAlternativesProgressive(cached.alternatives || []);
+      renderAlternativesProgressive(cached.alternatives || [], 0);
     }
   } catch (err) {
     console.error("fetchMissingAlternatives failed:", err);
-    renderAlternativesProgressive(cached.alternatives || []);
+    renderAlternativesProgressive(cached.alternatives || [], 0);
   }
 }
 
@@ -2088,6 +2123,28 @@ document.querySelectorAll(".chip").forEach(chip => {
     appraiseAlbum(album);
   });
 });
+
+// Instant "Fresh Picks" Shuffle from Extended Alternatives Pool
+if (shuffleAltsBtn) {
+  shuffleAltsBtn.addEventListener("click", () => {
+    if (!currentAlbumData || !currentAlbumData.alternatives || currentAlbumData.alternatives.length === 0) return;
+
+    shuffleAltsBtn.classList.add("spinning");
+    setTimeout(() => { shuffleAltsBtn.classList.remove("spinning"); }, 500);
+
+    const cleanPool = currentAlbumData.alternatives.filter(alt => !isAlbumInFavorites(alt.title, alt.artist));
+
+    if (cleanPool.length <= 3) {
+      // If pool has 3 or fewer items, expand pool dynamically with fresh recommendations
+      fetchMissingAlternatives(currentAlbumData, true);
+      return;
+    }
+
+    const nextOffset = ((currentAlbumData.currentAltOffset || 0) + 3) % cleanPool.length;
+    currentAlbumData.currentAltOffset = nextOffset;
+    renderAlternativesProgressive(currentAlbumData.alternatives, nextOffset);
+  });
+}
 
 // ============================================================================
 // 10. PERSISTENT FAVORITES SYSTEM ("MY FAV VINYL") & RECOMMENDATIONS CACHE

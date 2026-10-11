@@ -242,11 +242,17 @@
           </div>
         </div>
 
-        <!-- 3 Genre Alternatives Section -->
+        <!-- Genre Alternatives Section with Extended Pool & Fresh Picks Shuffle -->
         <div class="alternatives-section">
           <div class="section-title-row">
-            <h3 class="section-heading">3 Alternatives in Genre</h3>
-            <span id="alternatives-genre-name" class="section-subheading">Classic Rock</span>
+            <div class="section-title-group">
+              <h3 class="section-heading">Alternatives in Genre</h3>
+              <span id="alternatives-genre-name" class="section-subheading">Classic Rock</span>
+            </div>
+            <button id="shuffle-alts-btn" class="shuffle-alts-btn" type="button" title="Shuffle fresh alternative picks from catalog pool">
+              <span class="shuffle-icon">🔄</span>
+              <span class="shuffle-text">Fresh Picks</span>
+            </button>
           </div>
 
           <div id="alternatives-grid" class="alternatives-grid">
@@ -340,6 +346,6 @@
   </div>
 
   <!-- FIREBASE AND CLIENT APPLICATION SCRIPT -->
-  <script type="module" src="app.js?v=2.7"></script>
+  <script type="module" src="app.js?v=2.8"></script>
 </body>
 </html>
