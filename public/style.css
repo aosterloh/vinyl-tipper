@@ -875,48 +875,378 @@ body {
   border-color: var(--border-medium);
 }
 
-/* Loading State */
+/* ==========================================================================
+   AUDIOPHILE TURNTABLE & GRAND SPINNING VINYL LOADING SUITE
+   ========================================================================== */
 .loading-state {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 60px 0;
-  gap: 20px;
+  padding: 56px 20px 48px;
+  gap: 28px;
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.spinning-vinyl {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #252525 0%, #151515 70%, #000 100%);
+.audiophile-turntable-deck {
   position: relative;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: slow-spin 2.5s linear infinite;
 }
 
-.spinning-vinyl .grooves {
-  position: absolute;
-  inset: 8px;
+.turntable-chassis {
+  position: relative;
+  width: 290px;
+  height: 250px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: 20px;
+  box-shadow: 
+    0 20px 50px -10px rgba(0, 0, 0, 0.35),
+    0 1px 3px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 24px;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+/* Platter Well & Aluminum Rim */
+.turntable-platter-well {
+  position: relative;
+  width: 202px;
+  height: 202px;
   border-radius: 50%;
-  border: 1px dashed rgba(255, 255, 255, 0.2);
+  background: radial-gradient(circle, #1a1a1a 0%, #111111 75%, #2a2a2a 96%, #444444 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    inset 0 2px 6px rgba(0,0,0,0.8),
+    0 4px 14px rgba(0,0,0,0.4);
 }
 
-.spinning-vinyl .label-circle {
+/* 180g Heavyweight Vinyl Record (190px) */
+.spinning-vinyl.grand-vinyl {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #222222 0%, #141414 55%, #090909 100%);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  animation: vinyl-turn 1.8s linear infinite;
+  transform-origin: center center;
+  overflow: hidden;
+}
+
+@keyframes vinyl-turn {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Anisotropic Light Sheen - Realistic specular reflection rotating on microgrooves */
+.vinyl-light-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  background: conic-gradient(
+    from 45deg,
+    rgba(255, 255, 255, 0.18) 0deg,
+    rgba(255, 255, 255, 0.01) 35deg,
+    rgba(255, 255, 255, 0.15) 90deg,
+    rgba(255, 255, 255, 0.01) 125deg,
+    rgba(255, 255, 255, 0.18) 180deg,
+    rgba(255, 255, 255, 0.01) 215deg,
+    rgba(255, 255, 255, 0.15) 270deg,
+    rgba(255, 255, 255, 0.01) 305deg,
+    rgba(255, 255, 255, 0.18) 360deg
+  );
+  mix-blend-mode: screen;
+}
+
+/* Concentric Sound Grooves */
+.grooves-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.grooves-ring-1 {
+  inset: 10px;
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.4);
+}
+.grooves-ring-2 {
+  inset: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 0 0 6px rgba(0, 0, 0, 0.3);
+}
+.grooves-ring-3 {
+  inset: 44px;
+  border: 1px dashed rgba(255, 255, 255, 0.07);
+}
+.grooves-runout {
+  inset: 60px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: radial-gradient(circle, transparent 65%, rgba(0,0,0,0.6) 100%);
+}
+
+/* Vintage 33 1/3 RPM Audiophile Center Label */
+.label-circle.retro-audiophile-label {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #D9381E 0%, #B32812 75%, #8C1C09 100%);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.6),
+    inset 0 1px 3px rgba(255, 255, 255, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  user-select: none;
+}
+
+.label-rim-text {
+  font-size: 6.5px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #FEE2E2;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+.label-speed-badge {
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #FFF;
+  margin: 1px 0;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.label-format-text {
+  font-size: 5.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #FCD34D;
+  text-transform: uppercase;
+}
+
+.spindle-center-hole {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #111111;
+  border: 1px solid #777777;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.9);
+}
+
+/* Animated Turntable Tonearm */
+.tonearm-assembly {
+  position: absolute;
+  right: 18px;
+  top: 24px;
+  width: 44px;
+  height: 180px;
+  pointer-events: none;
+  z-index: 5;
+  transform-origin: 22px 20px;
+  animation: tonearm-needle-drop 4s cubic-bezier(0.25, 1, 0.5, 1) infinite alternate;
+}
+
+@keyframes tonearm-needle-drop {
+  0% {
+    transform: rotate(2deg);
+  }
+  20% {
+    transform: rotate(2deg);
+  }
+  50% {
+    transform: rotate(26deg);
+  }
+  85% {
+    transform: rotate(28deg);
+  }
+  100% {
+    transform: rotate(29deg);
+  }
+}
+
+.tonearm-base {
+  position: absolute;
+  top: 8px;
+  left: 10px;
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background-color: #EA4335;
-  border: 3px solid #000;
+  background: radial-gradient(circle, #e0e0e0 0%, #999999 70%, #555555 100%);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+}
+
+.tonearm-pivot {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #222;
+  border: 1px solid #bbb;
+}
+
+.tonearm-weight {
+  position: absolute;
+  top: -6px;
+  left: 3px;
+  width: 18px;
+  height: 10px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #d4d4d4, #737373);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.tonearm-rod {
+  position: absolute;
+  top: 28px;
+  left: 19px;
+  width: 4px;
+  height: 120px;
+  background: linear-gradient(90deg, #bbbbbb 0%, #f5f5f5 50%, #888888 100%);
+  border-radius: 2px;
+  box-shadow: -2px 3px 6px rgba(0,0,0,0.3);
+}
+
+.tonearm-cartridge {
+  position: absolute;
+  top: 142px;
+  left: 14px;
+  width: 14px;
+  height: 24px;
+  background: #1e1e1e;
+  border: 1px solid #444;
+  border-radius: 2px 2px 5px 2px;
+  transform: rotate(-16deg);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+}
+
+.tonearm-needle {
+  position: absolute;
+  bottom: -4px;
+  left: 5px;
+  width: 3px;
+  height: 5px;
+  background: #EA4335;
+  border-radius: 1px;
+  box-shadow: 0 0 6px rgba(234, 67, 53, 0.8);
+}
+
+/* Speed Strobe */
+.turntable-speed-strobe {
+  position: absolute;
+  bottom: 12px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.strobe-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.8);
+  animation: strobe-pulse 0.9s infinite ease-in-out;
+}
+
+@keyframes strobe-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.strobe-text {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+}
+
+/* Loading Status Text & Subline */
+.loading-status-wrap {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  max-width: 480px;
 }
 
 .loading-text {
-  font-size: 14px;
-  color: var(--text-secondary);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
   letter-spacing: -0.01em;
+  margin: 0;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.loading-status-subline {
+  font-size: 13px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.pulse-sparkle {
+  display: inline-block;
+  animation: sparkle-glow 1.5s ease-in-out infinite;
+}
+
+@keyframes sparkle-glow {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.25); opacity: 1; }
+}
+
+@media (max-width: 640px) {
+  .turntable-chassis {
+    width: 250px;
+    height: 220px;
+    padding-left: 14px;
+  }
+  .turntable-platter-well {
+    width: 172px;
+    height: 172px;
+  }
+  .spinning-vinyl.grand-vinyl {
+    width: 160px;
+    height: 160px;
+  }
+  .tonearm-assembly {
+    right: 12px;
+    height: 155px;
+  }
+  .tonearm-rod {
+    height: 100px;
+  }
+  .tonearm-cartridge {
+    top: 122px;
+  }
 }
 
 /* ==========================================================================

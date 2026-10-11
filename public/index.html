@@ -213,13 +213,57 @@
         </div>
       </section>
 
-      <!-- Loading State Indicator -->
-      <div id="loading-state" class="loading-state hidden">
-        <div class="spinning-vinyl">
-          <div class="grooves"></div>
-          <div class="label-circle"></div>
+      <!-- Loading State Indicator: Grand Audiophile Turntable & Vinyl Deck -->
+      <div id="loading-state" class="loading-state hidden" aria-live="polite">
+        <div class="audiophile-turntable-deck">
+          <div class="turntable-chassis">
+            <!-- Animated Tonearm -->
+            <div class="tonearm-assembly">
+              <div class="tonearm-base">
+                <div class="tonearm-pivot"></div>
+                <div class="tonearm-weight"></div>
+              </div>
+              <div class="tonearm-rod"></div>
+              <div class="tonearm-cartridge">
+                <div class="tonearm-needle"></div>
+              </div>
+            </div>
+
+            <!-- Heavy Aluminum Platter & 180g Spinning Vinyl -->
+            <div class="turntable-platter-well">
+              <div class="spinning-vinyl grand-vinyl" id="main-spinning-vinyl">
+                <!-- Optical Anisotropic Light Sheen -->
+                <div class="vinyl-light-sheen"></div>
+                <!-- Concentric Sound Grooves -->
+                <div class="grooves-ring grooves-ring-1"></div>
+                <div class="grooves-ring grooves-ring-2"></div>
+                <div class="grooves-ring grooves-ring-3"></div>
+                <div class="grooves-ring grooves-runout"></div>
+                <!-- Vintage 33 1/3 RPM Record Label -->
+                <div class="label-circle retro-audiophile-label">
+                  <div class="label-rim-text">VINYL HOUND</div>
+                  <div class="label-speed-badge">33 ⅓ RPM</div>
+                  <div class="label-format-text">ANALOG STEREO</div>
+                  <div class="spindle-center-hole"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Turntable Speed Strobe / Indicator -->
+            <div class="turntable-speed-strobe">
+              <span class="strobe-dot active"></span>
+              <span class="strobe-text">33 RPM LOCKED</span>
+            </div>
+          </div>
         </div>
-        <p class="loading-text">Evaluating Germany street prices & alternatives...</p>
+
+        <!-- Dynamic Audiophile Status Ticker -->
+        <div class="loading-status-wrap">
+          <p class="loading-text" id="loading-status-text">Consulting the Vinyl Sommelier...</p>
+          <div class="loading-status-subline" id="loading-status-subline">
+            <span class="pulse-sparkle">✨</span> Spinning up 180g physical master pressing
+          </div>
+        </div>
       </div>
 
       <!-- Main Appraisal Results Section -->
