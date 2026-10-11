@@ -1382,14 +1382,11 @@ function loadUserMemory() {
   }
 
   updateMemoryUI();
-
-  // If returning user has >= 5 searches and no liked recommendations cached, generate recommendations
-  if (userSearches.length >= 5 && (!cachedFavRecs || cachedFavRecs.length === 0)) {
-    generateRecommendations();
-  }
+  updateFavsUI();
 }
 
 function saveSearchToMemory(searchRecord) {
+  const prevSig = getLast3LikedSignature();
   // Prevent duplicate consecutive entries
   const exists = userSearches.find(
     s => s.title.toLowerCase() === searchRecord.title.toLowerCase() && 
@@ -1403,76 +1400,50 @@ function saveSearchToMemory(searchRecord) {
   }
 
   updateMemoryUI();
+  updateFavsUI();
 
-  if (userSearches.length >= 5 && (!cachedFavRecs || cachedFavRecs.length === 0)) {
-    generateRecommendations();
+  const newSig = getLast3LikedSignature();
+  // If user has NO favorites yet, offer recommendations based on their last 3 searches
+  if (userFavorites.length === 0 && (prevSig !== newSig || !cachedFavRecs || cachedFavRecs.length === 0)) {
+    generateFavoritesRecommendations(true);
   }
 }
 
 function updateMemoryUI() {
   const count = userSearches.length;
-  counterValueEl.textContent = `${count} / 5`;
+  if (counterValueEl) counterValueEl.textContent = `${count}`;
 
-  // Update dots
-  const dots = counterDotsEl.querySelectorAll(".dot");
-  dots.forEach((dot, index) => {
-    if (index < Math.min(count, 5)) {
-      dot.classList.add("filled");
-    } else {
-      dot.classList.remove("filled");
-    }
-  });
+  // Update dots if counter dots element exists
+  if (counterDotsEl) {
+    const dots = counterDotsEl.querySelectorAll(".dot");
+    dots.forEach((dot, index) => {
+      if (index < Math.min(count, 5)) {
+        dot.classList.add("filled");
+      } else {
+        dot.classList.remove("filled");
+      }
+    });
+  }
 
-  // Progress message in locked state
+  // Carousel unlock / progress message
   if (cachedFavRecs && cachedFavRecs.length > 0) {
-    recLockedBanner.classList.add("hidden");
-    recCarouselContainer.classList.remove("hidden");
-  } else if (count < 5) {
-    recLockedBanner.classList.remove("hidden");
-    recCarouselContainer.classList.add("hidden");
-    const remaining = 5 - count;
-    lockedProgressMsg.textContent = `Search ${remaining} more album${remaining === 1 ? '' : 's'} (or like an album) to unlock your personalized vinyl crate recommendations.`;
+    if (recLockedBanner) recLockedBanner.classList.add("hidden");
+    if (recCarouselContainer) recCarouselContainer.classList.remove("hidden");
+  } else if (userFavorites.length === 0 && count === 0) {
+    if (recLockedBanner) recLockedBanner.classList.remove("hidden");
+    if (recCarouselContainer) recCarouselContainer.classList.add("hidden");
+    if (lockedProgressMsg) {
+      lockedProgressMsg.textContent = "Search an album or save favorites to unlock your personalized vinyl recommendations.";
+    }
   } else {
-    recLockedBanner.classList.add("hidden");
-    recCarouselContainer.classList.remove("hidden");
+    if (recLockedBanner) recLockedBanner.classList.add("hidden");
+    if (recCarouselContainer) recCarouselContainer.classList.remove("hidden");
   }
 }
 
-// Generate Personalized Vinyl Recommendations (Covers Only)
+// Generate Personalized Vinyl Recommendations
 async function generateRecommendations() {
-  if (userSearches.length < 5) return;
-
-  const sampleSearches = userSearches.slice(0, 10).map(s => `${s.artist} - ${s.title} (${s.genre})`).join("; ");
-  const favsExclusions = (userFavorites || []).map(f => `"${f.title}" by ${f.artist || 'Unknown'}`).join(", ");
-  const exclusionText = favsExclusions.length > 0
-    ? `\n\nCRITICAL EXCLUSION RULE: The user has already favorited these albums: ${favsExclusions}. You MUST NOT recommend any of them! Every recommendation must be a different album they do not have saved.`
-    : '';
-
-  const recPrompt = `The user is an avid vinyl record collector in Germany with this recent search history:
-${sampleSearches}${exclusionText}
-
-Based on this musical taste profile, recommend 12 curated must-have vinyl albums for their collection crate.
-Return strictly a valid JSON object:
-{
-  "recommendations": [
-    {
-      "title": "string",
-      "artist": "string",
-      "genre": "string",
-      "coverSearchTerm": "Artist Album"
-    }
-  ]
-}`;
-
-  try {
-    const data = await callGeminiFlash(recPrompt);
-    const rawRecs = data.recommendations || [];
-    // Strict programmatic filter against user favorites
-    const cleanRecs = rawRecs.filter(item => !isAlbumInFavorites(item.title, item.artist));
-    await renderRecommendationCarousel(cleanRecs.slice(0, 8));
-  } catch (err) {
-    console.warn("Could not generate recommendations yet:", err);
-  }
+  return generateFavoritesRecommendations(true);
 }
 
 let carouselRenderSeq = 0;
@@ -1575,8 +1546,15 @@ function getFavsStorageKey() {
 }
 
 function getLast3LikedSignature() {
-  const top3 = (userFavorites || []).slice(0, 3);
-  return top3.map(f => normalizeCatalogKey(f.title) + ':' + normalizeCatalogKey(f.artist || '')).join('|');
+  if (userFavorites && userFavorites.length > 0) {
+    const top3 = userFavorites.slice(0, 3);
+    return 'favs:' + top3.map(f => normalizeCatalogKey(f.title) + ':' + normalizeCatalogKey(f.artist || '')).join('|');
+  }
+  if (userSearches && userSearches.length > 0) {
+    const top3 = userSearches.slice(0, 3);
+    return 'searches:' + top3.map(s => normalizeCatalogKey(s.title) + ':' + normalizeCatalogKey(s.artist || '')).join('|');
+  }
+  return '';
 }
 
 function getRecommendationsStorageKey() {
@@ -1743,16 +1721,16 @@ async function loadAndDisplayCachedRecommendations() {
       recLockedBanner.classList.add("hidden");
       recCarouselContainer.classList.remove("hidden");
 
-      // Only refresh in background if the user's last 3 liked albums changed
-      if (currentSig && cachedPayload.signature && cachedPayload.signature !== currentSig && userFavorites.length > 0) {
+      // Only refresh in background if the recommendations signature changed
+      if (currentSig && cachedPayload.signature && cachedPayload.signature !== currentSig && (userFavorites.length > 0 || userSearches.length > 0)) {
         generateFavoritesRecommendations(true);
       }
       return;
     }
   }
 
-  // 5. If no cache exists yet, but user has liked albums, trigger initial generation
-  if (userFavorites.length > 0) {
+  // 5. If no cache exists yet, but user has favorites or recent searches, trigger initial generation
+  if (userFavorites.length > 0 || userSearches.length > 0) {
     generateFavoritesRecommendations(true);
   }
 }
@@ -1910,14 +1888,15 @@ function toggleFavorite(album) {
   saveUserFavorites();
 
   const newSig = getLast3LikedSignature();
-  // ONLY update that list every time user adds more liked albums (or changes the last 3)
-  if (wasAdded || (prevSig !== newSig && userFavorites.length > 0)) {
+  // Update recommendations whenever favorites are added/removed or signature changes
+  if (wasAdded || (prevSig !== newSig && (userFavorites.length > 0 || userSearches.length > 0))) {
     generateFavoritesRecommendations(true);
   }
 }
 
 function updateFavsUI() {
   const count = userFavorites.length;
+  const searchCount = (userSearches || []).length;
   if (count > 0) {
     favsCountBadge.textContent = count;
     favsCountBadge.classList.remove("hidden");
@@ -1925,9 +1904,9 @@ function updateFavsUI() {
     favsCountBadge.classList.add("hidden");
   }
 
-  // 10 Vinyl Recommendations button (Unlocked once user has 1+ fav saves)
+  // Vinyl Recommendations button (Unlocked once user has 1+ fav saves OR 1+ searches)
   if (favRecsBtn) {
-    if (count >= 1) {
+    if (count >= 1 || searchCount >= 1) {
       favRecsBtn.classList.remove("hidden");
     } else {
       favRecsBtn.classList.add("hidden");
@@ -1939,8 +1918,15 @@ function updateFavsUI() {
   }
 
   if (recsModalSubtitle) {
-    const topCount = Math.min(count, 3);
-    recsModalSubtitle.textContent = `Derived from your last ${topCount} liked album${topCount === 1 ? '' : 's'}`;
+    if (count > 0) {
+      const topCount = Math.min(count, 3);
+      recsModalSubtitle.textContent = `Derived from your saved favorites (${topCount} album${topCount === 1 ? '' : 's'})`;
+    } else if (searchCount > 0) {
+      const topCount = Math.min(searchCount, 3);
+      recsModalSubtitle.textContent = `Derived from your last ${topCount} search${topCount === 1 ? '' : 'es'}`;
+    } else {
+      recsModalSubtitle.textContent = `Personalized recommendations`;
+    }
   }
 
   // Update hero button state if current album is loaded
@@ -2032,15 +2018,21 @@ favsDrawerBackdrop.addEventListener("click", () => {
 });
 
 // ============================================================================
-// 11. CURATED VINYL RECOMMENDATIONS (BASED ON LAST 3 LIKED ALBUMS)
+// 11. CURATED VINYL RECOMMENDATIONS (FAVORITES OR LAST 3 SEARCHES)
 // ============================================================================
 async function openFavoritesRecommendations() {
-  if (userFavorites.length === 0) return;
+  const hasFavs = userFavorites && userFavorites.length > 0;
+  const hasSearches = userSearches && userSearches.length > 0;
+  if (!hasFavs && !hasSearches) return;
+
   favRecsModalContainer.classList.remove("hidden");
 
-  const topCount = Math.min(userFavorites.length, 3);
+  const isFromFavs = hasFavs;
+  const baseCount = isFromFavs ? Math.min(userFavorites.length, 3) : Math.min(userSearches.length, 3);
   if (recsModalSubtitle) {
-    recsModalSubtitle.textContent = `Derived from your last ${topCount} liked album${topCount === 1 ? '' : 's'}`;
+    recsModalSubtitle.textContent = isFromFavs
+      ? `Derived from your saved favorites (${baseCount} album${baseCount === 1 ? '' : 's'})`
+      : `Derived from your last ${baseCount} search${baseCount === 1 ? '' : 'es'}`;
   }
 
   const currentSig = getLast3LikedSignature();
@@ -2055,40 +2047,51 @@ async function openFavoritesRecommendations() {
 }
 
 async function generateFavoritesRecommendations(silent = false) {
-  if (userFavorites.length === 0) return;
+  const hasFavs = userFavorites && userFavorites.length > 0;
+  const hasSearches = userSearches && userSearches.length > 0;
+  if (!hasFavs && !hasSearches) return;
 
-  const last3Liked = userFavorites.slice(0, 3);
+  const isFromFavs = hasFavs;
+  const baseAlbums = isFromFavs ? userFavorites.slice(0, 3) : userSearches.slice(0, 3);
   const currentSig = getLast3LikedSignature();
 
   // Show dedicated modal loading state displaying:
-  // "Getting your personalized recommendations based on your saved albums"
   if (!silent) {
     recsModalLoading.classList.remove("hidden");
     favRecsList.classList.add("hidden");
-    expandRecsBtn.classList.add("hidden");
+    if (expandRecsBtn) expandRecsBtn.classList.add("hidden");
   }
 
-  const last3Summary = last3Liked.map((f, i) => `${i + 1}. "${f.title}" by ${f.artist || 'Unknown'} (${f.genre || 'Vinyl'}${f.year ? ', ' + f.year : ''})`).join("\n");
-  const allFavTitlesList = userFavorites.map(f => `"${f.title}"`).join(", ");
+  const loadingMsg = document.querySelector(".recs-loading-message");
+  if (loadingMsg) {
+    loadingMsg.textContent = isFromFavs
+      ? "Getting your personalized recommendations based on your saved albums"
+      : "Getting your personalized recommendations based on your recent searches";
+  }
+
+  const baseSummary = baseAlbums.map((f, i) => `${i + 1}. "${f.title}" by ${f.artist || 'Unknown'} (${f.genre || 'Vinyl'}${f.year ? ', ' + f.year : ''})`).join("\n");
+  const allFavTitlesList = (userFavorites || []).map(f => `"${f.title}"`);
+  const allSearchTitlesList = (userSearches || []).slice(0, 5).map(s => `"${s.title}"`);
+  const excludedTitles = Array.from(new Set([...allFavTitlesList, ...allSearchTitlesList])).join(", ");
 
   const prompt = `You are a legendary German vinyl crate-digger and record connoisseur curator.
-The user recently liked these ${last3Liked.length} favorite record(s):
-${last3Summary}
+${isFromFavs ? 'The user recently saved these favorite record(s) in their vinyl collection crate:' : 'The user has no saved favorites yet, but recently searched for these record(s):'}
+${baseSummary}
 
-Synthesize the musical taste, sonic aesthetic, instrumentation, production qualities, and genre intersections of these LAST ${last3Liked.length} saved records.
+Synthesize the musical taste, sonic aesthetic, instrumentation, production qualities, and genre intersections of these ${baseAlbums.length} records.
 Recommend 14 distinct vinyl records (to provide 10 top recommendations) that would be must-haves for their physical record shelf to expand this specific aesthetic direction.
 
 CRITICAL EXCLUSION RULE:
-DO NOT recommend any of the albums that are already in the user's saved favorites list (${allFavTitlesList}), or alternative editions/reissues of them!
-Every recommendation MUST be a fresh discovery or complementary album that the user does NOT already have in their favorites list.
+DO NOT recommend any of the albums that the user has already explored or favorited (${excludedTitles}), or alternative editions/reissues of them!
+Every recommendation MUST be a fresh discovery or complementary album that the user does NOT already have.
 
 For each of the 14 recommendations, provide:
 1. "title": Exact album title.
 2. "artist": Exact artist name.
 3. "genre": Musical genre / sub-genre.
 4. "year": Release year (number).
-5. "score": Integer from 80 to 100 representing how strongly this vinyl matches and complements their last ${last3Liked.length} liked albums. Rank from highest match score to lower.
-6. "matchReason": 1 to 2 sentences explaining why this vinyl is a good match, explicitly connecting back to the artists, genres, or production aesthetics in their last ${last3Liked.length} liked albums.
+5. "score": Integer from 80 to 100 representing how strongly this vinyl matches and complements their ${isFromFavs ? 'saved favorites' : 'recent searches'}. Rank from highest match score to lower.
+6. "matchReason": 1 to 2 sentences explaining why this vinyl is a good match, explicitly connecting back to the artists, genres, or production aesthetics in their ${isFromFavs ? 'saved favorite records' : 'recent searches'}.
 7. "playtime": Total album runtime (e.g. "44 min").
 8. "trackCount": Number of tracks (integer).
 9. "streetPriceGermany": { "newEur": "€28 – €34", "usedEur": "€14 – €22" } realistic German vinyl market prices in EUR.
@@ -2170,8 +2173,8 @@ function renderFavoritesRecommendations() {
     return;
   }
 
-  const countToShow = isRecsExpanded ? Math.min(10, cleanRecs.length) : Math.min(5, cleanRecs.length);
-  const items = cleanRecs.slice(0, countToShow);
+  // Offer the 10 recommendations directly
+  const items = cleanRecs.slice(0, 10);
 
   favRecsList.innerHTML = "";
 
@@ -2304,11 +2307,8 @@ function renderFavoritesRecommendations() {
     favRecsList.appendChild(card);
   });
 
-  // Expand / Collapse button state
-  if (cleanRecs.length > 5) {
-    expandRecsBtn.classList.remove("hidden");
-    expandRecsBtn.textContent = isRecsExpanded ? "Show Top 5 ▲" : "Expand to 10 Recommendations ▼";
-  } else {
+  // Since we offer all 10 recommendations directly, keep expand button hidden
+  if (expandRecsBtn) {
     expandRecsBtn.classList.add("hidden");
   }
 }

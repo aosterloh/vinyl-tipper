@@ -59,15 +59,6 @@
       </div>
 
       <div class="nav-controls">
-        <!-- Search Memory Counter Indicator -->
-        <div id="memory-counter" class="memory-counter" title="Searches in memory bank">
-          <span class="counter-label">Crate Memory:</span>
-          <span id="counter-value" class="counter-value">0 / 5</span>
-          <div id="counter-dots" class="counter-dots">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          </div>
-        </div>
-
         <!-- My Fav Vinyl Button -->
         <button id="favs-btn" class="nav-favs-btn" type="button" aria-label="My Fav Vinyl" title="View Favorite Vinyl Records">
           <span class="favs-heart-icon">❤️</span>
@@ -75,10 +66,10 @@
           <span id="favs-count-badge" class="favs-count-badge hidden">0</span>
         </button>
 
-        <!-- 10 Vinyl Recommendations Button (Based on last 3 liked records) -->
-        <button id="fav-recs-btn" class="nav-recs-btn hidden" type="button" aria-label="10 Vinyl Recommendations" title="Get 10 Recommendations based on your last 3 liked albums">
+        <!-- Vinyl Recommendations Button (Based on saved favorites or last 3 searches) -->
+        <button id="fav-recs-btn" class="nav-recs-btn hidden" type="button" aria-label="Vinyl Recommendations" title="Get Vinyl Recommendations based on your favorite albums or recent searches">
           <span class="recs-sparkle-icon">✨</span>
-          <span class="recs-btn-text">10 Vinyl Recommendations</span>
+          <span class="recs-btn-text">Vinyl Recommendations</span>
         </button>
 
         <!-- Light / Dark Theme Switch (Per gemini.md) -->
@@ -239,12 +230,12 @@
           </div>
         </div>
 
-        <!-- Locked view when < 5 searches -->
+        <!-- Locked view when no searches or favorites -->
         <div id="rec-locked-banner" class="rec-locked-banner">
           <div class="locked-icon">🔒</div>
           <div class="locked-content">
             <p class="locked-title">Your Taste Engine is warming up</p>
-            <p id="locked-progress-msg" class="locked-desc">Search 5 albums to unlock your personalized vinyl covers carousel.</p>
+            <p id="locked-progress-msg" class="locked-desc">Search an album or save favorites to unlock your personalized vinyl recommendations.</p>
           </div>
         </div>
 
@@ -277,7 +268,7 @@
     </aside>
   </div>
 
-  <!-- 5-10 CURATED VINYL RECOMMENDATIONS POP-UP MODAL -->
+  <!-- CURATED VINYL RECOMMENDATIONS POP-UP MODAL -->
   <div id="fav-recs-modal-container" class="fav-recs-modal-container hidden" role="dialog" aria-modal="true" aria-labelledby="recs-modal-title">
     <div id="fav-recs-modal-backdrop" class="fav-recs-modal-backdrop"></div>
     <div class="fav-recs-modal-dialog">
@@ -300,24 +291,17 @@
           <div class="label-circle"></div>
         </div>
         <p class="recs-loading-message">Getting your personalized recommendations based on your saved albums</p>
-        <span class="recs-loading-subtext">Evaluating sonic aesthetics, genres, and artist lineage across your saved collection...</span>
+        <span class="recs-loading-subtext">Evaluating sonic aesthetics, genres, and artist lineage across your collection...</span>
       </div>
 
       <!-- Recommendations List inside Modal -->
       <div id="fav-recs-list" class="fav-recs-modal-list">
         <!-- Rendered dynamically -->
       </div>
-
-      <!-- Modal Footer -->
-      <div class="fav-recs-modal-footer">
-        <button id="expand-recs-btn" class="expand-recs-btn hidden" type="button">
-          Expand to 10 Recommendations ▼
-        </button>
-      </div>
     </div>
   </div>
 
   <!-- FIREBASE AND CLIENT APPLICATION SCRIPT -->
-  <script type="module" src="app.js?v=2.3"></script>
+  <script type="module" src="app.js?v=2.4"></script>
 </body>
 </html>
