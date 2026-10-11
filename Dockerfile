@@ -5,6 +5,7 @@ WORKDIR /app
 COPY package*.json ./
 COPY server.js ./
 COPY public/ ./public/
+COPY data/ ./data/
 
 ENV PORT=8080
 EXPOSE 8080

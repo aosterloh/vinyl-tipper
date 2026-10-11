@@ -1,0 +1,247 @@
+{
+  "DIfwCI6cDvZUqzli62yG642n4E63": [
+    {
+      "title": "Third",
+      "artist": "Portishead",
+      "genre": "Trip Hop / Experimental Rock / Krautrock",
+      "year": 2008,
+      "playtime": "49 min",
+      "trackCount": 11,
+      "coverUrl": "http://localhost:8088/api/images/portishead_third.jpg",
+      "streetPriceGermany": {
+        "newEur": "€29 – €35",
+        "usedEur": "€20 – €26",
+        "conditionNote": "Standard 2xLP reissue in VG+ to EX condition"
+      },
+      "timestamp": 1791697876963
+    },
+    {
+      "title": "Untrue",
+      "artist": "Burial",
+      "genre": "Future Garage / Dubstep / Ambient",
+      "year": 2007,
+      "playtime": "51 min",
+      "trackCount": 13,
+      "coverUrl": "http://localhost:8088/api/images/burial_untrue.jpg",
+      "streetPriceGermany": null,
+      "timestamp": 1791646837413
+    },
+    {
+      "title": "Mezzanine",
+      "artist": "Massive Attack",
+      "genre": "Trip Hop",
+      "year": "",
+      "playtime": "63 min",
+      "trackCount": 11,
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/0a/98/55/0a98555b-8d9d-3b46-660a-b91261557d17/00724384559953.rgb.jpg/600x600bb.jpg",
+      "streetPriceGermany": {
+        "newEur": "€32 – €40",
+        "usedEur": "€24 – €32"
+      },
+      "timestamp": 1791646804664
+    },
+    {
+      "title": "Endtroducing.....",
+      "artist": "DJ Shadow",
+      "genre": "Instrumental Hip-Hop / Downtempo",
+      "year": 1996,
+      "playtime": "63 min",
+      "trackCount": 16,
+      "coverUrl": "http://localhost:8088/api/images/dj_shadow_endtroducing.jpg",
+      "streetPriceGermany": {
+        "newEur": "€32 – €38",
+        "usedEur": "€20 – €28",
+        "conditionNote": "Standard 2LP reissue in VG+ / EX condition"
+      },
+      "timestamp": 1791578240913
+    },
+    {
+      "title": "Madvillainy",
+      "artist": "Madvillain",
+      "genre": "Abstract Hip-Hop",
+      "year": 2004,
+      "playtime": "46 min 22 sec",
+      "trackCount": 22,
+      "coverUrl": "http://localhost:8088/api/images/madvillain_madvillainy.jpg",
+      "streetPriceGermany": {
+        "newEur": "€29 – €35",
+        "usedEur": "€22 – €28",
+        "conditionNote": "VG+ / EX condition (standard 2LP reissue)"
+      },
+      "timestamp": 1791577717729
+    },
+    {
+      "title": "Donuts",
+      "artist": "J Dilla",
+      "genre": "Instrumental Hip-Hop",
+      "year": "",
+      "playtime": "43 min 39 sec",
+      "trackCount": 31,
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/63/d3/c5/63d3c537-ac30-86e7-8e69-8a03a5346209/792.jpg/600x600bb.jpg",
+      "streetPriceGermany": {
+        "newEur": "€28 – €34",
+        "usedEur": "€18 – €24"
+      },
+      "timestamp": 1791577662895
+    },
+    {
+      "title": "The Köln Concert",
+      "artist": "Keith Jarrett",
+      "genre": "Jazz / Solo Piano",
+      "year": 1975,
+      "playtime": "67 min 33 sec",
+      "trackCount": 4,
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/88/a5/ac/88a5ac07-7eac-6e07-a970-8073f48c0ad6/00602547299819.rgb.jpg/600x600bb.jpg",
+      "streetPriceGermany": {
+        "newEur": "€32 – €38",
+        "usedEur": "€14 – €20",
+        "conditionNote": "Early German ECM gatefold pressing VG+/EX"
+      },
+      "timestamp": 1791576870428
+    },
+    {
+      "title": "Officium",
+      "artist": "Jan Garbarek & The Hilliard Ensemble",
+      "genre": "Sacred Jazz / Classical Crossover",
+      "year": "",
+      "playtime": "77 min 40 sec",
+      "trackCount": 15,
+      "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%231a1d20%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3EOfficium%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3EJan%20Garbarek%20%26amp%3B%20The%20Hilli%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+      "streetPriceGermany": null,
+      "timestamp": 1791576837074
+    },
+    {
+      "title": "Rites",
+      "artist": "Jan Garbarek",
+      "genre": "Nordic Jazz / Ambient Jazz",
+      "year": 1998,
+      "playtime": "106 min 24 sec",
+      "trackCount": 16,
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/59/b9/41/59b941c4-2112-bd70-a084-a224eb6da200/00731455900620.rgb.jpg/600x600bb.jpg",
+      "streetPriceGermany": {
+        "newEur": "Nicht auf Vinyl erschienen (Doppel-CD neu: €18 – €24)",
+        "usedEur": "Nicht auf Vinyl erschienen (Doppel-CD used: €8 – €14)",
+        "conditionNote": "Wichtiger Sammlerhinweis: Das Album wurde 1998 von ECM ausschließlich als Doppel-CD (ECM 1685/86) veröffentlicht und existiert bis heute nicht als offizielle Vinyl-Pressung."
+      },
+      "timestamp": 1791576713625
+    },
+    {
+      "title": "1",
+      "artist": "Pole",
+      "genre": "Glitch / Dub Techno",
+      "year": 1998,
+      "playtime": "43 min 48 sec",
+      "trackCount": 8,
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/5e/b8/65/mzi.owvqonrd.jpg/600x600bb.jpg",
+      "streetPriceGermany": {
+        "newEur": "€28 – €34",
+        "usedEur": "€22 – €32",
+        "conditionNote": "VG+/EX (2020 Mute reissue ca. €24; 1998 Kiff SM original presses command €45+)"
+      },
+      "timestamp": 1791576516310
+    },
+    {
+      "title": "Deep Blue: Volume 3",
+      "artist": "Luigi Tozzi",
+      "genre": "Deep Techno",
+      "year": 2018,
+      "playtime": "27 min 16 sec",
+      "trackCount": 4,
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b8/91/45/b8914525-2632-248f-b0d5-40df172bc41b/8790001345393.png/600x600bb.jpg",
+      "streetPriceGermany": {
+        "newEur": "€16 – €20",
+        "usedEur": "€18 – €28",
+        "conditionNote": "Used VG+/EX (12\" EP on Non Series)"
+      },
+      "timestamp": 1791576469527
+    },
+    {
+      "title": "Deep Blue: Volume 2",
+      "artist": "Luigi Tozzi",
+      "genre": "Hypnotic Techno",
+      "year": 2016,
+      "playtime": "38 min 14 sec",
+      "trackCount": 6,
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/46/ca/8f/46ca8fc8-4cbd-c472-ed54-a456e19d8f45/8790001191273.png/600x600bb.jpg",
+      "streetPriceGermany": {
+        "newEur": "€24 – €30",
+        "usedEur": "€35 – €55",
+        "conditionNote": "Used VG+/EX"
+      },
+      "timestamp": 1791576439944
+    },
+    {
+      "title": "Voices from the Lake",
+      "artist": "Voices from the Lake",
+      "genre": "Ambient Techno",
+      "year": 2012,
+      "playtime": "64 min 20 sec",
+      "trackCount": 8,
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/0b/f1/88/0bf188bf-0adf-5900-6907-d08da1f9205e/8720246793116.jpg/600x600bb.jpg",
+      "streetPriceGermany": {
+        "newEur": "€38 – €48",
+        "usedEur": "€65 – €95",
+        "conditionNote": "Sought-after 3xLP audiophile pressing; original Prologue pressing trades higher, official represses typically VG+/EX"
+      },
+      "timestamp": 1791576383078
+    },
+    {
+      "title": "Pop",
+      "artist": "GAS",
+      "genre": "Ambient Techno",
+      "year": 2000,
+      "playtime": "67 min 14 sec",
+      "trackCount": 7,
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/5d/6a/00/5d6a0054-5145-6011-c638-3e2666d0e8dd/192641833472_Cover.jpg/600x600bb.jpg",
+      "streetPriceGermany": {
+        "newEur": "€34 – €42",
+        "usedEur": "€28 – €38",
+        "conditionNote": "Used VG+/EX (Kompakt 3LP Reissue; original 2000 Mille Plateaux pressing commands €120+)"
+      },
+      "timestamp": 1791576117947
+    },
+    {
+      "title": "Music Has the Right to Children",
+      "artist": "Boards of Canada",
+      "genre": "IDM / Downtempo",
+      "year": "",
+      "playtime": "62 min 49 sec",
+      "trackCount": 18,
+      "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%232c1e21%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3EMusic%20Has%20the%20Right%20to%20C%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3EBoards%20of%20Canada%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+      "streetPriceGermany": null,
+      "timestamp": 1791576093131
+    },
+    {
+      "title": "Selected Ambient Works 85-92",
+      "artist": "Aphex Twin",
+      "genre": "Ambient Techno / IDM",
+      "year": 1992,
+      "playtime": "74 min 40 sec",
+      "trackCount": 13,
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/5f/b3/e0/5fb3e08d-c2cd-3da4-6ad7-c5dc61803683/cover.jpg/600x600bb.jpg",
+      "streetPriceGermany": {
+        "newEur": "€28 – €34",
+        "usedEur": "€22 – €28",
+        "conditionNote": "Used repress VG+/EX (Original 1992 Apollo pressings sell for €150+)"
+      },
+      "timestamp": 1791576087814
+    }
+  ],
+  "NL6ThyqIeDcfX1j9aotKDsppXoE3": [
+    {
+      "title": "Voices from the Lake",
+      "artist": "Voices from the Lake",
+      "genre": "Ambient Techno",
+      "year": 2012,
+      "playtime": "64 min 20 sec",
+      "trackCount": 8,
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/0b/f1/88/0bf188bf-0adf-5900-6907-d08da1f9205e/8720246793116.jpg/600x600bb.jpg",
+      "streetPriceGermany": {
+        "newEur": "€38 – €46",
+        "usedEur": "€32 – €42",
+        "conditionNote": "Based on 3xLP 2023 reissue in VG+/EX condition; original 2012 Prologue pressing commands €180+"
+      },
+      "timestamp": 1791732045169
+    }
+  ]
+}

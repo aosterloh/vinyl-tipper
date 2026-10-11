@@ -22,4 +22,5 @@ logs/
 .firebase/
 
 # Local database cache
-data/
+data/*.tmp
+data/images/
