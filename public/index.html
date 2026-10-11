@@ -19,8 +19,8 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- AUTHENTICATION GATE (Visible when logged out) -->
-  <div id="auth-gate" class="auth-gate-overlay">
+  <!-- AUTHENTICATION GATE (Visible only when corporate mode is enforced and user logged out) -->
+  <div id="auth-gate" class="auth-gate-overlay hidden">
     <div class="auth-card">
       <div class="vinyl-logo-mark">
         <img src="/logo/vinylhound-emblem-dark.jpeg" class="auth-logo-img logo-dark" alt="Vinyl Hound" />
@@ -45,7 +45,7 @@
   </div>
 
   <!-- MAIN APPLICATION SHELL -->
-  <div id="app-shell" class="app-shell hidden">
+  <div id="app-shell" class="app-shell">
     <!-- Top Navigation Bar -->
     <!-- Top Navigation Bar (Sleek 64px Bar) -->
     <header class="top-nav" id="top-nav">
@@ -157,6 +157,49 @@
             <div id="autocomplete-dropdown" class="autocomplete-dropdown hidden" role="listbox" aria-label="Top album suggestions"></div>
           </div>
         </form>
+
+        <!-- Vinyl Sommelier / "Find My Next Vinyl" Discovery Bar -->
+        <div class="sommelier-bar" id="sommelier-bar">
+          <div class="sommelier-top-row">
+            <span class="sommelier-badge">✨ Vinyl Sommelier</span>
+            <span class="sommelier-subtitle">Looking for your next record? Tap a vibe or type your random thoughts:</span>
+          </div>
+
+          <!-- Quick Vibe Pills -->
+          <div class="vibe-pills-wrap" id="vibe-pills-wrap">
+            <button class="vibe-pill" type="button" data-vibe="An indisputable critically acclaimed 5/5 vinyl masterpiece every physical collection must own">
+              🎲 Surprise Pick
+            </button>
+            <button class="vibe-pill" type="button" data-vibe="Late-night moody jazz with deep acoustic bass, intimate club atmosphere, and legendary warm analog mastering">
+              🌙 Midnight Jazz
+            </button>
+            <button class="vibe-pill" type="button" data-vibe="1970s classic rock landmark with gatefold sleeve, wide dynamic range, and soaring guitars">
+              ⚡ 70s Rock Landmark
+            </button>
+            <button class="vibe-pill" type="button" data-vibe="1980s Japanese City Pop with sparkling basslines, lush production, and incredible vinyl groove">
+              🌆 Tokyo City Pop
+            </button>
+            <button class="vibe-pill" type="button" data-vibe="Acoustic singer-songwriter folk with breathtaking vocal warmth and dynamic spatial separation">
+              🌧️ Rainy Day Acoustic
+            </button>
+            <button class="vibe-pill" type="button" data-vibe="Audiophile reference test pressing with pristine uncompressed dynamic range and massive soundstage">
+              🎧 Audiophile Master
+            </button>
+          </div>
+
+          <!-- Freeform thoughts input -->
+          <div class="sommelier-input-row">
+            <input 
+              type="text" 
+              id="sommelier-input" 
+              class="sommelier-input" 
+              placeholder="Or describe any thoughts... (e.g. 'moody 90s shoegaze with huge reverb' or 'warm 70s funk for weekend cooking')"
+            />
+            <button type="button" id="sommelier-submit-btn" class="sommelier-submit-btn">
+              <span>Drop Needle ✨</span>
+            </button>
+          </div>
+        </div>
       </section>
 
       <!-- Loading State Indicator -->
@@ -203,6 +246,15 @@
                   <p id="hero-verdict-text" class="verdict-text">
                     An indisputable analog landmark. Outstanding dynamic range and immersive spatial separation make this essential for any physical vinyl shelf.
                   </p>
+                </div>
+
+                <!-- Sommelier Vinyl Lore Card (Why on Vinyl) -->
+                <div id="hero-sommelier-card" class="hero-sommelier-card hidden">
+                  <div class="sommelier-card-header">
+                    <span class="sommelier-card-badge">✨ Why on Vinyl (Sommelier Lore)</span>
+                    <span id="hero-sommelier-track" class="sommelier-track-badge"></span>
+                  </div>
+                  <p id="hero-sommelier-text" class="sommelier-card-text"></p>
                 </div>
               </div>
 

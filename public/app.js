@@ -1358,7 +1358,7 @@ function initTheme() {
 // ============================================================================
 // 4. FIREBASE AUTHENTICATION & LOGIN FLOW
 // ============================================================================
-let serverAuthMode = "corporate";
+let serverAuthMode = "public";
 let serverConfigResolve = null;
 const serverConfigReady = new Promise((resolve) => {
   serverConfigResolve = resolve;
@@ -1797,6 +1797,131 @@ async function callGeminiFlash(promptText) {
 }
 
 // ============================================================================
+// 7B. VINYL SOMMELIER DISCOVERY ENGINE ("THE PERFECT NEXT RECORD")
+// ============================================================================
+function renderSommelierLore(note) {
+  const card = document.getElementById("hero-sommelier-card");
+  const textEl = document.getElementById("hero-sommelier-text");
+  const trackEl = document.getElementById("hero-sommelier-track");
+  if (!card || !textEl) return;
+
+  const activeNote = note || window.__SOMMELIER_NOTE__;
+  if (activeNote && (activeNote.whyOnVinyl || activeNote.vibeMatch)) {
+    if (trackEl && activeNote.standoutTrack) {
+      trackEl.textContent = `🎯 Needle Drop: ${activeNote.standoutTrack}`;
+      trackEl.classList.remove("hidden");
+    } else if (trackEl) {
+      trackEl.classList.add("hidden");
+    }
+
+    let html = escapeHtml(activeNote.whyOnVinyl || "");
+    if (activeNote.vibeMatch) {
+      html += `<br><span class="sommelier-vibe-tag">✨ ${escapeHtml(activeNote.vibeMatch)}</span>`;
+    }
+    textEl.innerHTML = html;
+    card.classList.remove("hidden");
+  } else {
+    card.classList.add("hidden");
+  }
+}
+
+async function findAndAppraiseSommelierVinyl(vibeText) {
+  if (!vibeText || !vibeText.trim()) return;
+
+  const inputEl = document.getElementById("sommelier-input");
+  const submitBtn = document.getElementById("sommelier-submit-btn");
+  if (inputEl) inputEl.value = vibeText;
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `<span>Digging crates...</span>`;
+  }
+
+  loadingState.classList.remove("hidden");
+  resultsSection.classList.add("hidden");
+  const loadingText = document.querySelector(".loading-text");
+  if (loadingText) loadingText.textContent = `Consulting Vinyl Sommelier for "${vibeText.slice(0, 36)}..."`;
+
+  try {
+    const prompt = `You are an elite master vinyl record collector, crate digger, and analog audiophile.
+A music enthusiast is searching for their next perfect physical vinyl record to purchase and drop the needle on.
+User's thoughts / vibe: "${vibeText.trim()}"
+
+Select exactly ONE indisputably legendary, critically acclaimed album that is revered on physical vinyl (celebrated for its analog dynamic range, packaging, mastering, or iconic listening experience).
+Do not return multiple albums. Return ONLY ONE perfect album.
+
+Respond strictly in valid JSON matching this schema:
+{
+  "artist": "Artist name",
+  "title": "Album title",
+  "year": "Release year",
+  "standoutTrack": "Standout track for first needle drop",
+  "whyOnVinyl": "2-3 sentences explaining why this album is transcendent on physical vinyl vs digital streaming (analog dynamic range, acoustic warmth, gatefold artwork, iconic pressings).",
+  "vibeMatch": "1 sentence on why this perfectly answers the user vibe."
+}`;
+
+    const rec = await callGeminiFlash(prompt);
+    if (rec && rec.artist && rec.title) {
+      window.__SOMMELIER_NOTE__ = {
+        whyOnVinyl: rec.whyOnVinyl,
+        vibeMatch: rec.vibeMatch,
+        standoutTrack: rec.standoutTrack
+      };
+      if (albumInput) {
+        albumInput.value = `${rec.artist} - ${rec.title}`;
+      }
+      await appraiseAlbum(`${rec.artist} - ${rec.title}`);
+      showToast(`🎯 Sommelier Pick: "${rec.title}" by ${rec.artist}!`);
+    } else {
+      throw new Error("Invalid response format");
+    }
+  } catch (err) {
+    console.warn("Sommelier generation error, falling back to direct appraisal:", err);
+    await appraiseAlbum(vibeText);
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = `<span>Drop Needle ✨</span>`;
+    }
+  }
+}
+
+function initSommelier() {
+  const vibePillsWrap = document.getElementById("vibe-pills-wrap");
+  const sommelierSubmitBtn = document.getElementById("sommelier-submit-btn");
+  const sommelierInput = document.getElementById("sommelier-input");
+
+  if (vibePillsWrap) {
+    vibePillsWrap.addEventListener("click", (e) => {
+      const pill = e.target.closest(".vibe-pill");
+      if (!pill) return;
+      const vibe = pill.getAttribute("data-vibe");
+      if (vibe) {
+        findAndAppraiseSommelierVinyl(vibe);
+      }
+    });
+  }
+
+  if (sommelierSubmitBtn && sommelierInput) {
+    sommelierSubmitBtn.addEventListener("click", () => {
+      const text = sommelierInput.value.trim();
+      if (text) {
+        findAndAppraiseSommelierVinyl(text);
+      }
+    });
+
+    sommelierInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        const text = sommelierInput.value.trim();
+        if (text) {
+          findAndAppraiseSommelierVinyl(text);
+        }
+      }
+    });
+  }
+}
+
+// ============================================================================
 // STORAGE & REAL-TIME PRICE CACHING ENGINE
 // ============================================================================
 function normalizeCatalogKey(str) {
@@ -1959,23 +2084,36 @@ Return strictly a valid JSON object matching this schema:
 }
 
 // ============================================================================
-// SESSION CONTINUITY ENGINE (REMEMBER LAST DISPLAYED ALBUM)
+// SESSION CONTINUITY ENGINE (REMEMBER LAST DISPLAYED ALBUM & URL SYNC)
 // ============================================================================
 function recordLastDisplayedAlbum(query, album) {
   if (!album && !query) return;
+  const albumTitle = album?.title || "";
+  const albumArtist = album?.artist || "";
+  const displayQuery = (albumArtist && albumTitle) ? `${albumArtist} - ${albumTitle}` : (query || albumTitle);
+
   const sessionRecord = {
-    query: query || (album?.artist ? `${album.artist} ${album.title}` : album?.title) || "",
-    title: album?.title || "",
-    artist: album?.artist || "",
+    query: displayQuery,
+    title: albumTitle,
+    artist: albumArtist,
     timestamp: Date.now()
   };
 
-  // 1. Persist to client localStorage (survives page reloads & browser restarts)
+  // 1. Sync URL query param (?album=...) without reloading page
+  try {
+    if (typeof window !== "undefined" && window.history && displayQuery) {
+      const url = new URL(window.location.href);
+      url.searchParams.set("album", displayQuery);
+      window.history.replaceState({ album: displayQuery }, "", url.toString());
+    }
+  } catch (e) {}
+
+  // 2. Persist to client localStorage (survives page reloads & browser restarts)
   try {
     localStorage.setItem("vinyl_last_displayed_album", JSON.stringify(sessionRecord));
   } catch (e) {}
 
-  // 2. Persist to server data/last_session.json (survives server restart & cross-device)
+  // 3. Persist to server data/last_session.json (survives server restart & cross-device)
   try {
     fetch("/api/session/last-album", {
       method: "POST",
@@ -1993,15 +2131,28 @@ async function restoreLastSessionAlbum() {
 
   let target = null;
 
-  // 1. Check client localStorage first (0ms instantaneous)
+  // 1. Check URL query parameters first (?album=... or ?q=...)
   try {
-    const local = localStorage.getItem("vinyl_last_displayed_album");
-    if (local) {
-      target = JSON.parse(local);
+    if (typeof window !== "undefined") {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlAlbum = urlParams.get("album") || urlParams.get("q");
+      if (urlAlbum && urlAlbum.trim().length > 0) {
+        target = { query: urlAlbum.trim(), title: urlAlbum.trim() };
+      }
     }
   } catch (e) {}
 
-  // 2. Fallback to server data/last_session.json (if cookies cleared or server restarted)
+  // 2. Check client localStorage (0ms instantaneous)
+  if (!target) {
+    try {
+      const local = localStorage.getItem("vinyl_last_displayed_album");
+      if (local) {
+        target = JSON.parse(local);
+      }
+    } catch (e) {}
+  }
+
+  // 3. Fallback to server data/last_session.json
   if (!target || (!target.query && !target.title)) {
     try {
       const res = await fetch("/api/session/last-album");
@@ -2012,6 +2163,30 @@ async function restoreLastSessionAlbum() {
         }
       }
     } catch (e) {}
+  }
+
+  // 4. Fallback to user's most recent saved favorite if available
+  if (!target && userFavorites && userFavorites.length > 0) {
+    const topFav = userFavorites[userFavorites.length - 1];
+    target = {
+      query: `${topFav.artist} ${topFav.title}`,
+      artist: topFav.artist,
+      title: topFav.title
+    };
+  }
+
+  // 5. Fallback to curated Featured Vinyl of the Day (turntable is NEVER blank!)
+  if (!target || (!target.query && !target.title)) {
+    const featuredVinylPicks = [
+      "Daft Punk - Discovery",
+      "Miles Davis - Kind of Blue",
+      "Pink Floyd - The Dark Side of the Moon",
+      "Fleetwood Mac - Rumours",
+      "Steely Dan - Aja",
+      "Ben Böhmer - Begin Again"
+    ];
+    const dayPick = featuredVinylPicks[new Date().getDay() % featuredVinylPicks.length];
+    target = { query: dayPick, title: dayPick };
   }
 
   if (target && (target.query || target.title)) {
@@ -2072,6 +2247,8 @@ async function appraiseAlbum(albumName) {
       tier: "Collector Classic",
       verdict: "An essential physical record celebrated for balanced acoustic warmth, dynamic headroom, and timeless vinyl listening fidelity."
     });
+
+    renderSommelierLore(cached.sommelierNote);
 
     // Immediate image from storage
     albumCoverImg.src = cached.coverUrl || generateSvgCover(cached.title, cached.artist);
@@ -2276,6 +2453,7 @@ Return strictly a valid JSON object matching this schema:
     };
 
     heroFavBtn.classList.toggle("active", isFavorited(album.title, album.artist));
+    renderSommelierLore(window.__SOMMELIER_NOTE__);
 
     // Load Track 1 YouTube Listening Station below fav heart
     loadYouTubeTrack1(album.artist, album.title, album.firstTrackTitle).then(vId => {
@@ -3995,8 +4173,12 @@ function initPlaceholderHints() {
 // ============================================================================
 initTheme();
 initRegionSelector();
-checkServerConfig();
+checkServerConfig().then(() => {
+  restoreLastSessionAlbum();
+});
+initSommelier();
 initPwa();
 initHeaderScroll();
 initPlaceholderHints();
+
 

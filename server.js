@@ -487,7 +487,7 @@ const server = http.createServer(async (req, res) => {
   // API endpoint to retrieve configuration & pre-configured key for frontend
   if (pathname === '/api/config') {
     const pool = getKeyPool();
-    const authMode = (process.env.AUTH_MODE || 'corporate').toLowerCase();
+    const authMode = (process.env.AUTH_MODE || 'public').toLowerCase();
     const activeFbConfig = authMode === 'public' ? PUBLIC_FIREBASE_CONFIG : CORPORATE_FIREBASE_CONFIG;
 
     res.writeHead(200, { 'Content-Type': 'application/json' });
