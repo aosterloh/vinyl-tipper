@@ -183,6 +183,11 @@
 
         <!-- User Profile (Visible when logged in) -->
         <div class="user-profile hidden">
+          <!-- Admin Website Stats (Visible exclusively to aosterloh@gmail.com / aosterloh@google.com) -->
+          <button id="admin-stats-btn" class="nav-admin-btn hidden" type="button" aria-label="Admin Website Stats" title="Admin Website & Traffic Analytics">
+            <span class="admin-icon">📊</span>
+            <span class="admin-btn-text">Admin Stats</span>
+          </button>
           <img id="user-avatar" class="user-avatar" src="" alt="User" referrerpolicy="no-referrer" />
           <button id="signout-btn" class="signout-btn" type="button" title="Sign Out">Sign out</button>
         </div>
@@ -700,6 +705,124 @@
     </div>
   </div>
 
+  <!-- ADMIN WEBSITE STATS MODAL -->
+  <div id="admin-stats-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="admin-modal-title">
+    <div class="modal-card admin-stats-card">
+      <header class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="modal-badge">ADMIN CONSOLE</span>
+          <h2 id="admin-modal-title" class="modal-title">Website &amp; Traffic Analytics</h2>
+          <p class="modal-subtitle">Real-time performance, store conversion clicks, search trends, and catalog telemetry.</p>
+        </div>
+        <div class="modal-actions-right">
+          <button id="refresh-stats-btn" class="modal-action-btn" type="button" title="Refresh Live Data">
+            <span class="icon">🔄</span> Refresh
+          </button>
+          <button id="export-stats-btn" class="modal-action-btn" type="button" title="Export Stats JSON">
+            <span class="icon">📥</span> Export
+          </button>
+          <button id="close-admin-stats-btn" class="modal-close-btn" type="button" aria-label="Close modal">&times;</button>
+        </div>
+      </header>
+
+      <div class="modal-body admin-stats-body">
+        <!-- High-level KPI metric cards -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-icon">👥</div>
+            <div class="kpi-info">
+              <div class="kpi-label">Total Visits</div>
+              <div id="stat-total-visits" class="kpi-value">0</div>
+              <div id="stat-today-visits" class="kpi-sub">Today: 0</div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon">🔍</div>
+            <div class="kpi-info">
+              <div class="kpi-label">Searches Appraised</div>
+              <div id="stat-total-searches" class="kpi-value">0</div>
+              <div id="stat-ai-searches" class="kpi-sub">AI Sommelier: 0</div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon">🛒</div>
+            <div class="kpi-info">
+              <div class="kpi-label">Affiliate Store Clicks</div>
+              <div id="stat-total-clicks" class="kpi-value">0</div>
+              <div id="stat-top-store" class="kpi-sub">Top: None</div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon">💾</div>
+            <div class="kpi-info">
+              <div class="kpi-label">Catalog Albums</div>
+              <div id="stat-catalog-count" class="kpi-value">0</div>
+              <div id="stat-cached-covers" class="kpi-sub">Covers: 0</div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon">❤️</div>
+            <div class="kpi-info">
+              <div class="kpi-label">Saved Favorites</div>
+              <div id="stat-favs-count" class="kpi-value">0</div>
+              <div id="stat-active-users" class="kpi-sub">Users: 0</div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon">⚡</div>
+            <div class="kpi-info">
+              <div class="kpi-label">Server Telemetry</div>
+              <div id="stat-uptime" class="kpi-value">0m</div>
+              <div id="stat-key-pool" class="kpi-sub">Gemini Keys: 0</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Two-column section: Store Breakdown & Top Searches -->
+        <div class="admin-sections-row">
+          <!-- Store Clicks Breakdown -->
+          <div class="admin-section-box">
+            <h3 class="admin-section-title">🛒 Outbound Shop Clicks by Store</h3>
+            <div id="store-clicks-bars" class="store-bars-list">
+              <!-- Dynamically rendered bar charts / counters for JPC, HHV, Discogs, eBay, Amazon -->
+            </div>
+          </div>
+
+          <!-- Top Searched Records / Artists -->
+          <div class="admin-section-box">
+            <h3 class="admin-section-title">🔥 Top Searched Vinyl</h3>
+            <div id="top-searches-list" class="top-list">
+              <!-- Dynamically rendered list -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Live Activity Stream -->
+        <div class="admin-section-box">
+          <div class="stream-header">
+            <h3 class="admin-section-title">⚡ Live Activity Feed</h3>
+            <span class="live-indicator"><span class="pulse-dot"></span> Real-time</span>
+          </div>
+          <div class="activity-table-wrapper">
+            <table class="activity-table">
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Type</th>
+                  <th>Details</th>
+                  <th>Store / Origin</th>
+                </tr>
+              </thead>
+              <tbody id="activity-feed-body">
+                <!-- Dynamically populated rows -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Interactive Toast Notification -->
   <div id="vinyl-toast" class="vinyl-toast"></div>
 
@@ -707,6 +830,6 @@
   <script src="https://www.youtube.com/iframe_api"></script>
 
   <!-- FIREBASE AND CLIENT APPLICATION SCRIPT -->
-  <script type="module" src="app.js?v=3.0"></script>
+  <script type="module" src="app.js?v=3.2"></script>
 </body>
 </html>

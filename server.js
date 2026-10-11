@@ -62,6 +62,9 @@ const CATALOG_FILE = path.join(DATA_DIR, 'catalog.json');
 const LAST_SESSION_FILE = path.join(DATA_DIR, 'last_session.json');
 const RECOMMENDATIONS_FILE = path.join(DATA_DIR, 'recommendations.json');
 const FAVORITES_FILE = path.join(DATA_DIR, 'favorites.json');
+const STATS_FILE = path.join(DATA_DIR, 'stats.json');
+
+const ADMIN_EMAILS = ['aosterloh@gmail.com', 'aosterloh@google.com'];
 
 const CORPORATE_FIREBASE_CONFIG = {
   apiKey: "AIzaSyBDfu44ElID27cy2lvozY2BD1izTq7AIuo",
@@ -153,6 +156,67 @@ function saveStoredFavorites(allFavs) {
     fs.writeFileSync(FAVORITES_FILE, JSON.stringify(allFavs, null, 2), 'utf8');
   } catch (e) {
     console.warn('Error saving favorites file:', e.message);
+  }
+}
+
+function getInitialStats() {
+  return {
+    visits: {
+      total: 0,
+      uniqueSessions: [],
+      byDay: {}
+    },
+    searches: {
+      total: 0,
+      aiAppraisals: 0,
+      recent: [],
+      topQueries: {}
+    },
+    clicks: {
+      total: 0,
+      byStore: {
+        jpc: 0,
+        hhv: 0,
+        discogs: 0,
+        ebay: 0,
+        amazon: 0
+      },
+      recent: []
+    },
+    createdAt: Date.now(),
+    lastUpdated: Date.now()
+  };
+}
+
+function loadStats() {
+  try {
+    ensureDataDirs();
+    if (fs.existsSync(STATS_FILE)) {
+      const data = JSON.parse(fs.readFileSync(STATS_FILE, 'utf8'));
+      if (!data.visits) data.visits = { total: 0, uniqueSessions: [], byDay: {} };
+      if (!Array.isArray(data.visits.uniqueSessions)) data.visits.uniqueSessions = [];
+      if (!data.visits.byDay) data.visits.byDay = {};
+      if (!data.searches) data.searches = { total: 0, aiAppraisals: 0, recent: [], topQueries: {} };
+      if (!Array.isArray(data.searches.recent)) data.searches.recent = [];
+      if (!data.searches.topQueries) data.searches.topQueries = {};
+      if (!data.clicks) data.clicks = { total: 0, byStore: { jpc: 0, hhv: 0, discogs: 0, ebay: 0, amazon: 0 }, recent: [] };
+      if (!data.clicks.byStore) data.clicks.byStore = { jpc: 0, hhv: 0, discogs: 0, ebay: 0, amazon: 0 };
+      if (!Array.isArray(data.clicks.recent)) data.clicks.recent = [];
+      return data;
+    }
+  } catch (e) {
+    console.warn('Error reading stats file:', e.message);
+  }
+  return getInitialStats();
+}
+
+function saveStats(stats) {
+  try {
+    ensureDataDirs();
+    stats.lastUpdated = Date.now();
+    fs.writeFileSync(STATS_FILE, JSON.stringify(stats, null, 2), 'utf8');
+  } catch (e) {
+    console.warn('Error saving stats file:', e.message);
   }
 }
 
@@ -339,7 +403,9 @@ const MIME_TYPES = {
   '.webp': 'image/webp',
   '.woff': 'font/woff',
   '.woff2': 'font/woff2',
-  '.ttf': 'font/ttf'
+  '.ttf': 'font/ttf',
+  '.xml': 'application/xml; charset=UTF-8',
+  '.txt': 'text/plain; charset=UTF-8'
 };
 
 // ============================================================================
@@ -531,6 +597,181 @@ const server = http.createServer(async (req, res) => {
       res.end('Image Not Found in Storage');
       return;
     }
+  }
+
+  // POST /api/track/visit -> Log website visit / session
+  if (pathname === '/api/track/visit' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', () => {
+      try {
+        const payload = JSON.parse(body || '{}');
+        const stats = loadStats();
+        stats.visits.total++;
+        
+        const today = new Date().toISOString().slice(0, 10);
+        stats.visits.byDay[today] = (stats.visits.byDay[today] || 0) + 1;
+
+        const sid = payload.sessionId || '';
+        if (sid && !stats.visits.uniqueSessions.includes(sid)) {
+          stats.visits.uniqueSessions.push(sid);
+          if (stats.visits.uniqueSessions.length > 500) {
+            stats.visits.uniqueSessions.shift();
+          }
+        }
+        saveStats(stats);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: true, visits: stats.visits.total }));
+        return;
+      } catch (err) {
+        console.warn('Failed to parse track visit payload:', err.message);
+      }
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false }));
+    });
+    return;
+  }
+
+  // POST /api/track/search -> Log search appraisal activity
+  if (pathname === '/api/track/search' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', () => {
+      try {
+        const payload = JSON.parse(body || '{}');
+        const stats = loadStats();
+        stats.searches.total++;
+        if (payload.isAi) stats.searches.aiAppraisals++;
+
+        const query = (payload.query || '').trim();
+        if (query) {
+          const normQ = query.toLowerCase();
+          stats.searches.topQueries[normQ] = (stats.searches.topQueries[normQ] || 0) + 1;
+          stats.searches.recent.unshift({
+            query,
+            timestamp: Date.now(),
+            hit: !!payload.hit,
+            isAi: !!payload.isAi
+          });
+          if (stats.searches.recent.length > 50) {
+            stats.searches.recent.pop();
+          }
+        }
+        saveStats(stats);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: true }));
+        return;
+      } catch (err) {
+        console.warn('Failed to parse track search payload:', err.message);
+      }
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false }));
+    });
+    return;
+  }
+
+  // POST /api/track/click -> Log outbound affiliate / store link click
+  if (pathname === '/api/track/click' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', () => {
+      try {
+        const payload = JSON.parse(body || '{}');
+        const store = (payload.store || 'other').toLowerCase();
+        const stats = loadStats();
+        stats.clicks.total++;
+        if (stats.clicks.byStore[store] !== undefined) {
+          stats.clicks.byStore[store]++;
+        } else {
+          stats.clicks.byStore[store] = 1;
+        }
+
+        stats.clicks.recent.unshift({
+          store,
+          query: payload.query || '',
+          albumTitle: payload.albumTitle || '',
+          timestamp: Date.now()
+        });
+        if (stats.clicks.recent.length > 50) {
+          stats.clicks.recent.pop();
+        }
+
+        saveStats(stats);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: true, store, total: stats.clicks.total }));
+        return;
+      } catch (err) {
+        console.warn('Failed to parse track click payload:', err.message);
+      }
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false }));
+    });
+    return;
+  }
+
+  // GET /api/admin/stats -> Admin analytics dashboard metrics
+  if (pathname === '/api/admin/stats' && req.method === 'GET') {
+    const adminEmail = (req.headers['x-admin-email'] || urlObj.searchParams.get('adminEmail') || '').toLowerCase();
+    if (!ADMIN_EMAILS.includes(adminEmail)) {
+      res.writeHead(403, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'Access denied: Admin credentials required' }));
+      return;
+    }
+
+    const stats = loadStats();
+    const catalog = loadCatalog();
+    const catalogCount = Object.keys(catalog).length;
+
+    let imageCount = 0;
+    try {
+      if (fs.existsSync(IMAGES_DIR)) {
+        imageCount = fs.readdirSync(IMAGES_DIR).length;
+      }
+    } catch (e) {}
+
+    const allFavs = loadStoredFavorites();
+    const userCount = Object.keys(allFavs).length;
+    let totalFavorites = 0;
+    Object.values(allFavs).forEach(list => {
+      if (Array.isArray(list)) totalFavorites += list.length;
+    });
+
+    const pool = getKeyPool();
+    const today = new Date().toISOString().slice(0, 10);
+
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({
+      success: true,
+      stats,
+      todayVisits: stats.visits.byDay[today] || 0,
+      uniqueSessionsCount: stats.visits.uniqueSessions.length,
+      catalogCount,
+      imageCount,
+      totalFavorites,
+      userCount,
+      keyCount: pool.length,
+      uptimeSeconds: Math.floor(process.uptime()),
+      nodeVersion: process.version,
+      memoryUsage: process.memoryUsage(),
+      serverTimestamp: Date.now()
+    }));
+    return;
+  }
+
+  // POST /api/admin/reset-stats -> Reset analytics metrics (Admin only)
+  if (pathname === '/api/admin/reset-stats' && req.method === 'POST') {
+    const adminEmail = (req.headers['x-admin-email'] || urlObj.searchParams.get('adminEmail') || '').toLowerCase();
+    if (!ADMIN_EMAILS.includes(adminEmail)) {
+      res.writeHead(403, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'Access denied' }));
+      return;
+    }
+
+    const newStats = getInitialStats();
+    saveStats(newStats);
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ success: true, stats: newStats }));
+    return;
   }
 
   // GET /api/session/last-album -> Retrieve last displayed album across sessions & server restarts
@@ -869,10 +1110,108 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function processHtmlWithSeo(rawHtml, urlObj, authMode, activeFbConfig) {
+  let html = rawHtml;
+  const albumParam = (urlObj.searchParams.get('album') || urlObj.searchParams.get('q') || '').trim();
+  let dynamicSeoTags = '';
+
+  if (albumParam) {
+    const catalog = loadCatalog();
+    const norm = normalizeKey(albumParam);
+    let item = catalog[norm] || null;
+
+    if (!item) {
+      for (const k of Object.keys(catalog)) {
+        const catItem = catalog[k];
+        if (!catItem) continue;
+        const fullKey = normalizeKey((catItem.artist || '') + ' ' + (catItem.title || ''));
+        const titleKey = normalizeKey(catItem.title || '');
+        if (k === norm || fullKey === norm || titleKey === norm) {
+          item = catItem;
+          break;
+        }
+      }
+    }
+
+    let artist = '';
+    let title = albumParam;
+    let price = '';
+    let coverUrl = '';
+    let genre = '';
+
+    if (item) {
+      artist = item.artist || '';
+      title = item.title || albumParam;
+      price = item.streetPriceGermany?.newEur || '';
+      coverUrl = item.coverUrl || '';
+      genre = item.genre || '';
+    } else if (albumParam.includes(' - ')) {
+      const parts = albumParam.split(' - ');
+      artist = parts[0].trim();
+      title = parts.slice(1).join(' - ').trim();
+    }
+
+    const label = (artist && title) ? `${artist} – ${title}` : title;
+    const pageTitle = `${label} | Vinyl Hound Appraisal & German Street Price`;
+    const encodedAlbum = encodeURIComponent(albumParam).replace(/%20/g, '+');
+    const canonicalUrl = `https://vinylhound.de/?album=${encodedAlbum}`;
+    const desc = `Discover ${label} physical vinyl pressing details${price ? ' (Approx. ' + price + ')' : ''}. German street pricing, 180g analog dynamic range, and collector tips on Vinyl Hound.`;
+    const fullCover = coverUrl
+      ? (coverUrl.startsWith('/') ? `https://vinylhound.de${coverUrl}` : coverUrl)
+      : 'https://vinylhound.de/logo/vinylhound-emblem-dark.jpeg';
+
+    html = html.replace(/<title>.*?<\/title>/i, `<title>${escapeHtml(pageTitle)}</title>`);
+    html = html.replace(/<link\s+rel=["']canonical["'][^>]*>/i, `<link rel="canonical" href="${escapeHtml(canonicalUrl)}">`);
+    html = html.replace(/<meta\s+name=["']description["'][^>]*>/i, `<meta name="description" content="${escapeHtml(desc)}">`);
+    html = html.replace(/<meta\s+property=["']og:title["'][^>]*>/i, `<meta property="og:title" content="${escapeHtml(pageTitle)}">`);
+    html = html.replace(/<meta\s+property=["']og:description["'][^>]*>/i, `<meta property="og:description" content="${escapeHtml(desc)}">`);
+    html = html.replace(/<meta\s+property=["']og:url["'][^>]*>/i, `<meta property="og:url" content="${escapeHtml(canonicalUrl)}">`);
+    html = html.replace(/<meta\s+property=["']og:image["'][^>]*>/i, `<meta property="og:image" content="${escapeHtml(fullCover)}">`);
+    html = html.replace(/<meta\s+name=["']twitter:title["'][^>]*>/i, `<meta name="twitter:title" content="${escapeHtml(pageTitle)}">`);
+    html = html.replace(/<meta\s+name=["']twitter:description["'][^>]*>/i, `<meta name="twitter:description" content="${escapeHtml(desc)}">`);
+    html = html.replace(/<meta\s+name=["']twitter:url["'][^>]*>/i, `<meta name="twitter:url" content="${escapeHtml(canonicalUrl)}">`);
+    html = html.replace(/<meta\s+name=["']twitter:image["'][^>]*>/i, `<meta name="twitter:image" content="${escapeHtml(fullCover)}">`);
+
+    const albumSchema = {
+      "@context": "https://schema.org",
+      "@type": "MusicAlbum",
+      "name": title,
+      "byArtist": {
+        "@type": "MusicGroup",
+        "name": artist || "Various Artists"
+      },
+      "url": canonicalUrl,
+      "image": fullCover,
+      ...(genre ? { "genre": genre } : {}),
+      ...(price ? {
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "EUR",
+          "description": `German vinyl street price: ${price}`
+        }
+      } : {})
+    };
+
+    dynamicSeoTags = `\n  <script type="application/ld+json" id="schema-music-album">\n  ${JSON.stringify(albumSchema, null, 2)}\n  </script>`;
+  }
+
+  const scriptInjection = `<script>window.__AUTH_MODE__=${JSON.stringify(authMode)};window.__FIREBASE_CONFIG__=${JSON.stringify(activeFbConfig)};</script>${dynamicSeoTags}</head>`;
+  return html.replace('</head>', scriptInjection);
+}
+
   fs.stat(filePath, (err, stats) => {
     const authMode = (process.env.AUTH_MODE || 'corporate').toLowerCase();
     const activeFbConfig = authMode === 'public' ? PUBLIC_FIREBASE_CONFIG : CORPORATE_FIREBASE_CONFIG;
-    const injection = `<script>window.__AUTH_MODE__=${JSON.stringify(authMode)};window.__FIREBASE_CONFIG__=${JSON.stringify(activeFbConfig)};</script></head>`;
 
     if (err || !stats.isFile()) {
       const fallback = path.join(PUBLIC_DIR, 'index.html');
@@ -881,7 +1220,7 @@ const server = http.createServer(async (req, res) => {
           res.writeHead(404, { 'Content-Type': 'text/plain' });
           res.end('Not Found');
         } else {
-          const html = content.toString('utf8').replace('</head>', injection);
+          const html = processHtmlWithSeo(content.toString('utf8'), urlObj, authMode, activeFbConfig);
           res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
           res.end(html);
         }
@@ -898,12 +1237,16 @@ const server = http.createServer(async (req, res) => {
         res.end('Internal Server Error');
       } else {
         if (ext === '.html') {
-          const html = content.toString('utf8').replace('</head>', injection);
+          const html = processHtmlWithSeo(content.toString('utf8'), urlObj, authMode, activeFbConfig);
           res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
           res.end(html);
           return;
         }
-        res.writeHead(200, { 'Content-Type': contentType });
+        const headers = { 'Content-Type': contentType };
+        if (ext === '.js' || ext === '.css') {
+          headers['Cache-Control'] = 'no-cache, must-revalidate';
+        }
+        res.writeHead(200, headers);
         res.end(content);
       }
     });

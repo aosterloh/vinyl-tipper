@@ -2080,7 +2080,8 @@ function hashString(str) {
 }
 
 function escapeXml(unsafe) {
-  return unsafe.replace(/[<>&'"]/g, c => {
+  if (!unsafe) return "";
+  return String(unsafe).replace(/[<>&'"]/g, c => {
     switch (c) {
       case '<': return '&lt;';
       case '>': return '&gt;';
@@ -2089,6 +2090,10 @@ function escapeXml(unsafe) {
       case '"': return '&quot;';
     }
   });
+}
+
+function escapeHtml(unsafe) {
+  return escapeXml(unsafe);
 }
 
 // ============================================================================
@@ -2185,28 +2190,32 @@ async function callGeminiFlash(promptText) {
 // 7B. VINYL SOMMELIER DISCOVERY ENGINE ("THE PERFECT NEXT RECORD")
 // ============================================================================
 function renderSommelierLore(note) {
-  const card = document.getElementById("hero-sommelier-card");
-  const textEl = document.getElementById("hero-sommelier-text");
-  const trackEl = document.getElementById("hero-sommelier-track");
-  if (!card || !textEl) return;
+  try {
+    const card = document.getElementById("hero-sommelier-card");
+    const textEl = document.getElementById("hero-sommelier-text");
+    const trackEl = document.getElementById("hero-sommelier-track");
+    if (!card || !textEl) return;
 
-  const activeNote = note || window.__SOMMELIER_NOTE__;
-  if (activeNote && (activeNote.whyOnVinyl || activeNote.vibeMatch)) {
-    if (trackEl && activeNote.standoutTrack) {
-      trackEl.textContent = `🎯 Needle Drop: ${activeNote.standoutTrack}`;
-      trackEl.classList.remove("hidden");
-    } else if (trackEl) {
-      trackEl.classList.add("hidden");
-    }
+    const activeNote = note || window.__SOMMELIER_NOTE__;
+    if (activeNote && (activeNote.whyOnVinyl || activeNote.vibeMatch)) {
+      if (trackEl && activeNote.standoutTrack) {
+        trackEl.textContent = `🎯 Needle Drop: ${activeNote.standoutTrack}`;
+        trackEl.classList.remove("hidden");
+      } else if (trackEl) {
+        trackEl.classList.add("hidden");
+      }
 
-    let html = escapeHtml(activeNote.whyOnVinyl || "");
-    if (activeNote.vibeMatch) {
-      html += `<br><span class="sommelier-vibe-tag">✨ ${escapeHtml(activeNote.vibeMatch)}</span>`;
+      let html = escapeHtml(activeNote.whyOnVinyl || "");
+      if (activeNote.vibeMatch) {
+        html += `<br><span class="sommelier-vibe-tag">✨ ${escapeHtml(activeNote.vibeMatch)}</span>`;
+      }
+      textEl.innerHTML = html;
+      card.classList.remove("hidden");
+    } else {
+      card.classList.add("hidden");
     }
-    textEl.innerHTML = html;
-    card.classList.remove("hidden");
-  } else {
-    card.classList.add("hidden");
+  } catch (err) {
+    console.warn("renderSommelierLore warning:", err);
   }
 }
 
