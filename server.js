@@ -261,8 +261,10 @@ async function resolveYouTubeVideo(query) {
         const match = html.match(/\/watch\?v=([a-zA-Z0-9_-]{11})/) || html.match(/"videoId":"([a-zA-Z0-9_-]{11})"/);
         if (match) {
           const videoId = match[1];
+          const titleMatch = html.match(/"title":\{"runs":\[\{"text":"([^"]+)"\}/) || html.match(/"title":\{"accessibility":\{"accessibilityData":\{"label":"([^"]+)"\}/);
           safeResolve({
             videoId,
+            videoTitle: titleMatch ? titleMatch[1] : '',
             embedUrl: `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=0`,
             watchUrl: `https://www.youtube.com/watch?v=${videoId}`
           });
@@ -273,8 +275,10 @@ async function resolveYouTubeVideo(query) {
         const match = html.match(/\/watch\?v=([a-zA-Z0-9_-]{11})/) || html.match(/"videoId":"([a-zA-Z0-9_-]{11})"/);
         if (match) {
           const videoId = match[1];
+          const titleMatch = html.match(/"title":\{"runs":\[\{"text":"([^"]+)"\}/) || html.match(/"title":\{"accessibility":\{"accessibilityData":\{"label":"([^"]+)"\}/);
           safeResolve({
             videoId,
+            videoTitle: titleMatch ? titleMatch[1] : '',
             embedUrl: `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=0`,
             watchUrl: `https://www.youtube.com/watch?v=${videoId}`
           });

@@ -189,18 +189,33 @@
                   </svg>
                 </button>
 
-                <!-- Embedded YouTube Listening Station for Track 1 below fav heart -->
+                <!-- Embedded YouTube Listening Station & Vinyl DJ Deck for Track 1 / Full LP below fav heart -->
                 <div id="hero-yt-box" class="hero-yt-box hidden">
                   <div class="hero-yt-header">
-                    <span class="yt-badge">▶ Track 1</span>
+                    <span id="hero-yt-badge" class="yt-badge">▶ Vinyl DJ</span>
                     <span id="yt-track-title" class="yt-track-title">Listening Preview</span>
                   </div>
-                  <div class="hero-yt-frame-wrap">
-                    <iframe id="hero-yt-iframe" class="hero-yt-iframe" src="" title="YouTube Track 1 preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <!-- DJ Mode Selector Toggle -->
+                  <div class="hero-dj-mode-selector">
+                    <button id="hero-mode-track-btn" class="dj-mode-pill active" type="button" data-mode="track" title="Track Mix: Standout track sequence">
+                      🎵 Track Mix
+                    </button>
+                    <button id="hero-mode-album-btn" class="dj-mode-pill" type="button" data-mode="full_album" title="Full LP: Continuous 45-60 min uninterrupted vinyl session">
+                      📀 Full LP Session
+                    </button>
                   </div>
-                  <a id="hero-yt-link" class="hero-yt-link" href="#" target="_blank" rel="noopener noreferrer">
-                    Listen on YouTube ↗
-                  </a>
+                  <div class="hero-yt-frame-wrap">
+                    <iframe id="hero-yt-iframe" class="hero-yt-iframe" src="" title="YouTube preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  </div>
+                  <div class="hero-dj-footer-row">
+                    <button id="hero-start-dj-btn" class="hero-dj-action-btn" type="button" title="Start continuous Vinyl DJ autoplay across recommendations">
+                      <span class="dj-pulse-dot"></span>
+                      <span id="hero-start-dj-text">▶ Start Vinyl DJ</span>
+                    </button>
+                    <a id="hero-yt-link" class="hero-yt-link" href="#" target="_blank" rel="noopener noreferrer">
+                      YouTube ↗
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -345,7 +360,117 @@
     </div>
   </div>
 
+  <!-- FLOATING VINYL DJ DECK BAR (Docked bottom player) -->
+  <div id="dj-deck-bar" class="dj-deck-bar hidden" role="region" aria-label="Vinyl DJ Turntable Player">
+    <div class="dj-deck-content">
+      <!-- Left: Mini Turntable & Track Details -->
+      <div class="dj-deck-track-info">
+        <div class="dj-turntable-mini" id="dj-turntable-icon" title="Vinyl DJ Turntable">
+          <div class="dj-turntable-platter">
+            <div class="dj-turntable-vinyl">
+              <div class="dj-vinyl-grooves"></div>
+              <div class="dj-vinyl-center"></div>
+            </div>
+            <div class="dj-tonearm"></div>
+          </div>
+        </div>
+        <div class="dj-track-details">
+          <div class="dj-track-title-row">
+            <span id="dj-track-title" class="dj-track-title">Ready to Spin</span>
+            <span id="dj-mode-badge" class="dj-mode-badge">🎵 Track Mix</span>
+          </div>
+          <div class="dj-track-artist-row">
+            <span id="dj-artist-title" class="dj-artist-title">Select an album to start DJ session</span>
+            <span id="dj-queue-pos" class="dj-queue-pos">1/8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center: Transport Controls & Mode Switch -->
+      <div class="dj-deck-controls-col">
+        <div class="dj-transport-buttons">
+          <button id="dj-prev-btn" class="dj-ctrl-btn" type="button" aria-label="Previous Track" title="Previous Track">
+            <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+          </button>
+          <button id="dj-play-btn" class="dj-play-circle-btn" type="button" aria-label="Play or Pause" title="Play / Pause DJ Session">
+            <svg id="dj-play-icon" viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+            <svg id="dj-pause-icon" class="hidden" viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          </button>
+          <button id="dj-next-btn" class="dj-ctrl-btn" type="button" aria-label="Next Track" title="Next Track (Autoplay)">
+            <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+          </button>
+          <button id="dj-shuffle-btn" class="dj-ctrl-btn" type="button" aria-label="Shuffle Queue" title="Shuffle Vinyl Queue">
+            <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/></svg>
+          </button>
+        </div>
+
+        <!-- Mode Toggle inside Deck -->
+        <div class="dj-deck-mode-toggle">
+          <button id="dj-toggle-track-mode" class="dj-deck-pill active" type="button" data-mode="track" title="Track Mix: Standout tracks across crate">
+            🎵 Track Mix
+          </button>
+          <button id="dj-toggle-album-mode" class="dj-deck-pill" type="button" data-mode="full_album" title="Full LP: Continuous 45-60 min uninterrupted vinyl session">
+            📀 Full LP Session
+          </button>
+        </div>
+      </div>
+
+      <!-- Right: Autoplay Status & Queue Drawer Button -->
+      <div class="dj-deck-right-col">
+        <div class="dj-status-indicator" title="Continuous autoplay is active: next track starts automatically">
+          <span class="dj-status-dot"></span>
+          <span class="dj-status-text">Autoplay</span>
+        </div>
+        <button id="dj-queue-drawer-btn" class="dj-queue-drawer-btn" type="button" aria-label="Open DJ Queue" title="View Full DJ Queue">
+          <span class="queue-icon">📋</span>
+          <span class="queue-text">Queue</span>
+          <span id="dj-queue-count-badge" class="dj-queue-count-badge">8</span>
+        </button>
+        <button id="dj-close-deck-btn" class="dj-close-deck-btn" type="button" aria-label="Minimize Player" title="Minimize DJ Player">&times;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DJ QUEUE SLIDE-OVER DRAWER -->
+  <div id="dj-queue-container" class="dj-queue-container hidden" role="dialog" aria-modal="true" aria-labelledby="dj-queue-title">
+    <div id="dj-queue-backdrop" class="dj-queue-backdrop"></div>
+    <aside class="dj-queue-panel">
+      <div class="dj-queue-header">
+        <div class="dj-queue-title-row">
+          <span class="dj-queue-header-icon">🎧</span>
+          <div>
+            <h3 id="dj-queue-title" class="dj-queue-title">Vinyl DJ Queue</h3>
+            <p id="dj-queue-subtitle" class="dj-queue-subtitle">Continuous autoplay playlist</p>
+          </div>
+        </div>
+        <div class="dj-queue-header-actions">
+          <button id="dj-queue-shuffle-btn" class="dj-queue-action-pill" type="button" title="Shuffle queue order">
+            🔀 Shuffle
+          </button>
+          <button id="close-dj-queue-btn" class="modal-close-btn" aria-label="Close Queue">&times;</button>
+        </div>
+      </div>
+
+      <div class="dj-queue-mode-banner">
+        <div class="dj-banner-mode-info">
+          <strong id="dj-banner-mode-title">Track Mix Mode</strong>
+          <span id="dj-banner-mode-desc">Playing standout tracks across current album & 6–8 recommendations</span>
+        </div>
+        <button id="dj-banner-switch-mode-btn" class="dj-banner-switch-btn" type="button">
+          Switch to Full LP ↻
+        </button>
+      </div>
+
+      <div id="dj-queue-list" class="dj-queue-list">
+        <!-- Rendered dynamically -->
+      </div>
+    </aside>
+  </div>
+
+  <!-- YOUTUBE IFRAME PLAYER API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+
   <!-- FIREBASE AND CLIENT APPLICATION SCRIPT -->
-  <script type="module" src="app.js?v=2.8"></script>
+  <script type="module" src="app.js?v=2.9"></script>
 </body>
 </html>

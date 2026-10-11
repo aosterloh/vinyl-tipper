@@ -162,43 +162,541 @@ if (albumCoverImg) {
   });
 }
 
-// Embedded YouTube Listening Station elements (below fav heart)
+// ============================================================================
+// VINYL DJ LOUNGE & CONTINUOUS YOUTUBE AUTOPLAY ENGINE
+// Supports: (1) Curated Track Mix, (2) Full LP Continuous Vinyl Session
+// ============================================================================
 const heroYtBox = document.getElementById("hero-yt-box");
+const heroYtBadge = document.getElementById("hero-yt-badge");
 const ytTrackTitle = document.getElementById("yt-track-title");
 const heroYtIframe = document.getElementById("hero-yt-iframe");
 const heroYtLink = document.getElementById("hero-yt-link");
+const heroModeTrackBtn = document.getElementById("hero-mode-track-btn");
+const heroModeAlbumBtn = document.getElementById("hero-mode-album-btn");
+const heroStartDjBtn = document.getElementById("hero-start-dj-btn");
+const heroStartDjText = document.getElementById("hero-start-dj-text");
 
-async function loadYouTubeTrack1(artist, albumTitle, firstTrackTitle = "", existingVideoId = "") {
-  if (!heroYtBox || !heroYtIframe) return null;
+// Floating DJ Deck Elements
+const djDeckBar = document.getElementById("dj-deck-bar");
+const djTurntableIcon = document.getElementById("dj-turntable-icon");
+const djTrackTitle = document.getElementById("dj-track-title");
+const djArtistTitle = document.getElementById("dj-artist-title");
+const djModeBadge = document.getElementById("dj-mode-badge");
+const djQueuePos = document.getElementById("dj-queue-pos");
+const djPrevBtn = document.getElementById("dj-prev-btn");
+const djPlayBtn = document.getElementById("dj-play-btn");
+const djPlayIcon = document.getElementById("dj-play-icon");
+const djPauseIcon = document.getElementById("dj-pause-icon");
+const djNextBtn = document.getElementById("dj-next-btn");
+const djShuffleBtn = document.getElementById("dj-shuffle-btn");
+const djToggleTrackMode = document.getElementById("dj-toggle-track-mode");
+const djToggleAlbumMode = document.getElementById("dj-toggle-album-mode");
+const djQueueDrawerBtn = document.getElementById("dj-queue-drawer-btn");
+const djQueueCountBadge = document.getElementById("dj-queue-count-badge");
+const djCloseDeckBtn = document.getElementById("dj-close-deck-btn");
 
-  const displayTitle = firstTrackTitle ? `"${firstTrackTitle}"` : albumTitle;
-  ytTrackTitle.textContent = displayTitle;
+// DJ Queue Drawer Elements
+const djQueueContainer = document.getElementById("dj-queue-container");
+const djQueueBackdrop = document.getElementById("dj-queue-backdrop");
+const closeDjQueueBtn = document.getElementById("close-dj-queue-btn");
+const djQueueShuffleBtn = document.getElementById("dj-queue-shuffle-btn");
+const djBannerModeTitle = document.getElementById("dj-banner-mode-title");
+const djBannerModeDesc = document.getElementById("dj-banner-mode-desc");
+const djBannerSwitchModeBtn = document.getElementById("dj-banner-switch-mode-btn");
+const djQueueList = document.getElementById("dj-queue-list");
 
-  // 1. If videoId is already cached/known in storage:
-  if (existingVideoId) {
-    heroYtIframe.src = `https://www.youtube-nocookie.com/embed/${existingVideoId}?autoplay=0`;
-    heroYtLink.href = `https://www.youtube.com/watch?v=${existingVideoId}`;
-    heroYtBox.classList.remove("hidden");
-    return existingVideoId;
-  }
+// DJ Engine State
+const djState = {
+  mode: "track", // 'track' | 'full_album'
+  isPlaying: false,
+  currentIndex: 0,
+  queue: [],
+  ytPlayer: null,
+  isPlayerReady: false,
+  isDeckMinimized: false
+};
 
-  // 2. Otherwise query /api/youtube to resolve video ID
-  const query = `${artist} ${firstTrackTitle || albumTitle}`.trim();
+const djVideoCache = {};
+
+async function resolveDjVideo(query) {
+  const norm = normalizeCatalogKey(query);
+  if (djVideoCache[norm]) return djVideoCache[norm];
+
   try {
     const res = await fetch(`/api/youtube?q=${encodeURIComponent(query)}`);
     if (res.ok) {
       const data = await res.json();
       if (data.success && data.videoId) {
-        heroYtIframe.src = data.embedUrl || `https://www.youtube-nocookie.com/embed/${data.videoId}?autoplay=0`;
-        heroYtLink.href = data.watchUrl || `https://www.youtube.com/watch?v=${data.videoId}`;
-        heroYtBox.classList.remove("hidden");
-        return data.videoId;
+        djVideoCache[norm] = data;
+        return data;
       }
     }
-  } catch (e) {
-    console.warn("YouTube resolution error:", e);
+  } catch (err) {
+    console.warn("[Vinyl DJ] Video resolve warning:", err);
   }
   return null;
+}
+
+function initYouTubePlayer() {
+  if (djState.ytPlayer) return;
+  if (!window.YT || !window.YT.Player) return;
+  const iframe = document.getElementById("hero-yt-iframe");
+  if (!iframe) return;
+
+  try {
+    djState.ytPlayer = new window.YT.Player("hero-yt-iframe", {
+      events: {
+        onReady: () => {
+          djState.isPlayerReady = true;
+          console.log("[Vinyl DJ] YouTube Player API connected successfully");
+        },
+        onStateChange: onDjPlayerStateChange,
+        onError: onDjPlayerError
+      }
+    });
+  } catch (err) {
+    console.warn("[Vinyl DJ] Player init notice:", err);
+  }
+}
+
+// Hook global YouTube API callback
+window.onYouTubeIframeAPIReady = function() {
+  initYouTubePlayer();
+};
+if (window.YT && window.YT.Player) {
+  initYouTubePlayer();
+}
+
+function onDjPlayerStateChange(event) {
+  // 1 = PLAYING, 2 = PAUSED, 0 = ENDED
+  if (event.data === 1) {
+    djState.isPlaying = true;
+    updateDjDeckUI();
+  } else if (event.data === 2) {
+    djState.isPlaying = false;
+    updateDjDeckUI();
+  } else if (event.data === 0) {
+    console.log("[Vinyl DJ] Current track finished! Continuous autoplay starting next track...");
+    djPlayNext(true);
+  }
+}
+
+function onDjPlayerError(event) {
+  console.warn("[Vinyl DJ] Embed restricted (code", event.data, ") - Auto-advancing to next track in queue");
+  setTimeout(() => {
+    djPlayNext(true);
+  }, 1200);
+}
+
+function buildDjQueue(album, alternatives = [], mode = djState.mode) {
+  if (!album || !album.title) return [];
+  const q = [];
+
+  if (mode === "track") {
+    // 1. Landmark Track of Main Album
+    const track1 = album.firstTrackTitle || "Track 1";
+    q.push({
+      id: `main-${normalizeCatalogKey(album.title)}`,
+      title: track1,
+      displayTitle: `${track1} (Track 1)`,
+      albumTitle: album.title,
+      artist: album.artist || "Unknown",
+      coverUrl: album.coverUrl || "",
+      mode: "track",
+      duration: album.playtime ? `Album: ${album.playtime}` : "Standout Track",
+      searchQuery: `${album.artist || ''} ${track1} audio`.trim(),
+      videoId: album.youtubeVideoId || ""
+    });
+
+    // 2. Standout Tracks for each alternative in the pool
+    const cleanAlts = (alternatives || []).filter(a => !isAlbumInFavorites(a.title, a.artist));
+    cleanAlts.forEach((alt, idx) => {
+      q.push({
+        id: `alt-${idx}-${normalizeCatalogKey(alt.title)}`,
+        title: alt.title,
+        displayTitle: `${alt.title}`,
+        albumTitle: alt.title,
+        artist: alt.artist || "Unknown",
+        coverUrl: alt.coverUrl || "",
+        mode: "track",
+        duration: alt.playtime || "Standout Track",
+        searchQuery: `${alt.artist || ''} ${alt.title} audio`.trim(),
+        videoId: ""
+      });
+    });
+  } else {
+    // FULL LP CONTINUOUS VINYL SESSION
+    // 1. Full vinyl session of Main Album
+    q.push({
+      id: `main-${normalizeCatalogKey(album.title)}-lp`,
+      title: `${album.title}`,
+      displayTitle: `Full Vinyl LP Session (${album.playtime || '45 min'})`,
+      albumTitle: album.title,
+      artist: album.artist || "Unknown",
+      coverUrl: album.coverUrl || "",
+      mode: "full_album",
+      duration: album.playtime || "45 min LP",
+      searchQuery: `${album.artist || ''} ${album.title} full vinyl album`.trim(),
+      videoId: ""
+    });
+
+    // 2. Full vinyl sessions for each alternative
+    const cleanAlts = (alternatives || []).filter(a => !isAlbumInFavorites(a.title, a.artist));
+    cleanAlts.forEach((alt, idx) => {
+      q.push({
+        id: `alt-${idx}-${normalizeCatalogKey(alt.title)}-lp`,
+        title: `${alt.title}`,
+        displayTitle: `Full Vinyl LP Session (${alt.playtime || '45 min'})`,
+        albumTitle: alt.title,
+        artist: alt.artist || "Unknown",
+        coverUrl: alt.coverUrl || "",
+        mode: "full_album",
+        duration: alt.playtime || "Full LP",
+        searchQuery: `${alt.artist || ''} ${alt.title} full vinyl album`.trim(),
+        videoId: ""
+      });
+    });
+  }
+
+  return q;
+}
+
+async function prefetchNextDjTrack(nextIndex) {
+  if (!djState.queue || nextIndex >= djState.queue.length) return;
+  const nextItem = djState.queue[nextIndex];
+  if (!nextItem || nextItem.videoId) return;
+
+  try {
+    const res = await resolveDjVideo(nextItem.searchQuery);
+    if (res && res.videoId) {
+      nextItem.videoId = res.videoId;
+    }
+  } catch (e) {}
+}
+
+async function djPlayIndex(index, autoStart = true) {
+  if (!djState.queue || djState.queue.length === 0) return;
+  if (index < 0) index = 0;
+  if (index >= djState.queue.length) index = 0;
+
+  djState.currentIndex = index;
+  const current = djState.queue[index];
+
+  // Resolve videoId if needed
+  let vId = current.videoId;
+  if (!vId) {
+    const res = await resolveDjVideo(current.searchQuery);
+    if (res && res.videoId) {
+      vId = res.videoId;
+      current.videoId = vId;
+    }
+  }
+
+  if (!vId) {
+    console.warn("[Vinyl DJ] Skipping unresolvable track:", current.searchQuery);
+    djPlayNext(autoStart);
+    return;
+  }
+
+  // Reveal player & bottom dock
+  if (heroYtBox) heroYtBox.classList.remove("hidden");
+  if (djDeckBar && !djState.isDeckMinimized) djDeckBar.classList.remove("hidden");
+
+  // Update hero header and link
+  if (ytTrackTitle) ytTrackTitle.textContent = `${current.artist} — ${current.displayTitle}`;
+  if (heroYtLink) heroYtLink.href = `https://www.youtube.com/watch?v=${vId}`;
+
+  const embedUrl = `https://www.youtube-nocookie.com/embed/${vId}?enablejsapi=1&autoplay=${autoStart ? 1 : 0}&origin=${encodeURIComponent(window.location.origin)}`;
+
+  if (djState.ytPlayer && typeof djState.ytPlayer.loadVideoById === "function") {
+    try {
+      if (autoStart) {
+        djState.ytPlayer.loadVideoById({ videoId: vId });
+        djState.isPlaying = true;
+      } else {
+        djState.ytPlayer.cueVideoById({ videoId: vId });
+      }
+    } catch (e) {
+      if (heroYtIframe) heroYtIframe.src = embedUrl;
+    }
+  } else {
+    if (heroYtIframe) heroYtIframe.src = embedUrl;
+    setTimeout(initYouTubePlayer, 600);
+  }
+
+  if (autoStart) djState.isPlaying = true;
+  updateDjDeckUI();
+  renderDjQueueList();
+
+  // Background prefetch next track in queue for zero-gap transition!
+  prefetchNextDjTrack(index + 1);
+}
+
+function djPlayNext(autoStart = true) {
+  if (!djState.queue || djState.queue.length === 0) return;
+  const nextIdx = (djState.currentIndex + 1) % djState.queue.length;
+  djPlayIndex(nextIdx, autoStart);
+}
+
+function djPlayPrev(autoStart = true) {
+  if (!djState.queue || djState.queue.length === 0) return;
+  const prevIdx = (djState.currentIndex - 1 + djState.queue.length) % djState.queue.length;
+  djPlayIndex(prevIdx, autoStart);
+}
+
+function toggleDjPlayPause() {
+  if (!djState.queue || djState.queue.length === 0) {
+    if (currentAlbumData) {
+      loadYouTubeTrack1(currentAlbumData.artist, currentAlbumData.title, currentAlbumData.firstTrackTitle, currentAlbumData.youtubeVideoId);
+    }
+    return;
+  }
+
+  if (djState.isPlaying) {
+    if (djState.ytPlayer && typeof djState.ytPlayer.pauseVideo === "function") {
+      djState.ytPlayer.pauseVideo();
+    }
+    djState.isPlaying = false;
+  } else {
+    if (djState.ytPlayer && typeof djState.ytPlayer.playVideo === "function") {
+      djState.ytPlayer.playVideo();
+    } else {
+      djPlayIndex(djState.currentIndex, true);
+    }
+    djState.isPlaying = true;
+  }
+  updateDjDeckUI();
+}
+
+function shuffleDjQueue() {
+  if (!djState.queue || djState.queue.length <= 1) return;
+  const current = djState.queue[djState.currentIndex];
+  const remaining = djState.queue.filter((_, idx) => idx !== djState.currentIndex);
+
+  // Fisher-Yates shuffle
+  for (let i = remaining.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [remaining[i], remaining[j]] = [remaining[j], remaining[i]];
+  }
+
+  djState.queue = [current, ...remaining];
+  djState.currentIndex = 0;
+  renderDjQueueList();
+  updateDjDeckUI();
+}
+
+function setDjMode(newMode, shouldPlay = false) {
+  if (djState.mode === newMode && djState.queue.length > 0) return;
+  djState.mode = newMode;
+
+  // Sync mode pill buttons in Hero
+  if (heroModeTrackBtn && heroModeAlbumBtn) {
+    heroModeTrackBtn.classList.toggle("active", newMode === "track");
+    heroModeAlbumBtn.classList.toggle("active", newMode === "full_album");
+  }
+
+  // Sync mode pills in Deck
+  if (djToggleTrackMode && djToggleAlbumMode) {
+    djToggleTrackMode.classList.toggle("active", newMode === "track");
+    djToggleAlbumMode.classList.toggle("active", newMode === "full_album");
+  }
+
+  // Sync Drawer banner
+  if (djBannerModeTitle && djBannerModeDesc && djBannerSwitchModeBtn) {
+    if (newMode === "track") {
+      djBannerModeTitle.textContent = "Track Mix Mode";
+      djBannerModeDesc.textContent = "Playing standout tracks across current album & 6–8 recommendations";
+      djBannerSwitchModeBtn.textContent = "Switch to Full LP ↻";
+    } else {
+      djBannerModeTitle.textContent = "Full LP Session Mode";
+      djBannerModeDesc.textContent = "Playing uninterrupted 40–60 min vinyl album rips with minimal ad interruption";
+      djBannerSwitchModeBtn.textContent = "Switch to Track Mix ↻";
+    }
+  }
+
+  // Rebuild queue for current album & alternatives
+  if (currentAlbumData) {
+    const curIdx = djState.currentIndex;
+    djState.queue = buildDjQueue(currentAlbumData, currentAlbumData.alternatives || [], newMode);
+    renderDjQueueList();
+    updateDjDeckUI();
+
+    if (shouldPlay || djState.isPlaying) {
+      djPlayIndex(curIdx >= djState.queue.length ? 0 : curIdx, true);
+    }
+  }
+}
+
+function updateDjDeckUI() {
+  const current = djState.queue[djState.currentIndex];
+  if (!current) return;
+
+  if (djTrackTitle) djTrackTitle.textContent = current.displayTitle || current.title;
+  if (djArtistTitle) djArtistTitle.textContent = current.artist;
+  if (djModeBadge) {
+    djModeBadge.textContent = djState.mode === "track" ? "🎵 Track Mix" : "📀 Full LP";
+  }
+  if (djQueuePos) {
+    djQueuePos.textContent = `${djState.currentIndex + 1}/${djState.queue.length}`;
+  }
+  if (djQueueCountBadge) {
+    djQueueCountBadge.textContent = djState.queue.length;
+  }
+
+  // Turntable spinning state
+  if (djTurntableIcon) {
+    djTurntableIcon.classList.toggle("spinning", djState.isPlaying);
+  }
+
+  // Play/Pause icon toggle
+  if (djPlayIcon && djPauseIcon) {
+    djPlayIcon.classList.toggle("hidden", djState.isPlaying);
+    djPauseIcon.classList.toggle("hidden", !djState.isPlaying);
+  }
+
+  // Hero start button label
+  if (heroStartDjText) {
+    heroStartDjText.textContent = djState.isPlaying ? "❚❚ Playing Vinyl DJ" : "▶ Start Vinyl DJ";
+  }
+}
+
+function renderDjQueueList() {
+  if (!djQueueList) return;
+  djQueueList.innerHTML = "";
+
+  djState.queue.forEach((item, idx) => {
+    const isCurrent = idx === djState.currentIndex;
+    const el = document.createElement("div");
+    el.className = `dj-queue-item ${isCurrent ? "active" : ""}`;
+    const cover = item.coverUrl || generateSvgCover(item.albumTitle || item.title, item.artist);
+
+    el.innerHTML = `
+      <img class="dj-queue-item-thumb" src="${cover}" alt="${escapeXml(item.title)}" loading="lazy" />
+      <div class="dj-queue-item-info">
+        <span class="dj-queue-item-title">${escapeXml(item.displayTitle || item.title)}</span>
+        <span class="dj-queue-item-artist">${escapeXml(item.artist)} • ${escapeXml(item.albumTitle || '')}</span>
+      </div>
+      <div class="dj-queue-item-status">
+        ${isCurrent && djState.isPlaying ? `
+          <div class="dj-soundwave" title="Now Spinning">
+            <span class="dj-soundwave-bar"></span>
+            <span class="dj-soundwave-bar"></span>
+            <span class="dj-soundwave-bar"></span>
+            <span class="dj-soundwave-bar"></span>
+          </div>
+        ` : `
+          <span class="dj-queue-item-badge">${idx + 1}</span>
+        `}
+      </div>
+    `;
+
+    el.addEventListener("click", () => {
+      djPlayIndex(idx, true);
+    });
+
+    djQueueList.appendChild(el);
+  });
+}
+
+async function loadYouTubeTrack1(artist, albumTitle, firstTrackTitle = "", existingVideoId = "") {
+  if (!heroYtBox || !heroYtIframe) return null;
+
+  // Build the DJ queue with current album and alternatives
+  if (currentAlbumData) {
+    djState.queue = buildDjQueue(currentAlbumData, currentAlbumData.alternatives || [], djState.mode);
+    djState.currentIndex = 0;
+    renderDjQueueList();
+    updateDjDeckUI();
+  }
+
+  // Pre-load track 0
+  const firstItem = djState.queue[0];
+  const query = firstItem ? firstItem.searchQuery : `${artist} ${firstTrackTitle || albumTitle}`.trim();
+  const displayTitle = firstItem ? firstItem.displayTitle : (firstTrackTitle ? `"${firstTrackTitle}"` : albumTitle);
+  if (ytTrackTitle) ytTrackTitle.textContent = `${artist} — ${displayTitle}`;
+
+  let vId = existingVideoId || (firstItem ? firstItem.videoId : "");
+  if (!vId) {
+    const res = await resolveDjVideo(query);
+    if (res && res.videoId) {
+      vId = res.videoId;
+      if (firstItem) firstItem.videoId = vId;
+    }
+  }
+
+  if (vId) {
+    heroYtIframe.src = `https://www.youtube-nocookie.com/embed/${vId}?enablejsapi=1&autoplay=0&origin=${encodeURIComponent(window.location.origin)}`;
+    if (heroYtLink) heroYtLink.href = `https://www.youtube.com/watch?v=${vId}`;
+    heroYtBox.classList.remove("hidden");
+    if (djDeckBar && !djState.isDeckMinimized) djDeckBar.classList.remove("hidden");
+    updateDjDeckUI();
+    setTimeout(initYouTubePlayer, 600);
+    return vId;
+  }
+  return null;
+}
+
+// Attach Event Listeners for DJ Deck & Hero Player
+if (heroModeTrackBtn) {
+  heroModeTrackBtn.addEventListener("click", () => setDjMode("track", true));
+}
+if (heroModeAlbumBtn) {
+  heroModeAlbumBtn.addEventListener("click", () => setDjMode("full_album", true));
+}
+if (heroStartDjBtn) {
+  heroStartDjBtn.addEventListener("click", () => {
+    if (!djState.isPlaying) {
+      djPlayIndex(djState.currentIndex, true);
+    } else {
+      toggleDjPlayPause();
+    }
+  });
+}
+
+if (djPrevBtn) djPrevBtn.addEventListener("click", () => djPlayPrev(true));
+if (djPlayBtn) djPlayBtn.addEventListener("click", toggleDjPlayPause);
+if (djNextBtn) djNextBtn.addEventListener("click", () => djPlayNext(true));
+if (djShuffleBtn) djShuffleBtn.addEventListener("click", shuffleDjQueue);
+
+if (djToggleTrackMode) {
+  djToggleTrackMode.addEventListener("click", () => setDjMode("track", true));
+}
+if (djToggleAlbumMode) {
+  djToggleAlbumMode.addEventListener("click", () => setDjMode("full_album", true));
+}
+
+if (djQueueDrawerBtn) {
+  djQueueDrawerBtn.addEventListener("click", () => {
+    if (djQueueContainer) {
+      djQueueContainer.classList.remove("hidden");
+      renderDjQueueList();
+    }
+  });
+}
+
+if (closeDjQueueBtn) {
+  closeDjQueueBtn.addEventListener("click", () => {
+    if (djQueueContainer) djQueueContainer.classList.add("hidden");
+  });
+}
+if (djQueueBackdrop) {
+  djQueueBackdrop.addEventListener("click", () => {
+    if (djQueueContainer) djQueueContainer.classList.add("hidden");
+  });
+}
+if (djQueueShuffleBtn) {
+  djQueueShuffleBtn.addEventListener("click", shuffleDjQueue);
+}
+if (djBannerSwitchModeBtn) {
+  djBannerSwitchModeBtn.addEventListener("click", () => {
+    setDjMode(djState.mode === "track" ? "full_album" : "track", true);
+  });
+}
+if (djCloseDeckBtn) {
+  djCloseDeckBtn.addEventListener("click", () => {
+    djState.isDeckMinimized = true;
+    if (djDeckBar) djDeckBar.classList.add("hidden");
+  });
 }
 
 // ============================================================================
@@ -1242,17 +1740,6 @@ async function appraiseAlbum(albumName) {
     // Immediate image from storage
     albumCoverImg.src = cached.coverUrl || generateSvgCover(cached.title, cached.artist);
 
-    // Load Track 1 YouTube Listening Station below fav heart
-    loadYouTubeTrack1(cached.artist, cached.title, cached.firstTrackTitle, cached.youtubeVideoId).then(vId => {
-      if (vId && !cached.youtubeVideoId) {
-        cached.youtubeVideoId = vId;
-        saveAlbumToCache(cached);
-      }
-    });
-
-    // In-context animated skeleton for price area
-    renderPriceLoadingSkeletons();
-
     currentAlbumData = {
       title: cached.title,
       artist: cached.artist,
@@ -1270,6 +1757,17 @@ async function appraiseAlbum(albumName) {
     };
 
     heroFavBtn.classList.toggle("active", isFavorited(cached.title, cached.artist));
+
+    // Load Track 1 YouTube Listening Station & DJ queue
+    loadYouTubeTrack1(cached.artist, cached.title, cached.firstTrackTitle, cached.youtubeVideoId).then(vId => {
+      if (vId && !cached.youtubeVideoId) {
+        cached.youtubeVideoId = vId;
+        saveAlbumToCache(cached);
+      }
+    });
+
+    // In-context animated skeleton for price area
+    renderPriceLoadingSkeletons();
 
     // Check if cached alternatives exist and have at least 3 valid recommendations
     alternativesGenreName.textContent = cached.genre || "";
@@ -1574,6 +2072,11 @@ function renderAlternativesProgressive(alternatives, shuffleOffset = 0) {
   if (currentAlbumData) {
     currentAlbumData.currentAltOffset = shuffleOffset;
     currentAlbumData.displayedAlternatives = toRender;
+    if (cleanAlternatives.length > 0 && (!djState.queue || djState.queue.length <= 1)) {
+      djState.queue = buildDjQueue(currentAlbumData, cleanAlternatives, djState.mode);
+      renderDjQueueList();
+      updateDjDeckUI();
+    }
   }
 
   if (toRender.length === 0) {
@@ -1662,6 +2165,9 @@ function renderAlternativesProgressive(alternatives, shuffleOffset = 0) {
           </div>
         </div>
         <div class="alt-buy-links">
+          <button class="alt-dj-cue-btn" type="button" title="Spin on Vinyl DJ turntable">
+            ▶ Cue DJ
+          </button>
           <a href="${primaryNewStore.url}" target="_blank" rel="noopener noreferrer" class="alt-buy-link" onclick="event.stopPropagation()" title="Buy new on ${escapeXml(primaryNewStore.name)}">
             ${escapeXml(primaryNewStore.name)} ↗
           </a>
@@ -1670,6 +2176,33 @@ function renderAlternativesProgressive(alternatives, shuffleOffset = 0) {
           </a>
         </div>
       `;
+
+      // Wire Cue DJ button on alternative
+      const altCueBtn = card.querySelector(".alt-dj-cue-btn");
+      if (altCueBtn) {
+        altCueBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const existingIdx = djState.queue.findIndex(item => normalizeCatalogKey(item.albumTitle) === normalizeCatalogKey(alt.title));
+          if (existingIdx >= 0) {
+            djPlayIndex(existingIdx, true);
+          } else {
+            const newEntry = {
+              id: `cue-${normalizeCatalogKey(alt.title)}`,
+              title: alt.title,
+              displayTitle: djState.mode === 'track' ? `${alt.title}` : `Full Vinyl LP Session`,
+              albumTitle: alt.title,
+              artist: alt.artist || "Unknown",
+              coverUrl: coverUrl,
+              mode: djState.mode,
+              duration: alt.playtime || "Standout Track",
+              searchQuery: djState.mode === 'track' ? `${alt.artist || ''} ${alt.title} audio`.trim() : `${alt.artist || ''} ${alt.title} full vinyl album`.trim(),
+              videoId: ""
+            };
+            djState.queue.splice(djState.currentIndex + 1, 0, newEntry);
+            djPlayIndex(djState.currentIndex + 1, true);
+          }
+        });
+      }
 
       // Wire heart button on alternative
       const altFavBtn = card.querySelector(".alt-fav-btn");
