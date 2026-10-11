@@ -70,6 +70,7 @@ let currentAlbumData = null;
 let hasServerKey = false;
 let pendingFavoriteAlbum = null;
 const MODEL_NAME = "gemini-3.8-flash";
+let activeAppraisalId = 0;
 
 // ============================================================================
 // 2. DOM ELEMENTS
@@ -215,17 +216,19 @@ let isRecoveringHeroCover = false;
 if (albumCoverImg) {
   albumCoverImg.addEventListener("error", async () => {
     if (isRecoveringHeroCover) return;
-    if (!currentAlbumData || !currentAlbumData.title) return;
+    const activeTitle = albumTitleEl ? albumTitleEl.textContent : "";
+    if (!currentAlbumData || !currentAlbumData.title || currentAlbumData.title !== activeTitle) return;
 
     isRecoveringHeroCover = true;
     console.warn(`[storage] Hero cover failed to load for "${currentAlbumData.title}", retrieving live from internet...`);
 
     try {
+      const activeToken = activeAppraisalId;
       const freshCover = await fetchAlbumCover(currentAlbumData.title, currentAlbumData.artist, currentAlbumData.title);
+      if (activeAppraisalId !== activeToken) return;
       if (freshCover && !freshCover.startsWith("data:image/svg") && freshCover !== albumCoverImg.src) {
         albumCoverImg.src = freshCover;
         currentAlbumData.coverUrl = freshCover;
-        // Re-persist healed cover to database and server storage
         saveAlbumToCache(currentAlbumData);
       } else {
         albumCoverImg.src = generateSvgCover(currentAlbumData.title, currentAlbumData.artist);
@@ -233,7 +236,7 @@ if (albumCoverImg) {
     } catch (err) {
       console.warn("Hero cover recovery error:", err);
     } finally {
-      setTimeout(() => { isRecoveringHeroCover = false; }, 1500);
+      setTimeout(() => { isRecoveringHeroCover = false; }, 800);
     }
   });
 }
@@ -782,12 +785,15 @@ function renderDjQueueList() {
 async function loadYouTubeTrack1(artist, albumTitle, firstTrackTitle = "", existingVideoId = "") {
   if (!heroYtBox || !heroYtIframe) return null;
 
+  const sessionToken = activeAppraisalId;
+  const targetAlbum = albumTitle;
+
   // Immediately unhide hero DJ box and bottom deck bar so controls are visible
   heroYtBox.classList.remove("hidden");
   if (djDeckBar && !djState.isDeckMinimized) djDeckBar.classList.remove("hidden");
 
   // Build the DJ queue with current album and alternatives
-  if (currentAlbumData) {
+  if (currentAlbumData && currentAlbumData.title === targetAlbum) {
     djState.queue = buildDjQueue(currentAlbumData, currentAlbumData.alternatives || [], djState.mode);
     djState.currentIndex = 0;
     renderDjQueueList();
@@ -798,16 +804,23 @@ async function loadYouTubeTrack1(artist, albumTitle, firstTrackTitle = "", exist
   const firstItem = djState.queue[0];
   const query = firstItem ? firstItem.searchQuery : `${artist} ${firstTrackTitle || albumTitle} audio`.trim();
   const displayTitle = firstItem ? firstItem.displayTitle : (firstTrackTitle ? `"${firstTrackTitle}"` : albumTitle);
-  if (ytTrackTitle) ytTrackTitle.textContent = `${artist} — ${displayTitle}`;
+  if (ytTrackTitle && (!currentAlbumData || currentAlbumData.title === targetAlbum)) {
+    ytTrackTitle.textContent = `${artist} — ${displayTitle}`;
+  }
 
   let vId = existingVideoId || (firstItem ? firstItem.videoId : "");
   if (!vId) {
     const res = await resolveDjVideo(query);
+    if (activeAppraisalId !== sessionToken) return null;
+    if (currentAlbumData && currentAlbumData.title !== targetAlbum) return null;
     if (res && res.videoId) {
       vId = res.videoId;
       if (firstItem) firstItem.videoId = vId;
     }
   }
+
+  if (activeAppraisalId !== sessionToken) return null;
+  if (currentAlbumData && currentAlbumData.title !== targetAlbum) return null;
 
   if (vId) {
     heroYtIframe.src = `https://www.youtube-nocookie.com/embed/${vId}?enablejsapi=1&autoplay=0&origin=${encodeURIComponent(window.location.origin)}`;
@@ -1874,11 +1887,21 @@ function stopAudiophileLoadingTicker() {
 }
 
 // ============================================================================
-// INSTANT CURATED SOMMELIER VAULT (<100ms Instant Audio Gems)
+// ROTATING CURATED SOMMELIER CRATE POOLS (<100ms Instant Audio Gems)
 // ============================================================================
+const pillCrateState = {
+  mustHave: 0,
+  midnightJazz: 0,
+  seventiesRock: 0,
+  cityPop: 0,
+  acoustic: 0,
+  audiophile: 0,
+  surprise: 0
+};
+
 const SOMMELIER_VAULT = {
-  mustHave: {
-    rec: {
+  mustHave: [
+    {
       title: "The Dark Side of the Moon",
       artist: "Pink Floyd",
       year: 1973,
@@ -1889,23 +1912,89 @@ const SOMMELIER_VAULT = {
       standoutTrack: "Time",
       whyOnVinyl: "Mastered at Abbey Road Studios by Alan Parsons, this is the holy grail of physical analog dynamics. The transition from the heartbeat into David Gilmour's stratocaster solos delivers acoustic headroom and spatial depth that compressed digital streaming simply flattens.",
       vibeMatch: "The indisputable cornerstone of every serious physical collection on Earth—an auditory masterclass from the first needle drop to the run-out groove.",
-      collectorScore: {
-        overallScore: 99,
-        discogsRating: "4.78 / 5.0",
-        ratingsCount: "85k+ ratings",
-        tier: "Essential Masterpiece",
-        verdict: "The definitive analog benchmark. Unrivaled dynamic headroom, iconic gatefold packaging, and an essential physical listening journey."
-      },
-      streetPriceGermany: {
-        newEur: "€32 – €38",
-        usedEur: "€18 – €28",
-        conditionNote: "Used VG+/EX"
-      },
+      collectorScore: { overallScore: 99, discogsRating: "4.78 / 5.0", ratingsCount: "85k+ ratings", tier: "Essential Masterpiece", verdict: "The definitive analog benchmark. Unrivaled dynamic headroom, iconic gatefold packaging, and an essential physical listening journey." },
+      streetPriceGermany: { newEur: "€32 – €38", usedEur: "€18 – €28", conditionNote: "Used VG+/EX" },
       coverSearchTerm: "Pink Floyd The Dark Side of the Moon"
+    },
+    {
+      title: "Abbey Road",
+      artist: "The Beatles",
+      year: 1969,
+      genre: "Rock",
+      playtime: "47 min",
+      trackCount: 17,
+      firstTrackTitle: "Come Together",
+      standoutTrack: "Here Comes the Sun",
+      whyOnVinyl: "Recorded on EMI's TG12345 solid-state mixing desk, giving Ringo's drums and McCartney's bass unprecedented low-end punch and presence that defined physical vinyl fidelity.",
+      vibeMatch: "An iconic gatefold landmark with legendary Medley transitions engineered specifically for uninterrupted continuous physical playback.",
+      collectorScore: { overallScore: 99, discogsRating: "4.81 / 5.0", ratingsCount: "70k+ ratings", tier: "Essential Masterpiece", verdict: "The ultimate side-two vinyl medley. Immense stereo separation, timeless melodic genius, and a monumental physical listening journey." },
+      streetPriceGermany: { newEur: "€30 – €36", usedEur: "€18 – €26", conditionNote: "Used VG+/EX" },
+      coverSearchTerm: "The Beatles Abbey Road"
+    },
+    {
+      title: "OK Computer",
+      artist: "Radiohead",
+      year: 1997,
+      genre: "Alternative Rock",
+      playtime: "53 min",
+      trackCount: 12,
+      firstTrackTitle: "Airbag",
+      standoutTrack: "Paranoid Android",
+      whyOnVinyl: "Nigel Godrich's masterful production recorded in St Catherine's Court mansion. The physical vinyl cut preserves dynamic guitar crescendos and Thom Yorke's haunting vocal reverb with stunning spatial depth.",
+      vibeMatch: "The definitive late-90s art-rock monument that revolutionized analog production on physical gatefold vinyl.",
+      collectorScore: { overallScore: 98, discogsRating: "4.77 / 5.0", ratingsCount: "62k+ ratings", tier: "Essential Masterpiece", verdict: "Dystopian analog masterpiece. Godrich's panoramic production and acoustic dynamics sound dramatically wider and heavier on 180g physical vinyl." },
+      streetPriceGermany: { newEur: "€34 – €40", usedEur: "€22 – €30", conditionNote: "Used VG+/EX" },
+      coverSearchTerm: "Radiohead OK Computer"
+    },
+    {
+      title: "Led Zeppelin IV",
+      artist: "Led Zeppelin",
+      year: 1971,
+      genre: "Hard Rock / Blues Rock",
+      playtime: "42 min",
+      trackCount: 8,
+      firstTrackTitle: "Black Dog",
+      standoutTrack: "Stairway to Heaven",
+      whyOnVinyl: "John Bonham's legendary drum sound recorded in Headley Grange's three-story hallway gives 'When the Levee Breaks' a physical room reverberation and kick-drum thump unmatched in rock history.",
+      vibeMatch: "Monumental physical rock power with acoustic folk subtleties that demand a proper turntable needle drop.",
+      collectorScore: { overallScore: 98, discogsRating: "4.76 / 5.0", ratingsCount: "58k+ ratings", tier: "Essential Masterpiece", verdict: "Hard rock perfection. Bonham's thunderous drum reverb and Page's layered acoustic guitars deliver massive dynamic impact on physical vinyl." },
+      streetPriceGermany: { newEur: "€28 – €34", usedEur: "€16 – €24", conditionNote: "Used VG+/EX" },
+      coverSearchTerm: "Led Zeppelin IV"
+    },
+    {
+      title: "The Rise and Fall of Ziggy Stardust",
+      artist: "David Bowie",
+      year: 1972,
+      genre: "Glam Rock",
+      playtime: "38 min",
+      trackCount: 11,
+      firstTrackTitle: "Five Years",
+      standoutTrack: "Starman",
+      whyOnVinyl: "Mick Ronson's soaring Les Paul arrangements and Ken Scott's pristine Trident Studios engineering sound breathtakingly immediate, punchy, and visceral on analog physical vinyl.",
+      vibeMatch: "A dazzling, conceptual theatrical masterpiece that pulls you into Bowie's interstellar glam world with unmatched analog warmth.",
+      collectorScore: { overallScore: 97, discogsRating: "4.74 / 5.0", ratingsCount: "44k+ ratings", tier: "Essential Masterpiece", verdict: "The quintessential glam rock narrative. Mick Ronson's guitars and Bowie's vocal theatricality burst with vibrant analog energy on vinyl." },
+      streetPriceGermany: { newEur: "€28 – €35", usedEur: "€18 – €26", conditionNote: "Used VG+/EX" },
+      coverSearchTerm: "David Bowie Ziggy Stardust"
+    },
+    {
+      title: "Unknown Pleasures",
+      artist: "Joy Division",
+      year: 1979,
+      genre: "Post-Punk / Coldwave",
+      playtime: "39 min",
+      trackCount: 10,
+      firstTrackTitle: "Disorder",
+      standoutTrack: "She's Lost Control",
+      whyOnVinyl: "Martin Hannett's atmospheric production—featuring isolated snare hits, synthesized glass shattering, and Peter Hook's melodic high-register bass—is legendary for its cavernous spatial soundstage on physical lacquer.",
+      vibeMatch: "The ultimate dark, cold, evocative post-punk pressing housed in Peter Saville's iconic pulsar waveform textured sleeve.",
+      collectorScore: { overallScore: 97, discogsRating: "4.73 / 5.0", ratingsCount: "40k+ ratings", tier: "Essential Masterpiece", verdict: "Hannett's revolutionary spatial production sounds uniquely haunting and visceral on vinyl, with Peter Hook's bass driving the analog groove." },
+      streetPriceGermany: { newEur: "€26 – €32", usedEur: "€18 – €26", conditionNote: "Used VG+/EX" },
+      coverSearchTerm: "Joy Division Unknown Pleasures"
     }
-  },
-  midnightJazz: {
-    rec: {
+  ],
+
+  midnightJazz: [
+    {
       title: "Kind of Blue",
       artist: "Miles Davis",
       year: 1959,
@@ -1916,23 +2005,74 @@ const SOMMELIER_VAULT = {
       standoutTrack: "Blue in Green",
       whyOnVinyl: "Recorded in Columbia's 30th Street Studio with three microphones capturing natural acoustic room reverberation. On vinyl, Paul Chambers' upright bass resonates with visceral physical warmth, while Miles' muted trumpet floats intimately between the speakers.",
       vibeMatch: "The ultimate late-night companion—pours out of the turntable like warm amber whiskey in a dimly lit room.",
-      collectorScore: {
-        overallScore: 98,
-        discogsRating: "4.82 / 5.0",
-        ratingsCount: "54k+ ratings",
-        tier: "Essential Masterpiece",
-        verdict: "Unsurpassed analog intimacy. The spatial realism of Bill Evans' piano chords and Miles' breath into the Harmon mute defines audiophile jazz."
-      },
-      streetPriceGermany: {
-        newEur: "€26 – €32",
-        usedEur: "€16 – €24",
-        conditionNote: "Used VG+/EX"
-      },
+      collectorScore: { overallScore: 98, discogsRating: "4.82 / 5.0", ratingsCount: "54k+ ratings", tier: "Essential Masterpiece", verdict: "Unsurpassed analog intimacy. The spatial realism of Bill Evans' piano chords and Miles' breath into the Harmon mute defines audiophile jazz." },
+      streetPriceGermany: { newEur: "€26 – €32", usedEur: "€16 – €24", conditionNote: "Used VG+/EX" },
       coverSearchTerm: "Miles Davis Kind of Blue"
+    },
+    {
+      title: "A Love Supreme",
+      artist: "John Coltrane",
+      year: 1965,
+      genre: "Spiritual Jazz",
+      playtime: "33 min",
+      trackCount: 4,
+      firstTrackTitle: "Part 1: Acknowledgement",
+      standoutTrack: "Part 2: Resolution",
+      whyOnVinyl: "Engineered by Rudy Van Gelder in Englewood Cliffs on custom tube gear. The resonance of Jimmy Garrison's bass chant and Coltrane's tenor sax produces a room-filling physical vibration that connects spiritually.",
+      vibeMatch: "A deeply spiritual, transcendent midnight experience where every note reverberates with raw emotional urgency.",
+      collectorScore: { overallScore: 98, discogsRating: "4.83 / 5.0", ratingsCount: "38k+ ratings", tier: "Essential Masterpiece", verdict: "Van Gelder's iconic Englewood Cliffs acoustics. The spiritual intensity and raw saxophone dynamics make this a holy grail physical pressing." },
+      streetPriceGermany: { newEur: "€28 – €34", usedEur: "€18 – €28", conditionNote: "Used VG+/EX" },
+      coverSearchTerm: "John Coltrane A Love Supreme"
+    },
+    {
+      title: "Waltz for Debby",
+      artist: "Bill Evans Trio",
+      year: 1962,
+      genre: "Cool Jazz",
+      playtime: "38 min",
+      trackCount: 6,
+      firstTrackTitle: "My Foolish Heart",
+      standoutTrack: "Waltz for Debby",
+      whyOnVinyl: "Recorded live at the Village Vanguard. The physical vinyl pressing preserves the clinking of cocktail glasses and whispers in the room, creating holographic spatial depth where you feel seated in the front row.",
+      vibeMatch: "The pinnacle of intimate, romantic piano jazz—gentle, acoustic, and breathtakingly atmospheric.",
+      collectorScore: { overallScore: 97, discogsRating: "4.79 / 5.0", ratingsCount: "22k+ ratings", tier: "Essential Masterpiece", verdict: "Unrivaled holographic realism. Scott LaFaro's counter-melodic bass and Evans' delicate touch make you feel physically present at the Vanguard." },
+      streetPriceGermany: { newEur: "€28 – €36", usedEur: "€20 – €30", conditionNote: "Used VG+/EX" },
+      coverSearchTerm: "Bill Evans Trio Waltz for Debby"
+    },
+    {
+      title: "Time Out",
+      artist: "Dave Brubeck Quartet",
+      year: 1959,
+      genre: "Cool Jazz / West Coast Jazz",
+      playtime: "38 min",
+      trackCount: 7,
+      firstTrackTitle: "Blue Rondo à la Turk",
+      standoutTrack: "Take Five",
+      whyOnVinyl: "Joe Morello's dry, snappy snare work and Paul Desmond's alto saxophone have an airy, physical presence in the analog stereo soundstage that makes audio systems shine.",
+      vibeMatch: "Sophisticated rhythm exploration in unusual time signatures with smooth, effortless West Coast cool.",
+      collectorScore: { overallScore: 96, discogsRating: "4.72 / 5.0", ratingsCount: "35k+ ratings", tier: "Essential Masterpiece", verdict: "Desmond's crystal alto tone and Morello's pristine 5/4 drum solo deliver benchmark analog presence and effortless swing." },
+      streetPriceGermany: { newEur: "€25 – €32", usedEur: "€15 – €22", conditionNote: "Used VG+/EX" },
+      coverSearchTerm: "Dave Brubeck Quartet Time Out"
+    },
+    {
+      title: "Chet",
+      artist: "Chet Baker",
+      year: 1959,
+      genre: "Cool Jazz / Ballads",
+      playtime: "41 min",
+      trackCount: 8,
+      firstTrackTitle: "Alone Together",
+      standoutTrack: "It Never Entered My Mind",
+      whyOnVinyl: "Chet Baker's whisper-soft trumpet backed by Bill Evans on piano and Paul Chambers on bass. Pure midnight velvet with analog tape warmth that melts out of the speakers.",
+      vibeMatch: "The definition of melancholic late-night tranquility—pure nocturnal elegance by candlelight.",
+      collectorScore: { overallScore: 96, discogsRating: "4.75 / 5.0", ratingsCount: "18k+ ratings", tier: "Essential Masterpiece", verdict: "Nocturnal jazz perfection. Baker's fragile, lyrical trumpet tone paired with Bill Evans' sensitive chords creates pure analog poetry." },
+      streetPriceGermany: { newEur: "€27 – €35", usedEur: "€18 – €28", conditionNote: "Used VG+/EX" },
+      coverSearchTerm: "Chet Baker Chet"
     }
-  },
-  seventiesRock: {
-    rec: {
+  ],
+
+  seventiesRock: [
+    {
       title: "Rumours",
       artist: "Fleetwood Mac",
       year: 1977,
@@ -1943,23 +2083,59 @@ const SOMMELIER_VAULT = {
       standoutTrack: "Dreams",
       whyOnVinyl: "Produced by Ken Caillat and Richard Dashut, this is one of the most sonically transparent albums in recording history. The acoustic kick drum thud and pristine cymbal air on 'Dreams' come alive with punchy analog separation that digital compression flattens.",
       vibeMatch: "Pure 1977 California gold with monumental vocal harmonies and infectious analog rhythm.",
-      collectorScore: {
-        overallScore: 96,
-        discogsRating: "4.69 / 5.0",
-        ratingsCount: "42k+ ratings",
-        tier: "Essential Masterpiece",
-        verdict: "Pristine acoustic production with immense analog punch. Mick Fleetwood's percussion and three-part harmonies sound breathtaking on vinyl."
-      },
-      streetPriceGermany: {
-        newEur: "€28 – €34",
-        usedEur: "€14 – €22",
-        conditionNote: "Used VG+/EX"
-      },
+      collectorScore: { overallScore: 96, discogsRating: "4.69 / 5.0", ratingsCount: "42k+ ratings", tier: "Essential Masterpiece", verdict: "Pristine acoustic production with immense analog punch. Mick Fleetwood's percussion and three-part harmonies sound breathtaking on vinyl." },
+      streetPriceGermany: { newEur: "€28 – €34", usedEur: "€14 – €22", conditionNote: "Used VG+/EX" },
       coverSearchTerm: "Fleetwood Mac Rumours"
+    },
+    {
+      title: "Wish You Were Here",
+      artist: "Pink Floyd",
+      year: 1975,
+      genre: "Progressive Rock",
+      playtime: "44 min",
+      trackCount: 5,
+      firstTrackTitle: "Shine On You Crazy Diamond (Parts I–V)",
+      standoutTrack: "Wish You Were Here",
+      whyOnVinyl: "The legendary intro of 'Wish You Were Here' sounds as if a distant AM radio is playing in the corner of your room, followed by Gilmour's full 12-string acoustic bursting in with breathtaking physical fidelity.",
+      vibeMatch: "Sprawling, emotional analog synth landscapes and soulful guitar solos mourning Syd Barrett.",
+      collectorScore: { overallScore: 98, discogsRating: "4.79 / 5.0", ratingsCount: "68k+ ratings", tier: "Essential Masterpiece", verdict: "Peak analog synthesizer architecture and emotional guitar solos. The vinyl dynamics on 'Shine On' define hi-fi listening." },
+      streetPriceGermany: { newEur: "€30 – €36", usedEur: "€18 – €28", conditionNote: "Used VG+/EX" },
+      coverSearchTerm: "Pink Floyd Wish You Were Here"
+    },
+    {
+      title: "Exile on Main St.",
+      artist: "The Rolling Stones",
+      year: 1972,
+      genre: "Blues Rock / Roots Rock",
+      playtime: "67 min",
+      trackCount: 18,
+      firstTrackTitle: "Rocks Off",
+      standoutTrack: "Tumbling Dice",
+      whyOnVinyl: "Recorded in the murky, sweat-soaked basement of Villa Nellcôte in France. The double-LP packaging with postcard inserts captures the grime, loose swagger, and raw analog distortion of the Stones at their absolute peak.",
+      vibeMatch: "A double-gatefold blues-rock masterpiece with greasy horns, soulful gospel backing, and unmatched rock-and-roll attitude.",
+      collectorScore: { overallScore: 97, discogsRating: "4.73 / 5.0", ratingsCount: "36k+ ratings", tier: "Essential Masterpiece", verdict: "Murky, swampy analog greatness. Keith Richards' telecaster riffs and the loose basement atmosphere belong on 12-inch vinyl." },
+      streetPriceGermany: { newEur: "€32 – €38", usedEur: "€20 – €30", conditionNote: "Used VG+/EX" },
+      coverSearchTerm: "The Rolling Stones Exile on Main St"
+    },
+    {
+      title: "Boston",
+      artist: "Boston",
+      year: 1976,
+      genre: "Arena Rock / Hard Rock",
+      playtime: "37 min",
+      trackCount: 8,
+      firstTrackTitle: "More Than a Feeling",
+      standoutTrack: "Peace of Mind",
+      whyOnVinyl: "Tom Scholz spent years in his Massachusetts basement perfecting custom analog amplifiers and tape delays to create the massive, crystalline guitar harmonies that define classic American FM radio rock.",
+      vibeMatch: "Huge soaring vocal hooks, twin-lead guitar walls, and undeniable feel-good arena energy.",
+      collectorScore: { overallScore: 95, discogsRating: "4.63 / 5.0", ratingsCount: "28k+ ratings", tier: "Collector Classic", verdict: "A technical triumph of analog multitracking. Scholz's layered acoustic guitars and soaring vocals sound electrifying on vinyl." },
+      streetPriceGermany: { newEur: "€26 – €32", usedEur: "€14 – €20", conditionNote: "Used VG+/EX" },
+      coverSearchTerm: "Boston Boston album"
     }
-  },
-  cityPop: {
-    rec: {
+  ],
+
+  cityPop: [
+    {
       title: "Timely!!",
       artist: "Anri",
       year: 1983,
@@ -1970,23 +2146,59 @@ const SOMMELIER_VAULT = {
       standoutTrack: "Shyness Boy",
       whyOnVinyl: "Arranged and produced by Toshiki Kadomatsu, this album exemplifies the pinnacle of early-80s Tokyo analog studio wizardry. The slap bass is tight and punchy, the brass section explodes with crisp analog sparkle, and the original Japanese pressing obi is legendary.",
       vibeMatch: "Summery neon-lit Tokyo cruise with shimmering slap bass and unforgettable breezy melodies.",
-      collectorScore: {
-        overallScore: 94,
-        discogsRating: "4.65 / 5.0",
-        ratingsCount: "12k+ ratings",
-        tier: "Collector Classic",
-        verdict: "Tokyo 80s analog perfection. Kadomatsu's lush brass and tight slap bass grooves deliver infectious vinyl warmth and audiophile joy."
-      },
-      streetPriceGermany: {
-        newEur: "€35 – €45",
-        usedEur: "€28 – €40",
-        conditionNote: "Original Japanese pressing"
-      },
+      collectorScore: { overallScore: 94, discogsRating: "4.65 / 5.0", ratingsCount: "12k+ ratings", tier: "Collector Classic", verdict: "Tokyo 80s analog perfection. Kadomatsu's lush brass and tight slap bass grooves deliver infectious vinyl warmth and audiophile joy." },
+      streetPriceGermany: { newEur: "€35 – €45", usedEur: "€28 – €40", conditionNote: "Original Japanese pressing" },
       coverSearchTerm: "Anri Timely"
+    },
+    {
+      title: "For You",
+      artist: "Tatsuro Yamashita",
+      year: 1982,
+      genre: "City Pop / Boogie / Funk",
+      playtime: "42 min",
+      trackCount: 8,
+      firstTrackTitle: "SPARKLE",
+      standoutTrack: "LOVELAND, ISLAND",
+      whyOnVinyl: "The legendary opening clean guitar riff on 'SPARKLE' is widely regarded as one of the most sonically pristine rhythm guitar recordings in music history, engineered with pinpoint Japanese analog precision.",
+      vibeMatch: "The crown jewel of Japanese City Pop—pure tropical sunshine, driving rhythm sections, and impeccable analog engineering.",
+      collectorScore: { overallScore: 98, discogsRating: "4.82 / 5.0", ratingsCount: "16k+ ratings", tier: "Essential Masterpiece", verdict: "The definitive holy grail of City Pop. The guitar intro to 'SPARKLE' and the sparkling rhythm section are unmatched on vinyl." },
+      streetPriceGermany: { newEur: "€42 – €52", usedEur: "€34 – €48", conditionNote: "Japanese reissue / original" },
+      coverSearchTerm: "Tatsuro Yamashita For You"
+    },
+    {
+      title: "Pocket Park",
+      artist: "Miki Matsubara",
+      year: 1980,
+      genre: "City Pop / Jazz Funk",
+      playtime: "41 min",
+      trackCount: 11,
+      firstTrackTitle: "Mayonaka no Door / Stay With Me",
+      standoutTrack: "Stay With Me",
+      whyOnVinyl: "Featuring top Japanese session musicians like Tsuyoshi Kon on guitar. The iconic slap bass groove and soulful brass hits on 'Stay With Me' punch through on physical vinyl with undeniable funk drive.",
+      vibeMatch: "Tokyo nightlife magic powered by an irresistible disco-funk groove and world-renowned nostalgic vocals.",
+      collectorScore: { overallScore: 95, discogsRating: "4.71 / 5.0", ratingsCount: "14k+ ratings", tier: "Essential Masterpiece", verdict: "Home of 'Stay With Me'. Outstanding Tokyo session musicianship with punchy analog drums, tight bass, and irresistible City Pop hooks." },
+      streetPriceGermany: { newEur: "€36 – €46", usedEur: "€28 – €38", conditionNote: "Used VG+/EX" },
+      coverSearchTerm: "Miki Matsubara Pocket Park"
+    },
+    {
+      title: "Sunshower",
+      artist: "Taeko Onuki",
+      year: 1977,
+      genre: "City Pop / Jazz Fusion",
+      playtime: "38 min",
+      trackCount: 10,
+      firstTrackTitle: "Summer Connection",
+      standoutTrack: "4:00A.M.",
+      whyOnVinyl: "Arranged by Ryuichi Sakamoto and featuring the Tin Pan Alley rhythm section with Chris Parker on drums. The intricate fusion chords and warm Rhodes piano have extraordinary acoustic headroom on physical vinyl.",
+      vibeMatch: "Lush, breezy Tokyo jazz-fusion with sophisticated horn arrangements and sultry, breezy vocals.",
+      collectorScore: { overallScore: 96, discogsRating: "4.76 / 5.0", ratingsCount: "11k+ ratings", tier: "Essential Masterpiece", verdict: "Sakamoto's genius fusion arrangements and Onuki's breezy vocals make this a revered audiophile classic in Japanese vinyl circles." },
+      streetPriceGermany: { newEur: "€38 – €48", usedEur: "€30 – €42", conditionNote: "Japanese pressing" },
+      coverSearchTerm: "Taeko Onuki Sunshower"
     }
-  },
-  acoustic: {
-    rec: {
+  ],
+
+  acoustic: [
+    {
       title: "Pink Moon",
       artist: "Nick Drake",
       year: 1972,
@@ -1997,23 +2209,59 @@ const SOMMELIER_VAULT = {
       standoutTrack: "Place to Be",
       whyOnVinyl: "Recorded in just two midnight sessions with Sound Techniques engineer John Wood using only Nick Drake's Guild acoustic guitar, voice, and a four-note piano overdub. The vinyl groove conveys every squeak of Drake's fingers on the fretboard and the sheer vulnerability of his breath.",
       vibeMatch: "Heartbreakingly intimate acoustic beauty for a quiet rainy evening by candlelight.",
-      collectorScore: {
-        overallScore: 97,
-        discogsRating: "4.74 / 5.0",
-        ratingsCount: "28k+ ratings",
-        tier: "Essential Masterpiece",
-        verdict: "Sparse, spectral acoustic perfection. The analog proximity of Drake's Guild guitar and quiet vocals makes the listener feel alone in the room with him."
-      },
-      streetPriceGermany: {
-        newEur: "€27 – €33",
-        usedEur: "€18 – €26",
-        conditionNote: "Used VG+/EX"
-      },
+      collectorScore: { overallScore: 97, discogsRating: "4.74 / 5.0", ratingsCount: "28k+ ratings", tier: "Essential Masterpiece", verdict: "Sparse, spectral acoustic perfection. The analog proximity of Drake's Guild guitar and quiet vocals makes the listener feel alone in the room with him." },
+      streetPriceGermany: { newEur: "€27 – €33", usedEur: "€18 – €26", conditionNote: "Used VG+/EX" },
       coverSearchTerm: "Nick Drake Pink Moon"
+    },
+    {
+      title: "Blue",
+      artist: "Joni Mitchell",
+      year: 1971,
+      genre: "Folk / Singer-Songwriter",
+      playtime: "36 min",
+      trackCount: 10,
+      firstTrackTitle: "All I Want",
+      standoutTrack: "A Case of You",
+      whyOnVinyl: "Engineered by Henry Lewy at A&M Studios. Joni's Appalachian dulcimer and acoustic guitar have a visceral, crystalline transparency on vinyl, while her open-tuned chords ring with immense harmonic resonance.",
+      vibeMatch: "Raw, confessional folk poetry with staggering musical elegance and emotional honesty.",
+      collectorScore: { overallScore: 98, discogsRating: "4.80 / 5.0", ratingsCount: "35k+ ratings", tier: "Essential Masterpiece", verdict: "The benchmark confessional folk record. Lewy's pristine engineering captures Joni's dulcimer and soaring soprano with astonishing physical clarity." },
+      streetPriceGermany: { newEur: "€28 – €35", usedEur: "€18 – €26", conditionNote: "Used VG+/EX" },
+      coverSearchTerm: "Joni Mitchell Blue"
+    },
+    {
+      title: "Carrie & Lowell",
+      artist: "Sufjan Stevens",
+      year: 2015,
+      genre: "Indie Folk / Chamber Folk",
+      playtime: "43 min",
+      trackCount: 11,
+      firstTrackTitle: "Death with Dignity",
+      standoutTrack: "Should Have Known Better",
+      whyOnVinyl: "Recorded simply on iPhones and small condenser mics in hotel rooms and living rooms. The air conditioning hum and soft fingerpicking create a hauntingly fragile, physical analog atmosphere.",
+      vibeMatch: "Delicate, whisper-soft acoustic grief transformed into transcendent, luminous folk melodies.",
+      collectorScore: { overallScore: 96, discogsRating: "4.72 / 5.0", ratingsCount: "26k+ ratings", tier: "Essential Masterpiece", verdict: "Intimate modern folk grief. The subtle acoustic picking and whisper-close vocal capture sound devastatingly beautiful on vinyl." },
+      streetPriceGermany: { newEur: "€26 – €32", usedEur: "€16 – €22", conditionNote: "Used VG+/EX" },
+      coverSearchTerm: "Sufjan Stevens Carrie and Lowell"
+    },
+    {
+      title: "Bridge Over Troubled Water",
+      artist: "Simon & Garfunkel",
+      year: 1970,
+      genre: "Folk Rock / Baroque Pop",
+      playtime: "37 min",
+      trackCount: 11,
+      firstTrackTitle: "Bridge Over Troubled Water",
+      standoutTrack: "The Boxer",
+      whyOnVinyl: "Roy Halee's legendary production, including the echoey drum thuds recorded in an elevator shaft on 'The Boxer' and the soaring Wall of Sound orchestration on the title track, deliver monumental dynamic headroom on physical vinyl.",
+      vibeMatch: "Soaring acoustic harmonies, baroque folk arrangements, and grand orchestral climaxes.",
+      collectorScore: { overallScore: 96, discogsRating: "4.68 / 5.0", ratingsCount: "30k+ ratings", tier: "Essential Masterpiece", verdict: "Halee's production triumphs on vinyl. The spatial reverberation on 'The Boxer' and Garfunkel's soaring vocals demonstrate physical dynamic range." },
+      streetPriceGermany: { newEur: "€26 – €32", usedEur: "€12 – €18", conditionNote: "Used VG+/EX" },
+      coverSearchTerm: "Simon and Garfunkel Bridge Over Troubled Water"
     }
-  },
-  audiophile: {
-    rec: {
+  ],
+
+  audiophile: [
+    {
       title: "Aja",
       artist: "Steely Dan",
       year: 1977,
@@ -2024,21 +2272,57 @@ const SOMMELIER_VAULT = {
       standoutTrack: "Aja",
       whyOnVinyl: "Engineered by Roger Nichols and Bill Schnee, this is universally recognized as the gold standard for testing hi-fi equipment. Steve Gadd's legendary drum solo on the title track and Wayne Shorter's tenor sax cut through with pinpoint holographic stereo imaging and black-background analog silence.",
       vibeMatch: "The ultimate hi-fi demonstration record—guaranteed to showcase every ounce of detail in your cartridge and speakers.",
-      collectorScore: {
-        overallScore: 98,
-        discogsRating: "4.79 / 5.0",
-        ratingsCount: "35k+ ratings",
-        tier: "Essential Masterpiece",
-        verdict: "The undisputed holy grail of hi-fi testing. Incredible dynamic headroom, Steve Gadd's legendary drumming, and pinpoint stereo imaging."
-      },
-      streetPriceGermany: {
-        newEur: "€30 – €36",
-        usedEur: "€16 – €26",
-        conditionNote: "Used VG+/EX"
-      },
+      collectorScore: { overallScore: 98, discogsRating: "4.79 / 5.0", ratingsCount: "35k+ ratings", tier: "Essential Masterpiece", verdict: "The undisputed holy grail of hi-fi testing. Incredible dynamic headroom, Steve Gadd's legendary drumming, and pinpoint stereo imaging." },
+      streetPriceGermany: { newEur: "€30 – €36", usedEur: "€16 – €26", conditionNote: "Used VG+/EX" },
       coverSearchTerm: "Steely Dan Aja"
+    },
+    {
+      title: "The Nightfly",
+      artist: "Donald Fagen",
+      year: 1982,
+      genre: "Jazz Rock / Sophisti-Pop",
+      playtime: "39 min",
+      trackCount: 8,
+      firstTrackTitle: "I.G.Y.",
+      standoutTrack: "New Frontier",
+      whyOnVinyl: "One of the earliest full 3M digital-to-analog vinyl masterings. The bass groove on 'I.G.Y.' is famously used by loudspeaker designers worldwide to evaluate transient response and sub-bass clarity.",
+      vibeMatch: "Sleek, futuristic 1950s optimism engineered with microscopic studio precision and infectious grooves.",
+      collectorScore: { overallScore: 97, discogsRating: "4.75 / 5.0", ratingsCount: "26k+ ratings", tier: "Essential Masterpiece", verdict: "The reference recording for transient bass accuracy and clean soundstage. Fagen's perfectionism yields reference-grade physical audio." },
+      streetPriceGermany: { newEur: "€28 – €34", usedEur: "€16 – €24", conditionNote: "Used VG+/EX" },
+      coverSearchTerm: "Donald Fagen The Nightfly"
+    },
+    {
+      title: "Brothers in Arms",
+      artist: "Dire Straits",
+      year: 1985,
+      genre: "Roots Rock / Blues Rock",
+      playtime: "55 min",
+      trackCount: 9,
+      firstTrackTitle: "So Far Away",
+      standoutTrack: "Money for Nothing",
+      whyOnVinyl: "Engineered by Neil Dorfsman at AIR Studios Montserrat. The intro of 'Money for Nothing' with Sting's vocals and Mark Knopfler's explosive Les Paul riff remains the classic test for turntable dynamic range.",
+      vibeMatch: "Peerless dynamic range with crisp, articulate guitar tones and atmospheric synth beds.",
+      collectorScore: { overallScore: 96, discogsRating: "4.67 / 5.0", ratingsCount: "42k+ ratings", tier: "Essential Masterpiece", verdict: "Explosive dynamic punch. Knopfler's fingers-on-strings guitar technique and pristine Montserrat studio air sound majestic on vinyl." },
+      streetPriceGermany: { newEur: "€28 – €34", usedEur: "€14 – €22", conditionNote: "Used VG+/EX" },
+      coverSearchTerm: "Dire Straits Brothers in Arms"
+    },
+    {
+      title: "Crime of the Century",
+      artist: "Supertramp",
+      year: 1974,
+      genre: "Progressive Rock / Art Rock",
+      playtime: "44 min",
+      trackCount: 8,
+      firstTrackTitle: "School",
+      standoutTrack: "Bloody Well Right",
+      whyOnVinyl: "Ken Scott's masterpiece of dynamic extremes. From the faint, lonely harmonica opening of 'School' to the thundering piano chords and sax climaxes, the acoustic headroom tests the limit of any phono cartridge.",
+      vibeMatch: "Theatrical progressive rock with staggering dynamic range from near-silence to thunderous climaxes.",
+      collectorScore: { overallScore: 96, discogsRating: "4.68 / 5.0", ratingsCount: "30k+ ratings", tier: "Essential Masterpiece", verdict: "Ken Scott's benchmark for physical acoustic dynamics. Extreme contrast between delicate whisper passages and roaring rock crescendos." },
+      streetPriceGermany: { newEur: "€26 – €32", usedEur: "€14 – €22", conditionNote: "Used VG+/EX" },
+      coverSearchTerm: "Supertramp Crime of the Century"
     }
-  },
+  ],
+
   surprisePool: [
     {
       title: "Random Access Memories",
@@ -2084,6 +2368,36 @@ const SOMMELIER_VAULT = {
       collectorScore: { overallScore: 97, discogsRating: "4.75 / 5.0", ratingsCount: "38k+ ratings", tier: "Essential Masterpiece", verdict: "The definitive shoegaze monument. The physical analog lacquer cut delivers unmatched spatial texture and tidal waves of tone." },
       streetPriceGermany: { newEur: "€32 – €38", usedEur: "€22 – €30", conditionNote: "Used VG+/EX" },
       coverSearchTerm: "My Bloody Valentine Loveless"
+    },
+    {
+      title: "Songs in the Key of Life",
+      artist: "Stevie Wonder",
+      year: 1976,
+      genre: "Soul / Funk / R&B",
+      playtime: "105 min",
+      trackCount: 21,
+      firstTrackTitle: "Love's in Need of Love Today",
+      standoutTrack: "Sir Duke",
+      whyOnVinyl: "A monumental double gatefold LP with a bonus 7-inch EP. The horns on 'Sir Duke' and the analog bass synth on 'I Wish' radiate glorious physical joy and acoustic punch.",
+      vibeMatch: "Pure musical genius and joyous 70s funk groove that feels alive on a turning physical platter.",
+      collectorScore: { overallScore: 98, discogsRating: "4.81 / 5.0", ratingsCount: "50k+ ratings", tier: "Essential Masterpiece", verdict: "Stevie Wonder's magnum opus. Spectacular 1970s analog soul with punchy live rhythm sections and infectious brass brilliance." },
+      streetPriceGermany: { newEur: "€36 – €44", usedEur: "€22 – €32", conditionNote: "Used VG+/EX" },
+      coverSearchTerm: "Stevie Wonder Songs in the Key of Life"
+    },
+    {
+      title: "Ege Bamyasi",
+      artist: "Can",
+      year: 1972,
+      genre: "Krautrock / Experimental Rock",
+      playtime: "39 min",
+      trackCount: 7,
+      firstTrackTitle: "Pinch",
+      standoutTrack: "Vitamin C",
+      whyOnVinyl: "Recorded in an abandoned cinema in Weilerswist, Germany. Jaki Liebezeit's legendary metronomic drumming on 'Vitamin C' has an infectious analog pocket that defined modern groove.",
+      vibeMatch: "Hypnotic German Krautrock grooves with eccentric avant-garde funk that sounds magnificent on physical vinyl.",
+      collectorScore: { overallScore: 96, discogsRating: "4.73 / 5.0", ratingsCount: "25k+ ratings", tier: "Essential Masterpiece", verdict: "German Krautrock gold. Liebezeit's robotic drum precision and Czukay's editing make this an essential physical record." },
+      streetPriceGermany: { newEur: "€28 – €35", usedEur: "€20 – €30", conditionNote: "Used VG+/EX" },
+      coverSearchTerm: "Can Ege Bamyasi"
     }
   ]
 };
@@ -2093,26 +2407,46 @@ function matchSommelierVault(vibeText) {
   const t = vibeText.toLowerCase();
 
   if (t.includes("must-have") || t.includes("must have") || t.includes("legendary stature") || t.includes("essential, iconic")) {
-    return SOMMELIER_VAULT.mustHave.rec;
+    const pool = SOMMELIER_VAULT.mustHave;
+    const item = pool[pillCrateState.mustHave % pool.length];
+    pillCrateState.mustHave++;
+    return item;
   }
   if (t.includes("surprise") || t.includes("critically acclaimed 5/5")) {
     const pool = SOMMELIER_VAULT.surprisePool;
-    return pool[Math.floor(Math.random() * pool.length)];
+    const item = pool[pillCrateState.surprise % pool.length];
+    pillCrateState.surprise++;
+    return item;
   }
   if (t.includes("midnight jazz") || (t.includes("jazz") && t.includes("club"))) {
-    return SOMMELIER_VAULT.midnightJazz.rec;
+    const pool = SOMMELIER_VAULT.midnightJazz;
+    const item = pool[pillCrateState.midnightJazz % pool.length];
+    pillCrateState.midnightJazz++;
+    return item;
   }
   if (t.includes("70s rock") || (t.includes("1970") && t.includes("rock"))) {
-    return SOMMELIER_VAULT.seventiesRock.rec;
+    const pool = SOMMELIER_VAULT.seventiesRock;
+    const item = pool[pillCrateState.seventiesRock % pool.length];
+    pillCrateState.seventiesRock++;
+    return item;
   }
   if (t.includes("city pop") || t.includes("japanese") || t.includes("anri")) {
-    return SOMMELIER_VAULT.cityPop.rec;
+    const pool = SOMMELIER_VAULT.cityPop;
+    const item = pool[pillCrateState.cityPop % pool.length];
+    pillCrateState.cityPop++;
+    return item;
   }
   if (t.includes("acoustic") || t.includes("singer-songwriter") || t.includes("folk")) {
-    return SOMMELIER_VAULT.acoustic.rec;
+    const pool = SOMMELIER_VAULT.acoustic;
+    const item = pool[pillCrateState.acoustic % pool.length];
+    pillCrateState.acoustic++;
+    return item;
   }
   if (t.includes("audiophile") || t.includes("system test") || t.includes("test pressing")) {
-    return SOMMELIER_VAULT.audiophile.rec;
+    const pool = SOMMELIER_VAULT.audiophile;
+    const item = pool[pillCrateState.audiophile % pool.length];
+    pillCrateState.audiophile++;
+    return item;
   }
   if (t.includes("shoegaze") || t.includes("loveless")) {
     return SOMMELIER_VAULT.surprisePool[2];
@@ -2126,6 +2460,7 @@ function matchSommelierVault(vibeText) {
 
 // Render Sommelier Pick Record (Unified for Vault & LLM Generation)
 function renderSommelierAlbumRecord(rec, isInstantVault = false) {
+  const sessionToken = ++activeAppraisalId;
   stopAudiophileLoadingTicker();
   loadingState.classList.add("hidden");
   resultsSection.classList.remove("hidden");
@@ -2159,20 +2494,9 @@ function renderSommelierAlbumRecord(rec, isInstantVault = false) {
   window.__SOMMELIER_NOTE__ = sommelierNote;
   renderSommelierLore(sommelierNote);
 
-  // Initial placeholder sleeve art
-  albumCoverImg.src = generateSvgCover(rec.title, rec.artist);
-
-  // Display initial estimated street prices immediately
-  const reg = STORE_REGISTRY[currentRegion] || STORE_REGISTRY.DE;
-  priceNewEl.textContent = formatRegionalPrice(rec.streetPriceGermany?.newEur || "€29", currentRegion);
-  priceNewNoteEl.textContent = `${reg.name} retail reissue`;
-  priceUsedEl.textContent = formatRegionalPrice(rec.streetPriceGermany?.usedEur || "€15", currentRegion);
-  priceUsedNoteEl.textContent = rec.streetPriceGermany?.conditionNote || "Used VG+/EX condition";
-  linksNewEl.innerHTML = `<span class="links-loading-pulse">🔍 Loading store links...</span>`;
-  linksUsedEl.innerHTML = `<span class="links-loading-pulse">🔍 Loading second-hand markets...</span>`;
-
   const standoutSong = rec.firstTrackTitle || rec.standoutTrack || "Track 1";
 
+  // CRITICAL FIX: Update currentAlbumData BEFORE setting images or launching async jobs!
   currentAlbumData = {
     title: rec.title,
     artist: rec.artist,
@@ -2183,7 +2507,7 @@ function renderSommelierAlbumRecord(rec, isInstantVault = false) {
     firstTrackTitle: standoutSong,
     youtubeVideoId: "",
     collectorScore: rec.collectorScore,
-    coverUrl: albumCoverImg.src,
+    coverUrl: rec.coverUrl || generateSvgCover(rec.title, rec.artist),
     streetPriceGermany: rec.streetPriceGermany,
     baseNewEur: rec.streetPriceGermany?.newEur || "€29",
     baseUsedEur: rec.streetPriceGermany?.usedEur || "€15",
@@ -2192,29 +2516,43 @@ function renderSommelierAlbumRecord(rec, isInstantVault = false) {
     currentAltOffset: 0
   };
 
+  // Immediate cover setup with SVG placeholder while fetching
+  if (rec.coverUrl && !rec.coverUrl.startsWith("data:image/svg")) {
+    albumCoverImg.src = rec.coverUrl;
+  } else {
+    albumCoverImg.src = generateSvgCover(rec.title, rec.artist);
+    fetchAlbumCover(rec.coverSearchTerm || `${rec.artist} ${rec.title}`, rec.artist, rec.title).then(highRes => {
+      if (activeAppraisalId !== sessionToken) return;
+      if (currentAlbumData && currentAlbumData.title === rec.title && highRes) {
+        albumCoverImg.src = highRes;
+        currentAlbumData.coverUrl = highRes;
+      }
+    });
+  }
+
+  // Display initial estimated street prices immediately
+  const reg = STORE_REGISTRY[currentRegion] || STORE_REGISTRY.DE;
+  priceNewEl.textContent = formatRegionalPrice(rec.streetPriceGermany?.newEur || "€29", currentRegion);
+  priceNewNoteEl.textContent = `${reg.name} retail reissue`;
+  priceUsedEl.textContent = formatRegionalPrice(rec.streetPriceGermany?.usedEur || "€15", currentRegion);
+  priceUsedNoteEl.textContent = rec.streetPriceGermany?.conditionNote || "Used VG+/EX condition";
+  linksNewEl.innerHTML = `<span class="links-loading-pulse">🔍 Loading store links...</span>`;
+  linksUsedEl.innerHTML = `<span class="links-loading-pulse">🔍 Loading second-hand markets...</span>`;
+
   heroFavBtn.classList.toggle("active", isFavorited(rec.title, rec.artist));
 
   // Sync URL and record session
   recordLastDisplayedAlbum(`${rec.artist} - ${rec.title}`, rec);
   showToast(isInstantVault 
-    ? `✨ Instant Pick: "${rec.title}" by ${rec.artist}!` 
+    ? `✨ Crate Pick: "${rec.title}" by ${rec.artist}!` 
     : `🎯 Sommelier Pick: "${rec.title}" by ${rec.artist}!`);
 
-  // Skeletons for crate alternatives while streaming
   renderAlternativesSkeletons();
 
-  // PHASE 2: ASYNCHRONOUS BACKGROUND ASSETS (Non-blocking!)
-  fetchAlbumCover(rec.coverSearchTerm || `${rec.artist} ${rec.title}`, rec.artist, rec.title).then(highRes => {
-    if (highRes) {
-      albumCoverImg.src = highRes;
-      if (currentAlbumData && currentAlbumData.title === rec.title) {
-        currentAlbumData.coverUrl = highRes;
-      }
-    }
-  });
-
+  // Async DJ audio queue load with sessionToken guard
   loadYouTubeTrack1(rec.artist, rec.title, standoutSong).then(vId => {
-    if (vId && currentAlbumData) {
+    if (activeAppraisalId !== sessionToken) return;
+    if (vId && currentAlbumData && currentAlbumData.title === rec.title) {
       currentAlbumData.youtubeVideoId = vId;
     }
   });
@@ -2222,12 +2560,11 @@ function renderSommelierAlbumRecord(rec, isInstantVault = false) {
   asyncResearchBuyLinks(rec.title, rec.artist);
 
   fetchRealTimePrices(rec.title, rec.artist).then(freshPrices => {
-    if (freshPrices) {
-      if (currentAlbumData) {
-        currentAlbumData.streetPriceGermany = freshPrices;
-        currentAlbumData.baseNewEur = freshPrices.newEur;
-        currentAlbumData.baseUsedEur = freshPrices.usedEur;
-      }
+    if (activeAppraisalId !== sessionToken) return;
+    if (freshPrices && currentAlbumData && currentAlbumData.title === rec.title) {
+      currentAlbumData.streetPriceGermany = freshPrices;
+      currentAlbumData.baseNewEur = freshPrices.newEur;
+      currentAlbumData.baseUsedEur = freshPrices.usedEur;
       priceNewEl.textContent = formatRegionalPrice(freshPrices.newEur || "€29", currentRegion);
       priceUsedEl.textContent = formatRegionalPrice(freshPrices.usedEur || "€15", currentRegion);
       priceUsedNoteEl.textContent = freshPrices.conditionNote || "VG+ / EX condition";
@@ -2259,6 +2596,7 @@ function renderSommelierAlbumRecord(rec, isInstantVault = false) {
 async function findAndAppraiseSommelierVinyl(vibeText) {
   if (!vibeText || !vibeText.trim()) return;
 
+  const sessionToken = ++activeAppraisalId;
   const inputEl = document.getElementById("sommelier-input");
   const submitBtn = document.getElementById("sommelier-submit-btn");
   if (inputEl) inputEl.value = vibeText;
@@ -2279,6 +2617,7 @@ async function findAndAppraiseSommelierVinyl(vibeText) {
     startAudiophileLoadingTicker(`Dropping needle on "${vaultHit.title}"...`);
     // Brief 500ms tactile delay to let user enjoy the spinning 180g vinyl & tonearm needle drop
     await new Promise(resolve => setTimeout(resolve, 520));
+    if (activeAppraisalId !== sessionToken) return;
     renderSommelierAlbumRecord(vaultHit, true);
     if (submitBtn) {
       submitBtn.disabled = false;
@@ -2324,6 +2663,7 @@ Respond strictly in valid JSON:
 }`;
 
     const res = await callGeminiFlash(prompt);
+    if (activeAppraisalId !== sessionToken) return;
     const rec = res?.album;
 
     if (!rec || !rec.title || !rec.artist) {
@@ -2333,6 +2673,7 @@ Respond strictly in valid JSON:
     renderSommelierAlbumRecord(rec, false);
 
   } catch (err) {
+    if (activeAppraisalId !== sessionToken) return;
     console.warn("Sommelier fast-path error, falling back to direct appraisal:", err);
     await appraiseAlbum(vibeText);
   } finally {
@@ -2668,8 +3009,11 @@ async function restoreLastSessionAlbum() {
 async function appraiseAlbum(albumName) {
   if (!albumName || !albumName.trim()) return;
 
+  const sessionToken = ++activeAppraisalId;
+
   if (!hasServerKey && !getActiveApiKey()) {
     await checkServerConfig();
+    if (activeAppraisalId !== sessionToken) return;
   }
 
   if (albumInput && !albumInput.value) {
@@ -2686,6 +3030,7 @@ async function appraiseAlbum(albumName) {
   // STEP 1: CHECK STORAGE DATABASE (CACHE HIT -> 0ms LOAD)
   // =========================================================================
   const cached = await checkAlbumCache(albumName);
+  if (activeAppraisalId !== sessionToken) return;
 
   if (cached) {
     stopAudiophileLoadingTicker();
@@ -2734,6 +3079,7 @@ async function appraiseAlbum(albumName) {
 
     // Load Track 1 YouTube Listening Station & DJ queue
     loadYouTubeTrack1(cached.artist, cached.title, cached.firstTrackTitle, cached.youtubeVideoId).then(vId => {
+      if (activeAppraisalId !== sessionToken) return;
       if (vId && !cached.youtubeVideoId) {
         cached.youtubeVideoId = vId;
         saveAlbumToCache(cached);
@@ -2759,6 +3105,8 @@ async function appraiseAlbum(albumName) {
 
     // Async fetch ONLY real-time prices live
     fetchRealTimePrices(cached.title, cached.artist).then(freshPrices => {
+      if (activeAppraisalId !== sessionToken) return;
+      if (currentAlbumData && currentAlbumData.title !== cached.title) return;
       const reg = STORE_REGISTRY[currentRegion] || STORE_REGISTRY.DE;
       if (freshPrices) {
         if (currentAlbumData) {
@@ -2867,6 +3215,7 @@ Return strictly a valid JSON object matching this schema:
 
   try {
     const data = await callGeminiFlash(prompt);
+    if (activeAppraisalId !== sessionToken) return;
     const album = data.album;
     const alternatives = data.alternatives || [];
 
@@ -2919,6 +3268,7 @@ Return strictly a valid JSON object matching this schema:
 
     // Load Track 1 YouTube Listening Station below fav heart
     loadYouTubeTrack1(album.artist, album.title, album.firstTrackTitle).then(vId => {
+      if (activeAppraisalId !== sessionToken) return;
       if (vId) {
         album.youtubeVideoId = vId;
         saveAlbumToCache({
@@ -2955,11 +3305,10 @@ Return strictly a valid JSON object matching this schema:
     });
 
     fetchAlbumCover(album.coverSearchTerm || album.title, album.artist, album.title).then(highRes => {
-      if (highRes) {
+      if (activeAppraisalId !== sessionToken) return;
+      if (highRes && currentAlbumData && currentAlbumData.title === album.title) {
         albumCoverImg.src = highRes;
-        if (currentAlbumData && currentAlbumData.title === album.title) {
-          currentAlbumData.coverUrl = highRes;
-        }
+        currentAlbumData.coverUrl = highRes;
         // Save complete record with high-res image to storage database
         saveAlbumToCache({
           title: album.title,
@@ -3014,6 +3363,7 @@ Return strictly a valid JSON object matching this schema:
 async function asyncResearchBuyLinks(title, artist) {
   // Staggered resolution for smooth streaming appearance
   await new Promise(resolve => setTimeout(resolve, 300));
+  if (currentAlbumData && currentAlbumData.title !== title) return;
   const newLinks = getNewVinylLinks(title, artist);
   linksNewEl.innerHTML = newLinks.map(link => `
     <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="buy-link-pill fade-in" title="Buy new on ${escapeXml(link.name)}">
@@ -3022,6 +3372,7 @@ async function asyncResearchBuyLinks(title, artist) {
   `).join("");
 
   await new Promise(resolve => setTimeout(resolve, 200));
+  if (currentAlbumData && currentAlbumData.title !== title) return;
   const usedLinks = getUsedVinylLinks(title, artist);
   linksUsedEl.innerHTML = usedLinks.map(link => `
     <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="buy-link-pill fade-in" title="Buy used on ${escapeXml(link.name)}">
@@ -3301,12 +3652,13 @@ Return strictly a valid JSON object matching this schema:
 
       if (currentAlbumData && currentAlbumData.title === cached.title) {
         currentAlbumData.alternatives = cached.alternatives;
+        const offset = forceExpand ? 3 : (currentAlbumData?.currentAltOffset || 0);
+        renderAlternativesProgressive(cached.alternatives, offset);
       }
-
-      const offset = forceExpand ? 3 : (currentAlbumData?.currentAltOffset || 0);
-      renderAlternativesProgressive(cached.alternatives, offset);
     } else {
-      renderAlternativesProgressive(cached.alternatives || [], 0);
+      if (currentAlbumData && currentAlbumData.title === cached.title) {
+        renderAlternativesProgressive(cached.alternatives || [], 0);
+      }
     }
   } catch (err) {
     console.error("fetchMissingAlternatives failed:", err);
