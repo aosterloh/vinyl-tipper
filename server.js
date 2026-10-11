@@ -64,7 +64,7 @@ const RECOMMENDATIONS_FILE = path.join(DATA_DIR, 'recommendations.json');
 const FAVORITES_FILE = path.join(DATA_DIR, 'favorites.json');
 const STATS_FILE = path.join(DATA_DIR, 'stats.json');
 
-const ADMIN_EMAILS = ['aosterloh@gmail.com', 'aosterloh@google.com'];
+const ADMIN_EMAILS = ['aosterloh@gmail.com'];
 
 const CORPORATE_FIREBASE_CONFIG = {
   apiKey: "AIzaSyBDfu44ElID27cy2lvozY2BD1izTq7AIuo",

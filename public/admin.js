@@ -10,7 +10,7 @@ import {
 // ============================================================================
 // 1. CONFIGURATION & ADMIN AUTHORIZATION
 // ============================================================================
-const ADMIN_EMAILS = ["aosterloh@gmail.com", "aosterloh@google.com"];
+const ADMIN_EMAILS = ["aosterloh@gmail.com"];
 
 const DEFAULT_FIREBASE_CONFIG = {
   apiKey: "AIzaSyBohm2Obe3zqxav80otAKVmYkYlsQtu5yk",
@@ -23,18 +23,13 @@ const DEFAULT_FIREBASE_CONFIG = {
 const activeConfig = window.__FIREBASE_CONFIG__ || DEFAULT_FIREBASE_CONFIG;
 const app = initializeApp(activeConfig);
 const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
-provider.setCustomParameters({ prompt: "select_account" });
 
 let currentUser = null;
 let cachedStatsData = null;
 let pollTimer = null;
 
 // DOM Elements
-const authGate = document.getElementById("admin-auth-gate");
 const dashboardShell = document.getElementById("admin-dashboard-shell");
-const googleSignInBtn = document.getElementById("admin-google-signin-btn");
-const authErrorMsg = document.getElementById("admin-auth-error-msg");
 const signoutBtn = document.getElementById("admin-signout-btn");
 const userAvatar = document.getElementById("admin-user-avatar");
 const refreshBtn = document.getElementById("refresh-stats-btn");
@@ -101,29 +96,19 @@ function createAvatarPlaceholder(name) {
 }
 
 // ============================================================================
-// 4. AUTHENTICATION LIFECYCLE
+// 4. AUTHENTICATION LIFECYCLE (STEALTH MODE: ONLY aosterloh@gmail.com)
 // ============================================================================
 function checkAdminAccess(user) {
   if (!user || !user.email) return false;
-  return ADMIN_EMAILS.includes(user.email.toLowerCase());
+  return ADMIN_EMAILS.includes(user.email.toLowerCase().trim());
 }
 
 onAuthStateChanged(auth, async (user) => {
-  if (user) {
-    if (!checkAdminAccess(user)) {
-      if (authErrorMsg) {
-        authErrorMsg.textContent = `Access Denied: You authenticated with ${user.email}. Only authorized administrators (aosterloh@gmail.com) are permitted.`;
-        authErrorMsg.classList.remove("hidden");
-      }
-      await signOut(auth);
-      currentUser = null;
-      showGate(true);
-      return;
-    }
-
-    // Admin verified!
+  if (user && checkAdminAccess(user)) {
+    // Admin verified! Reveal dashboard
     currentUser = user;
-    showGate(false);
+    document.body.style.display = "block";
+    if (dashboardShell) dashboardShell.classList.remove("hidden");
 
     if (userAvatar) {
       const name = user.displayName || user.email || "Alex";
@@ -132,53 +117,27 @@ onAuthStateChanged(auth, async (user) => {
         userAvatar.src = createAvatarPlaceholder(name);
       };
       userAvatar.src = user.photoURL || createAvatarPlaceholder(name);
-      userAvatar.title = `${user.displayName || "Admin"} (${user.email})`;
+      userAvatar.title = user.displayName || "Admin";
     }
 
     // Load live metrics and start polling
     await fetchAndRenderStats();
     startPolling();
   } else {
+    // Non-admin or unauthenticated: immediately redirect silently to homepage
+    if (user) {
+      await signOut(auth);
+    }
     currentUser = null;
-    showGate(true);
     stopPolling();
+    window.location.replace("/");
   }
 });
-
-function showGate(isGateVisible) {
-  if (isGateVisible) {
-    if (authGate) authGate.classList.remove("hidden");
-    if (dashboardShell) dashboardShell.classList.add("hidden");
-  } else {
-    if (authGate) authGate.classList.add("hidden");
-    if (dashboardShell) dashboardShell.classList.remove("hidden");
-  }
-}
-
-if (googleSignInBtn) {
-  googleSignInBtn.addEventListener("click", async () => {
-    try {
-      googleSignInBtn.disabled = true;
-      googleSignInBtn.style.opacity = "0.7";
-      if (authErrorMsg) authErrorMsg.classList.add("hidden");
-      await signInWithPopup(auth, provider);
-    } catch (err) {
-      console.error("Admin sign-in failed:", err);
-      if (authErrorMsg) {
-        authErrorMsg.textContent = err.message || "Sign-in failed. Please try again.";
-        authErrorMsg.classList.remove("hidden");
-      }
-    } finally {
-      googleSignInBtn.disabled = false;
-      googleSignInBtn.style.opacity = "1";
-    }
-  });
-}
 
 if (signoutBtn) {
   signoutBtn.addEventListener("click", async () => {
     await signOut(auth);
-    showToast("👋 Admin signed out");
+    window.location.replace("/");
   });
 }
 

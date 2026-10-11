@@ -1542,7 +1542,7 @@ function createAvatarPlaceholder(name) {
 // ============================================================================
 // 4b. ADMIN AUTHORIZATION & WEBSITE ANALYTICS ENGINE
 // ============================================================================
-const ADMIN_EMAILS = ["aosterloh@gmail.com", "aosterloh@google.com"];
+const ADMIN_EMAILS = ["aosterloh@gmail.com"];
 
 function checkAdminAccess(user) {
   if (!user || !user.email) return false;

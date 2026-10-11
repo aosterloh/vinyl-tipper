@@ -3,6 +3,10 @@ Allow: /
 Allow: /api/images/
 Disallow: /api/gemini
 Disallow: /api/session/
+Disallow: /admin
+Disallow: /admin.html
+Disallow: /admin.js
+Disallow: /api/admin/
 Disallow: /healthz
 Disallow: /health
 
