@@ -74,7 +74,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=3.6">
+  <link rel="stylesheet" href="style.css?v=3.7">
 </head>
 <body>
   <!-- AUTHENTICATION GATE (Visible only when corporate mode is enforced and user logged out) -->
@@ -220,6 +220,28 @@
             <div id="autocomplete-dropdown" class="autocomplete-dropdown hidden" role="listbox" aria-label="Top album suggestions"></div>
           </div>
         </form>
+
+        <!-- Pick of the Day Banner (From the 365 Holy-Grail Vinyl Vault) -->
+        <div id="potd-banner" class="potd-banner">
+          <div class="potd-main">
+            <span class="potd-sparkle">✨</span>
+            <span class="potd-badge">Pick of the Day</span>
+            <span id="potd-day-pill" class="potd-day-pill">Day 285</span>
+            <div id="potd-clickable" class="potd-clickable" role="button" tabindex="0" title="Click to spin today's featured holy-grail pressing">
+              <span id="potd-title-artist" class="potd-title-artist">Miles Davis — Kind of Blue</span>
+              <span id="potd-year" class="potd-meta-pill">1959</span>
+              <span id="potd-genre" class="potd-genre-pill">Modal Jazz</span>
+            </div>
+          </div>
+          <div class="potd-actions">
+            <button type="button" id="potd-spin-btn" class="potd-action-btn potd-spin-btn" title="Appraise & Spin on Turntable">
+              ▶ Spin
+            </button>
+            <button type="button" id="potd-shuffle-btn" class="potd-action-btn potd-shuffle-btn" title="Roll another landmark from the 365 Vault">
+              🎲 Roll Another
+            </button>
+          </div>
+        </div>
 
         <!-- Vinyl Sommelier / "Find My Next Vinyl" Discovery Bar -->
         <div class="sommelier-bar" id="sommelier-bar">
@@ -711,6 +733,6 @@
   <script src="https://www.youtube.com/iframe_api"></script>
 
   <!-- FIREBASE AND CLIENT APPLICATION SCRIPT -->
-  <script type="module" src="app.js?v=3.6"></script>
+  <script type="module" src="app.js?v=3.7"></script>
 </body>
 </html>

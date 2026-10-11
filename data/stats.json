@@ -1,6 +1,6 @@
 {
   "visits": {
-    "total": 28,
+    "total": 34,
     "uniqueSessions": [
       "sid_test_1",
       "sid_test_2",
@@ -15,16 +15,57 @@
       "sid_mv4ckpl4_qkwlck",
       "sid_mv4cqs1a_okiltg",
       "sid_mv4cxutg_iqi3yh",
-      "sid_mv4d5whp_zfraot"
+      "sid_mv4d5whp_zfraot",
+      "sid_mv4e6n6s_dwid0a",
+      "sid_mv4e7ut2_ulu8ag",
+      "sid_mv4e7vd8_7q2rnn",
+      "sid_mv4e7vs0_1dcaao",
+      "sid_mv4e7wqu_xu7vg0"
     ],
     "byDay": {
-      "2026-10-11": 28
+      "2026-10-11": 34
     }
   },
   "searches": {
-    "total": 25,
+    "total": 31,
     "aiAppraisals": 3,
     "recent": [
+      {
+        "query": "Paul Bley - Open, to Love",
+        "timestamp": 1791757610906,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Keith Jarrett - Facing You",
+        "timestamp": 1791757609651,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Keith Jarrett - Facing You",
+        "timestamp": 1791757609107,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Keith Jarrett - Facing You",
+        "timestamp": 1791757608413,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Portishead - Dummy",
+        "timestamp": 1791757566296,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Portishead - Dummy",
+        "timestamp": 1791757551932,
+        "hit": true,
+        "isAi": false
+      },
       {
         "query": "Donato Dozzy K",
         "timestamp": 1791755849039,
@@ -143,10 +184,12 @@
     "topQueries": {
       "luigi tozzi - deep blue": 5,
       "pink floyd - animals": 3,
-      "paul bley - open, to love": 12,
+      "paul bley - open, to love": 13,
       "voices from the lake voices from the lake": 1,
       "voices from the lake - voices from the lake": 3,
-      "donato dozzy k": 1
+      "donato dozzy k": 1,
+      "portishead - dummy": 2,
+      "keith jarrett - facing you": 3
     }
   },
   "clicks": {
@@ -168,5 +211,5 @@
     ]
   },
   "createdAt": 1791738256122,
-  "lastUpdated": 1791755849039
+  "lastUpdated": 1791757610906
 }

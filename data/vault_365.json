@@ -1,0 +1,3287 @@
+[
+  {
+    "day": 1,
+    "artist": "Tete Montoliu",
+    "title": "Songs for Love",
+    "year": 1974,
+    "genre": "Bop / Solo Piano",
+    "tagline": "Essential Bop / Solo Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Tete Montoliu - Songs for Love"
+  },
+  {
+    "day": 2,
+    "artist": "John Coltrane",
+    "title": "A Love Supreme",
+    "year": 1965,
+    "genre": "Spiritual Jazz",
+    "tagline": "A profound spiritual suite recorded in a single four-part session on Van Gelder tape.",
+    "query": "John Coltrane - A Love Supreme"
+  },
+  {
+    "day": 3,
+    "artist": "Dave Brubeck Quartet",
+    "title": "Time Out",
+    "year": 1959,
+    "genre": "Cool Jazz",
+    "tagline": "Groundbreaking asymmetric time signatures featuring the iconic audiophile benchmark Take Five.",
+    "query": "Dave Brubeck Quartet - Time Out"
+  },
+  {
+    "day": 4,
+    "artist": "Bill Evans Trio",
+    "title": "Sunday at the Village Vanguard",
+    "year": 1961,
+    "genre": "Post-Bop",
+    "tagline": "The pinnacle of empathetic piano trio conversation, recorded live on analog tape.",
+    "query": "Bill Evans Trio - Sunday at the Village Vanguard"
+  },
+  {
+    "day": 5,
+    "artist": "Charles Mingus",
+    "title": "Mingus Ah Um",
+    "year": 1959,
+    "genre": "Hard Bop",
+    "tagline": "Combines blues roots, gospel shouts, and fierce ensemble composition.",
+    "query": "Charles Mingus - Mingus Ah Um"
+  },
+  {
+    "day": 6,
+    "artist": "Thelonious Monk",
+    "title": "Brilliant Corners",
+    "year": 1957,
+    "genre": "Bebop / Hard Bop",
+    "tagline": "Angular, genius compositions with complex polyphony that pushed analog cutting heads to the limit.",
+    "query": "Thelonious Monk - Brilliant Corners"
+  },
+  {
+    "day": 7,
+    "artist": "Herbie Hancock",
+    "title": "Head Hunters",
+    "year": 1973,
+    "genre": "Jazz-Funk",
+    "tagline": "An electrifying fusion milestone that defined 1970s clavinet funk and analog synth bass.",
+    "query": "Herbie Hancock - Head Hunters"
+  },
+  {
+    "day": 8,
+    "artist": "Wayne Shorter",
+    "title": "Speak No Evil",
+    "year": 1966,
+    "genre": "Post-Bop",
+    "tagline": "Darkly mystical compositions and peak Blue Note hard bop synergy.",
+    "query": "Wayne Shorter - Speak No Evil"
+  },
+  {
+    "day": 9,
+    "artist": "Chet Baker",
+    "title": "Chet Baker Sings",
+    "year": 1954,
+    "genre": "West Coast Cool",
+    "tagline": "Intimate, breathy vocal phrasing that demands quiet 180g vinyl playback.",
+    "query": "Chet Baker - Chet Baker Sings"
+  },
+  {
+    "day": 10,
+    "artist": "Cannonball Adderley",
+    "title": "Somethin' Else",
+    "year": 1958,
+    "genre": "Hard Bop",
+    "tagline": "Features Miles Davis as sideman on a peerless, melancholic rendition of Autumn Leaves.",
+    "query": "Cannonball Adderley - Somethin' Else"
+  },
+  {
+    "day": 11,
+    "artist": "Art Blakey & The Jazz Messengers",
+    "title": "Moanin'",
+    "year": 1958,
+    "genre": "Hard Bop",
+    "tagline": "The quintessential Blue Note manifesto: driving swing, church-chords, and blistering brass.",
+    "query": "Art Blakey & The Jazz Messengers - Moanin'"
+  },
+  {
+    "day": 12,
+    "artist": "Stan Getz & João Gilberto",
+    "title": "Getz/Gilberto",
+    "year": 1964,
+    "genre": "Bossa Nova / Jazz",
+    "tagline": "The worldwide bossa nova explosion with Astrud Gilberto's timeless, whispered vocals.",
+    "query": "Stan Getz & João Gilberto - Getz/Gilberto"
+  },
+  {
+    "day": 13,
+    "artist": "Sonny Rollins",
+    "title": "Saxophone Colossus",
+    "year": 1956,
+    "genre": "Hard Bop",
+    "tagline": "St. Thomas and Blue 7 demonstrate peak thematic improvisation captured by Rudy Van Gelder.",
+    "query": "Sonny Rollins - Saxophone Colossus"
+  },
+  {
+    "day": 14,
+    "artist": "Eric Dolphy",
+    "title": "Out to Lunch!",
+    "year": 1964,
+    "genre": "Avant-Garde Jazz",
+    "tagline": "Vibraphone, bass clarinet, and daring microtonal structures in legendary Blue Note hi-fi.",
+    "query": "Eric Dolphy - Out to Lunch!"
+  },
+  {
+    "day": 15,
+    "artist": "Alice Coltrane",
+    "title": "Journey in Satchidananda",
+    "year": 1971,
+    "genre": "Spiritual Jazz",
+    "tagline": "Harp, tamboura, and Pharoah Sanders' soprano sax weaving transcendent modal tapestries.",
+    "query": "Alice Coltrane - Journey in Satchidananda"
+  },
+  {
+    "day": 16,
+    "artist": "Donald Byrd",
+    "title": "Places and Spaces",
+    "year": 1975,
+    "genre": "Jazz-Funk",
+    "tagline": "Produced by the Mizell Brothers; lush strings, analog synths, and pure golden-era groove.",
+    "query": "Donald Byrd - Places and Spaces"
+  },
+  {
+    "day": 17,
+    "artist": "Grant Green",
+    "title": "Idle Moments",
+    "year": 1965,
+    "genre": "Soul Jazz",
+    "tagline": "A nocturnal 15-minute title track characterized by warm hollowbody guitar tone.",
+    "query": "Grant Green - Idle Moments"
+  },
+  {
+    "day": 18,
+    "artist": "Lee Morgan",
+    "title": "The Sidewinder",
+    "year": 1964,
+    "genre": "Soul Jazz",
+    "tagline": "The boogaloo-infused crossover hit that single-handedly funded Blue Note's mid-60s roster.",
+    "query": "Lee Morgan - The Sidewinder"
+  },
+  {
+    "day": 19,
+    "artist": "Freddie Hubbard",
+    "title": "Red Clay",
+    "year": 1970,
+    "genre": "CTI Soul Jazz",
+    "tagline": "Features Herbie Hancock on Fender Rhodes and Ron Carter on acoustic bass.",
+    "query": "Freddie Hubbard - Red Clay"
+  },
+  {
+    "day": 20,
+    "artist": "Keith Jarrett",
+    "title": "The Köln Concert",
+    "year": 1975,
+    "genre": "Solo Piano / ECM",
+    "tagline": "The best-selling solo piano album in history; spontaneous, soaring analog acoustics.",
+    "query": "Keith Jarrett - The Köln Concert"
+  },
+  {
+    "day": 21,
+    "artist": "Weather Report",
+    "title": "Heavy Weather",
+    "year": 1977,
+    "genre": "Jazz Fusion",
+    "tagline": "Features Jaco Pastorius' fretless bass virtuosity on Birdland and A Remark You Made.",
+    "query": "Weather Report - Heavy Weather"
+  },
+  {
+    "day": 22,
+    "artist": "Kamasi Washington",
+    "title": "The Epic",
+    "year": 2015,
+    "genre": "Contemporary Spiritual Jazz",
+    "tagline": "A 3-LP triple gatefold opus proving the 21st-century resurgence of large-ensemble spiritual jazz.",
+    "query": "Kamasi Washington - The Epic"
+  },
+  {
+    "day": 23,
+    "artist": "Pink Floyd",
+    "title": "The Dark Side of the Moon",
+    "year": 1973,
+    "genre": "Progressive Rock",
+    "tagline": "The ultimate hi-fi test record: heartbeat kicks, tape-loop clocks, and sweeping synthesizers.",
+    "query": "Pink Floyd - The Dark Side of the Moon"
+  },
+  {
+    "day": 24,
+    "artist": "Pink Floyd",
+    "title": "Wish You Were Here",
+    "year": 1975,
+    "genre": "Progressive Rock",
+    "tagline": "A four-movement analog lament dedicated to Syd Barrett with pristine room reverberation.",
+    "query": "Pink Floyd - Wish You Were Here"
+  },
+  {
+    "day": 25,
+    "artist": "The Beatles",
+    "title": "Abbey Road",
+    "year": 1969,
+    "genre": "Classic Rock",
+    "tagline": "The final recorded Beatles masterpiece, culminating in the seamless eight-song side-two medley.",
+    "query": "The Beatles - Abbey Road"
+  },
+  {
+    "day": 26,
+    "artist": "The Beatles",
+    "title": "Sgt. Pepper's Lonely Hearts Club Band",
+    "year": 1967,
+    "genre": "Psychedelic Rock",
+    "tagline": "The studio-as-instrument turning point that redefined the physical album format forever.",
+    "query": "The Beatles - Sgt. Pepper's Lonely Hearts Club Band"
+  },
+  {
+    "day": 27,
+    "artist": "Led Zeppelin",
+    "title": "Led Zeppelin IV",
+    "year": 1971,
+    "genre": "Hard Rock",
+    "tagline": "John Bonham's massive Headley Grange drum acoustics on When the Levee Breaks.",
+    "query": "Led Zeppelin - Led Zeppelin IV"
+  },
+  {
+    "day": 28,
+    "artist": "Led Zeppelin",
+    "title": "Physical Graffiti",
+    "year": 1975,
+    "genre": "Hard Rock",
+    "tagline": "A sprawling double album featuring die-cut tenement window sleeves and heavy analog riffs.",
+    "query": "Led Zeppelin - Physical Graffiti"
+  },
+  {
+    "day": 29,
+    "artist": "The Rolling Stones",
+    "title": "Exile on Main St.",
+    "year": 1972,
+    "genre": "Blues Rock",
+    "tagline": "Recorded in the damp basement of Nellcôte; raw, murky, peerless double-LP rock & roll.",
+    "query": "The Rolling Stones - Exile on Main St."
+  },
+  {
+    "day": 30,
+    "artist": "David Bowie",
+    "title": "The Rise and Fall of Ziggy Stardust",
+    "year": 1972,
+    "genre": "Glam Rock",
+    "tagline": "The defining glam rock concept album, mastered with blistering Mick Ronson electric guitars.",
+    "query": "David Bowie - The Rise and Fall of Ziggy Stardust"
+  },
+  {
+    "day": 31,
+    "artist": "David Bowie",
+    "title": "Heroes",
+    "year": 1977,
+    "genre": "Art Rock / Berlin Trilogy",
+    "tagline": "Recorded at Hansa by the Wall in Berlin with Brian Eno's EMS synthesizer treatments.",
+    "query": "David Bowie - Heroes"
+  },
+  {
+    "day": 32,
+    "artist": "Fleetwood Mac",
+    "title": "Rumours",
+    "year": 1977,
+    "genre": "Pop Rock",
+    "tagline": "Emotional turmoil transformed into sonic perfection; the gold standard for warm analog mastering.",
+    "query": "Fleetwood Mac - Rumours"
+  },
+  {
+    "day": 33,
+    "artist": "The Who",
+    "title": "Who's Next",
+    "year": 1971,
+    "genre": "Hard Rock",
+    "tagline": "Pete Townshend's pulsing ARP synthesizer sequences opening Baba O'Riley and Won't Get Fooled Again.",
+    "query": "The Who - Who's Next"
+  },
+  {
+    "day": 34,
+    "artist": "Black Sabbath",
+    "title": "Paranoid",
+    "year": 1970,
+    "genre": "Heavy Metal",
+    "tagline": "Tony Iommi's down-tuned riffs and Geezer Butler's thunderous bass forged heavy metal on vinyl.",
+    "query": "Black Sabbath - Paranoid"
+  },
+  {
+    "day": 35,
+    "artist": "King Crimson",
+    "title": "In the Court of the Crimson King",
+    "year": 1969,
+    "genre": "Progressive Rock",
+    "tagline": "The birth of prog rock: 21st Century Schizoid Man and sweeping Mellotron landscapes.",
+    "query": "King Crimson - In the Court of the Crimson King"
+  },
+  {
+    "day": 36,
+    "artist": "Steely Dan",
+    "title": "Aja",
+    "year": 1977,
+    "genre": "Yacht Rock / Jazz Rock",
+    "tagline": "The reference record audiophiles bring to stereo auditions; legendary Steve Gadd drum solos.",
+    "query": "Steely Dan - Aja"
+  },
+  {
+    "day": 37,
+    "artist": "The Doors",
+    "title": "The Doors",
+    "year": 1967,
+    "genre": "Psychedelic Rock",
+    "tagline": "Ray Manzarek's Vox Continental organ and Jim Morrison's dark poetry in raw Sunset Sound clarity.",
+    "query": "The Doors - The Doors"
+  },
+  {
+    "day": 38,
+    "artist": "Jimi Hendrix Experience",
+    "title": "Electric Ladyland",
+    "year": 1968,
+    "genre": "Psychedelic Rock",
+    "tagline": "Double-album tour de force of phased stereo panning, reverse tape effects, and blistering blues.",
+    "query": "Jimi Hendrix Experience - Electric Ladyland"
+  },
+  {
+    "day": 39,
+    "artist": "Neil Young",
+    "title": "Harvest",
+    "year": 1972,
+    "genre": "Folk Rock",
+    "tagline": "Warm acoustic guitars, pedal steel, and intimate Nashville barn recordings.",
+    "query": "Neil Young - Harvest"
+  },
+  {
+    "day": 40,
+    "artist": "Bob Dylan",
+    "title": "Blood on the Tracks",
+    "year": 1975,
+    "genre": "Folk Rock",
+    "tagline": "An open-tuned acoustic masterpiece of heartbreak, recorded with sparse, biting presence.",
+    "query": "Bob Dylan - Blood on the Tracks"
+  },
+  {
+    "day": 41,
+    "artist": "Bruce Springsteen",
+    "title": "Born to Run",
+    "year": 1975,
+    "genre": "Heartland Rock",
+    "tagline": "Wall-of-sound production, glockenspiels, roaring saxophones, and panoramic American romance.",
+    "query": "Bruce Springsteen - Born to Run"
+  },
+  {
+    "day": 42,
+    "artist": "Dire Straits",
+    "title": "Brothers in Arms",
+    "year": 1985,
+    "genre": "Roots Rock",
+    "tagline": "Pristine dynamic range and Mark Knopfler's expressive fingerpicked National steel guitar.",
+    "query": "Dire Straits - Brothers in Arms"
+  },
+  {
+    "day": 43,
+    "artist": "The Velvet Underground & Nico",
+    "title": "The Velvet Underground & Nico",
+    "year": 1967,
+    "genre": "Art Rock / Proto-Punk",
+    "tagline": "The peelable banana Andy Warhol sleeve housing drone-violins, noise, and haunting street ballads.",
+    "query": "The Velvet Underground & Nico - The Velvet Underground & Nico"
+  },
+  {
+    "day": 44,
+    "artist": "The Clash",
+    "title": "London Calling",
+    "year": 1979,
+    "genre": "Punk / Post-Punk",
+    "tagline": "A double-LP tour de force merging punk urgency with reggae, ska, rockabilly, and soul.",
+    "query": "The Clash - London Calling"
+  },
+  {
+    "day": 45,
+    "artist": "Talking Heads",
+    "title": "Remain in Light",
+    "year": 1980,
+    "genre": "New Wave / Post-Punk",
+    "tagline": "Brian Eno production integrating Fela Kuti polyrhythms, funk basslines, and art-punk vocals.",
+    "query": "Talking Heads - Remain in Light"
+  },
+  {
+    "day": 46,
+    "artist": "Kraftwerk",
+    "title": "Trans-Europe Express",
+    "year": 1977,
+    "genre": "Electronic / Krautrock",
+    "tagline": "The mechanical blueprint for techno, synth-pop, and early hip-hop rhythm tracks.",
+    "query": "Kraftwerk - Trans-Europe Express"
+  },
+  {
+    "day": 47,
+    "artist": "Kraftwerk",
+    "title": "Computer World",
+    "year": 1981,
+    "genre": "Synth-Pop / Electro",
+    "tagline": "Prophetic vision of modern digital society scored on analog vocoders and pocket calculators.",
+    "query": "Kraftwerk - Computer World"
+  },
+  {
+    "day": 48,
+    "artist": "Daft Punk",
+    "title": "Discovery",
+    "year": 2001,
+    "genre": "French Touch / House",
+    "tagline": "Vintage anime nostalgia, filtered disco samples, and soaring analog vocoder hooks.",
+    "query": "Daft Punk - Discovery"
+  },
+  {
+    "day": 49,
+    "artist": "Daft Punk",
+    "title": "Random Access Memories",
+    "year": 2013,
+    "genre": "Disco / Audiophile Funk",
+    "tagline": "Recorded in legendary studios with vintage analog consoles; reference-grade vinyl mastering.",
+    "query": "Daft Punk - Random Access Memories"
+  },
+  {
+    "day": 50,
+    "artist": "Aphex Twin",
+    "title": "Selected Ambient Works 85-92",
+    "year": 1992,
+    "genre": "Ambient Techno / IDM",
+    "tagline": "Dreamlike tape-recorded melodies and warm 808 percussion that founded modern IDM.",
+    "query": "Aphex Twin - Selected Ambient Works 85-92"
+  },
+  {
+    "day": 51,
+    "artist": "Aphex Twin",
+    "title": "Selected Ambient Works Volume II",
+    "year": 1994,
+    "genre": "Dark Ambient",
+    "tagline": "Sprawling triple-LP of microtonal drone, isolationist atmosphere, and spectral acoustics.",
+    "query": "Aphex Twin - Selected Ambient Works Volume II"
+  },
+  {
+    "day": 52,
+    "artist": "Boards of Canada",
+    "title": "Music Has the Right to Children",
+    "year": 1998,
+    "genre": "IDM / Downtempo",
+    "tagline": "Degraded analog tape warmth, vintage synth nostalgia, and haunting childhood memories.",
+    "query": "Boards of Canada - Music Has the Right to Children"
+  },
+  {
+    "day": 53,
+    "artist": "Boards of Canada",
+    "title": "Geogaddi",
+    "year": 2002,
+    "genre": "IDM / Hauntology",
+    "tagline": "Occult time-stretched sound collages, reverse beats, and warm Roland synthesizer pads.",
+    "query": "Boards of Canada - Geogaddi"
+  },
+  {
+    "day": 54,
+    "artist": "Massive Attack",
+    "title": "Mezzanine",
+    "year": 1998,
+    "genre": "Trip-Hop",
+    "tagline": "Heavy dub basslines, claustrophobic guitars, and Elizabeth Fraser's ethereal vocals on Teardrop.",
+    "query": "Massive Attack - Mezzanine"
+  },
+  {
+    "day": 55,
+    "artist": "Portishead",
+    "title": "Dummy",
+    "year": 1994,
+    "genre": "Trip-Hop",
+    "tagline": "Original vinyl pressings sampled and scratched back onto tape for authentic vintage patina.",
+    "query": "Portishead - Dummy"
+  },
+  {
+    "day": 56,
+    "artist": "Burial",
+    "title": "Untrue",
+    "year": 2007,
+    "genre": "Dubstep / Future Garage",
+    "tagline": "Vinyl crackle, pitching R&B vocal fragments, and rain-soaked South London nighttime bass.",
+    "query": "Burial - Untrue"
+  },
+  {
+    "day": 57,
+    "artist": "Brian Eno",
+    "title": "Ambient 1: Music for Airports",
+    "year": 1978,
+    "genre": "Ambient",
+    "tagline": "Tape loops of unequal lengths playing pianos and choir chords in perpetual gentle suspension.",
+    "query": "Brian Eno - Ambient 1: Music for Airports"
+  },
+  {
+    "day": 58,
+    "artist": "Tangerine Dream",
+    "title": "Phaedra",
+    "year": 1974,
+    "genre": "Berlin School",
+    "tagline": "Moog modular sequencer rhythms and Mellotron waves that defined space music.",
+    "query": "Tangerine Dream - Phaedra"
+  },
+  {
+    "day": 59,
+    "artist": "The Chemical Brothers",
+    "title": "Dig Your Own Hole",
+    "year": 1997,
+    "genre": "Big Beat",
+    "tagline": "Block Rockin' Beats delivered on loud, dynamic 2xLP club vinyl.",
+    "query": "The Chemical Brothers - Dig Your Own Hole"
+  },
+  {
+    "day": 60,
+    "artist": "The Prodigy",
+    "title": "The Fat of the Land",
+    "year": 1997,
+    "genre": "Big Beat / Electronic Rock",
+    "tagline": "Breathe and Firestarter compressed with massive kinetic punch for club turntable systems.",
+    "query": "The Prodigy - The Fat of the Land"
+  },
+  {
+    "day": 61,
+    "artist": "Underworld",
+    "title": "Dubnobasswithmyheadman",
+    "year": 1994,
+    "genre": "Progressive House / Techno",
+    "tagline": "Seamless bridge between late-night acid house and moody post-punk lyricism.",
+    "query": "Underworld - Dubnobasswithmyheadman"
+  },
+  {
+    "day": 62,
+    "artist": "Jon Hopkins",
+    "title": "Immunity",
+    "year": 2013,
+    "genre": "Microhouse / Ambient Techno",
+    "tagline": "Organic foley recordings of pianos and room acoustics transformed into hypnotic club techno.",
+    "query": "Jon Hopkins - Immunity"
+  },
+  {
+    "day": 63,
+    "artist": "Nicolas Jaar",
+    "title": "Space Is Only Noise",
+    "year": 2011,
+    "genre": "Microhouse / Downtempo",
+    "tagline": "Slow-tempo minimal grooves punctuated by dry clicks, deep sub-bass, and French dialogue.",
+    "query": "Nicolas Jaar - Space Is Only Noise"
+  },
+  {
+    "day": 64,
+    "artist": "Four Tet",
+    "title": "Rounds",
+    "year": 2003,
+    "genre": "Folktronica",
+    "tagline": "Mandolins, glockenspiels, and vinyl flutter woven into complex, humanistic rhythmic collages.",
+    "query": "Four Tet - Rounds"
+  },
+  {
+    "day": 65,
+    "artist": "Bonobo",
+    "title": "Black Sands",
+    "year": 2010,
+    "genre": "Downtempo / Nu-Jazz",
+    "tagline": "Lush orchestral strings, live brass, and deep sub-bass; a staple of modern physical vinyl shelves.",
+    "query": "Bonobo - Black Sands"
+  },
+  {
+    "day": 66,
+    "artist": "Gas",
+    "title": "Zauberberg",
+    "year": 1997,
+    "genre": "Ambient Techno",
+    "tagline": "Wolfgang Voigt's submerged 4/4 kicks beneath decaying brass samples of German Romanticism.",
+    "query": "Gas - Zauberberg"
+  },
+  {
+    "day": 67,
+    "artist": "Basic Channel",
+    "title": "BCD-2",
+    "year": 1995,
+    "genre": "Dub Techno",
+    "tagline": "The Berlin ground-zero of hiss, filter sweep, tape delay, and subterranean sub-bass pulses.",
+    "query": "Basic Channel - BCD-2"
+  },
+  {
+    "day": 68,
+    "artist": "Voices from the Lake",
+    "title": "Voices from the Lake",
+    "year": 2012,
+    "genre": "Hypnotic Techno",
+    "tagline": "Pristine dynamic range, deep sub-bass architecture, and hypnotic ambient-techno spatial design.",
+    "query": "Voices from the Lake - Voices from the Lake"
+  },
+  {
+    "day": 69,
+    "artist": "Marvin Gaye",
+    "title": "What's Going On",
+    "year": 1971,
+    "genre": "Soul / R&B",
+    "tagline": "A socially conscious masterpiece flowing continuously across two sides with Motown's Funk Brothers.",
+    "query": "Marvin Gaye - What's Going On"
+  },
+  {
+    "day": 70,
+    "artist": "Stevie Wonder",
+    "title": "Songs in the Key of Life",
+    "year": 1976,
+    "genre": "Soul / Funk",
+    "tagline": "A magnificent double-LP plus bonus 7-inch EP capturing the pinnacle of 70s songwriting and Yamaha GX-1.",
+    "query": "Stevie Wonder - Songs in the Key of Life"
+  },
+  {
+    "day": 71,
+    "artist": "Stevie Wonder",
+    "title": "Innervisions",
+    "year": 1973,
+    "genre": "Soul / Funk",
+    "tagline": "Stevie played virtually every instrument himself; biting social commentary and TONTO analog synths.",
+    "query": "Stevie Wonder - Innervisions"
+  },
+  {
+    "day": 72,
+    "artist": "Michael Jackson",
+    "title": "Thriller",
+    "year": 1982,
+    "genre": "Pop / R&B",
+    "tagline": "Quincy Jones' immaculate production and Bruce Swedien's Acusonic recording techniques.",
+    "query": "Michael Jackson - Thriller"
+  },
+  {
+    "day": 73,
+    "artist": "Prince",
+    "title": "Purple Rain",
+    "year": 1984,
+    "genre": "Pop Rock / Minneapolis Sound",
+    "tagline": "LinnDrum grooves, searing guitar solos, and emotional pop perfection on purple vinyl.",
+    "query": "Prince - Purple Rain"
+  },
+  {
+    "day": 74,
+    "artist": "Prince",
+    "title": "Sign o' the Times",
+    "year": 1987,
+    "genre": "Funk / R&B",
+    "tagline": "A double-album masterclass covering Fairlight sampling, dirty funk, rock, and heartfelt ballads.",
+    "query": "Prince - Sign o' the Times"
+  },
+  {
+    "day": 75,
+    "artist": "Curtis Mayfield",
+    "title": "Superfly",
+    "year": 1972,
+    "genre": "Funk / Blaxploitation",
+    "tagline": "Lush orchestral strings and wah-wah guitar providing raw commentary on urban survival.",
+    "query": "Curtis Mayfield - Superfly"
+  },
+  {
+    "day": 76,
+    "artist": "Al Green",
+    "title": "I'm Still in Love with You",
+    "year": 1972,
+    "genre": "Memphis Soul",
+    "tagline": "Willie Mitchell's warm Hi Records studio sound, crisp snare snaps, and effortless falsetto.",
+    "query": "Al Green - I'm Still in Love with You"
+  },
+  {
+    "day": 77,
+    "artist": "Aretha Franklin",
+    "title": "I Never Loved a Man the Way I Love You",
+    "year": 1967,
+    "genre": "Southern Soul",
+    "tagline": "Recorded with the Muscle Shoals rhythm section; Respect and pure gospel-infused soul.",
+    "query": "Aretha Franklin - I Never Loved a Man the Way I Love You"
+  },
+  {
+    "day": 78,
+    "artist": "D'Angelo",
+    "title": "Voodoo",
+    "year": 2000,
+    "genre": "Neo-Soul",
+    "tagline": "Recorded at Electric Lady on 2-inch tape; Questlove's unquantized laid-back drum groove benchmark.",
+    "query": "D'Angelo - Voodoo"
+  },
+  {
+    "day": 79,
+    "artist": "Erykah Badu",
+    "title": "Baduizm",
+    "year": 1997,
+    "genre": "Neo-Soul",
+    "tagline": "Upright basslines, smoky Rhodes keys, and Billie Holiday-inspired vocal phrasing.",
+    "query": "Erykah Badu - Baduizm"
+  },
+  {
+    "day": 80,
+    "artist": "Lauryn Hill",
+    "title": "The Miseducation of Lauryn Hill",
+    "year": 1998,
+    "genre": "R&B / Hip-Hop",
+    "tagline": "Soul, reggae, and boom-bap unified into one of the most celebrated analog debuts in modern music.",
+    "query": "Lauryn Hill - The Miseducation of Lauryn Hill"
+  },
+  {
+    "day": 81,
+    "artist": "Sade",
+    "title": "Diamond Life",
+    "year": 1984,
+    "genre": "Sophisti-Pop / Smooth Soul",
+    "tagline": "Smooth saxophone, warm upright bass, and Sade Adu's sultry, understated vocal presence.",
+    "query": "Sade - Diamond Life"
+  },
+  {
+    "day": 82,
+    "artist": "Amy Winehouse",
+    "title": "Back to Black",
+    "year": 2006,
+    "genre": "Soul / R&B",
+    "tagline": "Dap-Kings horn arrangements producing authentic 60s Wall-of-Sound analog warmth.",
+    "query": "Amy Winehouse - Back to Black"
+  },
+  {
+    "day": 83,
+    "artist": "Bob Marley & The Wailers",
+    "title": "Catch a Fire",
+    "year": 1973,
+    "genre": "Roots Reggae",
+    "tagline": "Original Zippo-lighter flip sleeve; Island Records' hi-fi crossover presentation of roots reggae.",
+    "query": "Bob Marley & The Wailers - Catch a Fire"
+  },
+  {
+    "day": 84,
+    "artist": "Bob Marley & The Wailers",
+    "title": "Exodus",
+    "year": 1977,
+    "genre": "Roots Reggae",
+    "tagline": "Recorded in London exile; deep warm Jamaican basslines and enduring universal anthems.",
+    "query": "Bob Marley & The Wailers - Exodus"
+  },
+  {
+    "day": 85,
+    "artist": "Nas",
+    "title": "Illmatic",
+    "year": 1994,
+    "genre": "East Coast Hip-Hop",
+    "tagline": "Q-Tip, DJ Premier, Large Professor, and Pete Rock providing the definitive boom-bap sonic palette.",
+    "query": "Nas - Illmatic"
+  },
+  {
+    "day": 86,
+    "artist": "A Tribe Called Quest",
+    "title": "The Low End Theory",
+    "year": 1991,
+    "genre": "Jazz Rap",
+    "tagline": "Ron Carter playing live acoustic bass alongside crisp SP-1200 jazz vinyl chops.",
+    "query": "A Tribe Called Quest - The Low End Theory"
+  },
+  {
+    "day": 87,
+    "artist": "A Tribe Called Quest",
+    "title": "Midnight Marauders",
+    "year": 1993,
+    "genre": "Jazz Rap",
+    "tagline": "Pristine audio fidelity and seamless sample integration across two timeless sides.",
+    "query": "A Tribe Called Quest - Midnight Marauders"
+  },
+  {
+    "day": 88,
+    "artist": "Wu-Tang Clan",
+    "title": "Enter the Wu-Tang (36 Chambers)",
+    "year": 1993,
+    "genre": "Hardcore Hip-Hop",
+    "tagline": "RZA's dusty Ensoniq EPS samples, kung-fu dialogue, and raw Staten Island basement grit.",
+    "query": "Wu-Tang Clan - Enter the Wu-Tang (36 Chambers)"
+  },
+  {
+    "day": 89,
+    "artist": "The Notorious B.I.G.",
+    "title": "Ready to Die",
+    "year": 1994,
+    "genre": "East Coast Hip-Hop",
+    "tagline": "Cinematic storytelling over warm funk breaks; the golden era of Bad Boy analog engineering.",
+    "query": "The Notorious B.I.G. - Ready to Die"
+  },
+  {
+    "day": 90,
+    "artist": "Dr. Dre",
+    "title": "The Chronic",
+    "year": 1992,
+    "genre": "G-Funk",
+    "tagline": "Whining Minimoog synthesizers, live Parliament-style basslines, and crisp analog mastering.",
+    "query": "Dr. Dre - The Chronic"
+  },
+  {
+    "day": 91,
+    "artist": "Outkast",
+    "title": "Aquemini",
+    "year": 1998,
+    "genre": "Southern Hip-Hop",
+    "tagline": "Live instrumentation, harmonicas, funk guitars, and cosmic philosophical lyricism on double vinyl.",
+    "query": "Outkast - Aquemini"
+  },
+  {
+    "day": 92,
+    "artist": "Kendrick Lamar",
+    "title": "To Pimp a Butterfly",
+    "year": 2015,
+    "genre": "Conscious Hip-Hop / Jazz Rap",
+    "tagline": "Thundercat, Kamasi Washington, and Robert Glasper anchoring a 21st-century vinyl landmark.",
+    "query": "Kendrick Lamar - To Pimp a Butterfly"
+  },
+  {
+    "day": 93,
+    "artist": "Kendrick Lamar",
+    "title": "good kid, m.A.A.d city",
+    "year": 2012,
+    "genre": "West Coast Hip-Hop",
+    "tagline": "A non-linear audio documentary of Compton; deep trunk-rattling sub-bass and crisp vocals.",
+    "query": "Kendrick Lamar - good kid, m.A.A.d city"
+  },
+  {
+    "day": 94,
+    "artist": "Madvillain",
+    "title": "Madvillainy",
+    "year": 2004,
+    "genre": "Abstract Hip-Hop",
+    "tagline": "Madlib's dusty turntable crate-digging collages beneath MF DOOM's labyrinthine rhyme schemes.",
+    "query": "Madvillain - Madvillainy"
+  },
+  {
+    "day": 95,
+    "artist": "J Dilla",
+    "title": "Donuts",
+    "year": 2006,
+    "genre": "Instrumental Hip-Hop",
+    "tagline": "Completed in hospital with an SP-303; micro-chopped soul vinyl loops transformed into emotional art.",
+    "query": "J Dilla - Donuts"
+  },
+  {
+    "day": 96,
+    "artist": "Mos Def",
+    "title": "Black on Both Sides",
+    "year": 1999,
+    "genre": "Conscious Hip-Hop",
+    "tagline": "Brooklyn hip-hop meets live guitars and upright bass; Ms. Fat Booty remains an essential 12-inch cut.",
+    "query": "Mos Def - Black on Both Sides"
+  },
+  {
+    "day": 97,
+    "artist": "Nirvana",
+    "title": "Nevermind",
+    "year": 1991,
+    "genre": "Grunge / Alternative",
+    "tagline": "Butch Vig's explosive dynamics on 180g vinyl: quiet verses crashing into colossal chorus guitars.",
+    "query": "Nirvana - Nevermind"
+  },
+  {
+    "day": 98,
+    "artist": "Radiohead",
+    "title": "OK Computer",
+    "year": 1997,
+    "genre": "Art Rock",
+    "tagline": "Nigel Godrich's cavernous St. Catherine's Court reverb, glockenspiels, and dystopian Mellotrons.",
+    "query": "Radiohead - OK Computer"
+  },
+  {
+    "day": 99,
+    "artist": "Radiohead",
+    "title": "Kid A",
+    "year": 2000,
+    "genre": "Experimental Electronic / Art Rock",
+    "tagline": "Ondes Martenot, Modular Moogs, and free-jazz horns on 10-inch double vinyl.",
+    "query": "Radiohead - Kid A"
+  },
+  {
+    "day": 100,
+    "artist": "Radiohead",
+    "title": "In Rainbows",
+    "year": 2007,
+    "genre": "Art Rock",
+    "tagline": "Warm, dry, immediate room acoustics; widely considered one of the finest vinyl pressings of the 2000s.",
+    "query": "Radiohead - In Rainbows"
+  },
+  {
+    "day": 101,
+    "artist": "Joy Division",
+    "title": "Unknown Pleasures",
+    "year": 1979,
+    "genre": "Post-Punk",
+    "tagline": "Peter Saville's pulsar radio sleeve enclosing Martin Hannett's radical spatial echo and glass breaking.",
+    "query": "Joy Division - Unknown Pleasures"
+  },
+  {
+    "day": 102,
+    "artist": "The Cure",
+    "title": "Disintegration",
+    "year": 1989,
+    "genre": "Gothic Rock / Post-Punk",
+    "tagline": "Huge, swirling flanged guitars, deep basslines, and Robert Smith's expansive melancholic reverb.",
+    "query": "The Cure - Disintegration"
+  },
+  {
+    "day": 103,
+    "artist": "The Smiths",
+    "title": "The Queen Is Dead",
+    "year": 1986,
+    "genre": "Jangle Pop / Indie Rock",
+    "tagline": "Johnny Marr's layered Rickenbacker guitars and Morrissey's razor-sharp theatrical prose.",
+    "query": "The Smiths - The Queen Is Dead"
+  },
+  {
+    "day": 104,
+    "artist": "Depeche Mode",
+    "title": "Violator",
+    "year": 1990,
+    "genre": "Synth-Pop",
+    "tagline": "Flood and Alan Wilder's masterclass in combining blues guitars with menacing analog sequencers.",
+    "query": "Depeche Mode - Violator"
+  },
+  {
+    "day": 105,
+    "artist": "Pixies",
+    "title": "Doolittle",
+    "year": 1989,
+    "genre": "Indie Rock",
+    "tagline": "Loud-quiet-loud dynamic architecture, surrealist lyrics, and searing Black Francis vocals.",
+    "query": "Pixies - Doolittle"
+  },
+  {
+    "day": 106,
+    "artist": "My Bloody Valentine",
+    "title": "Loveless",
+    "year": 1991,
+    "genre": "Shoegaze",
+    "tagline": "Kevin Shields' reverse reverb 'glide guitar' creating an impenetrable, intoxicating wall of sound.",
+    "query": "My Bloody Valentine - Loveless"
+  },
+  {
+    "day": 107,
+    "artist": "Slowdive",
+    "title": "Souvlaki",
+    "year": 1993,
+    "genre": "Shoegaze / Dream Pop",
+    "tagline": "Brian Eno collaborations and oceanic modulated guitar delays pressed on deep vinyl.",
+    "query": "Slowdive - Souvlaki"
+  },
+  {
+    "day": 108,
+    "artist": "Cocteau Twins",
+    "title": "Heaven or Las Vegas",
+    "year": 1990,
+    "genre": "Dream Pop",
+    "tagline": "Robin Guthrie's shimmering chorus guitars and Elizabeth Fraser's glossolalic vocals.",
+    "query": "Cocteau Twins - Heaven or Las Vegas"
+  },
+  {
+    "day": 109,
+    "artist": "The Strokes",
+    "title": "Is This It",
+    "year": 2001,
+    "genre": "Garage Rock Revival",
+    "tagline": "Gordon Raphael's blown-out preamp distortions and driving straight-eight hi-hat energy.",
+    "query": "The Strokes - Is This It"
+  },
+  {
+    "day": 110,
+    "artist": "The White Stripes",
+    "title": "Elephant",
+    "year": 2003,
+    "genre": "Garage Rock",
+    "tagline": "Recorded completely analog at Toe Rag Studios using no gear newer than 1963; Seven Nation Army.",
+    "query": "The White Stripes - Elephant"
+  },
+  {
+    "day": 111,
+    "artist": "Arcade Fire",
+    "title": "Funeral",
+    "year": 2004,
+    "genre": "Indie Rock",
+    "tagline": "Chamber violins, roaring accordions, and passionate choral anthems on heavyweight gatefold vinyl.",
+    "query": "Arcade Fire - Funeral"
+  },
+  {
+    "day": 112,
+    "artist": "Tame Impala",
+    "title": "Currents",
+    "year": 2015,
+    "genre": "Psychedelic Pop / Synth-Pop",
+    "tagline": "Kevin Parker's lush Roland Juno synthesizer sweeps, flanged bass, and punchy disco drums.",
+    "query": "Tame Impala - Currents"
+  },
+  {
+    "day": 113,
+    "artist": "Bon Iver",
+    "title": "For Emma, Forever Ago",
+    "year": 2007,
+    "genre": "Indie Folk",
+    "tagline": "Recorded in a Wisconsin winter cabin with multi-tracked falsetto and resonant acoustic guitars.",
+    "query": "Bon Iver - For Emma, Forever Ago"
+  },
+  {
+    "day": 114,
+    "artist": "Fleet Foxes",
+    "title": "Fleet Foxes",
+    "year": 2008,
+    "genre": "Indie Folk",
+    "tagline": "Sacred-sounding four-part vocal harmonies and vintage plate reverb recorded in Seattle.",
+    "query": "Fleet Foxes - Fleet Foxes"
+  },
+  {
+    "day": 115,
+    "artist": "Fela Kuti & Africa 70",
+    "title": "Zombie",
+    "year": 1976,
+    "genre": "Afrobeat",
+    "tagline": "Tony Allen's peerless polyrhythms and blistering horn arrangements protesting state violence.",
+    "query": "Fela Kuti & Africa 70 - Zombie"
+  },
+  {
+    "day": 116,
+    "artist": "Buena Vista Social Club",
+    "title": "Buena Vista Social Club",
+    "year": 1997,
+    "genre": "Son Cubano / Bolero",
+    "tagline": "Ry Cooder's warm Havana studio recordings with Cuba's legendary golden-age masters.",
+    "query": "Buena Vista Social Club - Buena Vista Social Club"
+  },
+  {
+    "day": 117,
+    "artist": "Can",
+    "title": "Tago Mago",
+    "year": 1971,
+    "genre": "Krautrock",
+    "tagline": "Jaki Liebezeit's metronomic 'motorik' drumming and Damo Suzuki's fevered, hypnotic chants.",
+    "query": "Can - Tago Mago"
+  },
+  {
+    "day": 118,
+    "artist": "Can",
+    "title": "Future Days",
+    "year": 1973,
+    "genre": "Krautrock / Ambient",
+    "tagline": "Shimmering, buoyant electronic percussion and ambient sound design recorded in an inner space cinema.",
+    "query": "Can - Future Days"
+  },
+  {
+    "day": 119,
+    "artist": "Neu!",
+    "title": "Neu!",
+    "year": 1972,
+    "genre": "Krautrock",
+    "tagline": "Klaus Dinger's continuous Klaus beat and Michael Rother's soaring guitar lines; influenced Bowie and Eno.",
+    "query": "Neu! - Neu!"
+  },
+  {
+    "day": 120,
+    "artist": "Haruomi Hosono",
+    "title": "Hosono House",
+    "year": 1973,
+    "genre": "Japanese Folk / City Pop",
+    "tagline": "Recorded at Hosono's Sayama home with 16-track analog equipment; intimate, warm master.",
+    "query": "Haruomi Hosono - Hosono House"
+  },
+  {
+    "day": 121,
+    "artist": "Ryuichi Sakamoto",
+    "title": "Thousand Knives",
+    "year": 1978,
+    "genre": "Electronic / Japanese Synth",
+    "tagline": "Moog IIIc modular sequences and Casio VL-Tone experiments by Yellow Magic Orchestra's maestro.",
+    "query": "Ryuichi Sakamoto - Thousand Knives"
+  },
+  {
+    "day": 122,
+    "artist": "Tatsuro Yamashita",
+    "title": "For You",
+    "year": 1982,
+    "genre": "City Pop / Funk",
+    "tagline": "The holy grail of Japanese City Pop: sparkling slap bass, brass flourishes, and ocean breeze mixing.",
+    "query": "Tatsuro Yamashita - For You"
+  },
+  {
+    "day": 123,
+    "artist": "Jorge Ben",
+    "title": "A Tábua de Esmeralda",
+    "year": 1974,
+    "genre": "Samba Soul / MPB",
+    "tagline": "Alchemical acoustic guitar rhythms, strings, and spiritual Brazilian samba groove.",
+    "query": "Jorge Ben - A Tábua de Esmeralda"
+  },
+  {
+    "day": 124,
+    "artist": "Khruangbin",
+    "title": "Con Todo El Mundo",
+    "year": 2018,
+    "genre": "Thai Funk / Psych Dub",
+    "tagline": "Recorded in a remote Texas barn; Laura Lee's deep bass and Mark Speer's reverbed Stratocaster.",
+    "query": "Khruangbin - Con Todo El Mundo"
+  },
+  {
+    "day": 125,
+    "artist": "Pole",
+    "title": "1",
+    "year": 1998,
+    "genre": "Glitch / Dub Techno",
+    "tagline": "Essential Glitch / Dub Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Pole - 1"
+  },
+  {
+    "day": 126,
+    "artist": "The Beach Boys",
+    "title": "Pet Sounds",
+    "year": 1980,
+    "genre": "Baroque Pop",
+    "tagline": "Essential Baroque Pop album featuring renowned dynamic range and vinyl staging.",
+    "query": "The Beach Boys - Pet Sounds"
+  },
+  {
+    "day": 127,
+    "artist": "Autechre",
+    "title": "Amber",
+    "year": 1980,
+    "genre": "Ambient Techno / IDM",
+    "tagline": "Essential Ambient Techno / IDM album featuring renowned dynamic range and vinyl staging.",
+    "query": "Autechre - Amber"
+  },
+  {
+    "day": 128,
+    "artist": "Global Communication",
+    "title": "76:14",
+    "year": 1994,
+    "genre": "Ambient Techno / IDM",
+    "tagline": "Essential Ambient Techno / IDM album featuring renowned dynamic range and vinyl staging.",
+    "query": "Global Communication - 76:14"
+  },
+  {
+    "day": 129,
+    "artist": "Pink Floyd",
+    "title": "Dark Side of the Moon",
+    "year": 1973,
+    "genre": "Progressive Rock",
+    "tagline": "Essential Progressive Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Pink Floyd - Dark Side of the Moon"
+  },
+  {
+    "day": 130,
+    "artist": "Biosphere",
+    "title": "Substrata",
+    "year": 1997,
+    "genre": "Ambient / Drone",
+    "tagline": "Essential Ambient / Drone album featuring renowned dynamic range and vinyl staging.",
+    "query": "Biosphere - Substrata"
+  },
+  {
+    "day": 131,
+    "artist": "Jan Jelinek",
+    "title": "Loop-Finding-Jazz-Records",
+    "year": 2001,
+    "genre": "Microhouse / Glitch / Ambient",
+    "tagline": "Essential Microhouse / Glitch / Ambient album featuring renowned dynamic range and vinyl staging.",
+    "query": "Jan Jelinek - Loop-Finding-Jazz-Records"
+  },
+  {
+    "day": 132,
+    "artist": "Tim Hecker",
+    "title": "Ravedeath, 1972",
+    "year": 2011,
+    "genre": "Ambient / Drone / Noise",
+    "tagline": "Essential Ambient / Drone / Noise album featuring renowned dynamic range and vinyl staging.",
+    "query": "Tim Hecker - Ravedeath, 1972"
+  },
+  {
+    "day": 133,
+    "artist": "Gas",
+    "title": "Pop",
+    "year": 1980,
+    "genre": "Ambient Techno",
+    "tagline": "Essential Ambient Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Gas - Pop"
+  },
+  {
+    "day": 134,
+    "artist": "Porter Ricks",
+    "title": "Biokinetics",
+    "year": 1996,
+    "genre": "Dub Techno / Ambient Techno",
+    "tagline": "Essential Dub Techno / Ambient Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Porter Ricks - Biokinetics"
+  },
+  {
+    "day": 135,
+    "artist": "Deepchord presents Echospace",
+    "title": "The Coldest Season",
+    "year": 2007,
+    "genre": "Dub Techno / Ambient Techno",
+    "tagline": "Essential Dub Techno / Ambient Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Deepchord presents Echospace - The Coldest Season"
+  },
+  {
+    "day": 136,
+    "artist": "Donato Dozzy",
+    "title": "K",
+    "year": 1980,
+    "genre": "Hypnotic Techno / Ambient Techno",
+    "tagline": "Essential Hypnotic Techno / Ambient Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Donato Dozzy - K"
+  },
+  {
+    "day": 137,
+    "artist": "Feral",
+    "title": "Hyperuranion",
+    "year": 1980,
+    "genre": "Deep Techno",
+    "tagline": "Essential Deep Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Feral - Hyperuranion"
+  },
+  {
+    "day": 138,
+    "artist": "Claudio PRC",
+    "title": "Inner Circle",
+    "year": 1980,
+    "genre": "Deep Techno",
+    "tagline": "Essential Deep Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Claudio PRC - Inner Circle"
+  },
+  {
+    "day": 139,
+    "artist": "Luigi Tozzi",
+    "title": "Deep Blue: Volume 2",
+    "year": 2016,
+    "genre": "Deep Techno / Hypnotic",
+    "tagline": "Essential Deep Techno / Hypnotic album featuring renowned dynamic range and vinyl staging.",
+    "query": "Luigi Tozzi - Deep Blue: Volume 2"
+  },
+  {
+    "day": 140,
+    "artist": "Marco Shuttle",
+    "title": "Visione",
+    "year": 2014,
+    "genre": "Abstract Techno / Organic Ambient",
+    "tagline": "Essential Abstract Techno / Organic Ambient album featuring renowned dynamic range and vinyl staging.",
+    "query": "Marco Shuttle - Visione"
+  },
+  {
+    "day": 141,
+    "artist": "Claudio PRC",
+    "title": "Inner Landscapes",
+    "year": 1980,
+    "genre": "Deep Techno",
+    "tagline": "Essential Deep Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Claudio PRC - Inner Landscapes"
+  },
+  {
+    "day": 142,
+    "artist": "Luigi Tozzi",
+    "title": "Deep Blue: Volume 3",
+    "year": 2018,
+    "genre": "Deep Techno",
+    "tagline": "Essential Deep Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Luigi Tozzi - Deep Blue: Volume 3"
+  },
+  {
+    "day": 143,
+    "artist": "Jan Garbarek",
+    "title": "Dis",
+    "year": 1980,
+    "genre": "Nordic Jazz / Ambient Jazz",
+    "tagline": "Essential Nordic Jazz / Ambient Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Jan Garbarek - Dis"
+  },
+  {
+    "day": 144,
+    "artist": "Nils Petter Molvær",
+    "title": "Khmer",
+    "year": 1997,
+    "genre": "Nu Jazz / Ambient Jazz / Dub",
+    "tagline": "Essential Nu Jazz / Ambient Jazz / Dub album featuring renowned dynamic range and vinyl staging.",
+    "query": "Nils Petter Molvær - Khmer"
+  },
+  {
+    "day": 145,
+    "artist": "Jan Garbarek & The Hilliard Ensemble",
+    "title": "Officium",
+    "year": 1980,
+    "genre": "Sacred Jazz / Classical Crossover",
+    "tagline": "Essential Sacred Jazz / Classical Crossover album featuring renowned dynamic range and vinyl staging.",
+    "query": "Jan Garbarek & The Hilliard Ensemble - Officium"
+  },
+  {
+    "day": 146,
+    "artist": "Jan Garbarek",
+    "title": "Rites",
+    "year": 1998,
+    "genre": "Nordic Jazz / Ambient Jazz",
+    "tagline": "Essential Nordic Jazz / Ambient Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Jan Garbarek - Rites"
+  },
+  {
+    "day": 147,
+    "artist": "Keith Jarrett",
+    "title": "Facing You",
+    "year": 1980,
+    "genre": "Contemporary Jazz / Solo Piano",
+    "tagline": "Essential Contemporary Jazz / Solo Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Keith Jarrett - Facing You"
+  },
+  {
+    "day": 148,
+    "artist": "Chick Corea",
+    "title": "Piano Improvisations Vol. 1",
+    "year": 1971,
+    "genre": "Post-Bop / Solo Acoustic Piano",
+    "tagline": "Essential Post-Bop / Solo Acoustic Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Chick Corea - Piano Improvisations Vol. 1"
+  },
+  {
+    "day": 149,
+    "artist": "Paul Bley",
+    "title": "Open, to Love",
+    "year": 1973,
+    "genre": "Avant-Garde Jazz / Solo Acoustic Piano",
+    "tagline": "Essential Avant-Garde Jazz / Solo Acoustic Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Paul Bley - Open, to Love"
+  },
+  {
+    "day": 150,
+    "artist": "Nils Frahm",
+    "title": "Spaces",
+    "year": 2013,
+    "genre": "Modern Classical / Ambient Jazz",
+    "tagline": "Essential Modern Classical / Ambient Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Nils Frahm - Spaces"
+  },
+  {
+    "day": 151,
+    "artist": "Deepchord presents Echospace",
+    "title": "Liumin",
+    "year": 2010,
+    "genre": "Dub Techno / Ambient Techno",
+    "tagline": "Essential Dub Techno / Ambient Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Deepchord presents Echospace - Liumin"
+  },
+  {
+    "day": 152,
+    "artist": "Rhythm & Sound",
+    "title": "Rhythm & Sound",
+    "year": 1980,
+    "genre": "Dub Techno",
+    "tagline": "Essential Dub Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Rhythm & Sound - Rhythm & Sound"
+  },
+  {
+    "day": 153,
+    "artist": "MF DOOM",
+    "title": "Mm..Food",
+    "year": 1980,
+    "genre": "Hip Hop / Abstract Hip Hop",
+    "tagline": "Essential Hip Hop / Abstract Hip Hop album featuring renowned dynamic range and vinyl staging.",
+    "query": "MF DOOM - Mm..Food"
+  },
+  {
+    "day": 154,
+    "artist": "Quasimoto",
+    "title": "The Unseen",
+    "year": 1980,
+    "genre": "Hip Hop",
+    "tagline": "Essential Hip Hop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Quasimoto - The Unseen"
+  },
+  {
+    "day": 155,
+    "artist": "Madlib",
+    "title": "Shades of Blue",
+    "year": 1980,
+    "genre": "Instrumental Hip Hop / Jazz Rap",
+    "tagline": "Essential Instrumental Hip Hop / Jazz Rap album featuring renowned dynamic range and vinyl staging.",
+    "query": "Madlib - Shades of Blue"
+  },
+  {
+    "day": 156,
+    "artist": "Floating Points, Pharoah Sanders & London Symphony Orchestra",
+    "title": "Promises",
+    "year": 2021,
+    "genre": "Spiritual Jazz / Modern Classical / Ambient",
+    "tagline": "Essential Spiritual Jazz / Modern Classical / Ambient album featuring renowned dynamic range and vinyl staging.",
+    "query": "Floating Points, Pharoah Sanders & London Symphony Orchestra - Promises"
+  },
+  {
+    "day": 157,
+    "artist": "Andy Stott",
+    "title": "Luxury Problems",
+    "year": 2012,
+    "genre": "Dub Techno / Industrial / Deconstructed Club",
+    "tagline": "Essential Dub Techno / Industrial / Deconstructed Club album featuring renowned dynamic range and vinyl staging.",
+    "query": "Andy Stott - Luxury Problems"
+  },
+  {
+    "day": 158,
+    "artist": "Eberhard Weber",
+    "title": "The Colours of Chloë",
+    "year": 1974,
+    "genre": "ECM Chamber Jazz",
+    "tagline": "Essential ECM Chamber Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Eberhard Weber - The Colours of Chloë"
+  },
+  {
+    "day": 159,
+    "artist": "DJ Shadow",
+    "title": "Endtroducing.....",
+    "year": 1996,
+    "genre": "Instrumental Hip Hop / Plunderphonics",
+    "tagline": "Essential Instrumental Hip Hop / Plunderphonics album featuring renowned dynamic range and vinyl staging.",
+    "query": "DJ Shadow - Endtroducing....."
+  },
+  {
+    "day": 160,
+    "artist": "Vladislav Delay",
+    "title": "Multila",
+    "year": 2000,
+    "genre": "Ambient / Minimal Dub",
+    "tagline": "Essential Ambient / Minimal Dub album featuring renowned dynamic range and vinyl staging.",
+    "query": "Vladislav Delay - Multila"
+  },
+  {
+    "day": 161,
+    "artist": "Jon Hassell & Brian Eno",
+    "title": "Fourth World, Vol. 1: Possible Musics",
+    "year": 1980,
+    "genre": "Fourth World / Ambient Jazz",
+    "tagline": "Essential Fourth World / Ambient Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Jon Hassell & Brian Eno - Fourth World, Vol. 1: Possible Musics"
+  },
+  {
+    "day": 162,
+    "artist": "The Cinematic Orchestra",
+    "title": "Motion",
+    "year": 1999,
+    "genre": "Nu Jazz / Downtempo / Trip-Hop",
+    "tagline": "Essential Nu Jazz / Downtempo / Trip-Hop album featuring renowned dynamic range and vinyl staging.",
+    "query": "The Cinematic Orchestra - Motion"
+  },
+  {
+    "day": 163,
+    "artist": "Teebs",
+    "title": "Ardour",
+    "year": 2010,
+    "genre": "Wonky / Instrumental Hip-Hop / Ambient",
+    "tagline": "Essential Wonky / Instrumental Hip-Hop / Ambient album featuring renowned dynamic range and vinyl staging.",
+    "query": "Teebs - Ardour"
+  },
+  {
+    "day": 164,
+    "artist": "Floating Points, Pharoah Sanders & The London Symphony Orchestra",
+    "title": "Promises",
+    "year": 2021,
+    "genre": "Spiritual Jazz / Ambient",
+    "tagline": "Essential Spiritual Jazz / Ambient album featuring renowned dynamic range and vinyl staging.",
+    "query": "Floating Points, Pharoah Sanders & The London Symphony Orchestra - Promises"
+  },
+  {
+    "day": 165,
+    "artist": "Arve Henriksen",
+    "title": "Chiaroscuro",
+    "year": 2004,
+    "genre": "Nordic Jazz / Ambient",
+    "tagline": "Essential Nordic Jazz / Ambient album featuring renowned dynamic range and vinyl staging.",
+    "query": "Arve Henriksen - Chiaroscuro"
+  },
+  {
+    "day": 166,
+    "artist": "RJD2",
+    "title": "Deadringer",
+    "year": 2002,
+    "genre": "Instrumental Hip-Hop / Downtempo",
+    "tagline": "Essential Instrumental Hip-Hop / Downtempo album featuring renowned dynamic range and vinyl staging.",
+    "query": "RJD2 - Deadringer"
+  },
+  {
+    "day": 167,
+    "artist": "The Avalanches",
+    "title": "Since I Left You",
+    "year": 2000,
+    "genre": "Plunderphonics / Instrumental Hip-Hop",
+    "tagline": "Essential Plunderphonics / Instrumental Hip-Hop album featuring renowned dynamic range and vinyl staging.",
+    "query": "The Avalanches - Since I Left You"
+  },
+  {
+    "day": 168,
+    "artist": "Nightmares on Wax",
+    "title": "Smokers Delight",
+    "year": 1995,
+    "genre": "Downtempo / Trip Hop",
+    "tagline": "Essential Downtempo / Trip Hop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Nightmares on Wax - Smokers Delight"
+  },
+  {
+    "day": 169,
+    "artist": "John Coltrane",
+    "title": "Blue Train",
+    "year": 1980,
+    "genre": "Hard Bop",
+    "tagline": "Essential Hard Bop album featuring renowned dynamic range and vinyl staging.",
+    "query": "John Coltrane - Blue Train"
+  },
+  {
+    "day": 170,
+    "artist": "Bill Evans Trio",
+    "title": "Waltz for Debby",
+    "year": 1980,
+    "genre": "Cool Jazz",
+    "tagline": "Essential Cool Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Bill Evans Trio - Waltz for Debby"
+  },
+  {
+    "day": 171,
+    "artist": "Fleetwood Mac",
+    "title": "Fleetwood Mac",
+    "year": 1980,
+    "genre": "Soft Rock",
+    "tagline": "Essential Soft Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Fleetwood Mac - Fleetwood Mac"
+  },
+  {
+    "day": 172,
+    "artist": "Eagles",
+    "title": "Hotel California",
+    "year": 1980,
+    "genre": "Classic Rock",
+    "tagline": "Essential Classic Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Eagles - Hotel California"
+  },
+  {
+    "day": 173,
+    "artist": "Carole King",
+    "title": "Tapestry",
+    "year": 1980,
+    "genre": "Singer-Songwriter",
+    "tagline": "Essential Singer-Songwriter album featuring renowned dynamic range and vinyl staging.",
+    "query": "Carole King - Tapestry"
+  },
+  {
+    "day": 174,
+    "artist": "Talk Talk",
+    "title": "Laughing Stock",
+    "year": 1991,
+    "genre": "Post-Rock / Art Rock / Ambient",
+    "tagline": "Essential Post-Rock / Art Rock / Ambient album featuring renowned dynamic range and vinyl staging.",
+    "query": "Talk Talk - Laughing Stock"
+  },
+  {
+    "day": 175,
+    "artist": "Bark Psychosis",
+    "title": "Hex",
+    "year": 1980,
+    "genre": "Post-Rock / Ambient Pop",
+    "tagline": "Essential Post-Rock / Ambient Pop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Bark Psychosis - Hex"
+  },
+  {
+    "day": 176,
+    "artist": "Mark Hollis",
+    "title": "Mark Hollis",
+    "year": 1980,
+    "genre": "Art Rock / Ambient",
+    "tagline": "Essential Art Rock / Ambient album featuring renowned dynamic range and vinyl staging.",
+    "query": "Mark Hollis - Mark Hollis"
+  },
+  {
+    "day": 177,
+    "artist": "Talk Talk",
+    "title": "Spirit of Eden",
+    "year": 1980,
+    "genre": "Art Rock / Post-Rock",
+    "tagline": "Essential Art Rock / Post-Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Talk Talk - Spirit of Eden"
+  },
+  {
+    "day": 178,
+    "artist": "David Axelrod",
+    "title": "Song of Innocence",
+    "year": 1968,
+    "genre": "Cinematic Jazz / Psychedelic Soul",
+    "tagline": "Essential Cinematic Jazz / Psychedelic Soul album featuring renowned dynamic range and vinyl staging.",
+    "query": "David Axelrod - Song of Innocence"
+  },
+  {
+    "day": 179,
+    "artist": "GAS",
+    "title": "Konkrete Musik",
+    "year": 2005,
+    "genre": "Ambient Techno / Minimal",
+    "tagline": "Essential Ambient Techno / Minimal album featuring renowned dynamic range and vinyl staging.",
+    "query": "GAS - Konkrete Musik"
+  },
+  {
+    "day": 180,
+    "artist": "The Knife",
+    "title": "Silent Shout",
+    "year": 2006,
+    "genre": "Synth-Pop / Dark Ambient / Techno",
+    "tagline": "Essential Synth-Pop / Dark Ambient / Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "The Knife - Silent Shout"
+  },
+  {
+    "day": 181,
+    "artist": "Pantha du Prince",
+    "title": "Belong",
+    "year": 2010,
+    "genre": "Microhouse / Ambient Techno",
+    "tagline": "Essential Microhouse / Ambient Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Pantha du Prince - Belong"
+  },
+  {
+    "day": 182,
+    "artist": "Pete Rock",
+    "title": "Petestrumentals",
+    "year": 2001,
+    "genre": "Instrumental Hip-Hop / Boom Bap",
+    "tagline": "Essential Instrumental Hip-Hop / Boom Bap album featuring renowned dynamic range and vinyl staging.",
+    "query": "Pete Rock - Petestrumentals"
+  },
+  {
+    "day": 183,
+    "artist": "Neu!",
+    "title": "Neu! '75",
+    "year": 1980,
+    "genre": "Krautrock",
+    "tagline": "Essential Krautrock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Neu! - Neu! '75"
+  },
+  {
+    "day": 184,
+    "artist": "Faust",
+    "title": "Faust IV",
+    "year": 1980,
+    "genre": "Krautrock",
+    "tagline": "Essential Krautrock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Faust - Faust IV"
+  },
+  {
+    "day": 185,
+    "artist": "Harmonia",
+    "title": "Musik von Harmonia",
+    "year": 1980,
+    "genre": "Krautrock",
+    "tagline": "Essential Krautrock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Harmonia - Musik von Harmonia"
+  },
+  {
+    "day": 186,
+    "artist": "Cluster",
+    "title": "Zuckerzeit",
+    "year": 1980,
+    "genre": "Krautrock / Art Rock",
+    "tagline": "Essential Krautrock / Art Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Cluster - Zuckerzeit"
+  },
+  {
+    "day": 187,
+    "artist": "Ashra",
+    "title": "New Age of Earth",
+    "year": 1980,
+    "genre": "Kosmische Musik",
+    "tagline": "Essential Kosmische Musik album featuring renowned dynamic range and vinyl staging.",
+    "query": "Ashra - New Age of Earth"
+  },
+  {
+    "day": 188,
+    "artist": "Tricky",
+    "title": "Maxinquaye",
+    "year": 1980,
+    "genre": "Trip Hop",
+    "tagline": "Essential Trip Hop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Tricky - Maxinquaye"
+  },
+  {
+    "day": 189,
+    "artist": "Sneaker Pimps",
+    "title": "Becoming X",
+    "year": 1980,
+    "genre": "Trip Hop",
+    "tagline": "Essential Trip Hop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Sneaker Pimps - Becoming X"
+  },
+  {
+    "day": 190,
+    "artist": "UNKLE",
+    "title": "Psyence Fiction",
+    "year": 1998,
+    "genre": "Trip Hop / Electronic Rock",
+    "tagline": "Essential Trip Hop / Electronic Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "UNKLE - Psyence Fiction"
+  },
+  {
+    "day": 191,
+    "artist": "Morcheeba",
+    "title": "Big Calm",
+    "year": 1980,
+    "genre": "Trip Hop / Downtempo",
+    "tagline": "Essential Trip Hop / Downtempo album featuring renowned dynamic range and vinyl staging.",
+    "query": "Morcheeba - Big Calm"
+  },
+  {
+    "day": 192,
+    "artist": "Nujabes",
+    "title": "Modal Soul",
+    "year": 2005,
+    "genre": "Jazzhop / Instrumental Hip-Hop",
+    "tagline": "Essential Jazzhop / Instrumental Hip-Hop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Nujabes - Modal Soul"
+  },
+  {
+    "day": 193,
+    "artist": "Slum Village",
+    "title": "Fantastic, Vol. 2",
+    "year": 2000,
+    "genre": "Underground Hip-Hop / Neo-Soul",
+    "tagline": "Essential Underground Hip-Hop / Neo-Soul album featuring renowned dynamic range and vinyl staging.",
+    "query": "Slum Village - Fantastic, Vol. 2"
+  },
+  {
+    "day": 194,
+    "artist": "DJ Krush",
+    "title": "Strictly Turntablized",
+    "year": 1994,
+    "genre": "Abstract Hip-Hop / Instrumental Hip-Hop",
+    "tagline": "Essential Abstract Hip-Hop / Instrumental Hip-Hop album featuring renowned dynamic range and vinyl staging.",
+    "query": "DJ Krush - Strictly Turntablized"
+  },
+  {
+    "day": 195,
+    "artist": "Blockhead",
+    "title": "Music by Cavelight",
+    "year": 2004,
+    "genre": "Instrumental Hip-Hop / Downtempo",
+    "tagline": "Essential Instrumental Hip-Hop / Downtempo album featuring renowned dynamic range and vinyl staging.",
+    "query": "Blockhead - Music by Cavelight"
+  },
+  {
+    "day": 196,
+    "artist": "Flying Lotus",
+    "title": "Los Angeles",
+    "year": 2008,
+    "genre": "Experimental Hip-Hop / Wonky",
+    "tagline": "Essential Experimental Hip-Hop / Wonky album featuring renowned dynamic range and vinyl staging.",
+    "query": "Flying Lotus - Los Angeles"
+  },
+  {
+    "day": 197,
+    "artist": "Cut Chemist",
+    "title": "The Audience's Listening",
+    "year": 2006,
+    "genre": "Turntablism / Instrumental Hip-Hop",
+    "tagline": "Essential Turntablism / Instrumental Hip-Hop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Cut Chemist - The Audience's Listening"
+  },
+  {
+    "day": 198,
+    "artist": "Hooverphonic",
+    "title": "A New Stereophonic Sound Spectacular",
+    "year": 1980,
+    "genre": "Trip Hop",
+    "tagline": "Essential Trip Hop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Hooverphonic - A New Stereophonic Sound Spectacular"
+  },
+  {
+    "day": 199,
+    "artist": "Iggy Pop",
+    "title": "The Idiot",
+    "year": 1977,
+    "genre": "Art Rock / Proto-Industrial",
+    "tagline": "Essential Art Rock / Proto-Industrial album featuring renowned dynamic range and vinyl staging.",
+    "query": "Iggy Pop - The Idiot"
+  },
+  {
+    "day": 200,
+    "artist": "Brian Eno",
+    "title": "Another Green World",
+    "year": 1975,
+    "genre": "Art Rock / Ambient",
+    "tagline": "Essential Art Rock / Ambient album featuring renowned dynamic range and vinyl staging.",
+    "query": "Brian Eno - Another Green World"
+  },
+  {
+    "day": 201,
+    "artist": "Japan",
+    "title": "Quiet Life",
+    "year": 1980,
+    "genre": "New Wave / Art Rock",
+    "tagline": "Essential New Wave / Art Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Japan - Quiet Life"
+  },
+  {
+    "day": 202,
+    "artist": "David Bowie",
+    "title": "Low",
+    "year": 1977,
+    "genre": "Art Rock / Ambient Rock",
+    "tagline": "Essential Art Rock / Ambient Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "David Bowie - Low"
+  },
+  {
+    "day": 203,
+    "artist": "DJ Krush",
+    "title": "Kakusei",
+    "year": 1998,
+    "genre": "Instrumental Hip-Hop / Downtempo",
+    "tagline": "Essential Instrumental Hip-Hop / Downtempo album featuring renowned dynamic range and vinyl staging.",
+    "query": "DJ Krush - Kakusei"
+  },
+  {
+    "day": 204,
+    "artist": "Bowery Electric",
+    "title": "Beat",
+    "year": 1996,
+    "genre": "Shoegaze / Ambient Trip Hop",
+    "tagline": "Essential Shoegaze / Ambient Trip Hop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Bowery Electric - Beat"
+  },
+  {
+    "day": 205,
+    "artist": "Cannibal Ox",
+    "title": "The Cold Vein",
+    "year": 1980,
+    "genre": "Underground Hip Hop",
+    "tagline": "Essential Underground Hip Hop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Cannibal Ox - The Cold Vein"
+  },
+  {
+    "day": 206,
+    "artist": "Mount Kimbie",
+    "title": "Crooks & Lovers",
+    "year": 1980,
+    "genre": "Post-Dubstep / Future Garage",
+    "tagline": "Essential Post-Dubstep / Future Garage album featuring renowned dynamic range and vinyl staging.",
+    "query": "Mount Kimbie - Crooks & Lovers"
+  },
+  {
+    "day": 207,
+    "artist": "Synkro",
+    "title": "Changes",
+    "year": 1980,
+    "genre": "Future Garage / Ambient / Downtempo",
+    "tagline": "Essential Future Garage / Ambient / Downtempo album featuring renowned dynamic range and vinyl staging.",
+    "query": "Synkro - Changes"
+  },
+  {
+    "day": 208,
+    "artist": "James Blake",
+    "title": "James Blake",
+    "year": 1980,
+    "genre": "Post-Dubstep / Ambient Soul",
+    "tagline": "Essential Post-Dubstep / Ambient Soul album featuring renowned dynamic range and vinyl staging.",
+    "query": "James Blake - James Blake"
+  },
+  {
+    "day": 209,
+    "artist": "Public Image Ltd.",
+    "title": "Metal Box",
+    "year": 1979,
+    "genre": "Post-Punk / Dub",
+    "tagline": "Essential Post-Punk / Dub album featuring renowned dynamic range and vinyl staging.",
+    "query": "Public Image Ltd. - Metal Box"
+  },
+  {
+    "day": 210,
+    "artist": "Amon Tobin",
+    "title": "Bricolage",
+    "year": 1997,
+    "genre": "Downtempo / Drum and Bass / Nu Jazz",
+    "tagline": "Essential Downtempo / Drum and Bass / Nu Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Amon Tobin - Bricolage"
+  },
+  {
+    "day": 211,
+    "artist": "Portishead",
+    "title": "Third",
+    "year": 2008,
+    "genre": "Trip Hop / Experimental Rock / Krautrock",
+    "tagline": "Essential Trip Hop / Experimental Rock / Krautrock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Portishead - Third"
+  },
+  {
+    "day": 212,
+    "artist": "Brian Eno",
+    "title": "Before and After Science",
+    "year": 1977,
+    "genre": "Art Rock / Ambient",
+    "tagline": "Essential Art Rock / Ambient album featuring renowned dynamic range and vinyl staging.",
+    "query": "Brian Eno - Before and After Science"
+  },
+  {
+    "day": 213,
+    "artist": "Thom Yorke",
+    "title": "The Eraser",
+    "year": 2006,
+    "genre": "IDM / Art Rock",
+    "tagline": "Essential IDM / Art Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Thom Yorke - The Eraser"
+  },
+  {
+    "day": 214,
+    "artist": "Joy Division",
+    "title": "Closer",
+    "year": 1980,
+    "genre": "Post-Punk / Gothic Rock",
+    "tagline": "Essential Post-Punk / Gothic Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Joy Division - Closer"
+  },
+  {
+    "day": 215,
+    "artist": "Cocteau Twins",
+    "title": "Blue Bell Knoll",
+    "year": 1988,
+    "genre": "Dream Pop / Ethereal Wave",
+    "tagline": "Essential Dream Pop / Ethereal Wave album featuring renowned dynamic range and vinyl staging.",
+    "query": "Cocteau Twins - Blue Bell Knoll"
+  },
+  {
+    "day": 216,
+    "artist": "Demdike Stare",
+    "title": "Tryptych",
+    "year": 2011,
+    "genre": "Dark Ambient / Hauntology / Dub",
+    "tagline": "Essential Dark Ambient / Hauntology / Dub album featuring renowned dynamic range and vinyl staging.",
+    "query": "Demdike Stare - Tryptych"
+  },
+  {
+    "day": 217,
+    "artist": "Seefeel",
+    "title": "Quique",
+    "year": 1993,
+    "genre": "Ambient Dub / Post-Rock",
+    "tagline": "Essential Ambient Dub / Post-Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Seefeel - Quique"
+  },
+  {
+    "day": 218,
+    "artist": "David Sylvian",
+    "title": "Secrets of the Beehive",
+    "year": 1987,
+    "genre": "Art Rock / Chamber Ambient",
+    "tagline": "Essential Art Rock / Chamber Ambient album featuring renowned dynamic range and vinyl staging.",
+    "query": "David Sylvian - Secrets of the Beehive"
+  },
+  {
+    "day": 219,
+    "artist": "The Bug",
+    "title": "London Zoo",
+    "year": 2008,
+    "genre": "Dubstep / Industrial Dub",
+    "tagline": "Essential Dubstep / Industrial Dub album featuring renowned dynamic range and vinyl staging.",
+    "query": "The Bug - London Zoo"
+  },
+  {
+    "day": 220,
+    "artist": "Beak>",
+    "title": "Beak>",
+    "year": 1980,
+    "genre": "Krautrock / Post-Punk",
+    "tagline": "Essential Krautrock / Post-Punk album featuring renowned dynamic range and vinyl staging.",
+    "query": "Beak> - Beak>"
+  },
+  {
+    "day": 221,
+    "artist": "Broadcast",
+    "title": "Haha Sound",
+    "year": 2003,
+    "genre": "Indietronica / Neo-Psychedelia / Krautrock",
+    "tagline": "Essential Indietronica / Neo-Psychedelia / Krautrock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Broadcast - Haha Sound"
+  },
+  {
+    "day": 222,
+    "artist": "Silver Apples",
+    "title": "Silver Apples",
+    "year": 1968,
+    "genre": "Early Electronic / Psychedelic Rock",
+    "tagline": "Essential Early Electronic / Psychedelic Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Silver Apples - Silver Apples"
+  },
+  {
+    "day": 223,
+    "artist": "Suicide",
+    "title": "Suicide",
+    "year": 1980,
+    "genre": "Synth Punk / Minimal Wave",
+    "tagline": "Essential Synth Punk / Minimal Wave album featuring renowned dynamic range and vinyl staging.",
+    "query": "Suicide - Suicide"
+  },
+  {
+    "day": 224,
+    "artist": "BEAK>",
+    "title": ">>",
+    "year": 1980,
+    "genre": "Krautrock / Post-Punk",
+    "tagline": "Essential Krautrock / Post-Punk album featuring renowned dynamic range and vinyl staging.",
+    "query": "BEAK> - >>"
+  },
+  {
+    "day": 225,
+    "artist": "Laurel Halo",
+    "title": "Quarantine",
+    "year": 2012,
+    "genre": "Experimental Electronic / Deconstructed Club",
+    "tagline": "Essential Experimental Electronic / Deconstructed Club album featuring renowned dynamic range and vinyl staging.",
+    "query": "Laurel Halo - Quarantine"
+  },
+  {
+    "day": 226,
+    "artist": "Anika",
+    "title": "Anika",
+    "year": 1980,
+    "genre": "Dub / Post-Punk",
+    "tagline": "Essential Dub / Post-Punk album featuring renowned dynamic range and vinyl staging.",
+    "query": "Anika - Anika"
+  },
+  {
+    "day": 227,
+    "artist": "Suuns",
+    "title": "Images Du Futur",
+    "year": 1980,
+    "genre": "Post-Punk / Art Rock",
+    "tagline": "Essential Post-Punk / Art Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Suuns - Images Du Futur"
+  },
+  {
+    "day": 228,
+    "artist": "Can",
+    "title": "Ege Bamyasi",
+    "year": 1980,
+    "genre": "Krautrock / Experimental Rock",
+    "tagline": "Essential Krautrock / Experimental Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Can - Ege Bamyasi"
+  },
+  {
+    "day": 229,
+    "artist": "The Slits",
+    "title": "Cut",
+    "year": 1980,
+    "genre": "Dub / Post-Punk",
+    "tagline": "Essential Dub / Post-Punk album featuring renowned dynamic range and vinyl staging.",
+    "query": "The Slits - Cut"
+  },
+  {
+    "day": 230,
+    "artist": "Carla dal Forno",
+    "title": "You Know What It's Like",
+    "year": 1980,
+    "genre": "Dub / Post-Punk / Lo-Fi",
+    "tagline": "Essential Dub / Post-Punk / Lo-Fi album featuring renowned dynamic range and vinyl staging.",
+    "query": "Carla dal Forno - You Know What It's Like"
+  },
+  {
+    "day": 231,
+    "artist": "Young Marble Giants",
+    "title": "Colossal Youth",
+    "year": 1980,
+    "genre": "Post-Punk / Minimal Wave",
+    "tagline": "Essential Post-Punk / Minimal Wave album featuring renowned dynamic range and vinyl staging.",
+    "query": "Young Marble Giants - Colossal Youth"
+  },
+  {
+    "day": 232,
+    "artist": "Liaisons Dangereuses",
+    "title": "Liaisons Dangereuses",
+    "year": 1980,
+    "genre": "Post-Punk / NDW / Minimal Synth",
+    "tagline": "Essential Post-Punk / NDW / Minimal Synth album featuring renowned dynamic range and vinyl staging.",
+    "query": "Liaisons Dangereuses - Liaisons Dangereuses"
+  },
+  {
+    "day": 233,
+    "artist": "Freddie Gibbs & Madlib",
+    "title": "Piñata",
+    "year": 1980,
+    "genre": "Hip Hop",
+    "tagline": "Essential Hip Hop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Freddie Gibbs & Madlib - Piñata"
+  },
+  {
+    "day": 234,
+    "artist": "Blu & Exile",
+    "title": "Below the Heavens",
+    "year": 1980,
+    "genre": "Hip Hop / Underground Hip Hop",
+    "tagline": "Essential Hip Hop / Underground Hip Hop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Blu & Exile - Below the Heavens"
+  },
+  {
+    "day": 235,
+    "artist": "MF DOOM",
+    "title": "Operation: Doomsday",
+    "year": 1999,
+    "genre": "Hip Hop",
+    "tagline": "Essential Hip Hop album featuring renowned dynamic range and vinyl staging.",
+    "query": "MF DOOM - Operation: Doomsday"
+  },
+  {
+    "day": 236,
+    "artist": "King Geedorah",
+    "title": "Take Me to Your Leader",
+    "year": 1980,
+    "genre": "Underground Hip Hop",
+    "tagline": "Essential Underground Hip Hop album featuring renowned dynamic range and vinyl staging.",
+    "query": "King Geedorah - Take Me to Your Leader"
+  },
+  {
+    "day": 237,
+    "artist": "Aesop Rock",
+    "title": "Labor Days",
+    "year": 1980,
+    "genre": "Underground Hip Hop",
+    "tagline": "Essential Underground Hip Hop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Aesop Rock - Labor Days"
+  },
+  {
+    "day": 238,
+    "artist": "Deltron 3030",
+    "title": "Deltron 3030",
+    "year": 1980,
+    "genre": "Hip Hop",
+    "tagline": "Essential Hip Hop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Deltron 3030 - Deltron 3030"
+  },
+  {
+    "day": 239,
+    "artist": "Viktor Vaughn",
+    "title": "Vaudeville Villain",
+    "year": 1980,
+    "genre": "Underground Hip Hop",
+    "tagline": "Essential Underground Hip Hop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Viktor Vaughn - Vaudeville Villain"
+  },
+  {
+    "day": 240,
+    "artist": "Paul McCartney & Wings",
+    "title": "Band on the Run",
+    "year": 1980,
+    "genre": "Pop Rock",
+    "tagline": "Essential Pop Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Paul McCartney & Wings - Band on the Run"
+  },
+  {
+    "day": 241,
+    "artist": "The Zombies",
+    "title": "Odessey and Oracle",
+    "year": 1980,
+    "genre": "Psychedelic Pop",
+    "tagline": "Essential Psychedelic Pop album featuring renowned dynamic range and vinyl staging.",
+    "query": "The Zombies - Odessey and Oracle"
+  },
+  {
+    "day": 242,
+    "artist": "Queen",
+    "title": "A Night at the Opera",
+    "year": 1980,
+    "genre": "Art Rock",
+    "tagline": "Essential Art Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Queen - A Night at the Opera"
+  },
+  {
+    "day": 243,
+    "artist": "Abdulla Rashim",
+    "title": "Unanimity",
+    "year": 2014,
+    "genre": "Hypnotic Techno / Nordic Deep Techno",
+    "tagline": "Essential Hypnotic Techno / Nordic Deep Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Abdulla Rashim - Unanimity"
+  },
+  {
+    "day": 244,
+    "artist": "Deepchord",
+    "title": "Sommer",
+    "year": 1980,
+    "genre": "Dub Techno / Ambient Techno",
+    "tagline": "Essential Dub Techno / Ambient Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Deepchord - Sommer"
+  },
+  {
+    "day": 245,
+    "artist": "Cio D'Or",
+    "title": "All In All",
+    "year": 2015,
+    "genre": "Hypnotic Techno / Ambient",
+    "tagline": "Essential Hypnotic Techno / Ambient album featuring renowned dynamic range and vinyl staging.",
+    "query": "Cio D'Or - All In All"
+  },
+  {
+    "day": 246,
+    "artist": "Peter Van Hoesen",
+    "title": "Enthetic",
+    "year": 2010,
+    "genre": "Hypnotic Techno / Experimental",
+    "tagline": "Essential Hypnotic Techno / Experimental album featuring renowned dynamic range and vinyl staging.",
+    "query": "Peter Van Hoesen - Enthetic"
+  },
+  {
+    "day": 247,
+    "artist": "Yagya",
+    "title": "Rigning",
+    "year": 1980,
+    "genre": "Dub Techno",
+    "tagline": "Essential Dub Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Yagya - Rigning"
+  },
+  {
+    "day": 248,
+    "artist": "Fluxion",
+    "title": "Vibrant Forms",
+    "year": 1980,
+    "genre": "Dub Techno",
+    "tagline": "Essential Dub Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Fluxion - Vibrant Forms"
+  },
+  {
+    "day": 249,
+    "artist": "Robert Wyatt",
+    "title": "Rock Bottom",
+    "year": 1980,
+    "genre": "Art Rock",
+    "tagline": "Essential Art Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Robert Wyatt - Rock Bottom"
+  },
+  {
+    "day": 250,
+    "artist": "Harold Budd",
+    "title": "The Pavilion of Dreams",
+    "year": 1980,
+    "genre": "Ambient / Minimalist",
+    "tagline": "Essential Ambient / Minimalist album featuring renowned dynamic range and vinyl staging.",
+    "query": "Harold Budd - The Pavilion of Dreams"
+  },
+  {
+    "day": 251,
+    "artist": "Laurie Anderson",
+    "title": "Big Science",
+    "year": 1980,
+    "genre": "Art Pop / Experimental",
+    "tagline": "Essential Art Pop / Experimental album featuring renowned dynamic range and vinyl staging.",
+    "query": "Laurie Anderson - Big Science"
+  },
+  {
+    "day": 252,
+    "artist": "Dr. Octagon",
+    "title": "Dr. Octagonecologyst",
+    "year": 1980,
+    "genre": "Abstract Hip Hop",
+    "tagline": "Essential Abstract Hip Hop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Dr. Octagon - Dr. Octagonecologyst"
+  },
+  {
+    "day": 253,
+    "artist": "Handsome Boy Modeling School",
+    "title": "So... How's Your Girl?",
+    "year": 1980,
+    "genre": "Alternative Hip Hop",
+    "tagline": "Essential Alternative Hip Hop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Handsome Boy Modeling School - So... How's Your Girl?"
+  },
+  {
+    "day": 254,
+    "artist": "Gorillaz",
+    "title": "Gorillaz",
+    "year": 1980,
+    "genre": "Alternative Hip Hop",
+    "tagline": "Essential Alternative Hip Hop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Gorillaz - Gorillaz"
+  },
+  {
+    "day": 255,
+    "artist": "Siouxsie and the Banshees",
+    "title": "Juju",
+    "year": 1980,
+    "genre": "Gothic Rock / Post-Punk",
+    "tagline": "Essential Gothic Rock / Post-Punk album featuring renowned dynamic range and vinyl staging.",
+    "query": "Siouxsie and the Banshees - Juju"
+  },
+  {
+    "day": 256,
+    "artist": "Echo & the Bunnymen",
+    "title": "Ocean Rain",
+    "year": 1980,
+    "genre": "Post-Punk / New Wave",
+    "tagline": "Essential Post-Punk / New Wave album featuring renowned dynamic range and vinyl staging.",
+    "query": "Echo & the Bunnymen - Ocean Rain"
+  },
+  {
+    "day": 257,
+    "artist": "Bauhaus",
+    "title": "In the Flat Field",
+    "year": 1980,
+    "genre": "Gothic Rock / Post-Punk",
+    "tagline": "Essential Gothic Rock / Post-Punk album featuring renowned dynamic range and vinyl staging.",
+    "query": "Bauhaus - In the Flat Field"
+  },
+  {
+    "day": 258,
+    "artist": "The Cure",
+    "title": "Greatest Hits",
+    "year": 2001,
+    "genre": "Post-Punk / New Wave",
+    "tagline": "Essential Post-Punk / New Wave album featuring renowned dynamic range and vinyl staging.",
+    "query": "The Cure - Greatest Hits"
+  },
+  {
+    "day": 259,
+    "artist": "R.E.M.",
+    "title": "Murmur",
+    "year": 1980,
+    "genre": "Jangle Pop",
+    "tagline": "Essential Jangle Pop album featuring renowned dynamic range and vinyl staging.",
+    "query": "R.E.M. - Murmur"
+  },
+  {
+    "day": 260,
+    "artist": "The Stone Roses",
+    "title": "The Stone Roses",
+    "year": 1980,
+    "genre": "Indie Rock",
+    "tagline": "Essential Indie Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "The Stone Roses - The Stone Roses"
+  },
+  {
+    "day": 261,
+    "artist": "The Cure",
+    "title": "The Head on the Door",
+    "year": 1980,
+    "genre": "Post-Punk",
+    "tagline": "Essential Post-Punk album featuring renowned dynamic range and vinyl staging.",
+    "query": "The Cure - The Head on the Door"
+  },
+  {
+    "day": 262,
+    "artist": "The Go-Betweens",
+    "title": "16 Lovers Lane",
+    "year": 1980,
+    "genre": "Jangle Pop",
+    "tagline": "Essential Jangle Pop album featuring renowned dynamic range and vinyl staging.",
+    "query": "The Go-Betweens - 16 Lovers Lane"
+  },
+  {
+    "day": 263,
+    "artist": "Orange Juice",
+    "title": "You Can't Hide Your Love Forever",
+    "year": 1980,
+    "genre": "Jangle Pop",
+    "tagline": "Essential Jangle Pop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Orange Juice - You Can't Hide Your Love Forever"
+  },
+  {
+    "day": 264,
+    "artist": "Felt",
+    "title": "Forever Breathes the Lonely Word",
+    "year": 1980,
+    "genre": "Indie Pop",
+    "tagline": "Essential Indie Pop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Felt - Forever Breathes the Lonely Word"
+  },
+  {
+    "day": 265,
+    "artist": "Teenage Fanclub",
+    "title": "Bandwagonesque",
+    "year": 1980,
+    "genre": "Power Pop",
+    "tagline": "Essential Power Pop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Teenage Fanclub - Bandwagonesque"
+  },
+  {
+    "day": 266,
+    "artist": "Acronym",
+    "title": "June",
+    "year": 1980,
+    "genre": "Deep Techno",
+    "tagline": "Essential Deep Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Acronym - June"
+  },
+  {
+    "day": 267,
+    "artist": "Dino Sabatini",
+    "title": "Shaman",
+    "year": 2012,
+    "genre": "Hypnotic Techno / Tribal Ambient",
+    "tagline": "Essential Hypnotic Techno / Tribal Ambient album featuring renowned dynamic range and vinyl staging.",
+    "query": "Dino Sabatini - Shaman"
+  },
+  {
+    "day": 268,
+    "artist": "Neel",
+    "title": "Phobos",
+    "year": 2014,
+    "genre": "Deep Techno / Dark Ambient",
+    "tagline": "Essential Deep Techno / Dark Ambient album featuring renowned dynamic range and vinyl staging.",
+    "query": "Neel - Phobos"
+  },
+  {
+    "day": 269,
+    "artist": "Claudio PRC",
+    "title": "Inner Voyage",
+    "year": 1980,
+    "genre": "Deep Techno",
+    "tagline": "Essential Deep Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Claudio PRC - Inner Voyage"
+  },
+  {
+    "day": 270,
+    "artist": "Svreca",
+    "title": "Obscur",
+    "year": 2010,
+    "genre": "Hypnotic Techno",
+    "tagline": "Essential Hypnotic Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Svreca - Obscur"
+  },
+  {
+    "day": 271,
+    "artist": "Shifted",
+    "title": "Under a Single Banner",
+    "year": 1980,
+    "genre": "Deep Techno",
+    "tagline": "Essential Deep Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Shifted - Under a Single Banner"
+  },
+  {
+    "day": 272,
+    "artist": "This Heat",
+    "title": "Deceit",
+    "year": 1981,
+    "genre": "Post-Punk / Experimental Rock / Avant-Garde",
+    "tagline": "Essential Post-Punk / Experimental Rock / Avant-Garde album featuring renowned dynamic range and vinyl staging.",
+    "query": "This Heat - Deceit"
+  },
+  {
+    "day": 273,
+    "artist": "Space Afrika",
+    "title": "Honest Labour",
+    "year": 2021,
+    "genre": "Sound Collage / Ambient / Post-Dubstep",
+    "tagline": "Essential Sound Collage / Ambient / Post-Dubstep album featuring renowned dynamic range and vinyl staging.",
+    "query": "Space Afrika - Honest Labour"
+  },
+  {
+    "day": 274,
+    "artist": "Raime",
+    "title": "Quarter Turns Over a Living Line",
+    "year": 2012,
+    "genre": "Dark Ambient / Industrial Dub",
+    "tagline": "Essential Dark Ambient / Industrial Dub album featuring renowned dynamic range and vinyl staging.",
+    "query": "Raime - Quarter Turns Over a Living Line"
+  },
+  {
+    "day": 275,
+    "artist": "HTRK",
+    "title": "Work (work, work)",
+    "year": 2011,
+    "genre": "Post-Punk / Downtempo / Darkwave",
+    "tagline": "Essential Post-Punk / Downtempo / Darkwave album featuring renowned dynamic range and vinyl staging.",
+    "query": "HTRK - Work (work, work)"
+  },
+  {
+    "day": 276,
+    "artist": "Forest Swords",
+    "title": "Engravings",
+    "year": 2013,
+    "genre": "Dub / Post-Rock / Hauntology",
+    "tagline": "Essential Dub / Post-Rock / Hauntology album featuring renowned dynamic range and vinyl staging.",
+    "query": "Forest Swords - Engravings"
+  },
+  {
+    "day": 277,
+    "artist": "Chick Corea",
+    "title": "Piano Improvisations Vol. 2",
+    "year": 1980,
+    "genre": "Post-Bop / Solo Piano",
+    "tagline": "Essential Post-Bop / Solo Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Chick Corea - Piano Improvisations Vol. 2"
+  },
+  {
+    "day": 278,
+    "artist": "Richie Beirach",
+    "title": "Hubris",
+    "year": 1977,
+    "genre": "ECM Chamber Jazz / Solo Piano",
+    "tagline": "Essential ECM Chamber Jazz / Solo Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Richie Beirach - Hubris"
+  },
+  {
+    "day": 279,
+    "artist": "Abdullah Ibrahim",
+    "title": "African Piano",
+    "year": 1970,
+    "genre": "Spiritual Jazz / Solo Acoustic Piano",
+    "tagline": "Essential Spiritual Jazz / Solo Acoustic Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Abdullah Ibrahim - African Piano"
+  },
+  {
+    "day": 280,
+    "artist": "Bill Evans",
+    "title": "Alone",
+    "year": 1968,
+    "genre": "Cool Jazz / Solo Acoustic Piano",
+    "tagline": "Essential Cool Jazz / Solo Acoustic Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Bill Evans - Alone"
+  },
+  {
+    "day": 281,
+    "artist": "Brad Mehldau",
+    "title": "Elegiac Cycle",
+    "year": 1999,
+    "genre": "Modern Classical / Solo Piano",
+    "tagline": "Essential Modern Classical / Solo Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Brad Mehldau - Elegiac Cycle"
+  },
+  {
+    "day": 282,
+    "artist": "Steve Kuhn",
+    "title": "Ecstasy",
+    "year": 1980,
+    "genre": "Post-Bop / Solo Piano",
+    "tagline": "Essential Post-Bop / Solo Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Steve Kuhn - Ecstasy"
+  },
+  {
+    "day": 283,
+    "artist": "Mal Waldron",
+    "title": "Free at Last",
+    "year": 1969,
+    "genre": "Modal Jazz / Post-Bop",
+    "tagline": "Essential Modal Jazz / Post-Bop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Mal Waldron - Free at Last"
+  },
+  {
+    "day": 284,
+    "artist": "Bobo Stenson",
+    "title": "Underwear",
+    "year": 1971,
+    "genre": "Scandinavian Jazz / Trio",
+    "tagline": "Essential Scandinavian Jazz / Trio album featuring renowned dynamic range and vinyl staging.",
+    "query": "Bobo Stenson - Underwear"
+  },
+  {
+    "day": 285,
+    "artist": "Miles Davis",
+    "title": "Kind of Blue",
+    "year": 1959,
+    "genre": "Modal Jazz",
+    "tagline": "The best-selling jazz record in history; pristine modal improvisation and open room acoustics.",
+    "query": "Miles Davis - Kind of Blue"
+  },
+  {
+    "day": 286,
+    "artist": "Egberto Gismonti",
+    "title": "Dança das Cabeças",
+    "year": 1977,
+    "genre": "World Fusion / Acoustic Jazz",
+    "tagline": "Essential World Fusion / Acoustic Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Egberto Gismonti - Dança das Cabeças"
+  },
+  {
+    "day": 287,
+    "artist": "Keith Jarrett",
+    "title": "Belonging",
+    "year": 1974,
+    "genre": "European Jazz / Post-Bop",
+    "tagline": "Essential European Jazz / Post-Bop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Keith Jarrett - Belonging"
+  },
+  {
+    "day": 288,
+    "artist": "Egberto Gismonti",
+    "title": "Sol Do Meio Dia",
+    "year": 1978,
+    "genre": "Chamber Jazz / Brazilian Jazz",
+    "tagline": "Essential Chamber Jazz / Brazilian Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Egberto Gismonti - Sol Do Meio Dia"
+  },
+  {
+    "day": 289,
+    "artist": "Kenny Drew",
+    "title": "Dark Beauty",
+    "year": 1974,
+    "genre": "Post-Bop / European Jazz",
+    "tagline": "Essential Post-Bop / European Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Kenny Drew - Dark Beauty"
+  },
+  {
+    "day": 290,
+    "artist": "Craig Taborn",
+    "title": "Avenging Angel",
+    "year": 1980,
+    "genre": "Avant-Garde Jazz / Solo Piano",
+    "tagline": "Essential Avant-Garde Jazz / Solo Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Craig Taborn - Avenging Angel"
+  },
+  {
+    "day": 291,
+    "artist": "Dollar Brand (Abdullah Ibrahim)",
+    "title": "African Piano",
+    "year": 1970,
+    "genre": "Spiritual Jazz / Solo Piano",
+    "tagline": "Essential Spiritual Jazz / Solo Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Dollar Brand (Abdullah Ibrahim) - African Piano"
+  },
+  {
+    "day": 292,
+    "artist": "Jan Johansson",
+    "title": "Jazz på svenska",
+    "year": 1964,
+    "genre": "Nordic Folk Jazz / Duo",
+    "tagline": "Essential Nordic Folk Jazz / Duo album featuring renowned dynamic range and vinyl staging.",
+    "query": "Jan Johansson - Jazz på svenska"
+  },
+  {
+    "day": 293,
+    "artist": "Keith Jarrett, Jan Garbarek, Palle Danielsson, Jon Christensen",
+    "title": "Belonging",
+    "year": 1974,
+    "genre": "European Jazz / Post-Bop",
+    "tagline": "Essential European Jazz / Post-Bop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Keith Jarrett, Jan Garbarek, Palle Danielsson, Jon Christensen - Belonging"
+  },
+  {
+    "day": 294,
+    "artist": "Masabumi Kikuchi",
+    "title": "Black Orpheus",
+    "year": 2012,
+    "genre": "Avant-Garde Jazz / Solo Acoustic Piano",
+    "tagline": "Essential Avant-Garde Jazz / Solo Acoustic Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Masabumi Kikuchi - Black Orpheus"
+  },
+  {
+    "day": 295,
+    "artist": "Art Lande",
+    "title": "Rubisa Patrol",
+    "year": 1976,
+    "genre": "Modal Jazz / Chamber Jazz",
+    "tagline": "Essential Modal Jazz / Chamber Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Art Lande - Rubisa Patrol"
+  },
+  {
+    "day": 296,
+    "artist": "Keith Jarrett / Jan Garbarek",
+    "title": "Belonging",
+    "year": 1974,
+    "genre": "European Jazz / Chamber Jazz",
+    "tagline": "Essential European Jazz / Chamber Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Keith Jarrett / Jan Garbarek - Belonging"
+  },
+  {
+    "day": 297,
+    "artist": "Ralph Towner",
+    "title": "Diary",
+    "year": 1974,
+    "genre": "Chamber Jazz / Acoustic Solo",
+    "tagline": "Essential Chamber Jazz / Acoustic Solo album featuring renowned dynamic range and vinyl staging.",
+    "query": "Ralph Towner - Diary"
+  },
+  {
+    "day": 298,
+    "artist": "Kenny Wheeler",
+    "title": "Gnu High",
+    "year": 1976,
+    "genre": "ECM Jazz / Post-Bop",
+    "tagline": "Essential ECM Jazz / Post-Bop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Kenny Wheeler - Gnu High"
+  },
+  {
+    "day": 299,
+    "artist": "Dollar Brand",
+    "title": "African Piano",
+    "year": 1970,
+    "genre": "Spiritual Jazz / Solo Piano",
+    "tagline": "Essential Spiritual Jazz / Solo Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Dollar Brand - African Piano"
+  },
+  {
+    "day": 300,
+    "artist": "Art Lande & Jan Garbarek",
+    "title": "Red Lanta",
+    "year": 1973,
+    "genre": "Chamber Jazz / Minimalist Jazz",
+    "tagline": "Essential Chamber Jazz / Minimalist Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Art Lande & Jan Garbarek - Red Lanta"
+  },
+  {
+    "day": 301,
+    "artist": "Ralph Towner",
+    "title": "Solstice",
+    "year": 1975,
+    "genre": "Chamber Jazz",
+    "tagline": "Essential Chamber Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Ralph Towner - Solstice"
+  },
+  {
+    "day": 302,
+    "artist": "Gary Burton & Chick Corea",
+    "title": "Crystal Silence",
+    "year": 1973,
+    "genre": "Chamber Jazz",
+    "tagline": "Essential Chamber Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Gary Burton & Chick Corea - Crystal Silence"
+  },
+  {
+    "day": 303,
+    "artist": "Abdullah Ibrahim (Dollar Brand)",
+    "title": "African Piano",
+    "year": 1973,
+    "genre": "Modal Jazz / Solo Piano",
+    "tagline": "Essential Modal Jazz / Solo Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Abdullah Ibrahim (Dollar Brand) - African Piano"
+  },
+  {
+    "day": 304,
+    "artist": "Keith Jarrett Trio",
+    "title": "Standards, Vol. 1",
+    "year": 1983,
+    "genre": "Acoustic Jazz",
+    "tagline": "Essential Acoustic Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Keith Jarrett Trio - Standards, Vol. 1"
+  },
+  {
+    "day": 305,
+    "artist": "Luigi Tozzi",
+    "title": "Deep Blue",
+    "year": 2016,
+    "genre": "Deep Techno / Hypnotic Ambient",
+    "tagline": "Essential Deep Techno / Hypnotic Ambient album featuring renowned dynamic range and vinyl staging.",
+    "query": "Luigi Tozzi - Deep Blue"
+  },
+  {
+    "day": 306,
+    "artist": "Sandwell District",
+    "title": "Feed-Forward",
+    "year": 1980,
+    "genre": "Hypnotic Techno",
+    "tagline": "Essential Hypnotic Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Sandwell District - Feed-Forward"
+  },
+  {
+    "day": 307,
+    "artist": "Rod Modell",
+    "title": "Captagon",
+    "year": 1980,
+    "genre": "Dub Techno / Ambient",
+    "tagline": "Essential Dub Techno / Ambient album featuring renowned dynamic range and vinyl staging.",
+    "query": "Rod Modell - Captagon"
+  },
+  {
+    "day": 308,
+    "artist": "Prince of Denmark",
+    "title": "The Body",
+    "year": 2012,
+    "genre": "Dub Techno / Deep House",
+    "tagline": "Essential Dub Techno / Deep House album featuring renowned dynamic range and vinyl staging.",
+    "query": "Prince of Denmark - The Body"
+  },
+  {
+    "day": 309,
+    "artist": "Mike Parker",
+    "title": "Lustre",
+    "year": 2014,
+    "genre": "Hypnotic Techno / Modular",
+    "tagline": "Essential Hypnotic Techno / Modular album featuring renowned dynamic range and vinyl staging.",
+    "query": "Mike Parker - Lustre"
+  },
+  {
+    "day": 310,
+    "artist": "Polar Inertia",
+    "title": "Kinetic Image",
+    "year": 2016,
+    "genre": "Atmospheric Techno / Deep Techno",
+    "tagline": "Essential Atmospheric Techno / Deep Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Polar Inertia - Kinetic Image"
+  },
+  {
+    "day": 311,
+    "artist": "Giorgio Gigli",
+    "title": "The Right Place for Every Thing",
+    "year": 2015,
+    "genre": "Cinematic Techno / Ambient",
+    "tagline": "Essential Cinematic Techno / Ambient album featuring renowned dynamic range and vinyl staging.",
+    "query": "Giorgio Gigli - The Right Place for Every Thing"
+  },
+  {
+    "day": 312,
+    "artist": "Jan Garbarek & Bobo Stenson Quartet",
+    "title": "Witchi-Tai-To",
+    "year": 1974,
+    "genre": "European Jazz / ECM Modal Jazz",
+    "tagline": "Essential European Jazz / ECM Modal Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Jan Garbarek & Bobo Stenson Quartet - Witchi-Tai-To"
+  },
+  {
+    "day": 313,
+    "artist": "Mal Waldron",
+    "title": "All Alone",
+    "year": 1966,
+    "genre": "Modal Jazz / Solo Acoustic Piano",
+    "tagline": "Essential Modal Jazz / Solo Acoustic Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Mal Waldron - All Alone"
+  },
+  {
+    "day": 314,
+    "artist": "Tord Gustavsen Trio",
+    "title": "Changing Places",
+    "year": 2003,
+    "genre": "Nordic Jazz / Chamber Jazz",
+    "tagline": "Essential Nordic Jazz / Chamber Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Tord Gustavsen Trio - Changing Places"
+  },
+  {
+    "day": 315,
+    "artist": "Marilyn Crispell",
+    "title": "Amaryllis",
+    "year": 2001,
+    "genre": "Avant-Garde Jazz / Chamber Jazz",
+    "tagline": "Essential Avant-Garde Jazz / Chamber Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Marilyn Crispell - Amaryllis"
+  },
+  {
+    "day": 316,
+    "artist": "Jaki Byard",
+    "title": "Solo Piano",
+    "year": 1969,
+    "genre": "Post-Bop / Stride / Solo Acoustic Piano",
+    "tagline": "Essential Post-Bop / Stride / Solo Acoustic Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Jaki Byard - Solo Piano"
+  },
+  {
+    "day": 317,
+    "artist": "Herbie Hancock",
+    "title": "The Piano",
+    "year": 1980,
+    "genre": "Post-Bop",
+    "tagline": "Essential Post-Bop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Herbie Hancock - The Piano"
+  },
+  {
+    "day": 318,
+    "artist": "Chick Corea",
+    "title": "Children's Songs",
+    "year": 1984,
+    "genre": "Chamber Jazz / Modern Classical",
+    "tagline": "Essential Chamber Jazz / Modern Classical album featuring renowned dynamic range and vinyl staging.",
+    "query": "Chick Corea - Children's Songs"
+  },
+  {
+    "day": 319,
+    "artist": "Chick Corea & Gary Burton",
+    "title": "Crystal Silence",
+    "year": 1973,
+    "genre": "Chamber Jazz / Post-Bop",
+    "tagline": "Essential Chamber Jazz / Post-Bop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Chick Corea & Gary Burton - Crystal Silence"
+  },
+  {
+    "day": 320,
+    "artist": "Michel Petrucciani",
+    "title": "Oracle's Destiny",
+    "year": 1983,
+    "genre": "Post-Bop / Solo Piano",
+    "tagline": "Essential Post-Bop / Solo Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Michel Petrucciani - Oracle's Destiny"
+  },
+  {
+    "day": 321,
+    "artist": "Art Lande",
+    "title": "The Eccentricities of Earl Dant",
+    "year": 1977,
+    "genre": "Chamber Jazz / Solo Piano",
+    "tagline": "Essential Chamber Jazz / Solo Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Art Lande - The Eccentricities of Earl Dant"
+  },
+  {
+    "day": 322,
+    "artist": "Paul Bley",
+    "title": "Ballads",
+    "year": 1971,
+    "genre": "Avant-Garde Jazz / Chamber Jazz",
+    "tagline": "Essential Avant-Garde Jazz / Chamber Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Paul Bley - Ballads"
+  },
+  {
+    "day": 323,
+    "artist": "McCoy Tyner",
+    "title": "Echoes of a Friend",
+    "year": 1972,
+    "genre": "Post-Bop / Modal Jazz",
+    "tagline": "Essential Post-Bop / Modal Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "McCoy Tyner - Echoes of a Friend"
+  },
+  {
+    "day": 324,
+    "artist": "Joachim Kühn",
+    "title": "Distance",
+    "year": 1979,
+    "genre": "Chamber Jazz / Solo Piano",
+    "tagline": "Essential Chamber Jazz / Solo Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Joachim Kühn - Distance"
+  },
+  {
+    "day": 325,
+    "artist": "Ran Blake",
+    "title": "Breakthru",
+    "year": 1976,
+    "genre": "Third Stream / Solo Acoustic Piano",
+    "tagline": "Essential Third Stream / Solo Acoustic Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Ran Blake - Breakthru"
+  },
+  {
+    "day": 326,
+    "artist": "Cecil Taylor",
+    "title": "Silent Tongues",
+    "year": 1980,
+    "genre": "Free Jazz / Solo Piano",
+    "tagline": "Essential Free Jazz / Solo Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Cecil Taylor - Silent Tongues"
+  },
+  {
+    "day": 327,
+    "artist": "Paul Bley Trio",
+    "title": "Closer",
+    "year": 1966,
+    "genre": "Avant-Garde Jazz / Free Jazz",
+    "tagline": "Essential Avant-Garde Jazz / Free Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Paul Bley Trio - Closer"
+  },
+  {
+    "day": 328,
+    "artist": "Marilyn Crispell",
+    "title": "Nothing Ever Was, Anyway: Music of Annette Peacock",
+    "year": 1997,
+    "genre": "Avant-Garde Jazz / Chamber Jazz",
+    "tagline": "Essential Avant-Garde Jazz / Chamber Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Marilyn Crispell - Nothing Ever Was, Anyway: Music of Annette Peacock"
+  },
+  {
+    "day": 329,
+    "artist": "Ran Blake",
+    "title": "The Blue Potato and Other Outrages",
+    "year": 1969,
+    "genre": "Third Stream / Avant-Garde Jazz",
+    "tagline": "Essential Third Stream / Avant-Garde Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Ran Blake - The Blue Potato and Other Outrages"
+  },
+  {
+    "day": 330,
+    "artist": "Masabumi Kikuchi",
+    "title": "Sunrise",
+    "year": 2012,
+    "genre": "Avant-Garde Jazz / Free Improvisation",
+    "tagline": "Essential Avant-Garde Jazz / Free Improvisation album featuring renowned dynamic range and vinyl staging.",
+    "query": "Masabumi Kikuchi - Sunrise"
+  },
+  {
+    "day": 331,
+    "artist": "Abdulla Rashim",
+    "title": "A Shell of Speed",
+    "year": 2014,
+    "genre": "Hypnotic Techno / Deep Ambient",
+    "tagline": "Essential Hypnotic Techno / Deep Ambient album featuring renowned dynamic range and vinyl staging.",
+    "query": "Abdulla Rashim - A Shell of Speed"
+  },
+  {
+    "day": 332,
+    "artist": "Luigi Tozzi",
+    "title": "Wadjet",
+    "year": 2016,
+    "genre": "Hypnotic Techno / Deep Techno",
+    "tagline": "Essential Hypnotic Techno / Deep Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Luigi Tozzi - Wadjet"
+  },
+  {
+    "day": 333,
+    "artist": "Mike Parker",
+    "title": "Lustrations",
+    "year": 2011,
+    "genre": "Hypnotic Techno / Modular",
+    "tagline": "Essential Hypnotic Techno / Modular album featuring renowned dynamic range and vinyl staging.",
+    "query": "Mike Parker - Lustrations"
+  },
+  {
+    "day": 334,
+    "artist": "Neel",
+    "title": "Phono",
+    "year": 2014,
+    "genre": "Ambient / Experimental Techno",
+    "tagline": "Essential Ambient / Experimental Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Neel - Phono"
+  },
+  {
+    "day": 335,
+    "artist": "ASC",
+    "title": "The Waves",
+    "year": 2015,
+    "genre": "Ambient / Deep Techno",
+    "tagline": "Essential Ambient / Deep Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "ASC - The Waves"
+  },
+  {
+    "day": 336,
+    "artist": "Marilyn Crispell, Gary Peacock, Paul Motian",
+    "title": "Nothing Ever Was, Anyway: Music of Annette Peacock",
+    "year": 1997,
+    "genre": "Avant-Garde Jazz",
+    "tagline": "Essential Avant-Garde Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Marilyn Crispell, Gary Peacock, Paul Motian - Nothing Ever Was, Anyway: Music of Annette Peacock"
+  },
+  {
+    "day": 337,
+    "artist": "Paul Motian",
+    "title": "Conception Vessel",
+    "year": 1973,
+    "genre": "Avant-Garde Jazz / ECM",
+    "tagline": "Essential Avant-Garde Jazz / ECM album featuring renowned dynamic range and vinyl staging.",
+    "query": "Paul Motian - Conception Vessel"
+  },
+  {
+    "day": 338,
+    "artist": "Mal Waldron",
+    "title": "Blues for Lady Day",
+    "year": 1972,
+    "genre": "Post-Bop / Solo Piano",
+    "tagline": "Essential Post-Bop / Solo Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Mal Waldron - Blues for Lady Day"
+  },
+  {
+    "day": 339,
+    "artist": "Marilyn Crispell, Gary Peacock, Paul Motian",
+    "title": "Amaryllis",
+    "year": 2001,
+    "genre": "Contemporary Chamber Jazz",
+    "tagline": "Essential Contemporary Chamber Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Marilyn Crispell, Gary Peacock, Paul Motian - Amaryllis"
+  },
+  {
+    "day": 340,
+    "artist": "Annette Peacock",
+    "title": "I'm the One",
+    "year": 1972,
+    "genre": "Avant-Garde Jazz / Art Pop",
+    "tagline": "Essential Avant-Garde Jazz / Art Pop album featuring renowned dynamic range and vinyl staging.",
+    "query": "Annette Peacock - I'm the One"
+  },
+  {
+    "day": 341,
+    "artist": "Dave Holland Quartet",
+    "title": "Conference of the Birds",
+    "year": 1973,
+    "genre": "Avant-Garde Jazz / Free Jazz",
+    "tagline": "Essential Avant-Garde Jazz / Free Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Dave Holland Quartet - Conference of the Birds"
+  },
+  {
+    "day": 342,
+    "artist": "Carla Bley, Steve Swallow",
+    "title": "Duets",
+    "year": 1988,
+    "genre": "Chamber Jazz / Contemporary Jazz",
+    "tagline": "Essential Chamber Jazz / Contemporary Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Carla Bley, Steve Swallow - Duets"
+  },
+  {
+    "day": 343,
+    "artist": "Alexander von Schlippenbach",
+    "title": "Payan",
+    "year": 1972,
+    "genre": "Free Jazz / Solo Acoustic Piano",
+    "tagline": "Essential Free Jazz / Solo Acoustic Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Alexander von Schlippenbach - Payan"
+  },
+  {
+    "day": 344,
+    "artist": "Bobo Stenson Trio",
+    "title": "Goodbye",
+    "year": 2005,
+    "genre": "Modern Jazz / Nordic Jazz",
+    "tagline": "Essential Modern Jazz / Nordic Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Bobo Stenson Trio - Goodbye"
+  },
+  {
+    "day": 345,
+    "artist": "Denny Zeitlin",
+    "title": "Soundings",
+    "year": 1978,
+    "genre": "Avant-Garde Jazz / Solo Acoustic Piano",
+    "tagline": "Essential Avant-Garde Jazz / Solo Acoustic Piano album featuring renowned dynamic range and vinyl staging.",
+    "query": "Denny Zeitlin - Soundings"
+  },
+  {
+    "day": 346,
+    "artist": "Cio D'Or",
+    "title": "Die Zeit",
+    "year": 2009,
+    "genre": "Minimal Techno / Hypnotic Techno",
+    "tagline": "Essential Minimal Techno / Hypnotic Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Cio D'Or - Die Zeit"
+  },
+  {
+    "day": 347,
+    "artist": "Claudio PRC",
+    "title": "Inner State",
+    "year": 2012,
+    "genre": "Hypnotic Techno",
+    "tagline": "Essential Hypnotic Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Claudio PRC - Inner State"
+  },
+  {
+    "day": 348,
+    "artist": "The Lotus Eaters",
+    "title": "Desatura",
+    "year": 2018,
+    "genre": "Experimental Hypnotic Techno",
+    "tagline": "Essential Experimental Hypnotic Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "The Lotus Eaters - Desatura"
+  },
+  {
+    "day": 349,
+    "artist": "Claudio PRC",
+    "title": "Inner Structures",
+    "year": 2011,
+    "genre": "Hypnotic Techno / Ambient Techno",
+    "tagline": "Essential Hypnotic Techno / Ambient Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Claudio PRC - Inner Structures"
+  },
+  {
+    "day": 350,
+    "artist": "Cio D'Or",
+    "title": "Die Fünfte Dimension",
+    "year": 2009,
+    "genre": "Cinematic Techno / Minimal",
+    "tagline": "Essential Cinematic Techno / Minimal album featuring renowned dynamic range and vinyl staging.",
+    "query": "Cio D'Or - Die Fünfte Dimension"
+  },
+  {
+    "day": 351,
+    "artist": "Anri",
+    "title": "Timely!!",
+    "year": 1980,
+    "genre": "Japanese City Pop / Funk",
+    "tagline": "Essential Japanese City Pop / Funk album featuring renowned dynamic range and vinyl staging.",
+    "query": "Anri - Timely!!"
+  },
+  {
+    "day": 352,
+    "artist": "Nick Drake",
+    "title": "Pink Moon",
+    "year": 1980,
+    "genre": "Acoustic Folk",
+    "tagline": "Essential Acoustic Folk album featuring renowned dynamic range and vinyl staging.",
+    "query": "Nick Drake - Pink Moon"
+  },
+  {
+    "day": 353,
+    "artist": "Herbie Hancock",
+    "title": "Maiden Voyage",
+    "year": 1980,
+    "genre": "Modal Jazz",
+    "tagline": "Essential Modal Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "Herbie Hancock - Maiden Voyage"
+  },
+  {
+    "day": 354,
+    "artist": "McCoy Tyner",
+    "title": "The Real McCoy",
+    "year": 1980,
+    "genre": "Modal Jazz",
+    "tagline": "Essential Modal Jazz album featuring renowned dynamic range and vinyl staging.",
+    "query": "McCoy Tyner - The Real McCoy"
+  },
+  {
+    "day": 355,
+    "artist": "Rrose",
+    "title": "Hymn to Moisture",
+    "year": 2019,
+    "genre": "Hypnotic Techno / Modular Techno",
+    "tagline": "Essential Hypnotic Techno / Modular Techno album featuring renowned dynamic range and vinyl staging.",
+    "query": "Rrose - Hymn to Moisture"
+  },
+  {
+    "day": 356,
+    "artist": "Cio D'Or",
+    "title": "Die Faser",
+    "year": 2009,
+    "genre": "Hypnotic Techno / Minimal Ambient",
+    "tagline": "Essential Hypnotic Techno / Minimal Ambient album featuring renowned dynamic range and vinyl staging.",
+    "query": "Cio D'Or - Die Faser"
+  },
+  {
+    "day": 357,
+    "artist": "The Alan Parsons Project",
+    "title": "I Robot",
+    "year": 1980,
+    "genre": "Art Rock / Progressive Rock",
+    "tagline": "Essential Art Rock / Progressive Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "The Alan Parsons Project - I Robot"
+  },
+  {
+    "day": 358,
+    "artist": "Genesis",
+    "title": "Selling England by the Pound",
+    "year": 1980,
+    "genre": "Progressive Rock",
+    "tagline": "Essential Progressive Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Genesis - Selling England by the Pound"
+  },
+  {
+    "day": 359,
+    "artist": "Yes",
+    "title": "Close to the Edge",
+    "year": 1980,
+    "genre": "Progressive Rock",
+    "tagline": "Essential Progressive Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Yes - Close to the Edge"
+  },
+  {
+    "day": 360,
+    "artist": "Camel",
+    "title": "Mirage",
+    "year": 1980,
+    "genre": "Progressive Rock",
+    "tagline": "Essential Progressive Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Camel - Mirage"
+  },
+  {
+    "day": 361,
+    "artist": "Eloy",
+    "title": "Ocean",
+    "year": 1980,
+    "genre": "Space Rock / Progressive Rock",
+    "tagline": "Essential Space Rock / Progressive Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Eloy - Ocean"
+  },
+  {
+    "day": 362,
+    "artist": "Supertramp",
+    "title": "Crime of the Century",
+    "year": 1980,
+    "genre": "Art Rock / Progressive Rock",
+    "tagline": "Essential Art Rock / Progressive Rock album featuring renowned dynamic range and vinyl staging.",
+    "query": "Supertramp - Crime of the Century"
+  },
+  {
+    "day": 363,
+    "artist": "Todd Terje",
+    "title": "It's Album Time",
+    "year": 1980,
+    "genre": "Nu-Disco / Space Disco",
+    "tagline": "Essential Nu-Disco / Space Disco album featuring renowned dynamic range and vinyl staging.",
+    "query": "Todd Terje - It's Album Time"
+  },
+  {
+    "day": 364,
+    "artist": "Breakbot",
+    "title": "By Your Side",
+    "year": 1980,
+    "genre": "French Touch / Nu-Disco",
+    "tagline": "Essential French Touch / Nu-Disco album featuring renowned dynamic range and vinyl staging.",
+    "query": "Breakbot - By Your Side"
+  },
+  {
+    "day": 365,
+    "artist": "Parcels",
+    "title": "Parcels",
+    "year": 1980,
+    "genre": "Nu-Disco / Indie Funk",
+    "tagline": "Essential Nu-Disco / Indie Funk album featuring renowned dynamic range and vinyl staging.",
+    "query": "Parcels - Parcels"
+  }
+]

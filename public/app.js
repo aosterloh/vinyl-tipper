@@ -3210,11 +3210,109 @@ function updateDynamicSeo(displayQuery, album) {
 }
 
 let hasRestoredSessionAlbum = false;
+let currentPotd = null;
+
+async function fetchPickOfTheDay() {
+  try {
+    const res = await fetch("/api/vault/pick-of-the-day");
+    if (res.ok) {
+      const data = await res.json();
+      if (data.success && data.pick) {
+        currentPotd = data.pick;
+        renderPotdBanner(data.dayOfYear, data.pick);
+        return data.pick;
+      }
+    }
+  } catch (e) {
+    console.warn("Failed to fetch Pick of the Day:", e);
+  }
+  return null;
+}
+
+function renderPotdBanner(dayOfYear, pick) {
+  if (!pick) return;
+  const dayPill = document.getElementById("potd-day-pill");
+  const titleArtist = document.getElementById("potd-title-artist");
+  const yearEl = document.getElementById("potd-year");
+  const genreEl = document.getElementById("potd-genre");
+
+  if (dayPill) dayPill.textContent = `Day ${dayOfYear || pick.day || 1}`;
+  if (titleArtist) titleArtist.textContent = `${pick.artist} — ${pick.title}`;
+  if (yearEl) yearEl.textContent = pick.year || "";
+  if (genreEl) genreEl.textContent = pick.genre || "Essential Vinyl";
+}
+
+async function rollRandomPick() {
+  const shuffleBtn = document.getElementById("potd-shuffle-btn");
+  if (shuffleBtn) {
+    shuffleBtn.disabled = true;
+    shuffleBtn.style.opacity = "0.7";
+  }
+
+  try {
+    const res = await fetch("/api/vault/random");
+    if (res.ok) {
+      const data = await res.json();
+      if (data.success && data.pick) {
+        currentPotd = data.pick;
+        renderPotdBanner(data.pick.day, data.pick);
+        const displayLabel = `${data.pick.artist} - ${data.pick.title}`;
+        if (albumInput) {
+          albumInput.value = displayLabel;
+        }
+        showToast(`🎲 Rolled from 365 Vault: ${data.pick.artist} – ${data.pick.title}`);
+        appraiseAlbum(data.pick.query || displayLabel);
+      }
+    }
+  } catch (e) {
+    console.warn("Failed to roll random pick:", e);
+  } finally {
+    if (shuffleBtn) {
+      shuffleBtn.disabled = false;
+      shuffleBtn.style.opacity = "1";
+    }
+  }
+}
+
+function initPotdListeners() {
+  const shuffleBtn = document.getElementById("potd-shuffle-btn");
+  const spinBtn = document.getElementById("potd-spin-btn");
+  const clickable = document.getElementById("potd-clickable");
+
+  if (shuffleBtn) {
+    shuffleBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      rollRandomPick();
+    });
+  }
+
+  const handleSpinCurrent = (e) => {
+    e.preventDefault();
+    if (currentPotd) {
+      const displayLabel = `${currentPotd.artist} - ${currentPotd.title}`;
+      if (albumInput) albumInput.value = displayLabel;
+      appraiseAlbum(currentPotd.query || displayLabel);
+    }
+  };
+
+  if (spinBtn) spinBtn.addEventListener("click", handleSpinCurrent);
+  if (clickable) {
+    clickable.addEventListener("click", handleSpinCurrent);
+    clickable.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") handleSpinCurrent(e);
+    });
+  }
+}
 
 async function restoreLastSessionAlbum() {
   if (hasUserInteracted || hasRestoredSessionAlbum) return;
   if (currentAlbumData && currentAlbumData.title) return;
   hasRestoredSessionAlbum = true;
+
+  initPotdListeners();
+
+  // Fetch today's official Pick of the Day from the 365 Vault
+  const potd = await fetchPickOfTheDay();
 
   let target = null;
 
@@ -3229,54 +3327,18 @@ async function restoreLastSessionAlbum() {
     }
   } catch (e) {}
 
-  // 2. Check client localStorage (0ms instantaneous)
-  if (!target && !hasUserInteracted) {
-    try {
-      const local = localStorage.getItem("vinyl_last_displayed_album");
-      if (local) {
-        target = JSON.parse(local);
-      }
-    } catch (e) {}
-  }
-
-  // 3. Fallback to server data/last_session.json
-  if (!target && !hasUserInteracted) {
-    try {
-      const res = await fetch("/api/session/last-album");
-      if (hasUserInteracted || (currentAlbumData && currentAlbumData.title)) return;
-      if (res.ok) {
-        const data = await res.json();
-        if (data.success && data.lastAlbum && (data.lastAlbum.query || data.lastAlbum.title)) {
-          target = data.lastAlbum;
-        }
-      }
-    } catch (e) {}
-  }
-
-  if (hasUserInteracted || (currentAlbumData && currentAlbumData.title)) return;
-
-  // 4. Fallback to user's most recent saved favorite if available
-  if (!target && userFavorites && userFavorites.length > 0) {
-    const topFav = userFavorites[userFavorites.length - 1];
+  // 2. Default to today's official 365 Holy-Grail Pick of the Day!
+  if (!target && potd) {
     target = {
-      query: `${topFav.artist} ${topFav.title}`,
-      artist: topFav.artist,
-      title: topFav.title
+      query: potd.query || `${potd.artist} - ${potd.title}`,
+      artist: potd.artist,
+      title: potd.title
     };
   }
 
-  // 5. Fallback to curated Featured Vinyl of the Day (turntable is NEVER blank!)
+  // 3. Fallback if offline
   if (!target || (!target.query && !target.title)) {
-    const featuredVinylPicks = [
-      "Daft Punk - Discovery",
-      "Miles Davis - Kind of Blue",
-      "Pink Floyd - The Dark Side of the Moon",
-      "Fleetwood Mac - Rumours",
-      "Steely Dan - Aja",
-      "Ben Böhmer - Begin Again"
-    ];
-    const dayPick = featuredVinylPicks[new Date().getDay() % featuredVinylPicks.length];
-    target = { query: dayPick, title: dayPick };
+    target = { query: "Miles Davis - Kind of Blue", artist: "Miles Davis", title: "Kind of Blue" };
   }
 
   if (hasUserInteracted || (currentAlbumData && currentAlbumData.title)) return;
@@ -3292,7 +3354,6 @@ async function restoreLastSessionAlbum() {
 
     const appraisalQuery = target.query || `${target.artist || ''} ${target.title || ''}`.trim();
     if (appraisalQuery && !hasUserInteracted) {
-      // Appraise album: loads immediately from persistent storage catalog
       appraiseAlbum(appraisalQuery);
     }
   }

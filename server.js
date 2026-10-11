@@ -63,6 +63,7 @@ const LAST_SESSION_FILE = path.join(DATA_DIR, 'last_session.json');
 const RECOMMENDATIONS_FILE = path.join(DATA_DIR, 'recommendations.json');
 const FAVORITES_FILE = path.join(DATA_DIR, 'favorites.json');
 const STATS_FILE = path.join(DATA_DIR, 'stats.json');
+const VAULT_365_FILE = path.join(DATA_DIR, 'vault_365.json');
 
 const ADMIN_EMAILS = ['aosterloh@gmail.com'];
 
@@ -115,6 +116,34 @@ function saveLastSession(sessionData) {
   } catch (e) {
     console.warn('Error saving last session file:', e.message);
   }
+}
+
+function loadVault365() {
+  try {
+    ensureDataDirs();
+    if (fs.existsSync(VAULT_365_FILE)) {
+      return JSON.parse(fs.readFileSync(VAULT_365_FILE, 'utf8'));
+    }
+  } catch (e) {
+    console.warn('Error reading vault_365 file:', e.message);
+  }
+  return [];
+}
+
+function getPickOfTheDay() {
+  const vault = loadVault365();
+  if (!vault || vault.length === 0) return null;
+  const now = new Date();
+  const start = new Date(now.getFullYear(), 0, 0);
+  const diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
+  const oneDay = 1000 * 60 * 60 * 24;
+  const dayOfYear = Math.max(1, Math.min(365, Math.floor(diff / oneDay)));
+  const index = (dayOfYear - 1) % vault.length;
+  return {
+    dayOfYear,
+    pick: vault[index],
+    total: vault.length
+  };
 }
 
 function loadStoredRecommendations() {
@@ -771,6 +800,31 @@ const server = http.createServer(async (req, res) => {
     saveStats(newStats);
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ success: true, stats: newStats }));
+    return;
+  }
+
+  // GET /api/vault/pick-of-the-day -> Return deterministic daily holy-grail vinyl from 365 vault
+  if (pathname === '/api/vault/pick-of-the-day' && req.method === 'GET') {
+    const potd = getPickOfTheDay();
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ success: true, ...potd }));
+    return;
+  }
+
+  // GET /api/vault/random -> Roll another random holy-grail from 365 vault
+  if (pathname === '/api/vault/random' && req.method === 'GET') {
+    const vault = loadVault365();
+    const randomPick = (vault && vault.length > 0) ? vault[Math.floor(Math.random() * vault.length)] : null;
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ success: true, pick: randomPick, total: vault ? vault.length : 0 }));
+    return;
+  }
+
+  // GET /api/vault/all -> Retrieve all 365 holy-grail entries
+  if (pathname === '/api/vault/all' && req.method === 'GET') {
+    const vault = loadVault365();
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ success: true, total: vault.length, vault }));
     return;
   }
 

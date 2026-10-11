@@ -1206,17 +1206,20 @@
   "keith jarrett facing you": {
     "title": "Facing You",
     "artist": "Keith Jarrett",
-    "genre": "Avant-Garde Jazz / Solo Acoustic Piano",
-    "year": 1972,
+    "genre": "Contemporary Jazz / Solo Piano",
+    "year": "",
     "playtime": "44 min",
     "trackCount": 8,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/ae/9f/50/ae9f500b-2a26-d2f8-0036-2489a07157b7/00602547299666.rgb.jpg/600x600bb.jpg",
-    "streetPriceGermany": null,
+    "streetPriceGermany": {
+      "newEur": "€26 – €32",
+      "usedEur": "€12 – €20"
+    },
     "alternatives": [],
-    "updatedAt": 1791754884827
+    "updatedAt": 1791757610915
   },
   "chick corea piano improvisations vol 1": {
     "title": "Piano Improvisations Vol. 1",
@@ -3407,7 +3410,11 @@
     "youtubeVideoId": "",
     "collectorScore": null,
     "coverUrl": "",
-    "streetPriceGermany": null,
+    "streetPriceGermany": {
+      "newEur": "€26 – €32",
+      "usedEur": "€18 – €24",
+      "conditionNote": "Standard reissue in VG+ / EX condition"
+    },
     "alternatives": [
       {
         "title": "Mezzanine",
@@ -3415,7 +3422,7 @@
         "genre": "Trip Hop",
         "playtime": "63 min",
         "trackCount": 11,
-        "coverUrl": "",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/0a/98/55/0a98555b-8d9d-3b46-660a-b91261557d17/00724384559953.rgb.jpg/600x600bb.jpg",
         "coverSearchTerm": "Massive Attack Mezzanine",
         "streetPriceGermany": {
           "newEur": "€32 – €38",
@@ -3428,7 +3435,7 @@
         "genre": "Trip Hop",
         "playtime": "57 min",
         "trackCount": 12,
-        "coverUrl": "",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/da/46/8a/da468ae4-2956-89d5-de70-0fce8dcfd572/00731452408921.rgb.jpg/600x600bb.jpg",
         "coverSearchTerm": "Tricky Maxinquaye",
         "streetPriceGermany": {
           "newEur": "€27 – €33",
@@ -3441,7 +3448,7 @@
         "genre": "Cinematic Trip Hop",
         "playtime": "40 min",
         "trackCount": 9,
-        "coverUrl": "",
+        "coverUrl": "https://cdn-images.dzcdn.net/images/cover/122007edd5200fc017413ea214a6fc44/1000x1000-000000-80-0-0.jpg",
         "coverSearchTerm": "Goldfrapp Felt Mountain",
         "streetPriceGermany": {
           "newEur": "€25 – €30",
@@ -3501,7 +3508,7 @@
         }
       }
     ],
-    "updatedAt": 1791755893060
+    "updatedAt": 1791757572616
   },
   "tricky maxinquaye": {
     "title": "Maxinquaye",
@@ -3519,7 +3526,7 @@
       "usedEur": "€18 – €25"
     },
     "alternatives": [],
-    "updatedAt": 1791755893255
+    "updatedAt": 1791757566314
   },
   "sneaker pimps becoming x": {
     "title": "Becoming X",
@@ -3573,7 +3580,7 @@
       "usedEur": "€22 – €30"
     },
     "alternatives": [],
-    "updatedAt": 1791755893291
+    "updatedAt": 1791757566303
   },
   "mezzanine": {
     "title": "Mezzanine",
@@ -7456,17 +7463,20 @@
   "craig taborn avenging angel": {
     "title": "Avenging Angel",
     "artist": "Craig Taborn",
-    "genre": "Avant-Garde Jazz / Solo Acoustic Piano",
-    "year": 2011,
+    "genre": "Avant-Garde Jazz / Solo Piano",
+    "year": "",
     "playtime": "60 min",
     "trackCount": 13,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/12/f8/dc/12f8dcb0-f88a-e461-cf50-d4b50dc4e5e3/00602527636375.rgb.jpg/600x600bb.jpg",
-    "streetPriceGermany": null,
+    "streetPriceGermany": {
+      "newEur": "€28 – €35",
+      "usedEur": "€20 – €28"
+    },
     "alternatives": [],
-    "updatedAt": 1791754884830
+    "updatedAt": 1791757610928
   },
   "avenging angel": {
     "title": "Avenging Angel",
@@ -10182,7 +10192,7 @@
       "usedEur": "€16 – €22"
     },
     "alternatives": [],
-    "updatedAt": 1791755893419
+    "updatedAt": 1791757566321
   },
   "beth gibbons rustin man out of season": {
     "title": "Out of Season",

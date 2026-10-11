@@ -4395,6 +4395,180 @@ body {
 }
 
 /* ==========================================================================
+   PICK OF THE DAY (FROM 365 HOLY-GRAIL VINYL VAULT)
+   ========================================================================== */
+.potd-banner {
+  margin: 12px auto 6px;
+  width: 100%;
+  max-width: 860px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-full);
+  padding: 6px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  transition: all var(--transition-normal);
+  animation: fadeIn 0.3s ease-out;
+}
+
+[data-theme="dark"] .potd-banner {
+  background: rgba(24, 25, 30, 0.85);
+  border-color: rgba(212, 175, 55, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.potd-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  overflow: hidden;
+  flex: 1;
+}
+
+.potd-sparkle {
+  font-size: 14px;
+  animation: pulseSparkle 2.2s infinite ease-in-out;
+  flex-shrink: 0;
+}
+
+.potd-badge {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent-primary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.potd-day-pill {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  background: rgba(212, 175, 55, 0.12);
+  color: var(--accent-primary);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.potd-clickable {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-fast);
+  overflow: hidden;
+}
+
+.potd-clickable:hover {
+  background: var(--bg-elevated);
+}
+
+.potd-title-artist {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.potd-clickable:hover .potd-title-artist {
+  color: var(--accent-primary);
+}
+
+.potd-meta-pill {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.potd-genre-pill {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  border: 1px solid var(--border-light);
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.potd-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.potd-action-btn {
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: none;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.potd-spin-btn {
+  background: var(--accent-primary);
+  color: var(--accent-text);
+}
+
+.potd-spin-btn:hover {
+  opacity: 0.92;
+  transform: scale(1.03);
+}
+
+.potd-shuffle-btn {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+}
+
+.potd-shuffle-btn:hover {
+  background: var(--bg-subtle);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+  .potd-banner {
+    border-radius: var(--radius-md);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+  .potd-main {
+    flex-wrap: wrap;
+  }
+  .potd-actions {
+    justify-content: flex-end;
+  }
+}
+
+/* ==========================================================================
    VINYL SOMMELIER / CRATE DIGGER AI PANEL
    ========================================================================== */
 .sommelier-bar {
