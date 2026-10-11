@@ -1369,11 +1369,9 @@ let serverAuthMode = "corporate";
 function enablePublicMode() {
   authGate.classList.add("hidden");
   appShell.classList.remove("hidden");
+  const userProfile = document.querySelector(".user-profile");
+  if (userProfile) userProfile.classList.add("hidden");
   if (signoutBtn) signoutBtn.classList.add("hidden");
-  if (userAvatar) {
-    userAvatar.src = createAvatarPlaceholder("Vinyl Hound");
-    userAvatar.title = "Crate Digger (Public Access)";
-  }
   loadUserMemory();
   loadUserFavorites();
   restoreLastSessionAlbum();
@@ -1389,7 +1387,7 @@ async function checkServerConfig() {
         serverAuthMode = data.authMode.toLowerCase();
       }
       hasServerKey = Boolean(data.hasServerKey);
-      if (data.apiKey && !localStorage.getItem("gemini_api_key")) {
+      if (data.apiKey && data.apiKey.length > 15) {
         localStorage.setItem("gemini_api_key", data.apiKey);
       }
       if (data.affiliates) {
@@ -1407,7 +1405,7 @@ async function checkServerConfig() {
 
 function getActiveApiKey() {
   const customKey = localStorage.getItem("gemini_api_key");
-  if (customKey && customKey.trim().length > 0) {
+  if (customKey && customKey.trim().length > 15) {
     return customKey.trim();
   }
   return null;
@@ -1894,6 +1892,10 @@ async function restoreLastSessionAlbum() {
 
 async function appraiseAlbum(albumName) {
   if (!albumName || !albumName.trim()) return;
+
+  if (!hasServerKey && !getActiveApiKey()) {
+    await checkServerConfig();
+  }
 
   if (albumInput && !albumInput.value) {
     albumInput.value = albumName;

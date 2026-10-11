@@ -27,17 +27,24 @@ try {
 const PORT = parseInt(process.env.PORT || '8088', 10);
 const PUBLIC_DIR = path.join(__dirname, 'public');
 
-// Extract all valid AI Studio API keys (starts with AIzaSy)
+function cleanApiKey(k) {
+  if (!k || typeof k !== 'string') return '';
+  return k.trim().replace(/^["'`]|["'`]$/g, '').trim();
+}
+
+// Extract all valid AI Studio / Gemini API keys
 function getKeyPool() {
   const rawList = [
     ...(process.env.GEMINI_API_KEYS ? process.env.GEMINI_API_KEYS.split(',') : []),
     process.env.GEMINI_API_KEY,
-    process.env.GOOGLE_API_KEY
-  ].filter(Boolean).map(k => k.trim());
+    process.env.GEMINI_KEY,
+    process.env.GOOGLE_API_KEY,
+    process.env.API_KEY,
+    process.env.AI_STUDIO_KEY
+  ].map(cleanApiKey).filter(k => k.length > 15);
 
-  // Deduplicate and prioritize Google AI Studio keys (AIzaSy...)
-  const validKeys = Array.from(new Set(rawList)).filter(k => k.startsWith('AIzaSy'));
-  return validKeys;
+  const unique = Array.from(new Set(rawList));
+  return unique;
 }
 
 let currentKeyIndex = 0;
@@ -784,8 +791,8 @@ const server = http.createServer(async (req, res) => {
 
   // Server-side proxy for Gemini API with multi-key failover
   if (pathname === '/api/gemini' && req.method === 'POST') {
-    const clientKey = req.headers['x-gemini-key'];
-    const key = (clientKey && clientKey.startsWith('AIzaSy')) ? clientKey : getNextKey();
+    const clientKey = cleanApiKey(req.headers['x-gemini-key']);
+    const key = (clientKey && clientKey.length > 15) ? clientKey : getNextKey();
 
     if (!key) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
