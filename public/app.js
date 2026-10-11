@@ -954,7 +954,8 @@ export const STORE_REGISTRY = {
     getNewLinks: (title, artist) => {
       const query = `${artist} ${title}`.trim();
       const jpcUrl = `https://www.jpc.de/s/${encodeURIComponent(query)}`;
-      const hhvUrl = `https://www.hhv.de/shop/de/records/suche?term=${encodeURIComponent(query)}`;
+      const hhvTerm = (artist && artist.trim().length > 0) ? artist.trim() : query;
+      const hhvUrl = `https://www.hhv.de/katalog/filter/suche-S11?af=true&term=${encodeURIComponent(hhvTerm).replace(/%20/g, '+')}`;
       return [
         { name: "jpc.de", url: buildAwinLink(jpcUrl, "10711") },
         { name: "HHV.de", url: buildAwinLink(hhvUrl, "10537") },
