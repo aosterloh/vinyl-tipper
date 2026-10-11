@@ -125,7 +125,7 @@
 
         <!-- User Profile (Visible when logged in) -->
         <div class="user-profile hidden">
-          <img id="user-avatar" class="user-avatar" src="" alt="User" />
+          <img id="user-avatar" class="user-avatar" src="" alt="User" referrerpolicy="no-referrer" />
           <button id="signout-btn" class="signout-btn" type="button" title="Sign Out">Sign out</button>
         </div>
       </div>
@@ -160,44 +160,52 @@
 
         <!-- Vinyl Sommelier / "Find My Next Vinyl" Discovery Bar -->
         <div class="sommelier-bar" id="sommelier-bar">
-          <div class="sommelier-top-row">
-            <span class="sommelier-badge">✨ Vinyl Sommelier</span>
-            <span class="sommelier-subtitle">Looking for your next record? Tap a vibe or type your random thoughts:</span>
-          </div>
+          <div class="sommelier-split-wrap">
+            <!-- Left Column: Vibe Tags -->
+            <div class="sommelier-left-col">
+              <div class="sommelier-top-row">
+                <span class="sommelier-badge">✨ Vinyl Sommelier</span>
+                <span class="sommelier-subtitle">Tap a vibe:</span>
+              </div>
+              <div class="vibe-pills-wrap" id="vibe-pills-wrap">
+                <button class="vibe-pill" type="button" data-vibe="An indisputable critically acclaimed 5/5 vinyl masterpiece every physical collection must own">
+                  🎲 Surprise
+                </button>
+                <button class="vibe-pill" type="button" data-vibe="Late-night moody jazz with deep acoustic bass, intimate club atmosphere, and legendary warm analog mastering">
+                  🌙 Midnight Jazz
+                </button>
+                <button class="vibe-pill" type="button" data-vibe="1970s classic rock landmark with gatefold sleeve, wide dynamic range, and soaring guitars">
+                  ⚡ 70s Rock
+                </button>
+                <button class="vibe-pill" type="button" data-vibe="1980s Japanese City Pop with sparkling basslines, lush production, and incredible vinyl groove">
+                  🌆 City Pop
+                </button>
+                <button class="vibe-pill" type="button" data-vibe="Acoustic singer-songwriter folk with breathtaking vocal warmth and dynamic spatial separation">
+                  🌧️ Acoustic
+                </button>
+                <button class="vibe-pill" type="button" data-vibe="Audiophile reference test pressing with pristine uncompressed dynamic range and massive soundstage">
+                  🎧 Audiophile
+                </button>
+              </div>
+            </div>
 
-          <!-- Quick Vibe Pills -->
-          <div class="vibe-pills-wrap" id="vibe-pills-wrap">
-            <button class="vibe-pill" type="button" data-vibe="An indisputable critically acclaimed 5/5 vinyl masterpiece every physical collection must own">
-              🎲 Surprise Pick
-            </button>
-            <button class="vibe-pill" type="button" data-vibe="Late-night moody jazz with deep acoustic bass, intimate club atmosphere, and legendary warm analog mastering">
-              🌙 Midnight Jazz
-            </button>
-            <button class="vibe-pill" type="button" data-vibe="1970s classic rock landmark with gatefold sleeve, wide dynamic range, and soaring guitars">
-              ⚡ 70s Rock Landmark
-            </button>
-            <button class="vibe-pill" type="button" data-vibe="1980s Japanese City Pop with sparkling basslines, lush production, and incredible vinyl groove">
-              🌆 Tokyo City Pop
-            </button>
-            <button class="vibe-pill" type="button" data-vibe="Acoustic singer-songwriter folk with breathtaking vocal warmth and dynamic spatial separation">
-              🌧️ Rainy Day Acoustic
-            </button>
-            <button class="vibe-pill" type="button" data-vibe="Audiophile reference test pressing with pristine uncompressed dynamic range and massive soundstage">
-              🎧 Audiophile Master
-            </button>
-          </div>
-
-          <!-- Freeform thoughts input -->
-          <div class="sommelier-input-row">
-            <input 
-              type="text" 
-              id="sommelier-input" 
-              class="sommelier-input" 
-              placeholder="Or describe any thoughts... (e.g. 'moody 90s shoegaze with huge reverb' or 'warm 70s funk for weekend cooking')"
-            />
-            <button type="button" id="sommelier-submit-btn" class="sommelier-submit-btn">
-              <span>Drop Needle ✨</span>
-            </button>
+            <!-- Right Column: Drop Needle Search -->
+            <div class="sommelier-right-col">
+              <div class="sommelier-top-row">
+                <span class="sommelier-input-label">🎯 Drop needle on custom thoughts:</span>
+              </div>
+              <div class="sommelier-input-row">
+                <input 
+                  type="text" 
+                  id="sommelier-input" 
+                  class="sommelier-input" 
+                  placeholder="e.g. 'moody 90s shoegaze' or 'warm 70s funk'..."
+                />
+                <button type="button" id="sommelier-submit-btn" class="sommelier-submit-btn">
+                  <span>Drop Needle ✨</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

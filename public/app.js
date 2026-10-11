@@ -1372,7 +1372,12 @@ function updateAuthUI(isLoggedIn) {
     if (userProfileWrap) userProfileWrap.classList.remove("hidden");
     if (signoutBtn) signoutBtn.classList.remove("hidden");
     if (userAvatar) {
-      userAvatar.src = currentUser.photoURL || createAvatarPlaceholder(currentUser.displayName || currentUser.email);
+      const name = currentUser.displayName || currentUser.email || "Alex";
+      userAvatar.onerror = () => {
+        userAvatar.onerror = null;
+        userAvatar.src = createAvatarPlaceholder(name);
+      };
+      userAvatar.src = currentUser.photoURL || createAvatarPlaceholder(name);
       userAvatar.title = `${currentUser.displayName || "User"} (${currentUser.email})`;
       userAvatar.classList.remove("hidden");
     }
@@ -1837,45 +1842,180 @@ async function findAndAppraiseSommelierVinyl(vibeText) {
   }
 
   loadingState.classList.remove("hidden");
-  resultsSection.classList.add("hidden");
   const loadingText = document.querySelector(".loading-text");
-  if (loadingText) loadingText.textContent = `Consulting Vinyl Sommelier for "${vibeText.slice(0, 36)}..."`;
+  if (loadingText) loadingText.textContent = `Consulting Vinyl Sommelier for "${vibeText.slice(0, 32)}..."`;
 
   try {
-    const prompt = `You are an elite master vinyl record collector, crate digger, and analog audiophile.
-A music enthusiast is searching for their next perfect physical vinyl record to purchase and drop the needle on.
+    const prompt = `You are an elite master vinyl record collector and analog audiophile specialist in Germany.
+A music lover is searching for their next perfect physical vinyl record to drop the needle on.
 User's thoughts / vibe: "${vibeText.trim()}"
 
-Select exactly ONE indisputably legendary, critically acclaimed album that is revered on physical vinyl (celebrated for its analog dynamic range, packaging, mastering, or iconic listening experience).
+Select exactly ONE indisputable, critically acclaimed album that is revered on physical vinyl (celebrated for its analog dynamic range, packaging, mastering, or iconic listening experience).
 Do not return multiple albums. Return ONLY ONE perfect album.
 
 Respond strictly in valid JSON matching this schema:
 {
-  "artist": "Artist name",
-  "title": "Album title",
-  "year": "Release year",
-  "standoutTrack": "Standout track for first needle drop",
-  "whyOnVinyl": "2-3 sentences explaining why this album is transcendent on physical vinyl vs digital streaming (analog dynamic range, acoustic warmth, gatefold artwork, iconic pressings).",
-  "vibeMatch": "1 sentence on why this perfectly answers the user vibe."
+  "album": {
+    "artist": "Artist name",
+    "title": "Album title",
+    "year": 1977,
+    "genre": "Primary genre",
+    "playtime": "e.g. 43 min",
+    "trackCount": 10,
+    "firstTrackTitle": "First song title on the album (track 1)",
+    "standoutTrack": "Best track to drop the needle on first",
+    "whyOnVinyl": "2-3 sentences explaining why this album is transcendent on physical vinyl vs digital streaming (analog dynamic range, acoustic warmth, gatefold artwork, iconic pressings).",
+    "vibeMatch": "1 sentence on why this perfectly answers the user vibe.",
+    "collectorScore": {
+      "overallScore": 94,
+      "discogsRating": "4.65 / 5.0",
+      "ratingsCount": "25k+ ratings",
+      "tier": "Essential Masterpiece",
+      "verdict": "Authoritative vinyl collector verdict summary of strictly 30 words or fewer on acoustic quality, pressing dynamics, and musical stature."
+    },
+    "streetPriceGermany": {
+      "newEur": "€28 – €34",
+      "usedEur": "€14 – €22",
+      "conditionNote": "Used VG+/EX"
+    },
+    "coverSearchTerm": "Artist Album"
+  }
 }`;
 
-    const rec = await callGeminiFlash(prompt);
-    if (rec && rec.artist && rec.title) {
-      window.__SOMMELIER_NOTE__ = {
-        whyOnVinyl: rec.whyOnVinyl,
-        vibeMatch: rec.vibeMatch,
-        standoutTrack: rec.standoutTrack
-      };
-      if (albumInput) {
-        albumInput.value = `${rec.artist} - ${rec.title}`;
-      }
-      await appraiseAlbum(`${rec.artist} - ${rec.title}`);
-      showToast(`🎯 Sommelier Pick: "${rec.title}" by ${rec.artist}!`);
-    } else {
-      throw new Error("Invalid response format");
+    const res = await callGeminiFlash(prompt);
+    const rec = res?.album;
+
+    if (!rec || !rec.title || !rec.artist) {
+      throw new Error("Invalid response format from Sommelier");
     }
+
+    // PHASE 1: INSTANT HERO RENDER (~1.5s total time!)
+    loadingState.classList.add("hidden");
+    resultsSection.classList.remove("hidden");
+    const welcomeHero = document.getElementById("welcome-hero-state");
+    if (welcomeHero) welcomeHero.classList.add("hidden");
+
+    if (albumInput) {
+      albumInput.value = `${rec.artist} - ${rec.title}`;
+    }
+
+    albumTitleEl.textContent = rec.title;
+    albumArtistEl.textContent = rec.artist;
+    albumGenreEl.textContent = rec.genre || "Vinyl";
+    albumYearEl.textContent = rec.year || "";
+    albumPlaytimeEl.textContent = rec.playtime || "N/A";
+    albumTracksEl.textContent = `${rec.trackCount || 10} tracks`;
+
+    renderCollectorScoreAndVerdict(rec.collectorScore || {
+      overallScore: 94,
+      discogsRating: "4.65 / 5.0",
+      ratingsCount: "Collector favorite",
+      tier: "Essential Masterpiece",
+      verdict: "An indisputable analog landmark celebrated for acoustic warmth and timeless dynamic range."
+    });
+
+    const sommelierNote = {
+      whyOnVinyl: rec.whyOnVinyl || "",
+      vibeMatch: rec.vibeMatch || "",
+      standoutTrack: rec.standoutTrack || rec.firstTrackTitle || ""
+    };
+    window.__SOMMELIER_NOTE__ = sommelierNote;
+    renderSommelierLore(sommelierNote);
+
+    // Initial placeholder sleeve art
+    albumCoverImg.src = generateSvgCover(rec.title, rec.artist);
+
+    // Display initial estimated street prices immediately
+    const reg = STORE_REGISTRY[currentRegion] || STORE_REGISTRY.DE;
+    priceNewEl.textContent = formatRegionalPrice(rec.streetPriceGermany?.newEur || "€29", currentRegion);
+    priceNewNoteEl.textContent = `${reg.name} retail reissue`;
+    priceUsedEl.textContent = formatRegionalPrice(rec.streetPriceGermany?.usedEur || "€15", currentRegion);
+    priceUsedNoteEl.textContent = rec.streetPriceGermany?.conditionNote || "Used VG+/EX condition";
+    linksNewEl.innerHTML = `<span class="links-loading-pulse">🔍 Loading store links...</span>`;
+    linksUsedEl.innerHTML = `<span class="links-loading-pulse">🔍 Loading second-hand markets...</span>`;
+
+    currentAlbumData = {
+      title: rec.title,
+      artist: rec.artist,
+      genre: rec.genre,
+      year: rec.year,
+      playtime: rec.playtime,
+      trackCount: rec.trackCount,
+      collectorScore: rec.collectorScore,
+      coverUrl: albumCoverImg.src,
+      streetPriceGermany: rec.streetPriceGermany,
+      baseNewEur: rec.streetPriceGermany?.newEur || "€29",
+      baseUsedEur: rec.streetPriceGermany?.usedEur || "€15",
+      sommelierNote: sommelierNote,
+      alternatives: [],
+      currentAltOffset: 0
+    };
+
+    heroFavBtn.classList.toggle("active", isFavorited(rec.title, rec.artist));
+
+    // Sync URL and record session
+    recordLastDisplayedAlbum(`${rec.artist} - ${rec.title}`, rec);
+    showToast(`🎯 Sommelier Pick: "${rec.title}" by ${rec.artist}!`);
+
+    // Skeletons for crate alternatives while streaming
+    renderAlternativesSkeletons();
+
+    // PHASE 2: ASYNCHRONOUS BACKGROUND ASSETS & CRATE DISCOVERY (Non-blocking!)
+    // 1. High-Res cover artwork
+    fetchAlbumCover(rec.coverSearchTerm || `${rec.artist} ${rec.title}`, rec.artist, rec.title).then(highRes => {
+      if (highRes) {
+        albumCoverImg.src = highRes;
+        if (currentAlbumData && currentAlbumData.title === rec.title) {
+          currentAlbumData.coverUrl = highRes;
+        }
+      }
+    });
+
+    // 2. YouTube listening station
+    loadYouTubeTrack1(rec.artist, rec.title, rec.firstTrackTitle || rec.standoutTrack);
+
+    // 3. Store buy links (JPC, HHV, Amazon, Discogs, eBay)
+    asyncResearchBuyLinks(rec.title, rec.artist);
+
+    // 4. Background real-time pricing check
+    fetchRealTimePrices(rec.title, rec.artist).then(freshPrices => {
+      if (freshPrices) {
+        if (currentAlbumData) {
+          currentAlbumData.streetPriceGermany = freshPrices;
+          currentAlbumData.baseNewEur = freshPrices.newEur;
+          currentAlbumData.baseUsedEur = freshPrices.usedEur;
+        }
+        priceNewEl.textContent = formatRegionalPrice(freshPrices.newEur || "€29", currentRegion);
+        priceUsedEl.textContent = formatRegionalPrice(freshPrices.usedEur || "€15", currentRegion);
+        priceUsedNoteEl.textContent = freshPrices.conditionNote || "VG+ / EX condition";
+      }
+    });
+
+    // 5. Background crate alternatives
+    fetchMissingAlternatives({
+      title: rec.title,
+      artist: rec.artist,
+      genre: rec.genre
+    });
+
+    // 6. Save to local cache
+    saveAlbumToCache({
+      title: rec.title,
+      artist: rec.artist,
+      genre: rec.genre,
+      year: rec.year,
+      playtime: rec.playtime,
+      trackCount: rec.trackCount,
+      firstTrackTitle: rec.firstTrackTitle,
+      collectorScore: rec.collectorScore,
+      streetPriceGermany: rec.streetPriceGermany,
+      coverUrl: albumCoverImg.src,
+      sommelierNote: sommelierNote,
+      alternatives: []
+    });
+
   } catch (err) {
-    console.warn("Sommelier generation error, falling back to direct appraisal:", err);
+    console.warn("Sommelier fast-path error, falling back to direct appraisal:", err);
     await appraiseAlbum(vibeText);
   } finally {
     if (submitBtn) {

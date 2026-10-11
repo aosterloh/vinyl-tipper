@@ -546,34 +546,34 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 22px;
+  gap: 12px;
   width: 100%;
   max-width: 860px;
-  margin: 12px auto 16px;
+  margin: 4px auto 8px;
   padding: 0 12px;
 }
 
 .hero-header-text {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
   max-width: 700px;
   margin: 0 auto;
 }
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: 34px;
+  font-size: 25px;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-primary);
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
 .hero-subtitle {
-  font-size: 15px;
+  font-size: 13.5px;
   color: var(--text-secondary);
-  line-height: 1.5;
+  line-height: 1.4;
   font-weight: 400;
 }
 
@@ -4028,16 +4028,14 @@ body {
    VINYL SOMMELIER / CRATE DIGGER AI PANEL
    ========================================================================== */
 .sommelier-bar {
-  margin: 18px auto 0;
-  max-width: 840px;
+  margin: 10px auto 0;
+  width: 100%;
+  max-width: 860px;
   background: var(--bg-surface);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
-  padding: 16px 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  padding: 12px 16px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
   transition: all var(--transition-normal);
 }
 
@@ -4048,50 +4046,82 @@ body {
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
 }
 
+.sommelier-split-wrap {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 16px;
+  align-items: center;
+}
+
+@media (max-width: 800px) {
+  .sommelier-split-wrap {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.sommelier-left-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sommelier-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .sommelier-top-row {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
 .sommelier-badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 13px;
+  gap: 5px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: #d4af37;
   background: rgba(212, 175, 55, 0.12);
-  padding: 3px 10px;
+  padding: 2px 8px;
   border-radius: var(--radius-full);
   border: 1px solid rgba(212, 175, 55, 0.25);
 }
 
 .sommelier-subtitle {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--text-secondary);
-  font-weight: 400;
+  font-weight: 500;
+}
+
+.sommelier-input-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 600;
 }
 
 .vibe-pills-wrap {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
 }
 
 .vibe-pill {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 7px 14px;
+  gap: 4px;
+  padding: 5px 11px;
   border-radius: var(--radius-full);
   background: var(--bg-elevated);
   border: 1px solid var(--border-medium);
   color: var(--text-primary);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   cursor: pointer;
   transition: all var(--transition-fast);
@@ -4103,7 +4133,7 @@ body {
   border-color: #d4af37;
   color: #d4af37;
   transform: translateY(-1px);
-  box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2);
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
 }
 
 .vibe-pill:active {
@@ -4113,8 +4143,7 @@ body {
 .sommelier-input-row {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 4px;
+  gap: 6px;
 }
 
 .sommelier-input {
@@ -4122,8 +4151,8 @@ body {
   background: var(--bg-elevated);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-full);
-  padding: 10px 18px;
-  font-size: 14px;
+  padding: 8px 14px;
+  font-size: 13px;
   color: var(--text-primary);
   font-family: inherit;
   outline: none;
@@ -4132,36 +4161,36 @@ body {
 
 .sommelier-input:focus {
   border-color: #d4af37;
-  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.15);
 }
 
 .sommelier-input::placeholder {
   color: var(--text-muted);
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .sommelier-submit-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 10px 20px;
+  gap: 5px;
+  padding: 8px 16px;
   border-radius: var(--radius-full);
   background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
   color: #111;
   border: none;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   cursor: pointer;
   white-space: nowrap;
   transition: all var(--transition-fast);
-  box-shadow: 0 3px 12px rgba(212, 175, 55, 0.3);
+  box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
 }
 
 .sommelier-submit-btn:hover {
   filter: brightness(1.1);
   transform: translateY(-1px);
-  box-shadow: 0 5px 16px rgba(212, 175, 55, 0.45);
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.4);
 }
 
 .sommelier-submit-btn:disabled {
