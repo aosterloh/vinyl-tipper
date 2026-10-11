@@ -237,11 +237,48 @@ async function resolveDjVideo(query) {
   return null;
 }
 
+// Native YouTube postMessage command bridge: Direct playback control across origins
+function sendYtCommand(func, args = []) {
+  try {
+    if (heroYtIframe && heroYtIframe.contentWindow) {
+      heroYtIframe.contentWindow.postMessage(JSON.stringify({
+        event: "command",
+        func: func,
+        args: Array.isArray(args) ? args : [args]
+      }), "*");
+    }
+  } catch (e) {
+    console.warn("[Vinyl DJ] postMessage send notice:", e);
+  }
+}
+
+// Window message listener for native YouTube iframe state changes
+window.addEventListener("message", (event) => {
+  try {
+    const data = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
+    if (!data) return;
+    if (data.event === "onStateChange" || (data.info !== undefined && typeof data.info === "number")) {
+      const state = data.info;
+      if (state === 1) { // PLAYING
+        djState.isPlaying = true;
+        updateDjDeckUI();
+      } else if (state === 2) { // PAUSED
+        djState.isPlaying = false;
+        updateDjDeckUI();
+      } else if (state === 0) { // ENDED
+        console.log("[Vinyl DJ] postMessage: Track finished! Autoplaying next in queue...");
+        djPlayNext(true);
+      }
+    }
+  } catch (e) {}
+});
+
 function initYouTubePlayer() {
-  if (djState.ytPlayer) return;
   if (!window.YT || !window.YT.Player) return;
   const iframe = document.getElementById("hero-yt-iframe");
-  if (!iframe) return;
+  if (!iframe || !iframe.src || !iframe.src.includes("/embed/")) return;
+
+  if (djState.ytPlayer && typeof djState.ytPlayer.playVideo === "function") return;
 
   try {
     djState.ytPlayer = new window.YT.Player("hero-yt-iframe", {
@@ -286,6 +323,37 @@ function onDjPlayerError(event) {
   setTimeout(() => {
     djPlayNext(true);
   }, 1200);
+}
+
+function ensureDjQueue() {
+  if (djState.queue && djState.queue.length > 0) return djState.queue;
+
+  let baseAlbum = currentAlbumData;
+  if (!baseAlbum || !baseAlbum.title) {
+    const title = (albumTitleEl?.textContent || "").trim();
+    const artist = (albumArtistEl?.textContent || "").trim();
+    if (title && title !== "Album Title") {
+      baseAlbum = {
+        title,
+        artist,
+        firstTrackTitle: ytTrackTitle?.textContent || "",
+        alternatives: []
+      };
+    }
+  }
+
+  if (baseAlbum) {
+    djState.queue = buildDjQueue(baseAlbum, baseAlbum.alternatives || [], djState.mode);
+    if (djState.queue.length > 0 && heroYtIframe && heroYtIframe.src) {
+      const match = heroYtIframe.src.match(/\/embed\/([a-zA-Z0-9_-]{11})/);
+      if (match && !djState.queue[0].videoId) {
+        djState.queue[0].videoId = match[1];
+      }
+    }
+    renderDjQueueList();
+    updateDjDeckUI();
+  }
+  return djState.queue;
 }
 
 function buildDjQueue(album, alternatives = [], mode = djState.mode) {
@@ -375,7 +443,11 @@ async function prefetchNextDjTrack(nextIndex) {
 }
 
 async function djPlayIndex(index, autoStart = true) {
-  if (!djState.queue || djState.queue.length === 0) return;
+  ensureDjQueue();
+  if (!djState.queue || djState.queue.length === 0) {
+    console.warn("[Vinyl DJ] Cannot play: queue is empty");
+    return;
+  }
   if (index < 0) index = 0;
   if (index >= djState.queue.length) index = 0;
 
@@ -385,10 +457,19 @@ async function djPlayIndex(index, autoStart = true) {
   // Resolve videoId if needed
   let vId = current.videoId;
   if (!vId) {
-    const res = await resolveDjVideo(current.searchQuery);
-    if (res && res.videoId) {
-      vId = res.videoId;
-      current.videoId = vId;
+    if (index === 0 && heroYtIframe && heroYtIframe.src) {
+      const match = heroYtIframe.src.match(/\/embed\/([a-zA-Z0-9_-]{11})/);
+      if (match) {
+        vId = match[1];
+        current.videoId = vId;
+      }
+    }
+    if (!vId) {
+      const res = await resolveDjVideo(current.searchQuery);
+      if (res && res.videoId) {
+        vId = res.videoId;
+        current.videoId = vId;
+      }
     }
   }
 
@@ -406,22 +487,40 @@ async function djPlayIndex(index, autoStart = true) {
   if (ytTrackTitle) ytTrackTitle.textContent = `${current.artist} — ${current.displayTitle}`;
   if (heroYtLink) heroYtLink.href = `https://www.youtube.com/watch?v=${vId}`;
 
+  const currentIframeSrc = heroYtIframe ? (heroYtIframe.src || "") : "";
+  const isSameVideoLoaded = currentIframeSrc.includes(`/embed/${vId}`);
   const embedUrl = `https://www.youtube-nocookie.com/embed/${vId}?enablejsapi=1&autoplay=${autoStart ? 1 : 0}&origin=${encodeURIComponent(window.location.origin)}`;
 
-  if (djState.ytPlayer && typeof djState.ytPlayer.loadVideoById === "function") {
-    try {
-      if (autoStart) {
-        djState.ytPlayer.loadVideoById({ videoId: vId });
-        djState.isPlaying = true;
-      } else {
-        djState.ytPlayer.cueVideoById({ videoId: vId });
-      }
-    } catch (e) {
-      if (heroYtIframe) heroYtIframe.src = embedUrl;
+  if (isSameVideoLoaded) {
+    // Already in iframe! Start playing immediately with zero reload
+    sendYtCommand("playVideo");
+    if (djState.ytPlayer && typeof djState.ytPlayer.playVideo === "function") {
+      try { djState.ytPlayer.playVideo(); } catch (e) {}
     }
   } else {
-    if (heroYtIframe) heroYtIframe.src = embedUrl;
-    setTimeout(initYouTubePlayer, 600);
+    // Need to load video
+    if (djState.ytPlayer && typeof djState.ytPlayer.loadVideoById === "function") {
+      try {
+        if (autoStart) {
+          djState.ytPlayer.loadVideoById({ videoId: vId });
+        } else {
+          djState.ytPlayer.cueVideoById({ videoId: vId });
+        }
+      } catch (e) {
+        if (heroYtIframe) heroYtIframe.src = embedUrl;
+      }
+    } else {
+      if (heroYtIframe && (!heroYtIframe.src || !heroYtIframe.src.includes(vId))) {
+        heroYtIframe.src = embedUrl;
+      }
+      sendYtCommand("loadVideoById", [vId, 0]);
+      if (autoStart) {
+        sendYtCommand("playVideo");
+        setTimeout(() => sendYtCommand("playVideo"), 400);
+        setTimeout(() => sendYtCommand("playVideo"), 1000);
+      }
+      setTimeout(initYouTubePlayer, 600);
+    }
   }
 
   if (autoStart) djState.isPlaying = true;
@@ -433,18 +532,21 @@ async function djPlayIndex(index, autoStart = true) {
 }
 
 function djPlayNext(autoStart = true) {
+  ensureDjQueue();
   if (!djState.queue || djState.queue.length === 0) return;
   const nextIdx = (djState.currentIndex + 1) % djState.queue.length;
   djPlayIndex(nextIdx, autoStart);
 }
 
 function djPlayPrev(autoStart = true) {
+  ensureDjQueue();
   if (!djState.queue || djState.queue.length === 0) return;
   const prevIdx = (djState.currentIndex - 1 + djState.queue.length) % djState.queue.length;
   djPlayIndex(prevIdx, autoStart);
 }
 
 function toggleDjPlayPause() {
+  ensureDjQueue();
   if (!djState.queue || djState.queue.length === 0) {
     if (currentAlbumData) {
       loadYouTubeTrack1(currentAlbumData.artist, currentAlbumData.title, currentAlbumData.firstTrackTitle, currentAlbumData.youtubeVideoId);
@@ -453,13 +555,15 @@ function toggleDjPlayPause() {
   }
 
   if (djState.isPlaying) {
+    sendYtCommand("pauseVideo");
     if (djState.ytPlayer && typeof djState.ytPlayer.pauseVideo === "function") {
-      djState.ytPlayer.pauseVideo();
+      try { djState.ytPlayer.pauseVideo(); } catch (e) {}
     }
     djState.isPlaying = false;
   } else {
+    sendYtCommand("playVideo");
     if (djState.ytPlayer && typeof djState.ytPlayer.playVideo === "function") {
-      djState.ytPlayer.playVideo();
+      try { djState.ytPlayer.playVideo(); } catch (e) {}
     } else {
       djPlayIndex(djState.currentIndex, true);
     }
@@ -469,6 +573,7 @@ function toggleDjPlayPause() {
 }
 
 function shuffleDjQueue() {
+  ensureDjQueue();
   if (!djState.queue || djState.queue.length <= 1) return;
   const current = djState.queue[djState.currentIndex];
   const remaining = djState.queue.filter((_, idx) => idx !== djState.currentIndex);
@@ -644,9 +749,19 @@ if (heroModeAlbumBtn) {
   heroModeAlbumBtn.addEventListener("click", () => setDjMode("full_album", true));
 }
 if (heroStartDjBtn) {
-  heroStartDjBtn.addEventListener("click", () => {
+  heroStartDjBtn.addEventListener("click", async (e) => {
+    e.preventDefault();
+    console.log("[Vinyl DJ] 'Start Vinyl DJ' button clicked. State isPlaying:", djState.isPlaying);
+
+    // Ensure hero box and bottom DJ bar are visible
+    if (heroYtBox) heroYtBox.classList.remove("hidden");
+    if (djDeckBar) djDeckBar.classList.remove("hidden");
+    djState.isDeckMinimized = false;
+
+    ensureDjQueue();
+
     if (!djState.isPlaying) {
-      djPlayIndex(djState.currentIndex, true);
+      await djPlayIndex(djState.currentIndex || 0, true);
     } else {
       toggleDjPlayPause();
     }
