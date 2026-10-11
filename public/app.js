@@ -3747,6 +3747,27 @@ function initHeaderScroll() {
   }
 }
 
+// Dynamic Placeholder Hints (e.g. Daft Punk - Discovery)
+function initPlaceholderHints() {
+  const hints = [
+    "Search any artist or album... (e.g. Daft Punk - Discovery)",
+    "Search any artist or album... (e.g. Pink Floyd - The Dark Side of the Moon)",
+    "Search any artist or album... (e.g. Fleetwood Mac - Rumours)",
+    "Search any artist or album... (e.g. Miles Davis - Kind of Blue)",
+    "Search any artist or album... (e.g. The Beatles - Abbey Road)"
+  ];
+  let hintIdx = 0;
+
+  if (!albumInput) return;
+
+  setInterval(() => {
+    if (document.activeElement !== albumInput && !albumInput.value) {
+      hintIdx = (hintIdx + 1) % hints.length;
+      albumInput.placeholder = hints[hintIdx];
+    }
+  }, 4500);
+}
+
 // ============================================================================
 // 13. INITIALIZATION
 // ============================================================================
@@ -3755,4 +3776,5 @@ initRegionSelector();
 checkServerConfig();
 initPwa();
 initHeaderScroll();
+initPlaceholderHints();
 

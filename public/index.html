@@ -47,30 +47,96 @@
   <!-- MAIN APPLICATION SHELL -->
   <div id="app-shell" class="app-shell hidden">
     <!-- Top Navigation Bar -->
-    <!-- Top Navigation Bar & Hero Header -->
+    <!-- Top Navigation Bar (Sleek 64px Bar) -->
     <header class="top-nav" id="top-nav">
-      <!-- Left: Hero Brand & Mascot Logo -->
-      <div class="nav-brand-col">
-        <div class="nav-brand" id="nav-brand" title="Vinyl Hound - Home">
-          <img src="/logo/vinylhound-emblem-dark.jpeg" class="brand-logo-img logo-dark" alt="Vinyl Hound" />
-          <img src="/logo/vinylhound-emblem-light.jpeg" class="brand-logo-img logo-light" alt="Vinyl Hound" />
-          <div class="brand-text-col">
-            <span class="brand-name">VINYL HOUND</span>
-            <span class="brand-tagline">Appraisal &amp; Crate Digging</span>
-          </div>
-        </div>
+      <div class="nav-brand" id="nav-brand" title="Vinyl Hound - Home">
+        <img src="/logo/vinylhound-emblem-dark.jpeg" class="brand-logo-img logo-dark" alt="Vinyl Hound" />
+        <img src="/logo/vinylhound-emblem-light.jpeg" class="brand-logo-img logo-light" alt="Vinyl Hound" />
+        <span class="brand-name">VINYL HOUND</span>
       </div>
 
-      <!-- Center: Search Input Area (Lower boundary sits level with logo baseline) -->
-      <div class="nav-search-col">
-        <form id="search-form" class="search-form">
+      <div class="nav-controls">
+        <!-- My Fav Vinyl Button -->
+        <button id="favs-btn" class="nav-favs-btn" type="button" aria-label="My Fav Vinyl" title="View Favorite Vinyl Records">
+          <span class="favs-heart-icon">❤️</span>
+          <span class="favs-btn-text">My Fav Vinyl</span>
+          <span id="favs-count-badge" class="favs-count-badge hidden">0</span>
+        </button>
+
+        <!-- Vinyl Recommendations Button (Based on saved favorites or last 3 searches) -->
+        <button id="fav-recs-btn" class="nav-recs-btn hidden" type="button" aria-label="Vinyl Recommendations" title="Get Vinyl Recommendations based on your favorite albums or recent searches">
+          <span class="recs-sparkle-icon">✨</span>
+          <span class="recs-btn-text">Vinyl Recommendations</span>
+        </button>
+
+        <!-- Region & Localized Shop Selector -->
+        <div class="region-selector-wrapper">
+          <button id="region-toggle-btn" class="region-toggle-btn" type="button" aria-haspopup="true" aria-expanded="false" title="Change Vinyl Market Region & Shop Links">
+            <span id="region-current-flag" class="region-flag">🇩🇪</span>
+            <span id="region-current-code" class="region-code">DE</span>
+            <span class="region-caret">▾</span>
+          </button>
+          <div id="region-dropdown-menu" class="region-dropdown-menu hidden" role="menu">
+            <button class="region-menu-item active" type="button" data-region="DE">
+              <span class="item-flag">🇩🇪</span>
+              <span class="item-name">Germany / EU</span>
+              <span class="item-curr">(€ EUR)</span>
+            </button>
+            <button class="region-menu-item" type="button" data-region="US">
+              <span class="item-flag">🇺🇸</span>
+              <span class="item-name">United States</span>
+              <span class="item-curr">($ USD)</span>
+            </button>
+            <button class="region-menu-item" type="button" data-region="UK">
+              <span class="item-flag">🇬🇧</span>
+              <span class="item-name">United Kingdom</span>
+              <span class="item-curr">(£ GBP)</span>
+            </button>
+            <button class="region-menu-item" type="button" data-region="GLOBAL">
+              <span class="item-flag">🌐</span>
+              <span class="item-name">Worldwide / Global</span>
+              <span class="item-curr">($ USD)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Install PWA App Button (shown when installable or clicked on mobile) -->
+        <button id="pwa-install-btn" class="nav-install-btn hidden" type="button" aria-label="Install App" title="Install Vinyl Hound as an App">
+          <span class="install-icon">📲</span>
+          <span class="install-btn-text">Install App</span>
+        </button>
+
+        <!-- Light / Dark Theme Switch (Per gemini.md) -->
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Light / Dark Theme">
+          <span class="theme-icon light-icon">☀️</span>
+          <span class="theme-icon dark-icon">🌙</span>
+        </button>
+
+        <!-- User Profile -->
+        <div class="user-profile">
+          <img id="user-avatar" class="user-avatar" src="" alt="User" />
+          <button id="signout-btn" class="signout-btn" type="button" title="Sign Out">Sign out</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Flow -->
+    <main class="main-content">
+      <!-- Prominent Hero Section with Full-Width Search Bar -->
+      <section class="hero-search-section">
+        <div class="hero-header-text">
+          <h1 class="hero-title">Crate Digging Reimagined</h1>
+          <p class="hero-subtitle">Discover real-time vinyl street appraisals, spin virtual turntable audio previews, and unearth curated crate alternatives.</p>
+        </div>
+
+        <form id="search-form" class="search-form hero-search-form">
           <div class="search-bar-wrap">
             <span class="search-icon">🔍</span>
             <input 
               type="text" 
               id="album-input" 
               class="album-input" 
-              placeholder="Drop an artist or album name... (e.g. Pink Floyd, Daft Punk, Abbey Road)" 
+              placeholder="Search any artist or album... (e.g. Daft Punk - Discovery)" 
               autocomplete="off" 
               required
             />
@@ -80,100 +146,6 @@
             <div id="autocomplete-dropdown" class="autocomplete-dropdown hidden" role="listbox" aria-label="Top album suggestions"></div>
           </div>
         </form>
-      </div>
-
-      <!-- Quick Suggestion Chips Sub-Row (Underneath the Search Bar) -->
-      <div class="nav-chips-col">
-        <div class="quick-chips">
-          <span class="chip" data-album="Abbey Road">Abbey Road</span>
-          <span class="chip" data-album="Discovery">Discovery</span>
-          <span class="chip" data-album="Kind of Blue">Kind of Blue</span>
-          <span class="chip" data-album="Rumours">Rumours</span>
-          <span class="chip" data-album="The Dark Side of the Moon">Dark Side of the Moon</span>
-        </div>
-      </div>
-
-      <!-- Right: Utility Controls -->
-      <div class="nav-controls-col">
-        <div class="nav-controls">
-          <!-- My Fav Vinyl Button -->
-          <button id="favs-btn" class="nav-favs-btn" type="button" aria-label="My Fav Vinyl" title="View Favorite Vinyl Records">
-            <span class="favs-heart-icon">❤️</span>
-            <span class="favs-btn-text">My Fav Vinyl</span>
-            <span id="favs-count-badge" class="favs-count-badge hidden">0</span>
-          </button>
-
-          <!-- Vinyl Recommendations Button (Based on saved favorites or last 3 searches) -->
-          <button id="fav-recs-btn" class="nav-recs-btn hidden" type="button" aria-label="Vinyl Recommendations" title="Get Vinyl Recommendations based on your favorite albums or recent searches">
-            <span class="recs-sparkle-icon">✨</span>
-            <span class="recs-btn-text">Vinyl Recommendations</span>
-          </button>
-
-          <!-- Region & Localized Shop Selector -->
-          <div class="region-selector-wrapper">
-            <button id="region-toggle-btn" class="region-toggle-btn" type="button" aria-haspopup="true" aria-expanded="false" title="Change Vinyl Market Region & Shop Links">
-              <span id="region-current-flag" class="region-flag">🇩🇪</span>
-              <span id="region-current-code" class="region-code">DE</span>
-              <span class="region-caret">▾</span>
-            </button>
-            <div id="region-dropdown-menu" class="region-dropdown-menu hidden" role="menu">
-              <button class="region-menu-item active" type="button" data-region="DE">
-                <span class="item-flag">🇩🇪</span>
-                <span class="item-name">Germany / EU</span>
-                <span class="item-curr">(€ EUR)</span>
-              </button>
-              <button class="region-menu-item" type="button" data-region="US">
-                <span class="item-flag">🇺🇸</span>
-                <span class="item-name">United States</span>
-                <span class="item-curr">($ USD)</span>
-              </button>
-              <button class="region-menu-item" type="button" data-region="UK">
-                <span class="item-flag">🇬🇧</span>
-                <span class="item-name">United Kingdom</span>
-                <span class="item-curr">(£ GBP)</span>
-              </button>
-              <button class="region-menu-item" type="button" data-region="GLOBAL">
-                <span class="item-flag">🌐</span>
-                <span class="item-name">Worldwide / Global</span>
-                <span class="item-curr">($ USD)</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Install PWA App Button (shown when installable or clicked on mobile) -->
-          <button id="pwa-install-btn" class="nav-install-btn hidden" type="button" aria-label="Install App" title="Install Vinyl Hound as an App">
-            <span class="install-icon">📲</span>
-            <span class="install-btn-text">Install App</span>
-          </button>
-
-          <!-- Light / Dark Theme Switch (Per gemini.md) -->
-          <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Light / Dark Theme">
-            <span class="theme-icon light-icon">☀️</span>
-            <span class="theme-icon dark-icon">🌙</span>
-          </button>
-
-          <!-- User Profile -->
-          <div class="user-profile">
-            <img id="user-avatar" class="user-avatar" src="" alt="User" />
-            <button id="signout-btn" class="signout-btn" type="button" title="Sign Out">Sign out</button>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- Main Content Flow -->
-    <main class="main-content">
-      <!-- Welcome Hero Prompt (Visible before first search) -->
-      <section id="welcome-hero-state" class="welcome-hero-state">
-        <div class="welcome-crate-box">
-          <div class="welcome-record-stack">
-            <div class="stack-record rec-1"></div>
-            <div class="stack-record rec-2"></div>
-            <div class="stack-record rec-3"></div>
-          </div>
-          <h2 class="welcome-title">Crate Digging Reimagined</h2>
-          <p class="welcome-desc">Search an artist or album above to discover real-time vinyl appraisals, spin 30-second audio previews on the virtual turntable, and unearth curated crate alternatives.</p>
-        </div>
       </section>
 
       <!-- Loading State Indicator -->
