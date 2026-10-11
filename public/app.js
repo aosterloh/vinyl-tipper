@@ -1870,6 +1870,8 @@ async function appraiseAlbum(albumName) {
 
   loadingState.classList.remove("hidden");
   resultsSection.classList.add("hidden");
+  const welcomeHero = document.getElementById("welcome-hero-state");
+  if (welcomeHero) welcomeHero.classList.add("hidden");
 
   // =========================================================================
   // STEP 1: CHECK STORAGE DATABASE (CACHE HIT -> 0ms LOAD)
@@ -3723,6 +3725,28 @@ function initPwa() {
   });
 }
 
+// Header scroll adaptation & Brand click
+function initHeaderScroll() {
+  const topNav = document.getElementById("top-nav");
+  const navBrand = document.getElementById("nav-brand");
+
+  if (topNav) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 30) {
+        topNav.classList.add("scrolled");
+      } else {
+        topNav.classList.remove("scrolled");
+      }
+    }, { passive: true });
+  }
+
+  if (navBrand) {
+    navBrand.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+}
+
 // ============================================================================
 // 13. INITIALIZATION
 // ============================================================================
@@ -3730,4 +3754,5 @@ initTheme();
 initRegionSelector();
 checkServerConfig();
 initPwa();
+initHeaderScroll();
 
