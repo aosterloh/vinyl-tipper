@@ -465,6 +465,7 @@ const server = http.createServer(async (req, res) => {
     const pool = getKeyPool();
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({
+      authMode: (process.env.AUTH_MODE || 'corporate').toLowerCase(),
       hasServerKey: pool.length > 0,
       apiKey: pool[0] || null,
       keyCount: pool.length,

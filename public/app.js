@@ -1315,6 +1315,12 @@ function showAuthError(msg) {
 }
 
 onAuthStateChanged(auth, async (user) => {
+  // In public mode, never block visitors with an authentication wall
+  if (serverAuthMode === "public") {
+    enablePublicMode();
+    return;
+  }
+
   if (user) {
     if (!user.email || !user.email.toLowerCase().endsWith("@google.com")) {
       await signOut(auth);
@@ -1343,8 +1349,10 @@ onAuthStateChanged(auth, async (user) => {
     currentUser = null;
     userFavorites = [];
     updateFavsUI();
-    authGate.classList.remove("hidden");
-    appShell.classList.add("hidden");
+    if (serverAuthMode !== "public") {
+      authGate.classList.remove("hidden");
+      appShell.classList.add("hidden");
+    }
   }
 });
 
@@ -1356,17 +1364,40 @@ function createAvatarPlaceholder(name) {
 // ============================================================================
 // 5. SERVER CONFIG & GEMINI API KEY MANAGEMENT
 // ============================================================================
+let serverAuthMode = "corporate";
+
+function enablePublicMode() {
+  authGate.classList.add("hidden");
+  appShell.classList.remove("hidden");
+  if (signoutBtn) signoutBtn.classList.add("hidden");
+  if (userAvatar) {
+    userAvatar.src = createAvatarPlaceholder("Vinyl Hound");
+    userAvatar.title = "Crate Digger (Public Access)";
+  }
+  loadUserMemory();
+  loadUserFavorites();
+  restoreLastSessionAlbum();
+  loadAndDisplayCachedRecommendations();
+}
+
 async function checkServerConfig() {
   try {
     const res = await fetch("/api/config");
     if (res.ok) {
       const data = await res.json();
+      if (data.authMode) {
+        serverAuthMode = data.authMode.toLowerCase();
+      }
       hasServerKey = Boolean(data.hasServerKey);
       if (data.apiKey && !localStorage.getItem("gemini_api_key")) {
         localStorage.setItem("gemini_api_key", data.apiKey);
       }
       if (data.affiliates) {
         AFFILIATE_CONFIG = { ...AFFILIATE_CONFIG, ...data.affiliates };
+      }
+
+      if (serverAuthMode === "public") {
+        enablePublicMode();
       }
     }
   } catch (e) {
