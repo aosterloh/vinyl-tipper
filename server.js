@@ -63,6 +63,23 @@ const LAST_SESSION_FILE = path.join(DATA_DIR, 'last_session.json');
 const RECOMMENDATIONS_FILE = path.join(DATA_DIR, 'recommendations.json');
 const FAVORITES_FILE = path.join(DATA_DIR, 'favorites.json');
 
+const CORPORATE_FIREBASE_CONFIG = {
+  apiKey: "AIzaSyBDfu44ElID27cy2lvozY2BD1izTq7AIuo",
+  authDomain: "aosterloh-cs-muc.firebaseapp.com",
+  projectId: "aosterloh-cs-muc",
+  storageBucket: "aosterloh-cs-muc.appspot.com",
+  appId: "1:557450838719:web:5e51f"
+};
+
+const PUBLIC_FIREBASE_CONFIG = {
+  apiKey: process.env.FIREBASE_API_KEY || "AIzaSyBohm2Obe3zqxav80otAKVmYkYlsQtu5yk",
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN || "vinyl-hound.firebaseapp.com",
+  projectId: process.env.FIREBASE_PROJECT_ID || "vinyl-hound",
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET || "vinyl-hound.firebasestorage.app",
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID || "403699448912",
+  appId: process.env.FIREBASE_APP_ID || "1:403699448912:web:60810f38aad00541036555"
+};
+
 function ensureDataDirs() {
   try {
     if (!fs.existsSync(DATA_DIR)) {
@@ -470,9 +487,13 @@ const server = http.createServer(async (req, res) => {
   // API endpoint to retrieve configuration & pre-configured key for frontend
   if (pathname === '/api/config') {
     const pool = getKeyPool();
+    const authMode = (process.env.AUTH_MODE || 'corporate').toLowerCase();
+    const activeFbConfig = authMode === 'public' ? PUBLIC_FIREBASE_CONFIG : CORPORATE_FIREBASE_CONFIG;
+
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({
-      authMode: (process.env.AUTH_MODE || 'corporate').toLowerCase(),
+      authMode,
+      firebaseConfig: activeFbConfig,
       hasServerKey: pool.length > 0,
       apiKey: pool[0] || null,
       keyCount: pool.length,
@@ -849,6 +870,10 @@ const server = http.createServer(async (req, res) => {
   }
 
   fs.stat(filePath, (err, stats) => {
+    const authMode = (process.env.AUTH_MODE || 'corporate').toLowerCase();
+    const activeFbConfig = authMode === 'public' ? PUBLIC_FIREBASE_CONFIG : CORPORATE_FIREBASE_CONFIG;
+    const injection = `<script>window.__AUTH_MODE__=${JSON.stringify(authMode)};window.__FIREBASE_CONFIG__=${JSON.stringify(activeFbConfig)};</script></head>`;
+
     if (err || !stats.isFile()) {
       const fallback = path.join(PUBLIC_DIR, 'index.html');
       fs.readFile(fallback, (fErr, content) => {
@@ -856,8 +881,9 @@ const server = http.createServer(async (req, res) => {
           res.writeHead(404, { 'Content-Type': 'text/plain' });
           res.end('Not Found');
         } else {
+          const html = content.toString('utf8').replace('</head>', injection);
           res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
-          res.end(content);
+          res.end(html);
         }
       });
       return;
@@ -871,6 +897,12 @@ const server = http.createServer(async (req, res) => {
         res.writeHead(500, { 'Content-Type': 'text/plain' });
         res.end('Internal Server Error');
       } else {
+        if (ext === '.html') {
+          const html = content.toString('utf8').replace('</head>', injection);
+          res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
+          res.end(html);
+          return;
+        }
         res.writeHead(200, { 'Content-Type': contentType });
         res.end(content);
       }

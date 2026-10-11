@@ -16,13 +16,30 @@ import {
 // ============================================================================
 // 1. FIREBASE AUTHENTICATION CONFIGURATION (MANDATORY per gemini.md)
 // ============================================================================
-export const firebaseConfig = {
+export const corporateFirebaseConfig = {
   apiKey: "AIzaSyBDfu44ElID27cy2lvozY2BD1izTq7AIuo",
   authDomain: "aosterloh-cs-muc.firebaseapp.com",
   projectId: "aosterloh-cs-muc",
   storageBucket: "aosterloh-cs-muc.appspot.com",
   appId: "1:557450838719:web:5e51f"
 };
+
+export const publicFirebaseConfig = {
+  apiKey: "AIzaSyBohm2Obe3zqxav80otAKVmYkYlsQtu5yk",
+  authDomain: "vinyl-hound.firebaseapp.com",
+  projectId: "vinyl-hound",
+  storageBucket: "vinyl-hound.firebasestorage.app",
+  messagingSenderId: "403699448912",
+  appId: "1:403699448912:web:60810f38aad00541036555"
+};
+
+// Select active configuration: window injection > hostname match > corporate default
+export const firebaseConfig = (typeof window !== "undefined" && window.__FIREBASE_CONFIG__)
+  || ((typeof window !== "undefined" && (window.location.hostname.includes("vinyl-hound") || window.location.hostname.includes("vinylhound")))
+      ? publicFirebaseConfig
+      : ((typeof window !== "undefined" && window.__AUTH_MODE__ === "public")
+          ? publicFirebaseConfig
+          : corporateFirebaseConfig));
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
