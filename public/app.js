@@ -2879,20 +2879,448 @@ Respond strictly in valid JSON:
   }
 }
 
+// ============================================================================
+// CURATED SUB-GENRE VAULT & SERENDIPITY CRATE DIGGER
+// 5 Iconic Pillars: Hip Hop, Techno, Grunge, Rock, Jazz
+// ============================================================================
+const SUBGENRE_VAULT = {
+  hiphop: [
+    {
+      id: "boom-bap",
+      category: "hiphop",
+      name: "90s Boom Bap",
+      icon: "🎤",
+      genre: "Hip Hop",
+      tagline: "Gritty SP-1200 drum chops & golden-era East Coast lyricism",
+      records: [
+        { artist: "Nas", title: "Illmatic", year: 1994, query: "Nas Illmatic" },
+        { artist: "Wu-Tang Clan", title: "Enter the Wu-Tang (36 Chambers)", year: 1993, query: "Wu-Tang Clan Enter the Wu-Tang" },
+        { artist: "Gang Starr", title: "Moment of Truth", year: 1998, query: "Gang Starr Moment of Truth" }
+      ]
+    },
+    {
+      id: "g-funk",
+      category: "hiphop",
+      name: "90s G-Funk",
+      icon: "🌴",
+      genre: "Hip Hop",
+      tagline: "Laid-back Moog basslines, funk whistles & California sun",
+      records: [
+        { artist: "Dr. Dre", title: "The Chronic", year: 1992, query: "Dr. Dre The Chronic" },
+        { artist: "Snoop Dogg", title: "Doggystyle", year: 1993, query: "Snoop Dogg Doggystyle" },
+        { artist: "Warren G", title: "Regulate...G Funk Era", year: 1994, query: "Warren G Regulate G Funk Era" }
+      ]
+    },
+    {
+      id: "jazz-rap",
+      category: "hiphop",
+      name: "90s Jazz Rap",
+      icon: "🎺",
+      genre: "Hip Hop",
+      tagline: "Warm upright acoustic bass loops, horn riffs & conscious vibes",
+      records: [
+        { artist: "A Tribe Called Quest", title: "The Low End Theory", year: 1991, query: "A Tribe Called Quest The Low End Theory" },
+        { artist: "De La Soul", title: "3 Feet High and Rising", year: 1989, query: "De La Soul 3 Feet High and Rising" },
+        { artist: "Digable Planets", title: "Blowout Comb", year: 1994, query: "Digable Planets Blowout Comb" }
+      ]
+    },
+    {
+      id: "abstract-hiphop",
+      category: "hiphop",
+      name: "Underground / Abstract",
+      icon: "💎",
+      genre: "Hip Hop",
+      tagline: "Off-kilter rhymes, dusty soul crates & raw crate-digger samples",
+      records: [
+        { artist: "Madvillain", title: "Madvillainy", year: 2004, query: "Madvillain Madvillainy" },
+        { artist: "Mos Def", title: "Black on Both Sides", year: 1999, query: "Mos Def Black on Both Sides" },
+        { artist: "MF DOOM", title: "Operation: Doomsday", year: 1999, query: "MF DOOM Operation Doomsday" }
+      ]
+    },
+    {
+      id: "lofi-beats",
+      category: "hiphop",
+      name: "Instrumental / Lo-Fi",
+      icon: "🥁",
+      genre: "Hip Hop",
+      tagline: "MPC swing, timeless vinyl crackle & head-nodding beat tape magic",
+      records: [
+        { artist: "J Dilla", title: "Donuts", year: 2006, query: "J Dilla Donuts" },
+        { artist: "DJ Shadow", title: "Endtroducing.....", year: 1996, query: "DJ Shadow Endtroducing" },
+        { artist: "Nujabes", title: "Modal Soul", year: 2005, query: "Nujabes Modal Soul" }
+      ]
+    }
+  ],
+
+  techno: [
+    {
+      id: "dub-techno",
+      category: "techno",
+      name: "Berlin Dub Techno",
+      icon: "🌫️",
+      genre: "Techno",
+      tagline: "Echoing tape delays, cavernous reverberation & endless 4/4 pulses",
+      records: [
+        { artist: "Basic Channel", title: "BCD-2", year: 1995, query: "Basic Channel BCD-2" },
+        { artist: "Deepchord", title: "Vantage Isle Sessions", year: 2007, query: "Deepchord Vantage Isle" },
+        { artist: "Rhythm & Sound", title: "Rhythm & Sound", year: 1998, query: "Rhythm & Sound w/ The Artists" }
+      ]
+    },
+    {
+      id: "deep-hypnotic",
+      category: "techno",
+      name: "Hypnotic Deep Techno",
+      icon: "🌀",
+      genre: "Techno",
+      tagline: "Trippy modular pulses, organic frequencies & deep mental groove",
+      records: [
+        { artist: "Voices From The Lake", title: "Voices From The Lake", year: 2012, query: "Voices From The Lake" },
+        { artist: "Donato Dozzy", title: "K", year: 2010, query: "Donato Dozzy K" },
+        { artist: "Rrose", title: "Merchant of Salt", year: 2012, query: "Rrose Merchant of Salt" }
+      ]
+    },
+    {
+      id: "ambient-idm",
+      category: "techno",
+      name: "Ambient Techno / IDM",
+      icon: "🌌",
+      genre: "Techno",
+      tagline: "Ethereal lush soundscapes, intricate analog synthesis & emotional depth",
+      records: [
+        { artist: "Aphex Twin", title: "Selected Ambient Works 85-92", year: 1992, query: "Aphex Twin Selected Ambient Works 85-92" },
+        { artist: "Boards of Canada", title: "Music Has the Right to Children", year: 1998, query: "Boards of Canada Music Has the Right to Children" },
+        { artist: "Global Communication", title: "76:14", year: 1994, query: "Global Communication 76 14" }
+      ]
+    },
+    {
+      id: "detroit-techno",
+      category: "techno",
+      name: "Detroit High-Tech Soul",
+      icon: "⚙️",
+      genre: "Techno",
+      tagline: "Futuristic strings, Roland 909 energy & soulful Motor City roots",
+      records: [
+        { artist: "Drexciya", title: "Neptune's Lair", year: 1999, query: "Drexciya Neptune's Lair" },
+        { artist: "Model 500", title: "Deep Space", year: 1995, query: "Model 500 Deep Space" },
+        { artist: "Underground Resistance", title: "Galaxy 2 Galaxy", year: 1993, query: "Underground Resistance Galaxy 2 Galaxy" }
+      ]
+    },
+    {
+      id: "acid-modular",
+      category: "techno",
+      name: "Acid & Modular",
+      icon: "⚡",
+      genre: "Techno",
+      tagline: "Resonant TB-303 squelch, hypnotic basslines & raw analog power",
+      records: [
+        { artist: "Plastikman", title: "Sheet One", year: 1993, query: "Plastikman Sheet One" },
+        { artist: "Surgeon", title: "Basictonalvocabulary", year: 1997, query: "Surgeon Basictonalvocabulary" },
+        { artist: "Hardfloor", title: "TB Resuscitation", year: 1993, query: "Hardfloor TB Resuscitation" }
+      ]
+    }
+  ],
+
+  grunge: [
+    {
+      id: "seattle-sound",
+      category: "grunge",
+      name: "Seattle Sound (91–94)",
+      icon: "🎸",
+      genre: "Grunge",
+      tagline: "Sludgy distortion, cathartic howls & explosive dynamic quiet-loud shifts",
+      records: [
+        { artist: "Nirvana", title: "In Utero", year: 1993, query: "Nirvana In Utero" },
+        { artist: "Soundgarden", title: "Superunknown", year: 1994, query: "Soundgarden Superunknown" },
+        { artist: "Pearl Jam", title: "Ten", year: 1991, query: "Pearl Jam Ten" }
+      ]
+    },
+    {
+      id: "mtv-unplugged",
+      category: "grunge",
+      name: "90s MTV Unplugged",
+      icon: "🎙️",
+      genre: "Grunge",
+      tagline: "Intimate acoustic dreadnought guitars, stripped vocals & haunting room air",
+      records: [
+        { artist: "Nirvana", title: "MTV Unplugged in New York", year: 1994, query: "Nirvana MTV Unplugged in New York" },
+        { artist: "Alice in Chains", title: "MTV Unplugged", year: 1996, query: "Alice in Chains MTV Unplugged" },
+        { artist: "Neil Young", title: "Unplugged", year: 1993, query: "Neil Young Unplugged" }
+      ]
+    },
+    {
+      id: "sludge-alt",
+      category: "grunge",
+      name: "Heavy Sludge & Alt",
+      icon: "🌪️",
+      genre: "Grunge",
+      tagline: "Down-tuned riffs, agonizing vocal harmonies & crushing vinyl low-end",
+      records: [
+        { artist: "Alice in Chains", title: "Dirt", year: 1992, query: "Alice in Chains Dirt" },
+        { artist: "Melvins", title: "Houdini", year: 1993, query: "Melvins Houdini" },
+        { artist: "Screaming Trees", title: "Sweet Oblivion", year: 1992, query: "Screaming Trees Sweet Oblivion" }
+      ]
+    },
+    {
+      id: "riot-grrrl",
+      category: "grunge",
+      name: "Riot Grrrl & Noise",
+      icon: "💥",
+      genre: "Grunge",
+      tagline: "Furious feminist punk energy, raw fuzz boxes & uncompromising grit",
+      records: [
+        { artist: "Babes in Toyland", title: "Fontanelle", year: 1992, query: "Babes in Toyland Fontanelle" },
+        { artist: "Hole", title: "Live Through This", year: 1994, query: "Hole Live Through This" },
+        { artist: "L7", title: "Bricks Are Heavy", year: 1992, query: "L7 Bricks Are Heavy" }
+      ]
+    },
+    {
+      id: "desert-rock",
+      category: "grunge",
+      name: "Desert Rock & Stomp",
+      icon: "🏜️",
+      genre: "Grunge",
+      tagline: "Generator party fuzz, massive groove-heavy bass & hypnotic desert riffs",
+      records: [
+        { artist: "Kyuss", title: "Welcome to Sky Valley", year: 1994, query: "Kyuss Welcome to Sky Valley" },
+        { artist: "Stone Temple Pilots", title: "Purple", year: 1994, query: "Stone Temple Pilots Purple" },
+        { artist: "Queens of the Stone Age", title: "Songs for the Deaf", year: 2002, query: "Queens of the Stone Age Songs for the Deaf" }
+      ]
+    }
+  ],
+
+  rock: [
+    {
+      id: "classic-hard-rock",
+      category: "rock",
+      name: "70s Classic Rock",
+      icon: "⚡",
+      genre: "Rock",
+      tagline: "Soaring Les Paul solos, heavy Bonham drum stomps & analog tape saturation",
+      records: [
+        { artist: "Led Zeppelin", title: "Led Zeppelin IV", year: 1971, query: "Led Zeppelin IV" },
+        { artist: "The Rolling Stones", title: "Exile on Main St.", year: 1972, query: "The Rolling Stones Exile on Main St" },
+        { artist: "Black Sabbath", title: "Paranoid", year: 1970, query: "Black Sabbath Paranoid" }
+      ]
+    },
+    {
+      id: "prog-space-rock",
+      category: "rock",
+      name: "70s Space Rock",
+      icon: "🪐",
+      genre: "Rock",
+      tagline: "Panoramic gatefold dynamics, modular synthesizers & epic conceptual journeys",
+      records: [
+        { artist: "Pink Floyd", title: "The Dark Side of the Moon", year: 1973, query: "Pink Floyd The Dark Side of the Moon" },
+        { artist: "King Crimson", title: "In the Court of the Crimson King", year: 1969, query: "King Crimson In the Court of the Crimson King" },
+        { artist: "Yes", title: "Fragile", year: 1971, query: "Yes Fragile" }
+      ]
+    },
+    {
+      id: "post-punk",
+      category: "rock",
+      name: "Late-70s Post-Punk",
+      icon: "🖤",
+      genre: "Rock",
+      tagline: "Driving Martin Hannett production, angular basslines & chilly atmospheric reverb",
+      records: [
+        { artist: "Joy Division", title: "Unknown Pleasures", year: 1979, query: "Joy Division Unknown Pleasures" },
+        { artist: "The Cure", title: "Disintegration", year: 1989, query: "The Cure Disintegration" },
+        { artist: "Talking Heads", title: "Remain in Light", year: 1980, query: "Talking Heads Remain in Light" }
+      ]
+    },
+    {
+      id: "shoegaze-dream",
+      category: "rock",
+      name: "90s Shoegaze / Dream",
+      icon: "🌫️",
+      genre: "Rock",
+      tagline: "Glide guitar tremolo, swirling walls of reverse reverb & ethereal vocals",
+      records: [
+        { artist: "My Bloody Valentine", title: "Loveless", year: 1991, query: "My Bloody Valentine Loveless" },
+        { artist: "Slowdive", title: "Souvlaki", year: 1993, query: "Slowdive Souvlaki" },
+        { artist: "Cocteau Twins", title: "Heaven or Las Vegas", year: 1990, query: "Cocteau Twins Heaven or Las Vegas" }
+      ]
+    },
+    {
+      id: "krautrock",
+      category: "rock",
+      name: "70s Krautrock / Motorik",
+      icon: "🚗",
+      genre: "Rock",
+      tagline: "Hypnotic 4/4 motorik rhythms, avant-garde tape manipulation & German cosmic synth",
+      records: [
+        { artist: "CAN", title: "Tago Mago", year: 1971, query: "CAN Tago Mago" },
+        { artist: "Neu!", title: "Neu!", year: 1972, query: "Neu! Neu!" },
+        { artist: "Kraftwerk", title: "Trans-Europe Express", year: 1977, query: "Kraftwerk Trans-Europe Express" }
+      ]
+    }
+  ],
+
+  jazz: [
+    {
+      id: "modal-jazz",
+      category: "jazz",
+      name: "50s/60s Modal Jazz",
+      icon: "🎷",
+      genre: "Jazz",
+      tagline: "Miles Davis & Bill Evans pioneering modal improvisation with lush open acoustics",
+      records: [
+        { artist: "Miles Davis", title: "Kind of Blue", year: 1959, query: "Miles Davis Kind of Blue" },
+        { artist: "John Coltrane", title: "A Love Supreme", year: 1965, query: "John Coltrane A Love Supreme" },
+        { artist: "Bill Evans Trio", title: "Sunday at the Village Vanguard", year: 1961, query: "Bill Evans Trio Sunday at the Village Vanguard" }
+      ]
+    },
+    {
+      id: "cool-jazz",
+      category: "jazz",
+      name: "Late-Night Cool Jazz",
+      icon: "🌙",
+      genre: "Jazz",
+      tagline: "Subtle muted brass, intimate smoky club brush drums & soothing warm analog room",
+      records: [
+        { artist: "Chet Baker", title: "Chet", year: 1959, query: "Chet Baker Chet" },
+        { artist: "Dave Brubeck Quartet", title: "Time Out", year: 1959, query: "Dave Brubeck Quartet Time Out" },
+        { artist: "Gerry Mulligan & Paul Desmond", title: "Blues in Orbit", year: 1962, query: "Gerry Mulligan Blues in Orbit" }
+      ]
+    },
+    {
+      id: "hard-bop",
+      category: "jazz",
+      name: "Blue Note Hard Bop",
+      icon: "🎺",
+      genre: "Jazz",
+      tagline: "Rudy Van Gelder living room mastering, soulful blues-rooted brass & swinging grooves",
+      records: [
+        { artist: "Art Blakey & The Jazz Messengers", title: "Moanin'", year: 1958, query: "Art Blakey Moanin" },
+        { artist: "Lee Morgan", title: "The Sidewinder", year: 1964, query: "Lee Morgan The Sidewinder" },
+        { artist: "Herbie Hancock", title: "Maiden Voyage", year: 1965, query: "Herbie Hancock Maiden Voyage" }
+      ]
+    },
+    {
+      id: "spiritual-jazz",
+      category: "jazz",
+      name: "70s Spiritual Jazz",
+      icon: "✨",
+      genre: "Jazz",
+      tagline: "Cosmic harps, percussion marimbas, ecstatic saxophone & transcendent analog energy",
+      records: [
+        { artist: "Pharoah Sanders", title: "Karma", year: 1969, query: "Pharoah Sanders Karma" },
+        { artist: "Alice Coltrane", title: "Journey in Satchidananda", year: 1971, query: "Alice Coltrane Journey in Satchidananda" },
+        { artist: "Sun Ra", title: "Space Is the Place", year: 1973, query: "Sun Ra Space Is the Place" }
+      ]
+    },
+    {
+      id: "ecm-nordic",
+      category: "jazz",
+      name: "ECM Nordic Jazz",
+      icon: "❄️",
+      genre: "Jazz",
+      tagline: "Manfred Eicher's crystalline Rainbow Studio reverb, austere piano & vast spatial separation",
+      records: [
+        { artist: "Keith Jarrett", title: "The Köln Concert", year: 1975, query: "Keith Jarrett The Koln Concert" },
+        { artist: "Jan Garbarek & Bobo Stenson", title: "Witchi-Tai-To", year: 1974, query: "Jan Garbarek Witchi-Tai-To" },
+        { artist: "Eberhard Weber", title: "The Colours of Chloë", year: 1973, query: "Eberhard Weber The Colours of Chloe" }
+      ]
+    }
+  ]
+};
+
+const subgenrePlayIndices = {};
+let currentSubgenrePills = [];
+
+function rollRandomSubgenres(showNotification = false) {
+  const categories = ["hiphop", "techno", "grunge", "rock", "jazz"];
+  const chosenPills = [];
+
+  categories.forEach(cat => {
+    const pool = SUBGENRE_VAULT[cat];
+    if (pool && pool.length > 0) {
+      const randomItem = pool[Math.floor(Math.random() * pool.length)];
+      chosenPills.push(randomItem);
+    }
+  });
+
+  currentSubgenrePills = chosenPills;
+  renderSubgenrePills(chosenPills);
+
+  if (showNotification) {
+    showToast("🎲 Rolled 5 new sub-genre vibes!");
+  }
+}
+
+function renderSubgenrePills(pills) {
+  const vibePillsWrap = document.getElementById("vibe-pills-wrap");
+  if (!vibePillsWrap) return;
+
+  const html = pills.map(p => {
+    const catClass = `vibe-pill-${p.category}`;
+    const escapedName = typeof escapeHtml === "function" ? escapeHtml(p.name) : p.name;
+    const escapedTagline = typeof escapeHtml === "function" ? escapeHtml(p.tagline || "") : (p.tagline || "");
+    const escapedGenre = typeof escapeHtml === "function" ? escapeHtml(p.genre || "") : (p.genre || "");
+    const titleAttr = `${escapedGenre}: ${escapedTagline}`;
+    return `<button class="vibe-pill ${catClass}" type="button" data-cat="${p.category}" data-subgenre-id="${p.id}" title="${titleAttr}">
+      <span class="vibe-pill-icon">${p.icon}</span>
+      <span class="vibe-pill-text">${escapedName}</span>
+    </button>`;
+  }).join("");
+
+  vibePillsWrap.innerHTML = html;
+}
+
+function handleSubgenrePillClick(pill) {
+  hasUserInteracted = true;
+  const cat = pill.getAttribute("data-cat");
+  const subgenreId = pill.getAttribute("data-subgenre-id");
+
+  // Fallback for legacy data-vibe attribute if present
+  if (!cat || !subgenreId) {
+    const legacyVibe = pill.getAttribute("data-vibe");
+    if (legacyVibe) findAndAppraiseSommelierVinyl(legacyVibe);
+    return;
+  }
+
+  const pool = SUBGENRE_VAULT[cat];
+  if (!pool) return;
+  const subgenre = pool.find(s => s.id === subgenreId);
+  if (!subgenre || !subgenre.records || subgenre.records.length === 0) return;
+
+  if (typeof subgenrePlayIndices[subgenreId] !== "number") {
+    subgenrePlayIndices[subgenreId] = 0;
+  }
+  const recordIndex = subgenrePlayIndices[subgenreId] % subgenre.records.length;
+  subgenrePlayIndices[subgenreId]++;
+  const record = subgenre.records[recordIndex];
+
+  const displayLabel = `${record.artist} - ${record.title}`;
+  if (albumInput) albumInput.value = displayLabel;
+
+  showToast(`🎧 Spun ${subgenre.name}: "${displayLabel}"`);
+  appraiseAlbum(record.query || displayLabel);
+}
+
 function initSommelier() {
   const vibePillsWrap = document.getElementById("vibe-pills-wrap");
+  const vibeShuffleBtn = document.getElementById("vibe-shuffle-btn");
   const sommelierSubmitBtn = document.getElementById("sommelier-submit-btn");
   const sommelierInput = document.getElementById("sommelier-input");
+
+  // Roll initial random sub-genres across the 5 pillars
+  rollRandomSubgenres(false);
+
+  if (vibeShuffleBtn) {
+    vibeShuffleBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      vibeShuffleBtn.classList.add("rotating");
+      rollRandomSubgenres(true);
+      setTimeout(() => vibeShuffleBtn.classList.remove("rotating"), 450);
+    });
+  }
 
   if (vibePillsWrap) {
     vibePillsWrap.addEventListener("click", (e) => {
       const pill = e.target.closest(".vibe-pill");
       if (!pill) return;
-      hasUserInteracted = true;
-      const vibe = pill.getAttribute("data-vibe");
-      if (vibe) {
-        findAndAppraiseSommelierVinyl(vibe);
-      }
+      handleSubgenrePillClick(pill);
     });
   }
 
