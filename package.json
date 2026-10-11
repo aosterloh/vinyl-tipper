@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "sitemap": "node scripts/generate-sitemap.js"
   },
   "keywords": ["vinyl", "gemini", "gemini-3.8-flash", "firebase-auth", "music"],
   "author": "",

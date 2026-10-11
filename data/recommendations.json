@@ -156,250 +156,235 @@
     "updatedAt": 1791717787570
   },
   "NL6ThyqIeDcfX1j9aotKDsppXoE3": {
-    "signature": "searches:facing you:keith jarrett",
+    "signature": "searches:voices from the lake:voices from the lake",
     "recommendations": [
       {
-        "title": "Piano Improvisations Vol. 1",
-        "artist": "Chick Corea",
-        "genre": "Modal Jazz / Solo Piano",
-        "year": 1971,
+        "title": "K",
+        "artist": "Donato Dozzy",
+        "genre": "Ambient Techno / Hypnotic Techno",
+        "year": 2010,
         "score": 99,
-        "matchReason": "Recorded at the same Oslo studio with Manfred Eicher just months before 'Facing You', this landmark solo session established ECM's signature acoustic piano intimacy and impressionistic lyrical phrasing.",
-        "playtime": "38 min",
+        "matchReason": "As one-half of Voices from the Lake, Donato Dozzy's solo magnum opus lays down the exact DNA of sub-aquatic 303 modulations and meditative ambient techno.",
+        "playtime": "43 min",
+        "trackCount": 7,
+        "streetPriceGermany": {
+          "newEur": "€28 – €35",
+          "usedEur": "€35 – €60"
+        },
+        "coverSearchTerm": "Donato Dozzy K"
+      },
+      {
+        "title": "Phobos",
+        "artist": "Neel",
+        "genre": "Deep Techno / Dark Ambient",
+        "year": 2014,
+        "score": 98,
+        "matchReason": "Engineered by the other half of Voices from the Lake, this solo tour de force translates their signature fluid acoustic depth into an immersive, deep-space sound design journey.",
+        "playtime": "48 min",
+        "trackCount": 6,
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€30 – €50"
+        },
+        "coverSearchTerm": "Neel Phobos"
+      },
+      {
+        "title": "Wadjet",
+        "artist": "Luigi Tozzi",
+        "genre": "Hypnotic Techno / Deep Techno",
+        "year": 2016,
+        "score": 96,
+        "matchReason": "Directly continuing the Italian deep techno lineage, Tozzi pairs aquatic atmospheric pads with rolling, serpentine low-end grooves that mirror Voices from the Lake's subtle pacing.",
+        "playtime": "41 min",
+        "trackCount": 6,
+        "streetPriceGermany": {
+          "newEur": "€25 – €30",
+          "usedEur": "€20 – €35"
+        },
+        "coverSearchTerm": "Luigi Tozzi Wadjet"
+      },
+      {
+        "title": "Shaman",
+        "artist": "Dino Sabatini",
+        "genre": "Hypnotic Techno / Tribal Ambient",
+        "year": 2012,
+        "score": 95,
+        "matchReason": "Released on Prologue in the same golden era as Voices from the Lake, this record merges ancient ritual percussion with slick, modern modular soundscapes.",
+        "playtime": "62 min",
+        "trackCount": 11,
+        "streetPriceGermany": {
+          "newEur": "€32 – €38",
+          "usedEur": "€45 – €75"
+        },
+        "coverSearchTerm": "Dino Sabatini Shaman"
+      },
+      {
+        "title": "Inner Structures",
+        "artist": "Claudio PRC",
+        "genre": "Hypnotic Techno / Ambient Techno",
+        "year": 2011,
+        "score": 93,
+        "matchReason": "A cornerstone of Italian deep techno, offering the same clinical attention to reverberant acoustics, deep pulses, and patient atmospheric shifts.",
+        "playtime": "68 min",
+        "trackCount": 10,
+        "streetPriceGermany": {
+          "newEur": "€30 – €36",
+          "usedEur": "€40 – €65"
+        },
+        "coverSearchTerm": "Claudio PRC Inner Structures"
+      },
+      {
+        "title": "The Coldest Season",
+        "artist": "Deepchord presents Echospace",
+        "genre": "Dub Techno / Ambient Techno",
+        "year": 2007,
+        "score": 92,
+        "matchReason": "Matches the organic, enveloping oceanic atmospheres of Voices from the Lake through tape-saturated analog synthesizers and deep oceanic dub textures.",
+        "playtime": "78 min",
+        "trackCount": 9,
+        "streetPriceGermany": {
+          "newEur": "€34 – €42",
+          "usedEur": "€45 – €80"
+        },
+        "coverSearchTerm": "Deepchord presents Echospace The Coldest Season"
+      },
+      {
+        "title": "Die Faser",
+        "artist": "Cio D'Or",
+        "genre": "Hypnotic Techno / Minimal Ambient",
+        "year": 2009,
+        "score": 90,
+        "matchReason": "A cinematic and narrative-driven Prologue masterwork that shares Dozzy and Neel's devotion to delicate tension and water-like resonance.",
+        "playtime": "65 min",
+        "trackCount": 10,
+        "streetPriceGermany": {
+          "newEur": "€30 – €36",
+          "usedEur": "€35 – €55"
+        },
+        "coverSearchTerm": "Cio D'Or Die Faser"
+      },
+      {
+        "title": "Unanimity",
+        "artist": "Abdulla Rashim",
+        "genre": "Hypnotic Techno / Nordic Deep Techno",
+        "year": 2014,
+        "score": 89,
+        "matchReason": "Brings the user from Mediterranean water basins to frozen Scandinavian landscapes, retaining the cyclical, trance-inducing polyrhythms and sub-heavy mixdowns.",
+        "playtime": "49 min",
+        "trackCount": 8,
+        "streetPriceGermany": {
+          "newEur": "€28 – €34",
+          "usedEur": "€30 – €48"
+        },
+        "coverSearchTerm": "Abdulla Rashim Unanimity"
+      },
+      {
+        "title": "Hymn to Moisture",
+        "artist": "Rrose",
+        "genre": "Hypnotic Techno / Modular Techno",
+        "year": 2019,
+        "score": 88,
+        "matchReason": "Explores acoustic psychoacoustics and microtonal modular swells that deliver the same cerebral, spine-tingling immersion found on Voices from the Lake.",
+        "playtime": "50 min",
+        "trackCount": 8,
+        "streetPriceGermany": {
+          "newEur": "€28 – €34",
+          "usedEur": "€22 – €32"
+        },
+        "coverSearchTerm": "Rrose Hymn to Moisture"
+      },
+      {
+        "title": "Zauberberg",
+        "artist": "GAS",
+        "genre": "Ambient Techno / Dark Ambient",
+        "year": 1997,
+        "score": 87,
+        "matchReason": "Wolfgang Voigt's definitive work provides the historical framework for the suffocating, lush ambient techno pads and muffled subterranean kicks of modern hypnotic techno.",
+        "playtime": "56 min",
+        "trackCount": 7,
+        "streetPriceGermany": {
+          "newEur": "€32 – €40",
+          "usedEur": "€28 – €45"
+        },
+        "coverSearchTerm": "GAS Zauberberg"
+      }
+    ],
+    "updatedAt": 1791755871556
+  },
+  "4WVnvaQkwzOhniVyNnP0Ja47zof2": {
+    "signature": "searches:piano improvisations vol 1:chick corea",
+    "recommendations": [
+      {
+        "title": "Facing You",
+        "artist": "Keith Jarrett",
+        "genre": "Post-Bop / Solo Piano",
+        "year": 1972,
+        "score": 99,
+        "matchReason": "Recorded at the exact same Oslo studio by Manfred Eicher just months after Chick Corea's sessions, this is ECM's definitive solo acoustic statement blending gospel warmth with rigorous European classical precision.",
+        "playtime": "43 min",
         "trackCount": 8,
         "streetPriceGermany": {
           "newEur": "€26 – €32",
-          "usedEur": "€12 – €20"
+          "usedEur": "€14 – €20"
         },
-        "coverSearchTerm": "Chick Corea Piano Improvisations Vol 1"
+        "coverSearchTerm": "Keith Jarrett Facing You"
       },
       {
         "title": "Open, to Love",
         "artist": "Paul Bley",
         "genre": "Avant-Garde Jazz / Solo Piano",
         "year": 1973,
-        "score": 98,
-        "matchReason": "Another crucial milestone in early ECM solo piano, capturing deep micro-tonal dynamics, spacious pauses, and delicate note decay that directly mirror the acoustic purity of 'Facing You'.",
-        "playtime": "41 min",
-        "trackCount": 7,
-        "streetPriceGermany": {
-          "newEur": "€28 – €34",
-          "usedEur": "€15 – €24"
-        },
-        "coverSearchTerm": "Paul Bley Open to Love"
-      },
-      {
-        "title": "The Köln Concert",
-        "artist": "Keith Jarrett",
-        "genre": "Contemporary Jazz / Free Improvisation",
-        "year": 1975,
         "score": 97,
-        "matchReason": "The undisputed zenith of Jarrett's solo acoustic journey on ECM, expanding the gospel grooves and ecstatic melodic vamps introduced on 'Facing You' into a transcendent 2-LP concert experience.",
-        "playtime": "66 min",
-        "trackCount": 4,
-        "streetPriceGermany": {
-          "newEur": "€30 – €38",
-          "usedEur": "€10 – €18"
-        },
-        "coverSearchTerm": "Keith Jarrett The Koln Concert"
-      },
-      {
-        "title": "Ecstasy",
-        "artist": "Steve Kuhn",
-        "genre": "Post-Bop / Solo Piano",
-        "year": 1975,
-        "score": 95,
-        "matchReason": "Engineered by Martin Wieland for ECM, Kuhn's solo performance navigates romantic melancholia and harmonic depth with the same crystalline reverberation that defines early 1970s Jarrett recordings.",
-        "playtime": "38 min",
-        "trackCount": 6,
-        "streetPriceGermany": {
-          "newEur": "€27 – €33",
-          "usedEur": "€14 – €22"
-        },
-        "coverSearchTerm": "Steve Kuhn Ecstasy"
-      },
-      {
-        "title": "Gnu High",
-        "artist": "Kenny Wheeler",
-        "genre": "Post-Bop / ECM Jazz",
-        "year": 1976,
-        "score": 94,
-        "matchReason": "Features Keith Jarrett in a rare, stellar sideman appearance on acoustic piano, blending his trademark gospel-inflected lyricism seamlessly into Manfred Eicher's airy, dynamic soundstage.",
-        "playtime": "44 min",
-        "trackCount": 3,
-        "streetPriceGermany": {
-          "newEur": "€28 – €35",
-          "usedEur": "€18 – €28"
-        },
-        "coverSearchTerm": "Kenny Wheeler Gnu High"
-      },
-      {
-        "title": "Alone",
-        "artist": "Bill Evans",
-        "genre": "Cool Jazz / Solo Piano",
-        "year": 1968,
-        "score": 93,
-        "matchReason": "Jarrett's romanticism and harmonic architecture owe a major debt to Evans, whose intimate solo masterpiece laid the structural groundwork for 'Facing You' with sweeping rubato interpretations.",
-        "playtime": "43 min",
-        "trackCount": 5,
-        "streetPriceGermany": {
-          "newEur": "€29 – €36",
-          "usedEur": "€16 – €25"
-        },
-        "coverSearchTerm": "Bill Evans Alone Verve"
-      },
-      {
-        "title": "African Piano",
-        "artist": "Abdullah Ibrahim",
-        "genre": "Cape Jazz / Solo Piano",
-        "year": 1970,
-        "score": 91,
-        "matchReason": "Recorded live in Denmark and issued under ECM's sibling imprint JAPO, this record channels spiritual ostinatos, heavy folk rhythms, and gospel power akin to Jarrett's rolling left-hand patterns.",
+        "matchReason": "Sharing Chick Corea's impressionistic clarity, Bley strips away ornamentation to explore lingering resonance, micro-intervals, and cavernous silence on the Steinway grand.",
         "playtime": "42 min",
-        "trackCount": 6,
-        "streetPriceGermany": {
-          "newEur": "€25 – €32",
-          "usedEur": "€14 – €22"
-        },
-        "coverSearchTerm": "Abdullah Ibrahim Dollar Brand African Piano"
-      },
-      {
-        "title": "Witchi-Tai-To",
-        "artist": "Jan Garbarek & Bobo Stenson Quartet",
-        "genre": "European Jazz / Folk-Jazz",
-        "year": 1974,
-        "score": 90,
-        "matchReason": "Features Swedish pianist Bobo Stenson and the Norwegian rhythm section in the definitive European ECM acoustic space, echoing Jarrett's Scandinavian quartets of the mid-70s.",
-        "playtime": "45 min",
-        "trackCount": 5,
-        "streetPriceGermany": {
-          "newEur": "€28 – €34",
-          "usedEur": "€16 – €25"
-        },
-        "coverSearchTerm": "Jan Garbarek Bobo Stenson Quartet Witchi Tai To"
-      },
-      {
-        "title": "All Alone",
-        "artist": "Mal Waldron",
-        "genre": "Post-Bop / Solo Piano",
-        "year": 1966,
-        "score": 88,
-        "matchReason": "A profound solo meditation driven by hypnotic, repeating motifs and emotional gravity, offering a moodier counterbalance to Jarrett's exuberant harmonic storytelling.",
-        "playtime": "37 min",
-        "trackCount": 6,
-        "streetPriceGermany": {
-          "newEur": "€26 – €32",
-          "usedEur": "€18 – €27"
-        },
-        "coverSearchTerm": "Mal Waldron All Alone"
-      },
-      {
-        "title": "Avenging Angel",
-        "artist": "Craig Taborn",
-        "genre": "Modern Creative / Solo Piano",
-        "year": 2011,
-        "score": 87,
-        "matchReason": "A modern ECM solo acoustic piano triumph recorded at Auditorio Stelio Molo in Lugano, extending the unscripted expressive tradition Jarrett pioneered on 'Facing You'.",
-        "playtime": "60 min",
-        "trackCount": 13,
-        "streetPriceGermany": {
-          "newEur": "€29 – €36",
-          "usedEur": "€20 – €28"
-        },
-        "coverSearchTerm": "Craig Taborn Avenging Angel"
-      }
-    ],
-    "updatedAt": 1791732272710
-  },
-  "4WVnvaQkwzOhniVyNnP0Ja47zof2": {
-    "signature": "searches:facing you:keith jarrett",
-    "recommendations": [
-      {
-        "title": "Piano Improvisations Vol. 1",
-        "artist": "Chick Corea",
-        "genre": "Modal Jazz / ECM Contemporary",
-        "year": 1971,
-        "score": 98,
-        "matchReason": "Recorded at the exact same Arne Bendiksen Studio in Oslo mere months before Jarrett's session, this record laid down the lyrical, crystalline solo acoustic piano aesthetic that defined early ECM.",
-        "playtime": "38 min",
-        "trackCount": 8,
-        "streetPriceGermany": {
-          "newEur": "€24 – €30",
-          "usedEur": "€12 – €18"
-        },
-        "coverSearchTerm": "Chick Corea Piano Improvisations Vol. 1"
-      },
-      {
-        "title": "Open, to Love",
-        "artist": "Paul Bley",
-        "genre": "Avant-Garde Jazz / Chamber Jazz",
-        "year": 1973,
-        "score": 97,
-        "matchReason": "Paul Bley's sparse, reverberant solo piano excursion on ECM shares Manfred Eicher’s iconic spatial production and the deep, introspective spaciousness heard across Facing You.",
-        "playtime": "41 min",
         "trackCount": 7,
         "streetPriceGermany": {
           "newEur": "€26 – €32",
-          "usedEur": "€14 – €22"
-        },
-        "coverSearchTerm": "Paul Bley Open to Love"
-      },
-      {
-        "title": "The Köln Concert",
-        "artist": "Keith Jarrett",
-        "genre": "Spontaneous Improvisation / Jazz",
-        "year": 1975,
-        "score": 96,
-        "matchReason": "The direct live evolution of the melodic, folk-gospel vamps and stream-of-consciousness phrasing Jarrett first perfected in the studio on Facing You.",
-        "playtime": "66 min",
-        "trackCount": 4,
-        "streetPriceGermany": {
-          "newEur": "€32 – €38",
           "usedEur": "€16 – €24"
         },
-        "coverSearchTerm": "Keith Jarrett The Koln Concert"
+        "coverSearchTerm": "Paul Bley Open to Love"
       },
       {
         "title": "Hubris",
         "artist": "Richie Beirach",
-        "genre": "Post-Bop / Impressionist Jazz",
+        "genre": "Contemporary Jazz / Solo Piano",
         "year": 1977,
-        "score": 94,
-        "matchReason": "A profound solo ECM piano record that captures the same delicate interplay between classical romanticism and modern harmonic tension that permeates Facing You.",
-        "playtime": "40 min",
+        "score": 95,
+        "matchReason": "Richie Beirach shares Corea’s profound debt to Bartók, Scriabin, and Bill Evans, yielding an intensely lyrical ECM piano document cut through with European melancholia.",
+        "playtime": "38 min",
         "trackCount": 8,
         "streetPriceGermany": {
-          "newEur": "€25 – €30",
-          "usedEur": "€14 – €20"
+          "newEur": "€28 – €34",
+          "usedEur": "€12 – €18"
         },
         "coverSearchTerm": "Richie Beirach Hubris"
       },
       {
         "title": "African Piano",
         "artist": "Abdullah Ibrahim",
-        "genre": "Spiritual Jazz / Cape Jazz",
-        "year": 1973,
-        "score": 93,
-        "matchReason": "Channels the heavy, repetitive gospel rhythms and percussive melodic hooks that Jarrett drew on for tracks like 'In Front' and 'Lalene'.",
-        "playtime": "46 min",
-        "trackCount": 8,
+        "genre": "Spiritual Jazz / Solo Piano",
+        "year": 1970,
+        "score": 94,
+        "matchReason": "Recorded live in Copenhagen, this foundational solo recording mirrors Corea's percussive left-hand ostinatos while infusing hymnal folk melodies and relentless South African township rhythms.",
+        "playtime": "45 min",
+        "trackCount": 7,
         "streetPriceGermany": {
-          "newEur": "€28 – €34",
-          "usedEur": "€18 – €26"
+          "newEur": "€25 – €30",
+          "usedEur": "€15 – €22"
         },
-        "coverSearchTerm": "Dollar Brand African Piano"
+        "coverSearchTerm": "Abdullah Ibrahim African Piano"
       },
       {
         "title": "Ecstasy",
         "artist": "Steve Kuhn",
-        "genre": "Post-Bop / Chamber Jazz",
+        "genre": "Post-Bop / Solo Piano",
         "year": 1975,
-        "score": 92,
-        "matchReason": "Recorded at Tonstudio Bauer for ECM, Kuhn's solo piano work mirrors Jarrett's melancholic poise, liquid runs, and rich acoustic headroom.",
-        "playtime": "39 min",
-        "trackCount": 7,
+        "score": 93,
+        "matchReason": "Another essential early ECM gem captured at Arne Bendiksen Studio, balancing adventurous harmonic shifts with tender, introspective romanticism.",
+        "playtime": "38 min",
+        "trackCount": 4,
         "streetPriceGermany": {
-          "newEur": "€24 – €29",
+          "newEur": "€27 – €32",
           "usedEur": "€12 – €19"
         },
         "coverSearchTerm": "Steve Kuhn Ecstasy"
@@ -407,64 +392,79 @@
       {
         "title": "Alone",
         "artist": "Bill Evans",
-        "genre": "Cool Jazz / Post-Bop",
+        "genre": "Post-Bop / Cool Jazz",
         "year": 1968,
-        "score": 90,
-        "matchReason": "The structural and lyrical forefather of Jarrett’s solo excursions, offering intricate voice-leading and a deeply vulnerable acoustic piano atmosphere.",
-        "playtime": "38 min",
+        "score": 91,
+        "matchReason": "Evans is the primary forefather of Corea’s delicate chord voicings, and this Grammy-winning solo session lays bare the rich impressionistic architecture that birthed 1970s solo jazz piano.",
+        "playtime": "43 min",
         "trackCount": 5,
         "streetPriceGermany": {
-          "newEur": "€27 – €35",
-          "usedEur": "€16 – €24"
+          "newEur": "€28 – €35",
+          "usedEur": "€18 – €26"
         },
         "coverSearchTerm": "Bill Evans Alone"
       },
       {
-        "title": "Elegiac Cycle",
-        "artist": "Brad Mehldau",
-        "genre": "Contemporary Jazz / Neo-Classical",
-        "year": 1999,
-        "score": 89,
-        "matchReason": "Mehldau's first all-solo acoustic record bridges 19th-century European romanticism with jazz improvisation, inheriting the contemplative spirit established by Jarrett.",
-        "playtime": "64 min",
-        "trackCount": 9,
+        "title": "Children's Songs",
+        "artist": "Chick Corea",
+        "genre": "Chamber Jazz / Modern Classical",
+        "year": 1984,
+        "score": 90,
+        "matchReason": "The direct compositional evolution of themes first drafted on Piano Improvisations, distilled into twenty crystalline, Bartókian miniatures recorded with pristine acoustic depth.",
+        "playtime": "34 min",
+        "trackCount": 20,
         "streetPriceGermany": {
-          "newEur": "€34 – €42",
-          "usedEur": "€25 – €35"
-        },
-        "coverSearchTerm": "Brad Mehldau Elegiac Cycle"
-      },
-      {
-        "title": "Black Orpheus",
-        "artist": "Masabumi Kikuchi",
-        "genre": "Post-Bop / Free Improvisation",
-        "year": 2012,
-        "score": 88,
-        "matchReason": "Recorded live in Tokyo for ECM, Kikuchi’s deeply patient touch, idiosyncratic vocalizations, and rich natural decay strongly echo Jarrett's signature performance style.",
-        "playtime": "60 min",
-        "trackCount": 11,
-        "streetPriceGermany": {
-          "newEur": "€30 – €36",
-          "usedEur": "€22 – €28"
-        },
-        "coverSearchTerm": "Masabumi Kikuchi Black Orpheus"
-      },
-      {
-        "title": "Rubisa Patrol",
-        "artist": "Art Lande",
-        "genre": "Modal Jazz / Chamber Jazz",
-        "year": 1976,
-        "score": 87,
-        "matchReason": "Features delicate acoustic piano themes and pastoral folk harmonies produced by Manfred Eicher that seamlessly complement the Scandinavian warmth of Facing You.",
-        "playtime": "43 min",
-        "trackCount": 7,
-        "streetPriceGermany": {
-          "newEur": "€24 – €28",
+          "newEur": "€26 – €32",
           "usedEur": "€14 – €20"
         },
-        "coverSearchTerm": "Art Lande Rubisa Patrol"
+        "coverSearchTerm": "Chick Corea Children's Songs"
+      },
+      {
+        "title": "All Alone",
+        "artist": "Mal Waldron",
+        "genre": "Modal Jazz / Solo Piano",
+        "year": 1966,
+        "score": 89,
+        "matchReason": "Recorded in Milan, Waldron's minimalist, repetitive motifs and dark harmonic palette provide a brooding European counterpart to Corea's light-footed Iberian lyricism.",
+        "playtime": "36 min",
+        "trackCount": 6,
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€18 – €28"
+        },
+        "coverSearchTerm": "Mal Waldron All Alone"
+      },
+      {
+        "title": "Distance",
+        "artist": "Joachim Kühn",
+        "genre": "Chamber Jazz / Solo Piano",
+        "year": 1979,
+        "score": 88,
+        "matchReason": "Released on the revered German audiophile imprint CMP, Kühn unleashes jaw-dropping classical technique and blistering improvisational fire across an immaculately staged grand piano.",
+        "playtime": "39 min",
+        "trackCount": 7,
+        "streetPriceGermany": {
+          "newEur": "€24 – €30",
+          "usedEur": "€10 – €16"
+        },
+        "coverSearchTerm": "Joachim Kühn Distance"
+      },
+      {
+        "title": "Breakthru",
+        "artist": "Ran Blake",
+        "genre": "Third Stream / Avant-Garde Jazz",
+        "year": 1976,
+        "score": 86,
+        "matchReason": "Issued on Paul Bley’s IAI label, Blake merges film noir moodiness with dissonant classical tonalities that appeal directly to lovers of thoughtful, avant-garde piano phrasing.",
+        "playtime": "41 min",
+        "trackCount": 14,
+        "streetPriceGermany": {
+          "newEur": "€28 – €34",
+          "usedEur": "€16 – €24"
+        },
+        "coverSearchTerm": "Ran Blake Breakthru"
       }
     ],
-    "updatedAt": 1791728234788
+    "updatedAt": 1791737650175
   }
 }

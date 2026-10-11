@@ -380,18 +380,21 @@
   },
   "gas pop": {
     "title": "Pop",
-    "artist": "GAS",
+    "artist": "Gas",
     "genre": "Ambient Techno",
-    "year": 2000,
-    "playtime": "67 min",
+    "year": "",
+    "playtime": "67 min 14 sec",
     "trackCount": 7,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/5d/6a/00/5d6a0054-5145-6011-c638-3e2666d0e8dd/192641833472_Cover.jpg/600x600bb.jpg",
-    "streetPriceGermany": null,
+    "streetPriceGermany": {
+      "newEur": "€32 – €38",
+      "usedEur": "€24 – €30"
+    },
     "alternatives": [],
-    "updatedAt": 1791732071812
+    "updatedAt": 1791755837660
   },
   "pop": {
     "title": "Pop",
@@ -447,7 +450,7 @@
   "porter ricks biokinetics": {
     "title": "Biokinetics",
     "artist": "Porter Ricks",
-    "genre": "Dub Techno / Ambient",
+    "genre": "Dub Techno / Ambient Techno",
     "year": 1996,
     "playtime": "62 min",
     "trackCount": 9,
@@ -457,40 +460,132 @@
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/b3/8c/95/b38c95de-d74e-8358-b0e3-9b4735c3d9cf/mzi.gtzygzjr.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791732071540
+    "updatedAt": 1791738523723
   },
   "deepchord presents echospace the coldest season": {
     "title": "The Coldest Season",
     "artist": "Deepchord presents Echospace",
-    "genre": "Dub Techno",
-    "year": "",
-    "playtime": "78 min 35 sec",
+    "genre": "Dub Techno / Ambient Techno",
+    "year": 2007,
+    "playtime": "78 min",
     "trackCount": 9,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/53/a3/9c/53a39c0f-c552-dc2b-b387-be7080f8bfcd/mzi.knyvkxev.jpg/600x600bb.jpg",
-    "streetPriceGermany": {
-      "newEur": "€36 – €44",
-      "usedEur": "€45 – €70"
-    },
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791732035712
+    "updatedAt": 1791755871598
   },
   "donato dozzy k": {
     "title": "K",
     "artist": "Donato Dozzy",
-    "genre": "Ambient Techno",
-    "year": 2010,
-    "playtime": "62 min",
+    "genre": "Hypnotic Techno / Ambient Techno",
+    "year": "",
+    "playtime": "48 min 12 sec",
     "trackCount": 9,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/1b/c8/f5/1bc8f552-d8d8-08a6-bd29-1d52e6c10048/cover.jpg/600x600bb.jpg",
-    "streetPriceGermany": null,
-    "alternatives": [],
-    "updatedAt": 1791732071528
+    "streetPriceGermany": {
+      "newEur": "€28 – €34",
+      "usedEur": "€22 – €30"
+    },
+    "alternatives": [
+      {
+        "title": "Inner Blue",
+        "artist": "Claudio PRC",
+        "genre": "Hypnotic Techno",
+        "playtime": "54 min",
+        "trackCount": 8,
+        "coverUrl": "",
+        "coverSearchTerm": "Claudio PRC Inner Blue",
+        "streetPriceGermany": {
+          "newEur": "€30 – €38",
+          "usedEur": "€24 – €32"
+        }
+      },
+      {
+        "title": "A Shell of Speed",
+        "artist": "Abdulla Rashim",
+        "genre": "Deep Hypnotic Techno",
+        "playtime": "48 min",
+        "trackCount": 7,
+        "coverUrl": "",
+        "coverSearchTerm": "Abdulla Rashim A Shell of Speed",
+        "streetPriceGermany": {
+          "newEur": "€28 – €35",
+          "usedEur": "€22 – €30"
+        }
+      },
+      {
+        "title": "Deep Blue",
+        "artist": "Luigi Tozzi",
+        "genre": "Ambient Techno",
+        "playtime": "52 min",
+        "trackCount": 8,
+        "coverUrl": "",
+        "coverSearchTerm": "Luigi Tozzi Deep Blue",
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€20 – €28"
+        }
+      },
+      {
+        "title": "All Ballerinas Have That Special Smile",
+        "artist": "Cio D'Or",
+        "genre": "Ambient Techno",
+        "playtime": "71 min",
+        "trackCount": 11,
+        "coverUrl": "",
+        "coverSearchTerm": "Cio D'Or All Ballerinas Have That Special Smile",
+        "streetPriceGermany": {
+          "newEur": "€35 – €45",
+          "usedEur": "€28 – €38"
+        }
+      },
+      {
+        "title": "Lustrations",
+        "artist": "Mike Parker",
+        "genre": "Hypnotic Techno",
+        "playtime": "58 min",
+        "trackCount": 9,
+        "coverUrl": "",
+        "coverSearchTerm": "Mike Parker Lustrations",
+        "streetPriceGermany": {
+          "newEur": "€30 – €38",
+          "usedEur": "€25 – €34"
+        }
+      },
+      {
+        "title": "Agartha",
+        "artist": "Wata Igarashi",
+        "genre": "Hypnotic Techno",
+        "playtime": "49 min",
+        "trackCount": 10,
+        "coverUrl": "",
+        "coverSearchTerm": "Wata Igarashi Agartha",
+        "streetPriceGermany": {
+          "newEur": "€28 – €34",
+          "usedEur": "€22 – €27"
+        }
+      },
+      {
+        "title": "Feed-Forward",
+        "artist": "Sandwell District",
+        "genre": "Hypnotic Techno",
+        "playtime": "54 min",
+        "trackCount": 8,
+        "coverUrl": "",
+        "coverSearchTerm": "Sandwell District Feed-Forward",
+        "streetPriceGermany": {
+          "newEur": "€32 – €40",
+          "usedEur": "€25 – €35"
+        }
+      }
+    ],
+    "updatedAt": 1791755880599
   },
   "voices from the lake voices from the lake": {
     "title": "Voices from the Lake",
@@ -510,9 +605,9 @@
     },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/0b/f1/88/0bf188bf-0adf-5900-6907-d08da1f9205e/8720246793116.jpg/600x600bb.jpg",
     "streetPriceGermany": {
-      "newEur": "€38 – €45",
-      "usedEur": "€30 – €42",
-      "conditionNote": "2023 Spazio Disponibile reissue VG+/EX; 2012 Prologue original commands €120+"
+      "newEur": "€38 – €46",
+      "usedEur": "€30 – €40",
+      "conditionNote": "Reflects the 2023 3xLP reissue (VG+/EX); original 2012 Prologue pressing commands €150+ in Germany"
     },
     "alternatives": [
       {
@@ -607,7 +702,7 @@
         }
       }
     ],
-    "updatedAt": 1791732059062
+    "updatedAt": 1791755846712
   },
   "voices from the lake": {
     "title": "Voices from the Lake",
@@ -683,9 +778,9 @@
   "luigi tozzi deep blue volume 2": {
     "title": "Deep Blue: Volume 2",
     "artist": "Luigi Tozzi",
-    "genre": "Deep Techno / Ambient Techno",
+    "genre": "Deep Techno / Hypnotic",
     "year": 2016,
-    "playtime": "42 min",
+    "playtime": "36 min",
     "trackCount": 6,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
@@ -693,7 +788,7 @@
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/46/ca/8f/46ca8fc8-4cbd-c472-ed54-a456e19d8f45/8790001191273.png/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791732060523
+    "updatedAt": 1791755162761
   },
   "deep blue volume 2": {
     "title": "Deep Blue: Volume 2",
@@ -749,12 +844,17 @@
   "marco shuttle visione": {
     "title": "Visione",
     "artist": "Marco Shuttle",
-    "genre": "Hypnotic Techno",
-    "playtime": "48 min 12 sec",
-    "trackCount": 8,
-    "coverUrl": "",
+    "genre": "Abstract Techno / Organic Ambient",
+    "year": 2014,
+    "playtime": "52 min",
+    "trackCount": 9,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e6/65/9d/e6659d9f-5ec2-6fa8-177a-a74b51c03843/8718723047807.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791576466212
+    "updatedAt": 1791755494099
   },
   "claudio prc inner landscapes": {
     "title": "Inner Landscapes",
@@ -905,12 +1005,17 @@
   "gas zauberberg": {
     "title": "Zauberberg",
     "artist": "GAS",
-    "genre": "Ambient Techno",
-    "playtime": "58 min 12 sec",
+    "genre": "Ambient Techno / Dark Ambient",
+    "year": 1997,
+    "playtime": "56 min",
     "trackCount": 7,
-    "coverUrl": "",
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music111/v4/6e/72/f8/6e72f806-797d-3e81-07cb-4dcc1248a99c/880319823718_cover.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791576512248
+    "updatedAt": 1791755871892
   },
   "pole 1": {
     "title": "1",
@@ -1101,118 +1206,22 @@
   "keith jarrett facing you": {
     "title": "Facing You",
     "artist": "Keith Jarrett",
-    "genre": "Jazz",
-    "year": "",
-    "playtime": "43 min",
+    "genre": "Avant-Garde Jazz / Solo Acoustic Piano",
+    "year": 1972,
+    "playtime": "44 min",
     "trackCount": 8,
     "firstTrackTitle": "",
-    "youtubeVideoId": "2xLQ1RsmwIo",
+    "youtubeVideoId": "",
     "collectorScore": null,
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/ae/9f/50/ae9f500b-2a26-d2f8-0036-2489a07157b7/00602547299666.rgb.jpg/600x600bb.jpg",
-    "streetPriceGermany": {
-      "newEur": "€24 – €30",
-      "usedEur": "€12 – €18",
-      "conditionNote": "Used reflects vintage German ECM pressings (VG+/EX); new reflects standard ECM 180g reissue"
-    },
-    "alternatives": [
-      {
-        "title": "Piano Improvisations Vol. 1",
-        "artist": "Chick Corea",
-        "genre": "Jazz",
-        "playtime": "39 min",
-        "trackCount": 8,
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/9d/98/cd/9d98cd5b-0e3d-04bc-9dd8-5aeb0bfd094d/00042281197925.rgb.jpg/600x600bb.jpg",
-        "coverSearchTerm": "Chick Corea Piano Improvisations Vol. 1",
-        "streetPriceGermany": {
-          "newEur": "€26 – €32",
-          "usedEur": "€12 – €18"
-        }
-      },
-      {
-        "title": "Open, to Love",
-        "artist": "Paul Bley",
-        "genre": "Jazz",
-        "playtime": "41 min",
-        "trackCount": 7,
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ab/4a/c7/ab4ac72a-3b39-cc4d-17c3-c2dda10dadf3/25UM1IM98120.rgb.jpg/600x600bb.jpg",
-        "coverSearchTerm": "Paul Bley Open to Love",
-        "streetPriceGermany": {
-          "newEur": "€26 – €32",
-          "usedEur": "€14 – €22"
-        }
-      },
-      {
-        "title": "Alone",
-        "artist": "Bill Evans",
-        "genre": "Jazz",
-        "playtime": "44 min",
-        "trackCount": 5,
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/c2/d5/ad/c2d5ada3-1ab5-3a10-e733-5f56cd4d069c/06UMGIM09118.rgb.jpg/600x600bb.jpg",
-        "coverSearchTerm": "Bill Evans Alone",
-        "streetPriceGermany": {
-          "newEur": "€30 – €38",
-          "usedEur": "€18 – €26"
-        }
-      },
-      {
-        "title": "Hubris",
-        "artist": "Richie Beirach",
-        "genre": "Jazz",
-        "playtime": "43 min",
-        "trackCount": 8,
-        "coverUrl": "",
-        "coverSearchTerm": "Richie Beirach Hubris",
-        "streetPriceGermany": {
-          "newEur": "€25 – €30",
-          "usedEur": "€12 – €18"
-        }
-      },
-      {
-        "title": "African Piano",
-        "artist": "Abdullah Ibrahim",
-        "genre": "Jazz",
-        "playtime": "40 min",
-        "trackCount": 4,
-        "coverUrl": "",
-        "coverSearchTerm": "Abdullah Ibrahim African Piano",
-        "streetPriceGermany": {
-          "newEur": "€24 – €30",
-          "usedEur": "€14 – €20"
-        }
-      },
-      {
-        "title": "Elegiac Cycle",
-        "artist": "Brad Mehldau",
-        "genre": "Contemporary Jazz",
-        "playtime": "47 min",
-        "trackCount": 9,
-        "coverUrl": "",
-        "coverSearchTerm": "Brad Mehldau Elegiac Cycle",
-        "streetPriceGermany": {
-          "newEur": "€32 – €40",
-          "usedEur": "€25 – €35"
-        }
-      },
-      {
-        "title": "Ecstasy",
-        "artist": "Steve Kuhn",
-        "genre": "Jazz",
-        "playtime": "38 min",
-        "trackCount": 6,
-        "coverUrl": "",
-        "coverSearchTerm": "Steve Kuhn Ecstasy",
-        "streetPriceGermany": {
-          "newEur": "€24 – €29",
-          "usedEur": "€12 – €18"
-        }
-      }
-    ],
-    "updatedAt": 1791733912433
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791754884827
   },
   "chick corea piano improvisations vol 1": {
     "title": "Piano Improvisations Vol. 1",
     "artist": "Chick Corea",
-    "genre": "Modal Jazz / Solo Acoustic Piano",
+    "genre": "Post-Bop / Solo Acoustic Piano",
     "year": 1971,
     "playtime": "40 min",
     "trackCount": 8,
@@ -1222,27 +1231,123 @@
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/9d/98/cd/9d98cd5b-0e3d-04bc-9dd8-5aeb0bfd094d/00042281197925.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791733953147
+    "updatedAt": 1791754884820
   },
   "paul bley open to love": {
     "title": "Open, to Love",
     "artist": "Paul Bley",
     "genre": "Avant-Garde Jazz / Solo Acoustic Piano",
     "year": 1973,
-    "playtime": "41 min",
+    "playtime": "40 min",
     "trackCount": 7,
     "firstTrackTitle": "",
-    "youtubeVideoId": "",
+    "youtubeVideoId": "ev7TsdXPgXI",
     "collectorScore": null,
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ab/4a/c7/ab4ac72a-3b39-cc4d-17c3-c2dda10dadf3/25UM1IM98120.rgb.jpg/600x600bb.jpg",
-    "streetPriceGermany": null,
-    "alternatives": [],
-    "updatedAt": 1791733953142
+    "streetPriceGermany": {
+      "newEur": "€26 – €32",
+      "usedEur": "€15 – €22",
+      "conditionNote": "VG+ / EX for vintage German ECM pressings; new reflects standard ECM 180g catalog reissues"
+    },
+    "alternatives": [
+      {
+        "title": "Facing You",
+        "artist": "Keith Jarrett",
+        "genre": "Contemporary Jazz / Solo Piano",
+        "playtime": "44 min",
+        "trackCount": 8,
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/ae/9f/50/ae9f500b-2a26-d2f8-0036-2489a07157b7/00602547299666.rgb.jpg/600x600bb.jpg",
+        "coverSearchTerm": "Keith Jarrett Facing You",
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€12 – €20"
+        }
+      },
+      {
+        "title": "Avenging Angel",
+        "artist": "Craig Taborn",
+        "genre": "Avant-Garde Jazz / Solo Piano",
+        "playtime": "60 min",
+        "trackCount": 13,
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/12/f8/dc/12f8dcb0-f88a-e461-cf50-d4b50dc4e5e3/00602527636375.rgb.jpg/600x600bb.jpg",
+        "coverSearchTerm": "Craig Taborn Avenging Angel",
+        "streetPriceGermany": {
+          "newEur": "€28 – €35",
+          "usedEur": "€20 – €28"
+        }
+      },
+      {
+        "title": "Ecstasy",
+        "artist": "Steve Kuhn",
+        "genre": "Post-Bop / Solo Piano",
+        "playtime": "37 min",
+        "trackCount": 3,
+        "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23222725%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3EEcstasy%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3ESteve%20Kuhn%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+        "coverSearchTerm": "Steve Kuhn Ecstasy",
+        "streetPriceGermany": {
+          "newEur": "€24 – €30",
+          "usedEur": "€12 – €18"
+        }
+      },
+      {
+        "title": "Breakthru",
+        "artist": "Ran Blake",
+        "genre": "Third Stream / Avant-Garde Solo Piano",
+        "playtime": "38 min",
+        "trackCount": 14,
+        "coverUrl": "",
+        "coverSearchTerm": "Ran Blake Breakthru",
+        "streetPriceGermany": {
+          "newEur": "€25 – €32",
+          "usedEur": "€15 – €24"
+        }
+      },
+      {
+        "title": "Silent Tongues",
+        "artist": "Cecil Taylor",
+        "genre": "Free Jazz / Solo Piano",
+        "playtime": "41 min",
+        "trackCount": 5,
+        "coverUrl": "",
+        "coverSearchTerm": "Cecil Taylor Silent Tongues",
+        "streetPriceGermany": {
+          "newEur": "€25 – €30",
+          "usedEur": "€14 – €22"
+        }
+      },
+      {
+        "title": "African Piano",
+        "artist": "Abdullah Ibrahim",
+        "genre": "Avant-Garde Jazz / Solo Piano",
+        "playtime": "39 min",
+        "trackCount": 4,
+        "coverUrl": "",
+        "coverSearchTerm": "Abdullah Ibrahim African Piano",
+        "streetPriceGermany": {
+          "newEur": "€24 – €30",
+          "usedEur": "€12 – €19"
+        }
+      },
+      {
+        "title": "Black Orpheus",
+        "artist": "Masabumi Kikuchi",
+        "genre": "Avant-Garde Jazz / Solo Piano",
+        "playtime": "58 min",
+        "trackCount": 12,
+        "coverUrl": "",
+        "coverSearchTerm": "Masabumi Kikuchi Black Orpheus",
+        "streetPriceGermany": {
+          "newEur": "€30 – €38",
+          "usedEur": "€22 – €30"
+        }
+      }
+    ],
+    "updatedAt": 1791754861684
   },
   "keith jarrett the koln concert": {
     "title": "The Köln Concert",
     "artist": "Keith Jarrett",
-    "genre": "Modal Jazz / Solo Piano",
+    "genre": "Modal Jazz / Free Improvisation",
     "year": 1975,
     "playtime": "66 min",
     "trackCount": 4,
@@ -1252,7 +1357,7 @@
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/88/a5/ac/88a5ac07-7eac-6e07-a970-8073f48c0ad6/00602547299819.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791733953113
+    "updatedAt": 1791737647337
   },
   "the koln concert": {
     "title": "The Köln Concert",
@@ -1343,9 +1448,9 @@
   "deepchord presents echospace liumin": {
     "title": "Liumin",
     "artist": "Deepchord presents Echospace",
-    "genre": "Dub Techno / Ambient",
+    "genre": "Dub Techno / Ambient Techno",
     "year": 2010,
-    "playtime": "79 min",
+    "playtime": "78 min",
     "trackCount": 9,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
@@ -1353,7 +1458,7 @@
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/51/f5/fb/51f5fb06-7a85-2059-db99-79eae5f874d9/mzi.jtpkwzla.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791732071549
+    "updatedAt": 1791755162764
   },
   "liumin": {
     "title": "Liumin",
@@ -2195,54 +2300,108 @@
     "title": "Kind of Blue",
     "artist": "Miles Davis",
     "genre": "Modal Jazz",
-    "year": 1959,
-    "playtime": "45 min 44 sec",
-    "trackCount": 5,
-    "firstTrackTitle": "So What",
-    "youtubeVideoId": "zqNTltOGh5c",
-    "coverUrl": "/api/images/miles_davis_kind_of_blue.jpg",
+    "year": "",
+    "playtime": "",
+    "trackCount": 0,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "",
+    "streetPriceGermany": null,
     "alternatives": [
       {
         "title": "Somethin' Else",
         "artist": "Cannonball Adderley",
-        "genre": "Hard Bop",
-        "playtime": "38 min 47 sec",
+        "genre": "Modal Jazz",
+        "playtime": "39 min",
         "trackCount": 5,
-        "coverUrl": "/api/images/cannonball_adderley_somethin_else.jpg",
+        "coverUrl": "",
         "coverSearchTerm": "Cannonball Adderley Somethin' Else",
         "streetPriceGermany": {
-          "newEur": "€25 – €32",
-          "usedEur": "€18 – €26"
+          "newEur": "€26 – €32",
+          "usedEur": "€18 – €28"
         }
       },
       {
         "title": "A Love Supreme",
         "artist": "John Coltrane",
         "genre": "Modal Jazz",
-        "playtime": "33 min 02 sec",
+        "playtime": "33 min",
         "trackCount": 4,
         "coverUrl": "",
         "coverSearchTerm": "John Coltrane A Love Supreme",
         "streetPriceGermany": {
-          "newEur": "€26 – €34",
-          "usedEur": "€18 – €25"
+          "newEur": "€28 – €35",
+          "usedEur": "€18 – €26"
+        }
+      },
+      {
+        "title": "Maiden Voyage",
+        "artist": "Herbie Hancock",
+        "genre": "Modal Jazz",
+        "playtime": "42 min",
+        "trackCount": 5,
+        "coverUrl": "",
+        "coverSearchTerm": "Herbie Hancock Maiden Voyage",
+        "streetPriceGermany": {
+          "newEur": "€25 – €32",
+          "usedEur": "€16 – €25"
+        }
+      },
+      {
+        "title": "Speak No Evil",
+        "artist": "Wayne Shorter",
+        "genre": "Modal Jazz",
+        "playtime": "41 min",
+        "trackCount": 6,
+        "coverUrl": "",
+        "coverSearchTerm": "Wayne Shorter Speak No Evil",
+        "streetPriceGermany": {
+          "newEur": "€27 – €34",
+          "usedEur": "€18 – €27"
         }
       },
       {
         "title": "Waltz for Debby",
         "artist": "Bill Evans Trio",
         "genre": "Cool Jazz",
-        "playtime": "38 min 24 sec",
+        "playtime": "38 min",
         "trackCount": 6,
-        "coverUrl": "/api/images/bill_evans_trio_waltz_for_debby.jpg",
+        "coverUrl": "",
         "coverSearchTerm": "Bill Evans Trio Waltz for Debby",
         "streetPriceGermany": {
-          "newEur": "€24 – €32",
+          "newEur": "€24 – €30",
           "usedEur": "€16 – €24"
+        }
+      },
+      {
+        "title": "Idle Moments",
+        "artist": "Grant Green",
+        "genre": "Modal Jazz",
+        "playtime": "43 min",
+        "trackCount": 4,
+        "coverUrl": "",
+        "coverSearchTerm": "Grant Green Idle Moments",
+        "streetPriceGermany": {
+          "newEur": "€28 – €35",
+          "usedEur": "€19 – €28"
+        }
+      },
+      {
+        "title": "The Real McCoy",
+        "artist": "McCoy Tyner",
+        "genre": "Modal Jazz",
+        "playtime": "37 min",
+        "trackCount": 5,
+        "coverUrl": "",
+        "coverSearchTerm": "McCoy Tyner The Real McCoy",
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€17 – €25"
         }
       }
     ],
-    "updatedAt": 1791579491690
+    "updatedAt": 1791755871865
   },
   "kind of blue": {
     "title": "Kind of Blue",
@@ -2523,15 +2682,109 @@
   "john coltrane a love supreme": {
     "title": "A Love Supreme",
     "artist": "John Coltrane",
-    "genre": "Modal Jazz",
+    "genre": "Spiritual Jazz",
     "year": "",
-    "playtime": "33 min 02 sec",
-    "trackCount": 4,
+    "playtime": "",
+    "trackCount": 0,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "coverUrl": "/api/images/john_coltrane_a_love_supreme.jpg",
-    "alternatives": [],
-    "updatedAt": 1791579491854
+    "collectorScore": null,
+    "coverUrl": "",
+    "streetPriceGermany": null,
+    "alternatives": [
+      {
+        "title": "Journey in Satchidananda",
+        "artist": "Alice Coltrane",
+        "genre": "Spiritual Jazz",
+        "playtime": "37 min",
+        "trackCount": 5,
+        "coverUrl": "",
+        "coverSearchTerm": "Alice Coltrane Journey in Satchidananda",
+        "streetPriceGermany": {
+          "newEur": "€28 – €36",
+          "usedEur": "€30 – €55"
+        }
+      },
+      {
+        "title": "Karma",
+        "artist": "Pharoah Sanders",
+        "genre": "Spiritual Jazz",
+        "playtime": "38 min",
+        "trackCount": 2,
+        "coverUrl": "",
+        "coverSearchTerm": "Pharoah Sanders Karma",
+        "streetPriceGermany": {
+          "newEur": "€29 – €38",
+          "usedEur": "€25 – €45"
+        }
+      },
+      {
+        "title": "Sahara",
+        "artist": "McCoy Tyner",
+        "genre": "Spiritual Jazz / Modal Jazz",
+        "playtime": "44 min",
+        "trackCount": 6,
+        "coverUrl": "",
+        "coverSearchTerm": "McCoy Tyner Sahara",
+        "streetPriceGermany": {
+          "newEur": "€24 – €32",
+          "usedEur": "€18 – €30"
+        }
+      },
+      {
+        "title": "Glass Bead Games",
+        "artist": "Clifford Jordan Quartet",
+        "genre": "Spiritual Jazz / Post-Bop",
+        "playtime": "74 min",
+        "trackCount": 8,
+        "coverUrl": "",
+        "coverSearchTerm": "Clifford Jordan Quartet Glass Bead Games",
+        "streetPriceGermany": {
+          "newEur": "€35 – €45",
+          "usedEur": "€40 – €75"
+        }
+      },
+      {
+        "title": "Brown Rice",
+        "artist": "Don Cherry",
+        "genre": "Spiritual Jazz / Free Jazz",
+        "playtime": "38 min",
+        "trackCount": 4,
+        "coverUrl": "",
+        "coverSearchTerm": "Don Cherry Brown Rice",
+        "streetPriceGermany": {
+          "newEur": "€26 – €34",
+          "usedEur": "€22 – €38"
+        }
+      },
+      {
+        "title": "Lanquidity",
+        "artist": "Sun Ra",
+        "genre": "Spiritual Jazz / Space Jazz",
+        "playtime": "41 min",
+        "trackCount": 5,
+        "coverUrl": "",
+        "coverSearchTerm": "Sun Ra Lanquidity",
+        "streetPriceGermany": {
+          "newEur": "€28 – €36",
+          "usedEur": "€24 – €40"
+        }
+      },
+      {
+        "title": "Black Saint",
+        "artist": "Billy Harper",
+        "genre": "Spiritual Jazz / Post-Bop",
+        "playtime": "42 min",
+        "trackCount": 3,
+        "coverUrl": "",
+        "coverSearchTerm": "Billy Harper Black Saint",
+        "streetPriceGermany": {
+          "newEur": "€24 – €32",
+          "usedEur": "€25 – €45"
+        }
+      }
+    ],
+    "updatedAt": 1791755896268
   },
   "a love supreme": {
     "title": "A Love Supreme",
@@ -3146,30 +3399,127 @@
   "portishead dummy": {
     "title": "Dummy",
     "artist": "Portishead",
-    "genre": "Trip Hop",
-    "year": 1994,
-    "playtime": "41 min",
-    "trackCount": 11,
+    "genre": "Trip Hop / Noir",
+    "year": "",
+    "playtime": "",
+    "trackCount": 0,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "coverUrl": "/api/images/portishead_dummy.jpg",
-    "alternatives": [],
-    "updatedAt": 1791646830023
+    "collectorScore": null,
+    "coverUrl": "",
+    "streetPriceGermany": null,
+    "alternatives": [
+      {
+        "title": "Mezzanine",
+        "artist": "Massive Attack",
+        "genre": "Trip Hop",
+        "playtime": "63 min",
+        "trackCount": 11,
+        "coverUrl": "",
+        "coverSearchTerm": "Massive Attack Mezzanine",
+        "streetPriceGermany": {
+          "newEur": "€32 – €38",
+          "usedEur": "€22 – €30"
+        }
+      },
+      {
+        "title": "Maxinquaye",
+        "artist": "Tricky",
+        "genre": "Trip Hop",
+        "playtime": "57 min",
+        "trackCount": 12,
+        "coverUrl": "",
+        "coverSearchTerm": "Tricky Maxinquaye",
+        "streetPriceGermany": {
+          "newEur": "€27 – €33",
+          "usedEur": "€18 – €25"
+        }
+      },
+      {
+        "title": "Felt Mountain",
+        "artist": "Goldfrapp",
+        "genre": "Cinematic Trip Hop",
+        "playtime": "40 min",
+        "trackCount": 9,
+        "coverUrl": "",
+        "coverSearchTerm": "Goldfrapp Felt Mountain",
+        "streetPriceGermany": {
+          "newEur": "€25 – €30",
+          "usedEur": "€16 – €22"
+        }
+      },
+      {
+        "title": "Becoming X",
+        "artist": "Sneaker Pimps",
+        "genre": "Trip Hop",
+        "playtime": "56 min",
+        "trackCount": 11,
+        "coverUrl": "",
+        "coverSearchTerm": "Sneaker Pimps Becoming X",
+        "streetPriceGermany": {
+          "newEur": "€28 – €35",
+          "usedEur": "€20 – €28"
+        }
+      },
+      {
+        "title": "A New Stereophonic Sound Spectacular",
+        "artist": "Hooverphonic",
+        "genre": "Trip Hop",
+        "playtime": "47 min",
+        "trackCount": 11,
+        "coverUrl": "",
+        "coverSearchTerm": "Hooverphonic A New Stereophonic Sound Spectacular",
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€18 – €24"
+        }
+      },
+      {
+        "title": "Out of Season",
+        "artist": "Beth Gibbons & Rustin Man",
+        "genre": "Noir Downtempo",
+        "playtime": "44 min",
+        "trackCount": 10,
+        "coverUrl": "",
+        "coverSearchTerm": "Beth Gibbons & Rustin Man Out of Season",
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€18 – €25"
+        }
+      },
+      {
+        "title": "Lamb",
+        "artist": "Lamb",
+        "genre": "Trip Hop",
+        "playtime": "59 min",
+        "trackCount": 10,
+        "coverUrl": "",
+        "coverSearchTerm": "Lamb Lamb",
+        "streetPriceGermany": {
+          "newEur": "€28 – €34",
+          "usedEur": "€18 – €26"
+        }
+      }
+    ],
+    "updatedAt": 1791755893060
   },
   "tricky maxinquaye": {
     "title": "Maxinquaye",
     "artist": "Tricky",
-    "genre": "Trip Hop / Experimental Hip Hop",
-    "year": 1995,
+    "genre": "Trip Hop",
+    "year": "",
     "playtime": "57 min",
     "trackCount": 12,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/da/46/8a/da468ae4-2956-89d5-de70-0fce8dcfd572/00731452408921.rgb.jpg/600x600bb.jpg",
-    "streetPriceGermany": null,
+    "streetPriceGermany": {
+      "newEur": "€27 – €33",
+      "usedEur": "€18 – €25"
+    },
     "alternatives": [],
-    "updatedAt": 1791720409113
+    "updatedAt": 1791755893255
   },
   "sneaker pimps becoming x": {
     "title": "Becoming X",
@@ -3216,9 +3566,14 @@
     "trackCount": 11,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "coverUrl": "/api/images/massive_attack_mezzanine.jpg",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/0a/98/55/0a98555b-8d9d-3b46-660a-b91261557d17/00724384559953.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€32 – €38",
+      "usedEur": "€22 – €30"
+    },
     "alternatives": [],
-    "updatedAt": 1791646798458
+    "updatedAt": 1791755893291
   },
   "mezzanine": {
     "title": "Mezzanine",
@@ -5195,18 +5550,107 @@
     "artist": "Pink Floyd",
     "genre": "Progressive Rock",
     "year": "",
-    "playtime": "43 min",
-    "trackCount": 10,
+    "playtime": "",
+    "trackCount": 0,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
-    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3e/17/ec/3e17ec6d-f980-c64f-19e0-a6fd8bbf0c10/886445635850.jpg/600x600bb.jpg",
-    "streetPriceGermany": {
-      "newEur": "€26 – €32",
-      "usedEur": "€18 – €30"
-    },
-    "alternatives": [],
-    "updatedAt": 1791717736102
+    "coverUrl": "",
+    "streetPriceGermany": null,
+    "alternatives": [
+      {
+        "title": "In the Court of the Crimson King",
+        "artist": "King Crimson",
+        "genre": "Progressive Rock",
+        "playtime": "44 min",
+        "trackCount": 5,
+        "coverUrl": "",
+        "coverSearchTerm": "King Crimson In the Court of the Crimson King",
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€20 – €35"
+        }
+      },
+      {
+        "title": "I Robot",
+        "artist": "The Alan Parsons Project",
+        "genre": "Art Rock / Progressive Rock",
+        "playtime": "41 min",
+        "trackCount": 10,
+        "coverUrl": "",
+        "coverSearchTerm": "The Alan Parsons Project I Robot",
+        "streetPriceGermany": {
+          "newEur": "€25 – €32",
+          "usedEur": "€8 – €16"
+        }
+      },
+      {
+        "title": "Selling England by the Pound",
+        "artist": "Genesis",
+        "genre": "Progressive Rock",
+        "playtime": "53 min",
+        "trackCount": 8,
+        "coverUrl": "",
+        "coverSearchTerm": "Genesis Selling England by the Pound",
+        "streetPriceGermany": {
+          "newEur": "€28 – €34",
+          "usedEur": "€14 – €24"
+        }
+      },
+      {
+        "title": "Close to the Edge",
+        "artist": "Yes",
+        "genre": "Progressive Rock",
+        "playtime": "38 min",
+        "trackCount": 3,
+        "coverUrl": "",
+        "coverSearchTerm": "Yes Close to the Edge",
+        "streetPriceGermany": {
+          "newEur": "€26 – €33",
+          "usedEur": "€12 – €20"
+        }
+      },
+      {
+        "title": "Mirage",
+        "artist": "Camel",
+        "genre": "Progressive Rock",
+        "playtime": "38 min",
+        "trackCount": 5,
+        "coverUrl": "",
+        "coverSearchTerm": "Camel Mirage",
+        "streetPriceGermany": {
+          "newEur": "€27 – €34",
+          "usedEur": "€16 – €25"
+        }
+      },
+      {
+        "title": "Ocean",
+        "artist": "Eloy",
+        "genre": "Space Rock / Progressive Rock",
+        "playtime": "44 min",
+        "trackCount": 4,
+        "coverUrl": "",
+        "coverSearchTerm": "Eloy Ocean",
+        "streetPriceGermany": {
+          "newEur": "€24 – €30",
+          "usedEur": "€10 – €18"
+        }
+      },
+      {
+        "title": "Crime of the Century",
+        "artist": "Supertramp",
+        "genre": "Art Rock / Progressive Rock",
+        "playtime": "44 min",
+        "trackCount": 8,
+        "coverUrl": "",
+        "coverSearchTerm": "Supertramp Crime of the Century",
+        "streetPriceGermany": {
+          "newEur": "€25 – €32",
+          "usedEur": "€10 – €18"
+        }
+      }
+    ],
+    "updatedAt": 1791755876701
   },
   "paul mccartney wings band on the run": {
     "title": "Band on the Run",
@@ -5285,17 +5729,17 @@
   "abdulla rashim unanimity": {
     "title": "Unanimity",
     "artist": "Abdulla Rashim",
-    "genre": "Deep Techno / Hypnotic Techno",
+    "genre": "Hypnotic Techno / Nordic Deep Techno",
     "year": 2014,
-    "playtime": "48 min",
-    "trackCount": 7,
+    "playtime": "49 min",
+    "trackCount": 8,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music62/v4/a5/20/fc/a520fc3f-750c-83ab-cd55-67afd3138f63/cover.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791732060454
+    "updatedAt": 1791755871603
   },
   "deepchord sommer": {
     "title": "Sommer",
@@ -5313,14 +5757,14 @@
       "usedEur": "€20 – €28"
     },
     "alternatives": [],
-    "updatedAt": 1791732058984
+    "updatedAt": 1791755837688
   },
   "cio d or all in all": {
     "title": "All In All",
     "artist": "Cio D'Or",
     "genre": "Hypnotic Techno / Ambient",
     "year": 2015,
-    "playtime": "75 min",
+    "playtime": "72 min",
     "trackCount": 12,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
@@ -5328,17 +5772,22 @@
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/d2/5d/e1/d25de1f4-35df-13bd-4d77-c4ce55201914/cover.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791732071543
+    "updatedAt": 1791738523729
   },
   "peter van hoesen enthetic": {
     "title": "Enthetic",
     "artist": "Peter Van Hoesen",
-    "genre": "Deep Techno",
-    "playtime": "47 min",
-    "trackCount": 8,
-    "coverUrl": "",
+    "genre": "Hypnotic Techno / Experimental",
+    "year": 2010,
+    "playtime": "52 min",
+    "trackCount": 10,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%232c1e21%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3EEnthetic%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3EPeter%20Van%20Hoesen%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791701231082
+    "updatedAt": 1791755163131
   },
   "unanimity": {
     "title": "Unanimity",
@@ -6300,22 +6749,22 @@
   "dino sabatini shaman": {
     "title": "Shaman",
     "artist": "Dino Sabatini",
-    "genre": "Hypnotic Techno",
+    "genre": "Hypnotic Techno / Tribal Ambient",
     "year": 2012,
-    "playtime": "58 min",
-    "trackCount": 9,
+    "playtime": "62 min",
+    "trackCount": 11,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
     "coverUrl": "https://cdn-images.dzcdn.net/images/cover/363d3139c54c12be5baac0623b94523d/1000x1000-000000-80-0-0.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791732071742
+    "updatedAt": 1791755871802
   },
   "neel phobos": {
     "title": "Phobos",
     "artist": "Neel",
-    "genre": "Ambient / Dark Ambient",
+    "genre": "Deep Techno / Dark Ambient",
     "year": 2014,
     "playtime": "48 min",
     "trackCount": 6,
@@ -6325,7 +6774,7 @@
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5b/3d/57/5b3d5737-0dc9-c5f1-7d7b-0bd9ed8f994b/880918272177.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791732071534
+    "updatedAt": 1791755871587
   },
   "claudio prc inner voyage": {
     "title": "Inner Voyage",
@@ -6341,11 +6790,16 @@
     "title": "Obscur",
     "artist": "Svreca",
     "genre": "Hypnotic Techno",
-    "playtime": "46 min",
-    "trackCount": 8,
-    "coverUrl": "",
+    "year": 2010,
+    "playtime": "42 min",
+    "trackCount": 7,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b9/f2/98/b9f2987f-9d0a-88c5-c0ac-474cb4aaabb8/4065328286297.png/600x600bb.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791702934739
+    "updatedAt": 1791755162992
   },
   "shifted under a single banner": {
     "title": "Under a Single Banner",
@@ -6600,10 +7054,10 @@
   "chick corea piano improvisations vol 2": {
     "title": "Piano Improvisations Vol. 2",
     "artist": "Chick Corea",
-    "genre": "Jazz",
+    "genre": "Post-Bop / Solo Piano",
     "year": "",
-    "playtime": "38 min",
-    "trackCount": 8,
+    "playtime": "37 min",
+    "trackCount": 5,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
@@ -6613,14 +7067,14 @@
       "usedEur": "€12 – €18"
     },
     "alternatives": [],
-    "updatedAt": 1791720409144
+    "updatedAt": 1791737627164
   },
   "richie beirach hubris": {
     "title": "Hubris",
     "artist": "Richie Beirach",
-    "genre": "Post-Bop / Solo Acoustic Piano",
-    "year": 1978,
-    "playtime": "38 min",
+    "genre": "ECM Chamber Jazz / Solo Piano",
+    "year": 1977,
+    "playtime": "40 min",
     "trackCount": 8,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
@@ -6628,29 +7082,29 @@
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/b5/d4/db/b5d4db74-6522-35fc-19d7-990950b87be4/00602527307305.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791733953153
+    "updatedAt": 1791738678306
   },
   "abdullah ibrahim african piano": {
     "title": "African Piano",
     "artist": "Abdullah Ibrahim",
-    "genre": "Spiritual Jazz / Solo Piano",
+    "genre": "Spiritual Jazz / Solo Acoustic Piano",
     "year": 1970,
-    "playtime": "45 min",
-    "trackCount": 8,
+    "playtime": "44 min",
+    "trackCount": 5,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/a7/60/4e/a7604e65-7249-352f-f717-68e7aac25a6e/00602537521500.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791733953164
+    "updatedAt": 1791739323165
   },
   "bill evans alone": {
     "title": "Alone",
     "artist": "Bill Evans",
-    "genre": "Post-Bop / Solo Acoustic Piano",
+    "genre": "Cool Jazz / Solo Acoustic Piano",
     "year": 1968,
-    "playtime": "42 min",
+    "playtime": "43 min",
     "trackCount": 5,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
@@ -6658,7 +7112,7 @@
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/c2/d5/ad/c2d5ada3-1ab5-3a10-e733-5f56cd4d069c/06UMGIM09118.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791733953158
+    "updatedAt": 1791738641698
   },
   "piano improvisations vol 2": {
     "title": "Piano Improvisations Vol. 2",
@@ -6681,9 +7135,9 @@
   "brad mehldau elegiac cycle": {
     "title": "Elegiac Cycle",
     "artist": "Brad Mehldau",
-    "genre": "Contemporary Jazz / Solo Acoustic Piano",
+    "genre": "Modern Classical / Solo Piano",
     "year": 1999,
-    "playtime": "49 min",
+    "playtime": "48 min",
     "trackCount": 9,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
@@ -6691,22 +7145,25 @@
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/y2005/m08/d18/h21/mzi.zvwwhbqx.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791733953161
+    "updatedAt": 1791737103009
   },
   "steve kuhn ecstasy": {
     "title": "Ecstasy",
     "artist": "Steve Kuhn",
-    "genre": "Chamber Jazz / Solo Acoustic Piano",
-    "year": 1975,
+    "genre": "Post-Bop / Solo Piano",
+    "year": "",
     "playtime": "37 min",
-    "trackCount": 6,
+    "trackCount": 3,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
     "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23222725%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3EEcstasy%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3ESteve%20Kuhn%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
-    "streetPriceGermany": null,
+    "streetPriceGermany": {
+      "newEur": "€24 – €30",
+      "usedEur": "€12 – €18"
+    },
     "alternatives": [],
-    "updatedAt": 1791733953315
+    "updatedAt": 1791754857062
   },
   "alone": {
     "title": "Alone",
@@ -6731,7 +7188,7 @@
     "artist": "Mal Waldron",
     "genre": "Modal Jazz / Post-Bop",
     "year": 1969,
-    "playtime": "42 min",
+    "playtime": "41 min",
     "trackCount": 6,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
@@ -6739,7 +7196,7 @@
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/09/68/23/09682391-864e-98d3-b86d-026fbefe5e76/00042283133228.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791733288198
+    "updatedAt": 1791738520872
   },
   "free at last": {
     "title": "Free at Last",
@@ -6919,7 +7376,7 @@
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/83/97/4f/83974fae-272e-67be-fc0a-19e1647b6b7e/00602547301345.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791732176292
+    "updatedAt": 1791737102999
   },
   "belonging": {
     "title": "Belonging",
@@ -7009,7 +7466,7 @@
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/12/f8/dc/12f8dcb0-f88a-e461-cf50-d4b50dc4e5e3/00602527636375.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791733953167
+    "updatedAt": 1791754884830
   },
   "avenging angel": {
     "title": "Avenging Angel",
@@ -7089,17 +7546,17 @@
   "masabumi kikuchi black orpheus": {
     "title": "Black Orpheus",
     "artist": "Masabumi Kikuchi",
-    "genre": "Post-Bop / Solo Acoustic Piano",
+    "genre": "Avant-Garde Jazz / Solo Acoustic Piano",
     "year": 2012,
-    "playtime": "61 min",
-    "trackCount": 11,
+    "playtime": "59 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/a8/c7/4e/a8c74e39-72cd-860f-fe1b-fd5db5a4b093/00602547322180.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791733953481
+    "updatedAt": 1791754884824
   },
   "black orpheus": {
     "title": "Black Orpheus",
@@ -7164,9 +7621,9 @@
   "ralph towner diary": {
     "title": "Diary",
     "artist": "Ralph Towner",
-    "genre": "Chamber Jazz / Acoustic Folk",
+    "genre": "Chamber Jazz / Acoustic Solo",
     "year": 1974,
-    "playtime": "42 min",
+    "playtime": "43 min",
     "trackCount": 8,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
@@ -7174,7 +7631,7 @@
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ed/c0/19/edc01998-a55a-b125-e1af-aea7eacd5961/25UM1IM98127.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791733273898
+    "updatedAt": 1791737649343
   },
   "diary": {
     "title": "Diary",
@@ -7194,8 +7651,8 @@
   "kenny wheeler gnu high": {
     "title": "Gnu High",
     "artist": "Kenny Wheeler",
-    "genre": "ECM Jazz / Contemporary Post-Bop",
-    "year": 1975,
+    "genre": "ECM Jazz / Post-Bop",
+    "year": 1976,
     "playtime": "48 min",
     "trackCount": 3,
     "firstTrackTitle": "",
@@ -7204,7 +7661,7 @@
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9c/8c/f5/9c8cf58b-a994-a1fd-2245-624f72c34254/25UM1IM98145.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791733953150
+    "updatedAt": 1791737103006
   },
   "gnu high": {
     "title": "Gnu High",
@@ -7226,15 +7683,15 @@
     "artist": "Dollar Brand",
     "genre": "Spiritual Jazz / Solo Piano",
     "year": 1970,
-    "playtime": "42 min",
-    "trackCount": 8,
+    "playtime": "46 min",
+    "trackCount": 6,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/a7/60/4e/a7604e65-7249-352f-f717-68e7aac25a6e/00602537521500.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791733273893
+    "updatedAt": 1791738678311
   },
   "art lande jan garbarek red lanta": {
     "title": "Red Lanta",
@@ -7374,12 +7831,17 @@
   "luigi tozzi deep blue": {
     "title": "Deep Blue",
     "artist": "Luigi Tozzi",
-    "genre": "Hypnotic Techno",
-    "playtime": "52 min 18 sec",
+    "genre": "Deep Techno / Hypnotic Ambient",
+    "year": 2016,
+    "playtime": "54 min",
     "trackCount": 8,
-    "coverUrl": "",
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music62/v4/2b/61/eb/2b61eb6e-6ea4-af15-32ce-41ade5e3115a/879000142498.png/600x600bb.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791732058724
+    "updatedAt": 1791755494142
   },
   "sandwell district feed forward": {
     "title": "Feed-Forward",
@@ -7449,17 +7911,17 @@
   "mike parker lustre": {
     "title": "Lustre",
     "artist": "Mike Parker",
-    "genre": "Hypnotic Techno / Modular Synth",
-    "year": 2011,
-    "playtime": "45 min",
-    "trackCount": 6,
+    "genre": "Hypnotic Techno / Modular",
+    "year": 2014,
+    "playtime": "48 min",
+    "trackCount": 8,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
     "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%231e293b%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3ELustre%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3EMike%20Parker%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791732060645
+    "updatedAt": 1791755162973
   },
   "lustre": {
     "title": "Lustre",
@@ -7584,9 +8046,9 @@
   "mal waldron all alone": {
     "title": "All Alone",
     "artist": "Mal Waldron",
-    "genre": "Post-Bop / Solo Piano",
+    "genre": "Modal Jazz / Solo Acoustic Piano",
     "year": 1966,
-    "playtime": "37 min",
+    "playtime": "36 min",
     "trackCount": 6,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
@@ -7594,7 +8056,7 @@
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music62/v4/a8/b7/3e/a8b73e5e-7dd5-b2db-c6c9-7c1c9f774cf9/4251513904798_1448.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791732273091
+    "updatedAt": 1791754884836
   },
   "all alone": {
     "title": "All Alone",
@@ -7700,5 +8162,2134 @@
     "streetPriceGermany": null,
     "alternatives": [],
     "updatedAt": 1791733953560
+  },
+  "herbie hancock the piano": {
+    "title": "The Piano",
+    "artist": "Herbie Hancock",
+    "genre": "Post-Bop",
+    "playtime": "41 min",
+    "trackCount": 7,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791737078453
+  },
+  "chick corea children s songs": {
+    "title": "Children's Songs",
+    "artist": "Chick Corea",
+    "genre": "Chamber Jazz / Modern Classical",
+    "year": 1984,
+    "playtime": "34 min",
+    "trackCount": 20,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/1a/ef/a3/1aefa356-a93c-4685-c6cf-d721a35ed8e4/00602517762176.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791737650220
+  },
+  "children s songs": {
+    "title": "Children's Songs",
+    "artist": "Chick Corea",
+    "genre": "Contemporary Classical / Chamber Jazz",
+    "year": 1984,
+    "playtime": "33 min",
+    "trackCount": 20,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/1a/ef/a3/1aefa356-a93c-4685-c6cf-d721a35ed8e4/00602517762176.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791737092487
+  },
+  "chick corea gary burton crystal silence": {
+    "title": "Crystal Silence",
+    "artist": "Chick Corea & Gary Burton",
+    "genre": "Chamber Jazz / Post-Bop",
+    "year": 1973,
+    "playtime": "41 min",
+    "trackCount": 9,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/91/7d/d7/917dd7f6-1949-ad1e-35af-295b4cddeafc/00602547801807.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791737647598
+  },
+  "michel petrucciani oracle s destiny": {
+    "title": "Oracle's Destiny",
+    "artist": "Michel Petrucciani",
+    "genre": "Post-Bop / Solo Piano",
+    "year": 1983,
+    "playtime": "39 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/9b/17/60/mzi.czbydvxv.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791737649345
+  },
+  "oracle s destiny": {
+    "title": "Oracle's Destiny",
+    "artist": "Michel Petrucciani",
+    "genre": "Post-Bop / Solo Piano",
+    "year": 1983,
+    "playtime": "39 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/9b/17/60/mzi.czbydvxv.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791737139233
+  },
+  "art lande the eccentricities of earl dant": {
+    "title": "The Eccentricities of Earl Dant",
+    "artist": "Art Lande",
+    "genre": "Chamber Jazz / Solo Piano",
+    "year": 1977,
+    "playtime": "41 min",
+    "trackCount": 10,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%231a1d20%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3EThe%20Eccentricities%20of%20Ea%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3EArt%20Lande%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791737649462
+  },
+  "the eccentricities of earl dant": {
+    "title": "The Eccentricities of Earl Dant",
+    "artist": "Art Lande",
+    "genre": "Chamber Jazz / Solo Piano",
+    "year": 1977,
+    "playtime": "41 min",
+    "trackCount": 10,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%231a1d20%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3EThe%20Eccentricities%20of%20Ea%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3EArt%20Lande%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791737139411
+  },
+  "paul bley ballads": {
+    "title": "Ballads",
+    "artist": "Paul Bley",
+    "genre": "Avant-Garde Jazz / Chamber Jazz",
+    "year": 1971,
+    "playtime": "36 min",
+    "trackCount": 3,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/da/1c/29/da1c296c-1ae2-3112-6605-9bc6e5ee781c/00602517233362.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791737647538
+  },
+  "ballads": {
+    "title": "Ballads",
+    "artist": "Paul Bley",
+    "genre": "Avant-Garde Jazz / Chamber Jazz",
+    "year": 1971,
+    "playtime": "36 min",
+    "trackCount": 3,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/da/1c/29/da1c296c-1ae2-3112-6605-9bc6e5ee781c/00602517233362.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791737647538
+  },
+  "mccoy tyner echoes of a friend": {
+    "title": "Echoes of a Friend",
+    "artist": "McCoy Tyner",
+    "genre": "Post-Bop / Modal Jazz",
+    "year": 1972,
+    "playtime": "44 min",
+    "trackCount": 5,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/54/67/47/54674710-fc2d-ac72-2ecd-f2be2f02b1f0/00025218665025.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791737647591
+  },
+  "echoes of a friend": {
+    "title": "Echoes of a Friend",
+    "artist": "McCoy Tyner",
+    "genre": "Post-Bop / Modal Jazz",
+    "year": 1972,
+    "playtime": "44 min",
+    "trackCount": 5,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/54/67/47/54674710-fc2d-ac72-2ecd-f2be2f02b1f0/00025218665025.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791737647591
+  },
+  "joachim kuhn distance": {
+    "title": "Distance",
+    "artist": "Joachim Kühn",
+    "genre": "Chamber Jazz / Solo Piano",
+    "year": 1979,
+    "playtime": "39 min",
+    "trackCount": 7,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/2c/b5/e6/2cb5e6ad-aa06-229f-67ef-3c9e12d22c79/1593.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791737650491
+  },
+  "distance": {
+    "title": "Distance",
+    "artist": "Joachim Kühn",
+    "genre": "Chamber Jazz / Solo Piano",
+    "year": 1979,
+    "playtime": "39 min",
+    "trackCount": 7,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/2c/b5/e6/2cb5e6ad-aa06-229f-67ef-3c9e12d22c79/1593.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791737650491
+  },
+  "ran blake breakthru": {
+    "title": "Breakthru",
+    "artist": "Ran Blake",
+    "genre": "Third Stream / Solo Acoustic Piano",
+    "year": 1976,
+    "playtime": "42 min",
+    "trackCount": 14,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b0/d9/2a/b0d92a63-d1a5-b875-5aa1-4af46d15cb76/5054526005204.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791754884817
+  },
+  "breakthru": {
+    "title": "Breakthru",
+    "artist": "Ran Blake",
+    "genre": "Third Stream / Avant-Garde Jazz",
+    "year": 1976,
+    "playtime": "41 min",
+    "trackCount": 14,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b0/d9/2a/b0d92a63-d1a5-b875-5aa1-4af46d15cb76/5054526005204.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791737650532
+  },
+  "cecil taylor silent tongues": {
+    "title": "Silent Tongues",
+    "artist": "Cecil Taylor",
+    "genre": "Free Jazz / Solo Piano",
+    "playtime": "41 min",
+    "trackCount": 5,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791737668914
+  },
+  "paul bley trio closer": {
+    "title": "Closer",
+    "artist": "Paul Bley Trio",
+    "genre": "Avant-Garde Jazz / Free Jazz",
+    "year": 1966,
+    "playtime": "32 min",
+    "trackCount": 10,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music117/v4/04/3c/33/043c3383-8d04-a60c-10de-f549f6eaa0e6/0825481010214_1448.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791738521143
+  },
+  "marilyn crispell nothing ever was anyway music of annette peacock": {
+    "title": "Nothing Ever Was, Anyway: Music of Annette Peacock",
+    "artist": "Marilyn Crispell",
+    "genre": "Avant-Garde Jazz / Chamber Jazz",
+    "year": 1997,
+    "playtime": "72 min",
+    "trackCount": 12,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/7c/f8/d2/7cf8d20d-aad7-f9c8-d3ab-5331fdf587dc/00731453722224.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791738521176
+  },
+  "nothing ever was anyway music of annette peacock": {
+    "title": "Nothing Ever Was, Anyway: Music of Annette Peacock",
+    "artist": "Marilyn Crispell",
+    "genre": "Avant-Garde Jazz / Chamber Jazz",
+    "year": 1997,
+    "playtime": "72 min",
+    "trackCount": 12,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/7c/f8/d2/7cf8d20d-aad7-f9c8-d3ab-5331fdf587dc/00731453722224.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791738521176
+  },
+  "ran blake the blue potato and other outrages": {
+    "title": "The Blue Potato and Other Outrages",
+    "artist": "Ran Blake",
+    "genre": "Third Stream / Avant-Garde Jazz",
+    "year": 1969,
+    "playtime": "38 min",
+    "trackCount": 12,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/b0/3e/77/b03e778d-4a3b-911a-45ad-6d9718a75bf1/886788629394.tif/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791738521183
+  },
+  "the blue potato and other outrages": {
+    "title": "The Blue Potato and Other Outrages",
+    "artist": "Ran Blake",
+    "genre": "Third Stream / Avant-Garde Jazz",
+    "year": 1969,
+    "playtime": "38 min",
+    "trackCount": 12,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/b0/3e/77/b03e778d-4a3b-911a-45ad-6d9718a75bf1/886788629394.tif/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791738521183
+  },
+  "masabumi kikuchi sunrise": {
+    "title": "Sunrise",
+    "artist": "Masabumi Kikuchi",
+    "genre": "Avant-Garde Jazz / Free Improvisation",
+    "year": 2012,
+    "playtime": "55 min",
+    "trackCount": 10,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/61/f7/19/61f7193d-27b4-2fbb-31a5-5b98d90fb376/00602527895550.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791738521307
+  },
+  "sunrise": {
+    "title": "Sunrise",
+    "artist": "Masabumi Kikuchi",
+    "genre": "Avant-Garde Jazz / Free Improvisation",
+    "year": 2012,
+    "playtime": "55 min",
+    "trackCount": 10,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/61/f7/19/61f7193d-27b4-2fbb-31a5-5b98d90fb376/00602527895550.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791738521307
+  },
+  "abdulla rashim a shell of speed": {
+    "title": "A Shell of Speed",
+    "artist": "Abdulla Rashim",
+    "genre": "Hypnotic Techno / Deep Ambient",
+    "year": 2014,
+    "playtime": "47 min",
+    "trackCount": 7,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/f4/7d/b9/f47db912-010c-19db-a79a-f7518efec8f9/cover.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791738523930
+  },
+  "a shell of speed": {
+    "title": "A Shell of Speed",
+    "artist": "Abdulla Rashim",
+    "genre": "Hypnotic Techno / Deep Ambient",
+    "year": 2014,
+    "playtime": "47 min",
+    "trackCount": 7,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/f4/7d/b9/f47db912-010c-19db-a79a-f7518efec8f9/cover.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791738523930
+  },
+  "luigi tozzi wadjet": {
+    "title": "Wadjet",
+    "artist": "Luigi Tozzi",
+    "genre": "Hypnotic Techno / Deep Techno",
+    "year": 2016,
+    "playtime": "41 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music62/v4/87/26/a7/8726a7e0-e6e0-227d-c79d-8e95ad4015c2/879000147455.png/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791755871594
+  },
+  "wadjet": {
+    "title": "Wadjet",
+    "artist": "Luigi Tozzi",
+    "genre": "Deep Techno / Ambient",
+    "year": 2016,
+    "playtime": "42 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music62/v4/87/26/a7/8726a7e0-e6e0-227d-c79d-8e95ad4015c2/879000147455.png/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791738523936
+  },
+  "mike parker lustrations": {
+    "title": "Lustrations",
+    "artist": "Mike Parker",
+    "genre": "Hypnotic Techno / Modular",
+    "year": 2011,
+    "playtime": "48 min",
+    "trackCount": 7,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%231e293b%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3ELustrations%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3EMike%20Parker%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791755493994
+  },
+  "lustrations": {
+    "title": "Lustrations",
+    "artist": "Mike Parker",
+    "genre": "Hypnotic Techno / Minimal",
+    "year": 2011,
+    "playtime": "48 min",
+    "trackCount": 8,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%231e293b%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3ELustrations%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3EMike%20Parker%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791738524011
+  },
+  "neel phono": {
+    "title": "Phono",
+    "artist": "Neel",
+    "genre": "Ambient / Experimental Techno",
+    "year": 2014,
+    "playtime": "44 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://cdn-images.dzcdn.net/images/cover/dc063b8c086b0926502c4f0042835cd6/1000x1000-000000-80-0-0.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791738524101
+  },
+  "phono": {
+    "title": "Phono",
+    "artist": "Neel",
+    "genre": "Ambient / Experimental Techno",
+    "year": 2014,
+    "playtime": "44 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://cdn-images.dzcdn.net/images/cover/dc063b8c086b0926502c4f0042835cd6/1000x1000-000000-80-0-0.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791738524101
+  },
+  "asc the waves": {
+    "title": "The Waves",
+    "artist": "ASC",
+    "genre": "Ambient / Deep Techno",
+    "year": 2015,
+    "playtime": "58 min",
+    "trackCount": 8,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/27/16/f2/2716f273-87bd-e679-553c-5f3d78f177c5/192641937453_cover.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791738524127
+  },
+  "the waves": {
+    "title": "The Waves",
+    "artist": "ASC",
+    "genre": "Ambient / Deep Techno",
+    "year": 2015,
+    "playtime": "58 min",
+    "trackCount": 8,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/27/16/f2/2716f273-87bd-e679-553c-5f3d78f177c5/192641937453_cover.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791738524127
+  },
+  "marilyn crispell gary peacock paul motian nothing ever was anyway music of annette peacock": {
+    "title": "Nothing Ever Was, Anyway: Music of Annette Peacock",
+    "artist": "Marilyn Crispell, Gary Peacock, Paul Motian",
+    "genre": "Avant-Garde Jazz",
+    "year": 1997,
+    "playtime": "72 min",
+    "trackCount": 12,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/7c/f8/d2/7cf8d20d-aad7-f9c8-d3ab-5331fdf587dc/00731453722224.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791754884833
+  },
+  "paul motian conception vessel": {
+    "title": "Conception Vessel",
+    "artist": "Paul Motian",
+    "genre": "Avant-Garde Jazz / ECM",
+    "year": 1973,
+    "playtime": "37 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/74/b9/f2/74b9f269-36bd-3a71-f6ec-dd4736d7bcc3/25UM1IM98122.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791739323175
+  },
+  "conception vessel": {
+    "title": "Conception Vessel",
+    "artist": "Paul Motian",
+    "genre": "Avant-Garde Jazz / Chamber Jazz",
+    "year": 1972,
+    "playtime": "36 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/74/b9/f2/74b9f269-36bd-3a71-f6ec-dd4736d7bcc3/25UM1IM98122.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791738641974
+  },
+  "mal waldron blues for lady day": {
+    "title": "Blues for Lady Day",
+    "artist": "Mal Waldron",
+    "genre": "Post-Bop / Solo Piano",
+    "year": 1972,
+    "playtime": "42 min",
+    "trackCount": 9,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/57/ad/4a/mzi.ccgubwqx.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791738678552
+  },
+  "blues for lady day": {
+    "title": "Blues for Lady Day",
+    "artist": "Mal Waldron",
+    "genre": "Post-Bop / Solo Piano",
+    "year": 1972,
+    "playtime": "42 min",
+    "trackCount": 9,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/57/ad/4a/mzi.ccgubwqx.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791738678552
+  },
+  "marilyn crispell gary peacock paul motian amaryllis": {
+    "title": "Amaryllis",
+    "artist": "Marilyn Crispell, Gary Peacock, Paul Motian",
+    "genre": "Contemporary Chamber Jazz",
+    "year": 2001,
+    "playtime": "65 min",
+    "trackCount": 12,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/56/e2/a1/56e2a1eb-2fa0-0be8-9338-0ee35eae432a/00044001340024.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791738678567
+  },
+  "annette peacock i m the one": {
+    "title": "I'm the One",
+    "artist": "Annette Peacock",
+    "genre": "Avant-Garde Jazz / Art Pop",
+    "year": 1972,
+    "playtime": "36 min",
+    "trackCount": 9,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/74/a3/ef/74a3ef7c-1e2e-e0a5-d361-578935121b6c/886444346672.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791738678613
+  },
+  "i m the one": {
+    "title": "I'm the One",
+    "artist": "Annette Peacock",
+    "genre": "Avant-Garde Jazz / Art Pop",
+    "year": 1972,
+    "playtime": "36 min",
+    "trackCount": 9,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/74/a3/ef/74a3ef7c-1e2e-e0a5-d361-578935121b6c/886444346672.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791738678613
+  },
+  "daft punk random access memories": {
+    "title": "Random Access Memories",
+    "artist": "Daft Punk",
+    "genre": "Nu-Disco / Electronic",
+    "year": "",
+    "playtime": "",
+    "trackCount": 0,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "",
+    "streetPriceGermany": null,
+    "alternatives": [
+      {
+        "title": "It's Album Time",
+        "artist": "Todd Terje",
+        "genre": "Nu-Disco / Space Disco",
+        "playtime": "59 min",
+        "trackCount": 12,
+        "coverUrl": "",
+        "coverSearchTerm": "Todd Terje It's Album Time",
+        "streetPriceGermany": {
+          "newEur": "€28 – €35",
+          "usedEur": "€20 – €27"
+        }
+      },
+      {
+        "title": "By Your Side",
+        "artist": "Breakbot",
+        "genre": "French Touch / Nu-Disco",
+        "playtime": "46 min",
+        "trackCount": 14,
+        "coverUrl": "",
+        "coverSearchTerm": "Breakbot By Your Side",
+        "streetPriceGermany": {
+          "newEur": "€27 – €33",
+          "usedEur": "€18 – €25"
+        }
+      },
+      {
+        "title": "Parcels",
+        "artist": "Parcels",
+        "genre": "Nu-Disco / Indie Funk",
+        "playtime": "51 min",
+        "trackCount": 12,
+        "coverUrl": "",
+        "coverSearchTerm": "Parcels Parcels",
+        "streetPriceGermany": {
+          "newEur": "€30 – €36",
+          "usedEur": "€20 – €28"
+        }
+      },
+      {
+        "title": "Roosevelt",
+        "artist": "Roosevelt",
+        "genre": "Nu-Disco / Synth-Pop",
+        "playtime": "45 min",
+        "trackCount": 12,
+        "coverUrl": "",
+        "coverSearchTerm": "Roosevelt Roosevelt",
+        "streetPriceGermany": {
+          "newEur": "€24 – €30",
+          "usedEur": "€16 – €22"
+        }
+      },
+      {
+        "title": "Tako Tsubo",
+        "artist": "L'Impératrice",
+        "genre": "Nu-Disco / French Pop",
+        "playtime": "47 min",
+        "trackCount": 12,
+        "coverUrl": "",
+        "coverSearchTerm": "L'Imperatrice Tako Tsubo",
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€18 – €24"
+        }
+      },
+      {
+        "title": "Tuxedo",
+        "artist": "Tuxedo",
+        "genre": "Modern Funk / Boogie",
+        "playtime": "44 min",
+        "trackCount": 12,
+        "coverUrl": "",
+        "coverSearchTerm": "Tuxedo Tuxedo",
+        "streetPriceGermany": {
+          "newEur": "€28 – €34",
+          "usedEur": "€18 – €26"
+        }
+      },
+      {
+        "title": "Volcano",
+        "artist": "Jungle",
+        "genre": "Nu-Disco / Neo-Soul",
+        "playtime": "44 min",
+        "trackCount": 14,
+        "coverUrl": "",
+        "coverSearchTerm": "Jungle Volcano",
+        "streetPriceGermany": {
+          "newEur": "€27 – €33",
+          "usedEur": "€19 – €25"
+        }
+      }
+    ],
+    "updatedAt": 1791755879010
+  },
+  "random access memories": {
+    "title": "Random Access Memories",
+    "artist": "Daft Punk",
+    "genre": "Nu-Disco / Electronic",
+    "year": 2013,
+    "playtime": "74 min",
+    "trackCount": 13,
+    "firstTrackTitle": "Give Life Back to Music",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 96,
+      "discogsRating": "4.67 / 5.0",
+      "ratingsCount": "48k+ ratings",
+      "tier": "Essential Masterpiece",
+      "verdict": "Spectacular modern analog production with peerless dynamic punch and reference-grade double vinyl mastering."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e8/43/5f/e8435ffa-b6b9-b171-40ab-4ff3959ab661/886443919266.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€35 – €42",
+      "usedEur": "€24 – €32",
+      "conditionNote": "Used VG+/EX"
+    },
+    "alternatives": [],
+    "updatedAt": 1791739183338
+  },
+  "dave holland quartet conference of the birds": {
+    "title": "Conference of the Birds",
+    "artist": "Dave Holland Quartet",
+    "genre": "Avant-Garde Jazz / Free Jazz",
+    "year": 1973,
+    "playtime": "43 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/a6/c8/2e/a6c82e73-cd02-eb30-c263-11c351485908/00602547801531.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791739323486
+  },
+  "conference of the birds": {
+    "title": "Conference of the Birds",
+    "artist": "Dave Holland Quartet",
+    "genre": "Avant-Garde Jazz / Free Jazz",
+    "year": 1973,
+    "playtime": "43 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/a6/c8/2e/a6c82e73-cd02-eb30-c263-11c351485908/00602547801531.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791739323486
+  },
+  "carla bley steve swallow duets": {
+    "title": "Duets",
+    "artist": "Carla Bley, Steve Swallow",
+    "genre": "Chamber Jazz / Contemporary Jazz",
+    "year": 1988,
+    "playtime": "40 min",
+    "trackCount": 10,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/e7/af/89/e7af8967-79cf-0b6b-c05a-942b7cfbf529/00042283734524.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791739323504
+  },
+  "duets": {
+    "title": "Duets",
+    "artist": "Carla Bley, Steve Swallow",
+    "genre": "Chamber Jazz / Contemporary Jazz",
+    "year": 1988,
+    "playtime": "40 min",
+    "trackCount": 10,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/e7/af/89/e7af8967-79cf-0b6b-c05a-942b7cfbf529/00042283734524.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791739323504
+  },
+  "alexander von schlippenbach payan": {
+    "title": "Payan",
+    "artist": "Alexander von Schlippenbach",
+    "genre": "Free Jazz / Solo Acoustic Piano",
+    "year": 1972,
+    "playtime": "41 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/57/c6/f4/57c6f4eb-301c-7378-662e-cee12d7760bc/cover.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791754885192
+  },
+  "payan": {
+    "title": "Payan",
+    "artist": "Alexander von Schlippenbach",
+    "genre": "Free Jazz / Solo Acoustic Piano",
+    "year": 1972,
+    "playtime": "41 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/57/c6/f4/57c6f4eb-301c-7378-662e-cee12d7760bc/cover.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791754885192
+  },
+  "bobo stenson trio goodbye": {
+    "title": "Goodbye",
+    "artist": "Bobo Stenson Trio",
+    "genre": "Modern Jazz / Nordic Jazz",
+    "year": 2005,
+    "playtime": "64 min",
+    "trackCount": 11,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/d0/8a/31/d08a3106-cdf7-b8e2-971f-357d77034785/00602498251737.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791754885222
+  },
+  "goodbye": {
+    "title": "Goodbye",
+    "artist": "Bobo Stenson Trio",
+    "genre": "Modern Jazz / Nordic Jazz",
+    "year": 2005,
+    "playtime": "64 min",
+    "trackCount": 11,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/d0/8a/31/d08a3106-cdf7-b8e2-971f-357d77034785/00602498251737.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791754885222
+  },
+  "denny zeitlin soundings": {
+    "title": "Soundings",
+    "artist": "Denny Zeitlin",
+    "genre": "Avant-Garde Jazz / Solo Acoustic Piano",
+    "year": 1978,
+    "playtime": "45 min",
+    "trackCount": 9,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%232c1e21%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3ESoundings%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3EDenny%20Zeitlin%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791754885288
+  },
+  "soundings": {
+    "title": "Soundings",
+    "artist": "Denny Zeitlin",
+    "genre": "Avant-Garde Jazz / Solo Acoustic Piano",
+    "year": 1978,
+    "playtime": "45 min",
+    "trackCount": 9,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%232c1e21%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3ESoundings%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3EDenny%20Zeitlin%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791754885288
+  },
+  "obscur": {
+    "title": "Obscur",
+    "artist": "Svreca",
+    "genre": "Hypnotic Techno",
+    "year": 2010,
+    "playtime": "42 min",
+    "trackCount": 7,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b9/f2/98/b9f2987f-9d0a-88c5-c0ac-474cb4aaabb8/4065328286297.png/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791755162992
+  },
+  "cio d or die zeit": {
+    "title": "Die Zeit",
+    "artist": "Cio D'Or",
+    "genre": "Minimal Techno / Hypnotic Techno",
+    "year": 2009,
+    "playtime": "54 min",
+    "trackCount": 9,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/9f/62/489f62d2-5f82-5529-acb0-73c0868e092e/5051083231329_cover.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791755163009
+  },
+  "die zeit": {
+    "title": "Die Zeit",
+    "artist": "Cio D'Or",
+    "genre": "Minimal Techno / Hypnotic Techno",
+    "year": 2009,
+    "playtime": "54 min",
+    "trackCount": 9,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/9f/62/489f62d2-5f82-5529-acb0-73c0868e092e/5051083231329_cover.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791755163009
+  },
+  "enthetic": {
+    "title": "Enthetic",
+    "artist": "Peter Van Hoesen",
+    "genre": "Hypnotic Techno / Experimental",
+    "year": 2010,
+    "playtime": "52 min",
+    "trackCount": 10,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%232c1e21%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3EEnthetic%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3EPeter%20Van%20Hoesen%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791755163131
+  },
+  "claudio prc inner state": {
+    "title": "Inner State",
+    "artist": "Claudio PRC",
+    "genre": "Hypnotic Techno",
+    "year": 2012,
+    "playtime": "49 min",
+    "trackCount": 8,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%232c1e21%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3EInner%20State%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3EClaudio%20PRC%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791755163161
+  },
+  "inner state": {
+    "title": "Inner State",
+    "artist": "Claudio PRC",
+    "genre": "Hypnotic Techno",
+    "year": 2012,
+    "playtime": "49 min",
+    "trackCount": 8,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%232c1e21%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3EInner%20State%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3EClaudio%20PRC%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791755163161
+  },
+  "visione": {
+    "title": "Visione",
+    "artist": "Marco Shuttle",
+    "genre": "Abstract Techno / Organic Ambient",
+    "year": 2014,
+    "playtime": "52 min",
+    "trackCount": 9,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e6/65/9d/e6659d9f-5ec2-6fa8-177a-a74b51c03843/8718723047807.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791755494099
+  },
+  "the lotus eaters desatura": {
+    "title": "Desatura",
+    "artist": "The Lotus Eaters",
+    "genre": "Experimental Hypnotic Techno",
+    "year": 2018,
+    "playtime": "44 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/3e/69/54/3e69547d-11c3-5498-0f51-6548c0f78a96/4260544839580.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791755494136
+  },
+  "desatura": {
+    "title": "Desatura",
+    "artist": "The Lotus Eaters",
+    "genre": "Experimental Hypnotic Techno",
+    "year": 2018,
+    "playtime": "44 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/3e/69/54/3e69547d-11c3-5498-0f51-6548c0f78a96/4260544839580.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791755494136
+  },
+  "deep blue": {
+    "title": "Deep Blue",
+    "artist": "Luigi Tozzi",
+    "genre": "Deep Techno / Hypnotic Ambient",
+    "year": 2016,
+    "playtime": "54 min",
+    "trackCount": 8,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music62/v4/2b/61/eb/2b61eb6e-6ea4-af15-32ce-41ade5e3115a/879000142498.png/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791755494142
+  },
+  "claudio prc inner structures": {
+    "title": "Inner Structures",
+    "artist": "Claudio PRC",
+    "genre": "Hypnotic Techno / Ambient Techno",
+    "year": 2011,
+    "playtime": "68 min",
+    "trackCount": 10,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23222725%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3EInner%20Structures%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3EClaudio%20PRC%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791755871812
+  },
+  "inner structures": {
+    "title": "Inner Structures",
+    "artist": "Claudio PRC",
+    "genre": "Deep Techno / Ambient Techno",
+    "year": 2012,
+    "playtime": "67 min",
+    "trackCount": 8,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23222725%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3EInner%20Structures%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3EClaudio%20PRC%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791755494259
+  },
+  "cio d or die funfte dimension": {
+    "title": "Die Fünfte Dimension",
+    "artist": "Cio D'Or",
+    "genre": "Cinematic Techno / Minimal",
+    "year": 2009,
+    "playtime": "72 min",
+    "trackCount": 11,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%231a1d20%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3EDie%20F%C3%BCnfte%20Dimension%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3ECio%20D%26apos%3BOr%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791755494278
+  },
+  "die funfte dimension": {
+    "title": "Die Fünfte Dimension",
+    "artist": "Cio D'Or",
+    "genre": "Cinematic Techno / Minimal",
+    "year": 2009,
+    "playtime": "72 min",
+    "trackCount": 11,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%231a1d20%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3EDie%20F%C3%BCnfte%20Dimension%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3ECio%20D%26apos%3BOr%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791755494278
+  },
+  "anri timely": {
+    "title": "Timely!!",
+    "artist": "Anri",
+    "genre": "Japanese City Pop / Funk",
+    "year": "",
+    "playtime": "",
+    "trackCount": 0,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "",
+    "streetPriceGermany": null,
+    "alternatives": [
+      {
+        "title": "Pocket Park",
+        "artist": "Miki Matsubara",
+        "genre": "City Pop / Funk",
+        "playtime": "46 min",
+        "trackCount": 11,
+        "coverUrl": "",
+        "coverSearchTerm": "Miki Matsubara Pocket Park",
+        "streetPriceGermany": {
+          "newEur": "€38 – €45",
+          "usedEur": "€50 – €85"
+        }
+      },
+      {
+        "title": "For You",
+        "artist": "Tatsuro Yamashita",
+        "genre": "City Pop / Funk",
+        "playtime": "43 min",
+        "trackCount": 8,
+        "coverUrl": "",
+        "coverSearchTerm": "Tatsuro Yamashita For You",
+        "streetPriceGermany": {
+          "newEur": "€45 – €55",
+          "usedEur": "€60 – €110"
+        }
+      },
+      {
+        "title": "Sea Breeze",
+        "artist": "Toshiki Kadomatsu",
+        "genre": "City Pop / Boogie",
+        "playtime": "41 min",
+        "trackCount": 8,
+        "coverUrl": "",
+        "coverSearchTerm": "Toshiki Kadomatsu Sea Breeze",
+        "streetPriceGermany": {
+          "newEur": "€40 – €48",
+          "usedEur": "€35 – €65"
+        }
+      },
+      {
+        "title": "Variety",
+        "artist": "Mariya Takeuchi",
+        "genre": "City Pop / J-Pop",
+        "playtime": "43 min",
+        "trackCount": 11,
+        "coverUrl": "",
+        "coverSearchTerm": "Mariya Takeuchi Variety",
+        "streetPriceGermany": {
+          "newEur": "€42 – €50",
+          "usedEur": "€45 – €75"
+        }
+      },
+      {
+        "title": "Fuyu-Kukan",
+        "artist": "Tomoko Aran",
+        "genre": "City Pop / Synth-Funk",
+        "playtime": "40 min",
+        "trackCount": 10,
+        "coverUrl": "",
+        "coverSearchTerm": "Tomoko Aran Fuyu-Kukan",
+        "streetPriceGermany": {
+          "newEur": "€38 – €46",
+          "usedEur": "€70 – €130"
+        }
+      },
+      {
+        "title": "Magical",
+        "artist": "Junko Ohashi",
+        "genre": "City Pop / Boogie",
+        "playtime": "51 min",
+        "trackCount": 13,
+        "coverUrl": "",
+        "coverSearchTerm": "Junko Ohashi Magical",
+        "streetPriceGermany": {
+          "newEur": "€45 – €55",
+          "usedEur": "€90 – €160"
+        }
+      },
+      {
+        "title": "Sunshower",
+        "artist": "Taeko Onuki",
+        "genre": "City Pop / Jazz Fusion",
+        "playtime": "41 min",
+        "trackCount": 10,
+        "coverUrl": "",
+        "coverSearchTerm": "Taeko Onuki Sunshower",
+        "streetPriceGermany": {
+          "newEur": "€38 – €46",
+          "usedEur": "€65 – €120"
+        }
+      }
+    ],
+    "updatedAt": 1791755881040
+  },
+  "timely": {
+    "title": "Timely!!",
+    "artist": "Anri",
+    "genre": "Japanese City Pop / Funk",
+    "year": 1983,
+    "playtime": "41 min",
+    "trackCount": 11,
+    "firstTrackTitle": "CAT'S EYE",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 94,
+      "discogsRating": "4.65 / 5.0",
+      "ratingsCount": "12k+ ratings",
+      "tier": "Collector Classic",
+      "verdict": "Tokyo 80s analog perfection. Kadomatsu's lush brass and tight slap bass grooves deliver infectious vinyl warmth and audiophile joy."
+    },
+    "coverUrl": "https://cdn-images.dzcdn.net/images/cover/08b0f0161add7040ddcdeca3d97ba27e/1000x1000-000000-80-0-0.jpg",
+    "streetPriceGermany": {
+      "newEur": "€35 – €45",
+      "usedEur": "€28 – €40",
+      "conditionNote": "Original Japanese pressing"
+    },
+    "alternatives": [],
+    "updatedAt": 1791755866533
+  },
+  "nick drake pink moon": {
+    "title": "Pink Moon",
+    "artist": "Nick Drake",
+    "genre": "Acoustic Folk",
+    "year": "",
+    "playtime": "",
+    "trackCount": 0,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "",
+    "streetPriceGermany": null,
+    "alternatives": [
+      {
+        "title": "Colour Green",
+        "artist": "Sibylle Baier",
+        "genre": "Acoustic Folk",
+        "playtime": "35 min",
+        "trackCount": 14,
+        "coverUrl": "",
+        "coverSearchTerm": "Sibylle Baier Colour Green",
+        "streetPriceGermany": {
+          "newEur": "€24 – €30",
+          "usedEur": "€20 – €28"
+        }
+      },
+      {
+        "title": "Rosemary Lane",
+        "artist": "Bert Jansch",
+        "genre": "British Folk",
+        "playtime": "36 min",
+        "trackCount": 11,
+        "coverUrl": "",
+        "coverSearchTerm": "Bert Jansch Rosemary Lane",
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€16 – €25"
+        }
+      },
+      {
+        "title": "Solid Air",
+        "artist": "John Martyn",
+        "genre": "Folk",
+        "playtime": "34 min",
+        "trackCount": 9,
+        "coverUrl": "",
+        "coverSearchTerm": "John Martyn Solid Air",
+        "streetPriceGermany": {
+          "newEur": "€28 – €35",
+          "usedEur": "€15 – €24"
+        }
+      },
+      {
+        "title": "Jackson C. Frank",
+        "artist": "Jackson C. Frank",
+        "genre": "Acoustic Folk",
+        "playtime": "32 min",
+        "trackCount": 10,
+        "coverUrl": "",
+        "coverSearchTerm": "Jackson C. Frank Jackson C. Frank",
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€20 – €30"
+        }
+      },
+      {
+        "title": "Just Another Diamond Day",
+        "artist": "Vashti Bunyan",
+        "genre": "Freak Folk",
+        "playtime": "35 min",
+        "trackCount": 14,
+        "coverUrl": "",
+        "coverSearchTerm": "Vashti Bunyan Just Another Diamond Day",
+        "streetPriceGermany": {
+          "newEur": "€27 – €33",
+          "usedEur": "€22 – €32"
+        }
+      },
+      {
+        "title": "Ask Me No Questions",
+        "artist": "Bridget St John",
+        "genre": "British Folk",
+        "playtime": "38 min",
+        "trackCount": 12,
+        "coverUrl": "",
+        "coverSearchTerm": "Bridget St John Ask Me No Questions",
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€18 – €28"
+        }
+      },
+      {
+        "title": "Townes Van Zandt",
+        "artist": "Townes Van Zandt",
+        "genre": "Singer-Songwriter",
+        "playtime": "34 min",
+        "trackCount": 10,
+        "coverUrl": "",
+        "coverSearchTerm": "Townes Van Zandt Townes Van Zandt",
+        "streetPriceGermany": {
+          "newEur": "€25 – €30",
+          "usedEur": "€18 – €26"
+        }
+      }
+    ],
+    "updatedAt": 1791755889257
+  },
+  "pink moon": {
+    "title": "Pink Moon",
+    "artist": "Nick Drake",
+    "genre": "Acoustic Folk",
+    "year": 1972,
+    "playtime": "28 min",
+    "trackCount": 11,
+    "firstTrackTitle": "Pink Moon",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 97,
+      "discogsRating": "4.74 / 5.0",
+      "ratingsCount": "28k+ ratings",
+      "tier": "Essential Masterpiece",
+      "verdict": "Sparse, spectral acoustic perfection. The analog proximity of Drake's Guild guitar and quiet vocals makes the listener feel alone in the room with him."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/42/e7/8d/42e78dd1-12fd-f0c0-cc0e-15ee03288664/075679760913.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€27 – €33",
+      "usedEur": "€18 – €26",
+      "conditionNote": "Used VG+/EX"
+    },
+    "alternatives": [],
+    "updatedAt": 1791755869233
+  },
+  "herbie hancock maiden voyage": {
+    "title": "Maiden Voyage",
+    "artist": "Herbie Hancock",
+    "genre": "Modal Jazz",
+    "playtime": "42 min",
+    "trackCount": 5,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755871850
+  },
+  "wayne shorter speak no evil": {
+    "title": "Speak No Evil",
+    "artist": "Wayne Shorter",
+    "genre": "Modal Jazz",
+    "playtime": "41 min",
+    "trackCount": 6,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755871854
+  },
+  "grant green idle moments": {
+    "title": "Idle Moments",
+    "artist": "Grant Green",
+    "genre": "Modal Jazz",
+    "playtime": "43 min",
+    "trackCount": 4,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755871859
+  },
+  "mccoy tyner the real mccoy": {
+    "title": "The Real McCoy",
+    "artist": "McCoy Tyner",
+    "genre": "Modal Jazz",
+    "playtime": "37 min",
+    "trackCount": 5,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755871862
+  },
+  "zauberberg": {
+    "title": "Zauberberg",
+    "artist": "GAS",
+    "genre": "Ambient Techno / Dark Ambient",
+    "year": 1997,
+    "playtime": "56 min",
+    "trackCount": 7,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music111/v4/6e/72/f8/6e72f806-797d-3e81-07cb-4dcc1248a99c/880319823718_cover.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791755871892
+  },
+  "rrose hymn to moisture": {
+    "title": "Hymn to Moisture",
+    "artist": "Rrose",
+    "genre": "Hypnotic Techno / Modular Techno",
+    "year": 2019,
+    "playtime": "50 min",
+    "trackCount": 8,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/42/de/a0/42dea0ba-afad-120c-68d3-704bc91db390/5050580721395.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791755871947
+  },
+  "hymn to moisture": {
+    "title": "Hymn to Moisture",
+    "artist": "Rrose",
+    "genre": "Hypnotic Techno / Modular Techno",
+    "year": 2019,
+    "playtime": "50 min",
+    "trackCount": 8,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/42/de/a0/42dea0ba-afad-120c-68d3-704bc91db390/5050580721395.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791755871947
+  },
+  "cio d or die faser": {
+    "title": "Die Faser",
+    "artist": "Cio D'Or",
+    "genre": "Hypnotic Techno / Minimal Ambient",
+    "year": 2009,
+    "playtime": "65 min",
+    "trackCount": 10,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%232c1e21%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3EDie%20Faser%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3ECio%20D%26apos%3BOr%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791755872071
+  },
+  "die faser": {
+    "title": "Die Faser",
+    "artist": "Cio D'Or",
+    "genre": "Hypnotic Techno / Minimal Ambient",
+    "year": 2009,
+    "playtime": "65 min",
+    "trackCount": 10,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%232c1e21%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3EDie%20Faser%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3ECio%20D%26apos%3BOr%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791755872071
+  },
+  "steely dan aja": {
+    "title": "Aja",
+    "artist": "Steely Dan",
+    "genre": "Audiophile Jazz Rock",
+    "year": "",
+    "playtime": "",
+    "trackCount": 0,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "",
+    "streetPriceGermany": null,
+    "alternatives": [
+      {
+        "title": "The Nightfly",
+        "artist": "Donald Fagen",
+        "genre": "Jazz Rock / Sophisti-Pop",
+        "playtime": "38 min",
+        "trackCount": 8,
+        "coverUrl": "",
+        "coverSearchTerm": "Donald Fagen The Nightfly",
+        "streetPriceGermany": {
+          "newEur": "€28 – €35",
+          "usedEur": "€16 – €24"
+        }
+      },
+      {
+        "title": "The Art of Tea",
+        "artist": "Michael Franks",
+        "genre": "Jazz Pop / Yacht Rock",
+        "playtime": "35 min",
+        "trackCount": 9,
+        "coverUrl": "",
+        "coverSearchTerm": "Michael Franks The Art of Tea",
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€12 – €18"
+        }
+      },
+      {
+        "title": "Hejira",
+        "artist": "Joni Mitchell",
+        "genre": "Jazz Rock / Art Pop",
+        "playtime": "52 min",
+        "trackCount": 9,
+        "coverUrl": "",
+        "coverSearchTerm": "Joni Mitchell Hejira",
+        "streetPriceGermany": {
+          "newEur": "€28 – €36",
+          "usedEur": "€18 – €28"
+        }
+      },
+      {
+        "title": "Silk Degrees",
+        "artist": "Boz Scaggs",
+        "genre": "Blue-Eyed Soul / Yacht Rock",
+        "playtime": "41 min",
+        "trackCount": 10,
+        "coverUrl": "",
+        "coverSearchTerm": "Boz Scaggs Silk Degrees",
+        "streetPriceGermany": {
+          "newEur": "€24 – €30",
+          "usedEur": "€8 – €15"
+        }
+      },
+      {
+        "title": "Larry Carlton",
+        "artist": "Larry Carlton",
+        "genre": "Jazz Fusion / Smooth Jazz",
+        "playtime": "36 min",
+        "trackCount": 8,
+        "coverUrl": "",
+        "coverSearchTerm": "Larry Carlton Larry Carlton",
+        "streetPriceGermany": {
+          "newEur": "€24 – €32",
+          "usedEur": "€10 – €16"
+        }
+      },
+      {
+        "title": "Heavy Weather",
+        "artist": "Weather Report",
+        "genre": "Jazz Fusion",
+        "playtime": "38 min",
+        "trackCount": 8,
+        "coverUrl": "",
+        "coverSearchTerm": "Weather Report Heavy Weather",
+        "streetPriceGermany": {
+          "newEur": "€25 – €32",
+          "usedEur": "€14 – €22"
+        }
+      },
+      {
+        "title": "Winelight",
+        "artist": "Grover Washington Jr.",
+        "genre": "Crossover Jazz / Smooth Jazz",
+        "playtime": "39 min",
+        "trackCount": 6,
+        "coverUrl": "",
+        "coverSearchTerm": "Grover Washington Jr. Winelight",
+        "streetPriceGermany": {
+          "newEur": "€26 – €34",
+          "usedEur": "€10 – €18"
+        }
+      }
+    ],
+    "updatedAt": 1791755891398
+  },
+  "aja": {
+    "title": "Aja",
+    "artist": "Steely Dan",
+    "genre": "Audiophile Jazz Rock",
+    "year": 1977,
+    "playtime": "40 min",
+    "trackCount": 7,
+    "firstTrackTitle": "Black Cow",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 98,
+      "discogsRating": "4.79 / 5.0",
+      "ratingsCount": "35k+ ratings",
+      "tier": "Essential Masterpiece",
+      "verdict": "The undisputed holy grail of hi-fi testing. Incredible dynamic headroom, Steve Gadd's legendary drumming, and pinpoint stereo imaging."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/c2/3c/54/c23c5414-20d1-7aea-f0f5-187974c58d65/23UMGIM79990.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€30 – €36",
+      "usedEur": "€16 – €26",
+      "conditionNote": "Used VG+/EX"
+    },
+    "alternatives": [],
+    "updatedAt": 1791755872632
+  },
+  "king crimson in the court of the crimson king": {
+    "title": "In the Court of the Crimson King",
+    "artist": "King Crimson",
+    "genre": "Progressive Rock",
+    "playtime": "44 min",
+    "trackCount": 5,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755876664
+  },
+  "the alan parsons project i robot": {
+    "title": "I Robot",
+    "artist": "The Alan Parsons Project",
+    "genre": "Art Rock / Progressive Rock",
+    "playtime": "41 min",
+    "trackCount": 10,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755876674
+  },
+  "genesis selling england by the pound": {
+    "title": "Selling England by the Pound",
+    "artist": "Genesis",
+    "genre": "Progressive Rock",
+    "playtime": "53 min",
+    "trackCount": 8,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755876679
+  },
+  "yes close to the edge": {
+    "title": "Close to the Edge",
+    "artist": "Yes",
+    "genre": "Progressive Rock",
+    "playtime": "38 min",
+    "trackCount": 3,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755876685
+  },
+  "camel mirage": {
+    "title": "Mirage",
+    "artist": "Camel",
+    "genre": "Progressive Rock",
+    "playtime": "38 min",
+    "trackCount": 5,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755876688
+  },
+  "eloy ocean": {
+    "title": "Ocean",
+    "artist": "Eloy",
+    "genre": "Space Rock / Progressive Rock",
+    "playtime": "44 min",
+    "trackCount": 4,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755876693
+  },
+  "supertramp crime of the century": {
+    "title": "Crime of the Century",
+    "artist": "Supertramp",
+    "genre": "Art Rock / Progressive Rock",
+    "playtime": "44 min",
+    "trackCount": 8,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755876697
+  },
+  "todd terje it s album time": {
+    "title": "It's Album Time",
+    "artist": "Todd Terje",
+    "genre": "Nu-Disco / Space Disco",
+    "playtime": "59 min",
+    "trackCount": 12,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755878970
+  },
+  "breakbot by your side": {
+    "title": "By Your Side",
+    "artist": "Breakbot",
+    "genre": "French Touch / Nu-Disco",
+    "playtime": "46 min",
+    "trackCount": 14,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755878979
+  },
+  "parcels parcels": {
+    "title": "Parcels",
+    "artist": "Parcels",
+    "genre": "Nu-Disco / Indie Funk",
+    "playtime": "51 min",
+    "trackCount": 12,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755878986
+  },
+  "roosevelt roosevelt": {
+    "title": "Roosevelt",
+    "artist": "Roosevelt",
+    "genre": "Nu-Disco / Synth-Pop",
+    "playtime": "45 min",
+    "trackCount": 12,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755878992
+  },
+  "l imperatrice tako tsubo": {
+    "title": "Tako Tsubo",
+    "artist": "L'Impératrice",
+    "genre": "Nu-Disco / French Pop",
+    "playtime": "47 min",
+    "trackCount": 12,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755878997
+  },
+  "tuxedo tuxedo": {
+    "title": "Tuxedo",
+    "artist": "Tuxedo",
+    "genre": "Modern Funk / Boogie",
+    "playtime": "44 min",
+    "trackCount": 12,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755879001
+  },
+  "jungle volcano": {
+    "title": "Volcano",
+    "artist": "Jungle",
+    "genre": "Nu-Disco / Neo-Soul",
+    "playtime": "44 min",
+    "trackCount": 14,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755879005
+  },
+  "claudio prc inner blue": {
+    "title": "Inner Blue",
+    "artist": "Claudio PRC",
+    "genre": "Hypnotic Techno",
+    "playtime": "54 min",
+    "trackCount": 8,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755880567
+  },
+  "cio d or all ballerinas have that special smile": {
+    "title": "All Ballerinas Have That Special Smile",
+    "artist": "Cio D'Or",
+    "genre": "Ambient Techno",
+    "playtime": "71 min",
+    "trackCount": 11,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755880582
+  },
+  "wata igarashi agartha": {
+    "title": "Agartha",
+    "artist": "Wata Igarashi",
+    "genre": "Hypnotic Techno",
+    "playtime": "49 min",
+    "trackCount": 10,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755880591
+  },
+  "miki matsubara pocket park": {
+    "title": "Pocket Park",
+    "artist": "Miki Matsubara",
+    "genre": "City Pop / Funk",
+    "playtime": "46 min",
+    "trackCount": 11,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755881016
+  },
+  "tatsuro yamashita for you": {
+    "title": "For You",
+    "artist": "Tatsuro Yamashita",
+    "genre": "City Pop / Funk",
+    "playtime": "43 min",
+    "trackCount": 8,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755881020
+  },
+  "toshiki kadomatsu sea breeze": {
+    "title": "Sea Breeze",
+    "artist": "Toshiki Kadomatsu",
+    "genre": "City Pop / Boogie",
+    "playtime": "41 min",
+    "trackCount": 8,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755881024
+  },
+  "mariya takeuchi variety": {
+    "title": "Variety",
+    "artist": "Mariya Takeuchi",
+    "genre": "City Pop / J-Pop",
+    "playtime": "43 min",
+    "trackCount": 11,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755881027
+  },
+  "tomoko aran fuyu kukan": {
+    "title": "Fuyu-Kukan",
+    "artist": "Tomoko Aran",
+    "genre": "City Pop / Synth-Funk",
+    "playtime": "40 min",
+    "trackCount": 10,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755881031
+  },
+  "junko ohashi magical": {
+    "title": "Magical",
+    "artist": "Junko Ohashi",
+    "genre": "City Pop / Boogie",
+    "playtime": "51 min",
+    "trackCount": 13,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755881034
+  },
+  "taeko onuki sunshower": {
+    "title": "Sunshower",
+    "artist": "Taeko Onuki",
+    "genre": "City Pop / Jazz Fusion",
+    "playtime": "41 min",
+    "trackCount": 10,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755881037
+  },
+  "sibylle baier colour green": {
+    "title": "Colour Green",
+    "artist": "Sibylle Baier",
+    "genre": "Acoustic Folk",
+    "playtime": "35 min",
+    "trackCount": 14,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755889210
+  },
+  "bert jansch rosemary lane": {
+    "title": "Rosemary Lane",
+    "artist": "Bert Jansch",
+    "genre": "British Folk",
+    "playtime": "36 min",
+    "trackCount": 11,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755889219
+  },
+  "john martyn solid air": {
+    "title": "Solid Air",
+    "artist": "John Martyn",
+    "genre": "Folk",
+    "playtime": "34 min",
+    "trackCount": 9,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755889226
+  },
+  "jackson c frank jackson c frank": {
+    "title": "Jackson C. Frank",
+    "artist": "Jackson C. Frank",
+    "genre": "Acoustic Folk",
+    "playtime": "32 min",
+    "trackCount": 10,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755889232
+  },
+  "vashti bunyan just another diamond day": {
+    "title": "Just Another Diamond Day",
+    "artist": "Vashti Bunyan",
+    "genre": "Freak Folk",
+    "playtime": "35 min",
+    "trackCount": 14,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755889237
+  },
+  "bridget st john ask me no questions": {
+    "title": "Ask Me No Questions",
+    "artist": "Bridget St John",
+    "genre": "British Folk",
+    "playtime": "38 min",
+    "trackCount": 12,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755889241
+  },
+  "townes van zandt townes van zandt": {
+    "title": "Townes Van Zandt",
+    "artist": "Townes Van Zandt",
+    "genre": "Singer-Songwriter",
+    "playtime": "34 min",
+    "trackCount": 10,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755889250
+  },
+  "donald fagen the nightfly": {
+    "title": "The Nightfly",
+    "artist": "Donald Fagen",
+    "genre": "Jazz Rock / Sophisti-Pop",
+    "playtime": "38 min",
+    "trackCount": 8,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755891360
+  },
+  "michael franks the art of tea": {
+    "title": "The Art of Tea",
+    "artist": "Michael Franks",
+    "genre": "Jazz Pop / Yacht Rock",
+    "playtime": "35 min",
+    "trackCount": 9,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755891367
+  },
+  "joni mitchell hejira": {
+    "title": "Hejira",
+    "artist": "Joni Mitchell",
+    "genre": "Jazz Rock / Art Pop",
+    "playtime": "52 min",
+    "trackCount": 9,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755891373
+  },
+  "boz scaggs silk degrees": {
+    "title": "Silk Degrees",
+    "artist": "Boz Scaggs",
+    "genre": "Blue-Eyed Soul / Yacht Rock",
+    "playtime": "41 min",
+    "trackCount": 10,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755891380
+  },
+  "larry carlton larry carlton": {
+    "title": "Larry Carlton",
+    "artist": "Larry Carlton",
+    "genre": "Jazz Fusion / Smooth Jazz",
+    "playtime": "36 min",
+    "trackCount": 8,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755891384
+  },
+  "weather report heavy weather": {
+    "title": "Heavy Weather",
+    "artist": "Weather Report",
+    "genre": "Jazz Fusion",
+    "playtime": "38 min",
+    "trackCount": 8,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755891389
+  },
+  "grover washington jr winelight": {
+    "title": "Winelight",
+    "artist": "Grover Washington Jr.",
+    "genre": "Crossover Jazz / Smooth Jazz",
+    "playtime": "39 min",
+    "trackCount": 6,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755891394
+  },
+  "goldfrapp felt mountain": {
+    "title": "Felt Mountain",
+    "artist": "Goldfrapp",
+    "genre": "Cinematic Trip Hop",
+    "year": "",
+    "playtime": "40 min",
+    "trackCount": 9,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://cdn-images.dzcdn.net/images/cover/122007edd5200fc017413ea214a6fc44/1000x1000-000000-80-0-0.jpg",
+    "streetPriceGermany": {
+      "newEur": "€25 – €30",
+      "usedEur": "€16 – €22"
+    },
+    "alternatives": [],
+    "updatedAt": 1791755893419
+  },
+  "beth gibbons rustin man out of season": {
+    "title": "Out of Season",
+    "artist": "Beth Gibbons & Rustin Man",
+    "genre": "Noir Downtempo",
+    "playtime": "44 min",
+    "trackCount": 10,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755893051
+  },
+  "lamb lamb": {
+    "title": "Lamb",
+    "artist": "Lamb",
+    "genre": "Trip Hop",
+    "playtime": "59 min",
+    "trackCount": 10,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755893056
+  },
+  "felt mountain": {
+    "title": "Felt Mountain",
+    "artist": "Goldfrapp",
+    "genre": "Cinematic Trip Hop",
+    "year": "",
+    "playtime": "40 min",
+    "trackCount": 9,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://cdn-images.dzcdn.net/images/cover/122007edd5200fc017413ea214a6fc44/1000x1000-000000-80-0-0.jpg",
+    "streetPriceGermany": {
+      "newEur": "€25 – €30",
+      "usedEur": "€16 – €22"
+    },
+    "alternatives": [],
+    "updatedAt": 1791755893419
+  },
+  "alice coltrane journey in satchidananda": {
+    "title": "Journey in Satchidananda",
+    "artist": "Alice Coltrane",
+    "genre": "Spiritual Jazz",
+    "playtime": "37 min",
+    "trackCount": 5,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755896235
+  },
+  "pharoah sanders karma": {
+    "title": "Karma",
+    "artist": "Pharoah Sanders",
+    "genre": "Spiritual Jazz",
+    "playtime": "38 min",
+    "trackCount": 2,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755896241
+  },
+  "mccoy tyner sahara": {
+    "title": "Sahara",
+    "artist": "McCoy Tyner",
+    "genre": "Spiritual Jazz / Modal Jazz",
+    "playtime": "44 min",
+    "trackCount": 6,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755896247
+  },
+  "clifford jordan quartet glass bead games": {
+    "title": "Glass Bead Games",
+    "artist": "Clifford Jordan Quartet",
+    "genre": "Spiritual Jazz / Post-Bop",
+    "playtime": "74 min",
+    "trackCount": 8,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755896252
+  },
+  "don cherry brown rice": {
+    "title": "Brown Rice",
+    "artist": "Don Cherry",
+    "genre": "Spiritual Jazz / Free Jazz",
+    "playtime": "38 min",
+    "trackCount": 4,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755896256
+  },
+  "sun ra lanquidity": {
+    "title": "Lanquidity",
+    "artist": "Sun Ra",
+    "genre": "Spiritual Jazz / Space Jazz",
+    "playtime": "41 min",
+    "trackCount": 5,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755896260
+  },
+  "billy harper black saint": {
+    "title": "Black Saint",
+    "artist": "Billy Harper",
+    "genre": "Spiritual Jazz / Post-Bop",
+    "playtime": "42 min",
+    "trackCount": 3,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791755896264
   }
 }

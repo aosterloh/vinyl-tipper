@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Console | Vinyl Hound Analytics &amp; Telemetry</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="/icon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=3.5">
+</head>
+<body class="admin-page-body">
+
+  <!-- ADMIN AUTH GATE (Visible when not authenticated as admin) -->
+  <div id="admin-auth-gate" class="admin-auth-overlay">
+    <div class="auth-card admin-auth-card">
+      <div class="vinyl-logo-mark">
+        <img src="/logo/vinylhound-emblem-dark.jpeg" class="auth-logo-img logo-dark" alt="Vinyl Hound" />
+        <img src="/logo/vinylhound-emblem-light.jpeg" class="auth-logo-img logo-light" alt="Vinyl Hound" />
+      </div>
+      <div class="modal-badge" style="margin-top: 12px;">ADMIN CONSOLE</div>
+      <h1 class="auth-title">Administrator Access</h1>
+      <p class="auth-subtitle">Real-time traffic, conversion click metrics, and catalog telemetry.</p>
+      <div class="admin-auth-notice">
+        <span>🔒 Restricted to <strong>aosterloh@gmail.com</strong></span>
+      </div>
+      <button id="admin-google-signin-btn" class="google-auth-btn" type="button">
+        <svg class="google-icon" viewBox="0 0 24 24" width="20" height="20">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+        </svg>
+        Sign in with Google
+      </button>
+      <div id="admin-auth-error-msg" class="auth-error-msg hidden"></div>
+      <div style="margin-top: 16px;">
+        <a href="/" class="admin-back-link">← Return to Vinyl Hound</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN DASHBOARD SHELL (Visible when authenticated as admin) -->
+  <div id="admin-dashboard-shell" class="admin-dashboard-shell hidden">
+    <!-- Top Navigation Header -->
+    <header class="admin-top-nav">
+      <div class="admin-brand-wrap">
+        <a href="/" class="admin-brand-link" title="Vinyl Hound - Home">
+          <img src="/logo/vinylhound-emblem-dark.jpeg" class="brand-logo-img logo-dark" alt="Vinyl Hound" />
+          <img src="/logo/vinylhound-emblem-light.jpeg" class="brand-logo-img logo-light" alt="Vinyl Hound" />
+          <span class="brand-name">VINYL HOUND</span>
+        </a>
+        <span class="admin-console-pill">ADMIN CONSOLE</span>
+      </div>
+
+      <div class="admin-nav-actions">
+        <a href="/" class="admin-nav-back-btn" title="Return to Vinyl Crate Digging">
+          <span class="icon">🎧</span> Back to App
+        </a>
+        <button id="refresh-stats-btn" class="admin-action-btn" type="button" title="Refresh Live Data">
+          <span class="icon">🔄</span> Refresh
+        </button>
+        <button id="export-stats-btn" class="admin-action-btn" type="button" title="Export Stats JSON">
+          <span class="icon">📥</span> Export JSON
+        </button>
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Light / Dark Theme">
+          <span class="theme-icon light-icon">☀️</span>
+          <span class="theme-icon dark-icon">🌙</span>
+        </button>
+        <!-- User Profile -->
+        <div class="user-profile">
+          <img id="admin-user-avatar" class="user-avatar" src="" alt="Admin User" referrerpolicy="no-referrer" />
+          <button id="admin-signout-btn" class="signout-btn" type="button" title="Sign Out">Sign out</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="admin-main-container">
+      <!-- Title & Live Status Header -->
+      <section class="admin-header-section">
+        <div class="admin-header-info">
+          <h1 class="admin-page-title">Website Analytics &amp; Telemetry</h1>
+          <p class="admin-page-subtitle">Real-time visitor traffic, affiliate store click conversions, search queries, and server telemetry.</p>
+        </div>
+        <div class="admin-header-status">
+          <span class="live-indicator"><span class="pulse-dot"></span> Live Auto-Refresh (15s)</span>
+          <span id="last-updated-text" class="admin-last-updated">Updated just now</span>
+        </div>
+      </section>
+
+      <!-- KPI Metric Cards Grid -->
+      <section class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-icon">👥</div>
+          <div class="kpi-info">
+            <div class="kpi-label">Total Visits</div>
+            <div id="stat-total-visits" class="kpi-value">—</div>
+            <div id="stat-today-visits" class="kpi-sub">Today: —</div>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon">🔍</div>
+          <div class="kpi-info">
+            <div class="kpi-label">Searches Appraised</div>
+            <div id="stat-total-searches" class="kpi-value">—</div>
+            <div id="stat-ai-searches" class="kpi-sub">AI Sommelier: —</div>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon">🛒</div>
+          <div class="kpi-info">
+            <div class="kpi-label">Affiliate Store Clicks</div>
+            <div id="stat-total-clicks" class="kpi-value">—</div>
+            <div id="stat-top-store" class="kpi-sub">Top: None</div>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon">💾</div>
+          <div class="kpi-info">
+            <div class="kpi-label">Catalog Albums</div>
+            <div id="stat-catalog-count" class="kpi-value">—</div>
+            <div id="stat-cached-covers" class="kpi-sub">Covers: —</div>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon">❤️</div>
+          <div class="kpi-info">
+            <div class="kpi-label">Saved Favorites</div>
+            <div id="stat-favs-count" class="kpi-value">—</div>
+            <div id="stat-active-users" class="kpi-sub">Users: —</div>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon">⚡</div>
+          <div class="kpi-info">
+            <div class="kpi-label">Server Telemetry</div>
+            <div id="stat-uptime" class="kpi-value">—</div>
+            <div id="stat-key-pool" class="kpi-sub">Gemini Keys: —</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Two-Column Analytics Sections -->
+      <section class="admin-sections-row">
+        <!-- Outbound Store Clicks Breakdown -->
+        <div class="admin-section-box">
+          <div class="section-title-wrap">
+            <h2 class="admin-section-title">🛒 Outbound Store Conversion Clicks</h2>
+            <span class="section-subtitle">Real clicks to external record shops &amp; marketplaces</span>
+          </div>
+          <div id="store-clicks-bars" class="store-bars-list">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Top Searched Vinyl -->
+        <div class="admin-section-box">
+          <div class="section-title-wrap">
+            <h2 class="admin-section-title">🔥 Top Searched Vinyl Records</h2>
+            <span class="section-subtitle">Most frequently appraised artists and albums</span>
+          </div>
+          <div id="top-searches-list" class="top-list">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Live Real-Time Activity Feed -->
+      <section class="admin-section-box">
+        <div class="stream-header">
+          <div>
+            <h2 class="admin-section-title">⚡ Live Activity Feed</h2>
+            <span class="section-subtitle">Streaming recent searches and outbound affiliate clicks</span>
+          </div>
+          <span class="live-indicator"><span class="pulse-dot"></span> Real-time</span>
+        </div>
+        <div class="activity-table-wrapper">
+          <table class="activity-table">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Event Type</th>
+                <th>Details / Query</th>
+                <th>Store / Engine</th>
+              </tr>
+            </thead>
+            <tbody id="activity-feed-body">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Maintenance & Server Diagnostics -->
+      <section class="admin-section-box admin-diagnostics-box">
+        <div class="section-title-wrap">
+          <h2 class="admin-section-title">🛠️ Server Health &amp; Diagnostics</h2>
+          <span class="section-subtitle">Node.js process status and maintenance utilities</span>
+        </div>
+        <div class="diagnostics-grid">
+          <div class="diag-item">
+            <span class="diag-label">Node Runtime:</span>
+            <span id="diag-node-version" class="diag-val">—</span>
+          </div>
+          <div class="diag-item">
+            <span class="diag-label">Memory (Heap):</span>
+            <span id="diag-memory-heap" class="diag-val">—</span>
+          </div>
+          <div class="diag-item">
+            <span class="diag-label">Memory (RSS):</span>
+            <span id="diag-memory-rss" class="diag-val">—</span>
+          </div>
+          <div class="diag-item">
+            <span class="diag-label">Server Port:</span>
+            <span class="diag-val">8088</span>
+          </div>
+        </div>
+        <div class="admin-danger-zone">
+          <button id="reset-stats-btn" class="admin-danger-btn" type="button">
+            ⚠️ Reset Analytics Metrics
+          </button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Interactive Toast Notification -->
+  <div id="vinyl-toast" class="vinyl-toast"></div>
+
+  <!-- FIREBASE AND ADMIN APPLICATION SCRIPT -->
+  <script type="module" src="admin.js?v=1.0"></script>
+</body>
+</html>

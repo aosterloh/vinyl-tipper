@@ -74,7 +74,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3.6">
 </head>
 <body>
   <!-- AUTHENTICATION GATE (Visible only when corporate mode is enforced and user logged out) -->
@@ -184,10 +184,10 @@
         <!-- User Profile (Visible when logged in) -->
         <div class="user-profile hidden">
           <!-- Admin Website Stats (Visible exclusively to aosterloh@gmail.com / aosterloh@google.com) -->
-          <button id="admin-stats-btn" class="nav-admin-btn hidden" type="button" aria-label="Admin Website Stats" title="Admin Website & Traffic Analytics">
+          <a id="admin-stats-btn" href="/admin" class="nav-admin-btn hidden" title="Admin Website & Traffic Analytics">
             <span class="admin-icon">📊</span>
             <span class="admin-btn-text">Admin Stats</span>
-          </button>
+          </a>
           <img id="user-avatar" class="user-avatar" src="" alt="User" referrerpolicy="no-referrer" />
           <button id="signout-btn" class="signout-btn" type="button" title="Sign Out">Sign out</button>
         </div>
@@ -331,87 +331,53 @@
 
       <!-- Main Appraisal Results Section -->
       <section id="results-section" class="results-section hidden">
-        <!-- Hero Album Appraisal Card -->
+        <!-- Hero Album Appraisal Card (2x2 Grid: Cover & Info in Row 1, Player & Pricing in Row 2) -->
         <div class="album-hero-card">
-          <div class="album-hero-media">
+          <!-- Cell 1: Vinyl Sleeve Cover (Top Left) -->
+          <div class="album-hero-cover-cell">
             <div class="vinyl-sleeve-wrapper">
               <img id="album-cover-img" class="vinyl-sleeve-img" src="" alt="Album Cover" />
               <div class="vinyl-record-peek"></div>
             </div>
           </div>
 
-          <div class="album-hero-info">
-            <div class="album-hero-header-section">
-              <div class="album-hero-text-col">
-                <div class="album-header-row">
-                  <span id="album-genre-badge" class="genre-pill">Rock</span>
-                  <span id="album-year" class="year-pill">1969</span>
-                  <div id="hero-score-badge" class="score-pill-badge score-tier-high" title="Vinyl Collector Consensus (0-100)">
-                    <span class="score-pill-icon">🎯</span>
-                    <span id="hero-score-val" class="score-pill-val">94</span>
-                    <span class="score-pill-max">/100</span>
-                  </div>
-                </div>
-                <h2 id="album-title" class="album-title">Album Title</h2>
-                <h3 id="album-artist" class="album-artist">Artist Name</h3>
-
-                <!-- 30-Word Collector Verdict Summary -->
-                <div id="hero-verdict-card" class="hero-verdict-card">
-                  <div class="verdict-header">
-                    <span class="verdict-tag">⚖️ Collector Verdict</span>
-                    <span id="hero-discogs-consensus" class="verdict-consensus">4.6/5 Discogs community</span>
-                  </div>
-                  <p id="hero-verdict-text" class="verdict-text">
-                    An indisputable analog landmark. Outstanding dynamic range and immersive spatial separation make this essential for any physical vinyl shelf.
-                  </p>
-                </div>
-
-                <!-- Sommelier Vinyl Lore Card (Why on Vinyl) -->
-                <div id="hero-sommelier-card" class="hero-sommelier-card hidden">
-                  <div class="sommelier-card-header">
-                    <span class="sommelier-card-badge">✨ Why on Vinyl (Sommelier Lore)</span>
-                    <span id="hero-sommelier-track" class="sommelier-track-badge"></span>
-                  </div>
-                  <p id="hero-sommelier-text" class="sommelier-card-text"></p>
-                </div>
+          <!-- Cell 2: Album Title, Verdict & Specs (Top Right, Upper-Bound with Cover) -->
+          <div class="album-hero-info-cell">
+            <div class="album-header-row">
+              <span id="album-genre-badge" class="genre-pill">Rock</span>
+              <span id="album-year" class="year-pill">1969</span>
+              <div id="hero-score-badge" class="score-pill-badge score-tier-high" title="Vinyl Collector Consensus (0-100)">
+                <span class="score-pill-icon">🎯</span>
+                <span id="hero-score-val" class="score-pill-val">94</span>
+                <span class="score-pill-max">/100</span>
               </div>
+              <button id="hero-fav-btn" class="heart-btn" type="button" aria-label="Favorite this album" title="Save to My Fav Vinyl">
+                <svg class="heart-icon-svg" viewBox="0 0 24 24" width="20" height="20">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+              </button>
+            </div>
+            <h2 id="album-title" class="album-title">Album Title</h2>
+            <h3 id="album-artist" class="album-artist">Artist Name</h3>
 
-              <div class="album-hero-right-col">
-                <button id="hero-fav-btn" class="heart-btn" type="button" aria-label="Favorite this album" title="Save to My Fav Vinyl">
-                  <svg class="heart-icon-svg" viewBox="0 0 24 24" width="20" height="20">
-                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                  </svg>
-                </button>
-
-                <!-- Embedded YouTube Listening Station & Vinyl DJ Deck for Track 1 / Full LP below fav heart -->
-                <div id="hero-yt-box" class="hero-yt-box hidden">
-                  <div class="hero-yt-header">
-                    <span id="hero-yt-badge" class="yt-badge">▶ Vinyl DJ</span>
-                    <span id="yt-track-title" class="yt-track-title">Listening Preview</span>
-                  </div>
-                  <!-- DJ Mode Selector Toggle -->
-                  <div class="hero-dj-mode-selector">
-                    <button id="hero-mode-track-btn" class="dj-mode-pill active" type="button" data-mode="track" title="Track Mix: Standout track sequence">
-                      🎵 Track Mix
-                    </button>
-                    <button id="hero-mode-album-btn" class="dj-mode-pill" type="button" data-mode="full_album" title="Full LP: Continuous 45-60 min uninterrupted vinyl session">
-                      📀 Full LP Session
-                    </button>
-                  </div>
-                  <div class="hero-yt-frame-wrap">
-                    <iframe id="hero-yt-iframe" class="hero-yt-iframe" src="" title="YouTube preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                  </div>
-                  <div class="hero-dj-footer-row">
-                    <button id="hero-start-dj-btn" class="hero-dj-action-btn" type="button" title="Start continuous Vinyl DJ autoplay across recommendations">
-                      <span class="dj-pulse-dot"></span>
-                      <span id="hero-start-dj-text">▶ Start Vinyl DJ</span>
-                    </button>
-                    <a id="hero-yt-link" class="hero-yt-link" href="#" target="_blank" rel="noopener noreferrer">
-                      YouTube ↗
-                    </a>
-                  </div>
-                </div>
+            <!-- 30-Word Collector Verdict Summary -->
+            <div id="hero-verdict-card" class="hero-verdict-card">
+              <div class="verdict-header">
+                <span class="verdict-tag">⚖️ Collector Verdict</span>
+                <span id="hero-discogs-consensus" class="verdict-consensus">4.6/5 Discogs community</span>
               </div>
+              <p id="hero-verdict-text" class="verdict-text">
+                An indisputable analog landmark. Outstanding dynamic range and immersive spatial separation make this essential for any physical vinyl shelf.
+              </p>
+            </div>
+
+            <!-- Sommelier Vinyl Lore Card (Why on Vinyl) -->
+            <div id="hero-sommelier-card" class="hero-sommelier-card hidden">
+              <div class="sommelier-card-header">
+                <span class="sommelier-card-badge">✨ Why on Vinyl (Sommelier Lore)</span>
+                <span id="hero-sommelier-track" class="sommelier-track-badge"></span>
+              </div>
+              <p id="hero-sommelier-text" class="sommelier-card-text"></p>
             </div>
 
             <!-- Key Specs: Playtime & Number of songs -->
@@ -425,8 +391,41 @@
                 <span id="album-tracks" class="meta-value">17 tracks</span>
               </div>
             </div>
+          </div>
 
-            <!-- German Street Prices -->
+          <!-- Cell 3: YouTube Listening Station & Vinyl DJ Deck (Bottom Left, Level with Pricing) -->
+          <div class="album-hero-player-cell">
+            <div id="hero-yt-box" class="hero-yt-box hidden">
+              <div class="hero-yt-header">
+                <span id="hero-yt-badge" class="yt-badge">▶ Vinyl DJ</span>
+                <span id="yt-track-title" class="yt-track-title">Listening Preview</span>
+              </div>
+              <!-- DJ Mode Selector Toggle -->
+              <div class="hero-dj-mode-selector">
+                <button id="hero-mode-track-btn" class="dj-mode-pill active" type="button" data-mode="track" title="Track Mix: Standout track sequence">
+                  🎵 Track Mix
+                </button>
+                <button id="hero-mode-album-btn" class="dj-mode-pill" type="button" data-mode="full_album" title="Full LP: Continuous 45-60 min uninterrupted vinyl session">
+                  📀 Full LP Session
+                </button>
+              </div>
+              <div class="hero-yt-frame-wrap">
+                <iframe id="hero-yt-iframe" class="hero-yt-iframe" src="" title="YouTube preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div class="hero-dj-footer-row">
+                <button id="hero-start-dj-btn" class="hero-dj-action-btn" type="button" title="Start continuous Vinyl DJ autoplay across recommendations">
+                  <span class="dj-pulse-dot"></span>
+                  <span id="hero-start-dj-text">▶ Start Vinyl DJ</span>
+                </button>
+                <a id="hero-yt-link" class="hero-yt-link" href="#" target="_blank" rel="noopener noreferrer">
+                  YouTube ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cell 4: German Street Prices (Bottom Right, Same Height and Level as Player) -->
+          <div class="album-hero-pricing-cell">
             <div class="pricing-container">
               <div class="price-box new-price">
                 <div class="price-header">
@@ -705,124 +704,6 @@
     </div>
   </div>
 
-  <!-- ADMIN WEBSITE STATS MODAL -->
-  <div id="admin-stats-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="admin-modal-title">
-    <div class="modal-card admin-stats-card">
-      <header class="modal-header">
-        <div class="modal-title-wrap">
-          <span class="modal-badge">ADMIN CONSOLE</span>
-          <h2 id="admin-modal-title" class="modal-title">Website &amp; Traffic Analytics</h2>
-          <p class="modal-subtitle">Real-time performance, store conversion clicks, search trends, and catalog telemetry.</p>
-        </div>
-        <div class="modal-actions-right">
-          <button id="refresh-stats-btn" class="modal-action-btn" type="button" title="Refresh Live Data">
-            <span class="icon">🔄</span> Refresh
-          </button>
-          <button id="export-stats-btn" class="modal-action-btn" type="button" title="Export Stats JSON">
-            <span class="icon">📥</span> Export
-          </button>
-          <button id="close-admin-stats-btn" class="modal-close-btn" type="button" aria-label="Close modal">&times;</button>
-        </div>
-      </header>
-
-      <div class="modal-body admin-stats-body">
-        <!-- High-level KPI metric cards -->
-        <div class="kpi-grid">
-          <div class="kpi-card">
-            <div class="kpi-icon">👥</div>
-            <div class="kpi-info">
-              <div class="kpi-label">Total Visits</div>
-              <div id="stat-total-visits" class="kpi-value">0</div>
-              <div id="stat-today-visits" class="kpi-sub">Today: 0</div>
-            </div>
-          </div>
-          <div class="kpi-card">
-            <div class="kpi-icon">🔍</div>
-            <div class="kpi-info">
-              <div class="kpi-label">Searches Appraised</div>
-              <div id="stat-total-searches" class="kpi-value">0</div>
-              <div id="stat-ai-searches" class="kpi-sub">AI Sommelier: 0</div>
-            </div>
-          </div>
-          <div class="kpi-card">
-            <div class="kpi-icon">🛒</div>
-            <div class="kpi-info">
-              <div class="kpi-label">Affiliate Store Clicks</div>
-              <div id="stat-total-clicks" class="kpi-value">0</div>
-              <div id="stat-top-store" class="kpi-sub">Top: None</div>
-            </div>
-          </div>
-          <div class="kpi-card">
-            <div class="kpi-icon">💾</div>
-            <div class="kpi-info">
-              <div class="kpi-label">Catalog Albums</div>
-              <div id="stat-catalog-count" class="kpi-value">0</div>
-              <div id="stat-cached-covers" class="kpi-sub">Covers: 0</div>
-            </div>
-          </div>
-          <div class="kpi-card">
-            <div class="kpi-icon">❤️</div>
-            <div class="kpi-info">
-              <div class="kpi-label">Saved Favorites</div>
-              <div id="stat-favs-count" class="kpi-value">0</div>
-              <div id="stat-active-users" class="kpi-sub">Users: 0</div>
-            </div>
-          </div>
-          <div class="kpi-card">
-            <div class="kpi-icon">⚡</div>
-            <div class="kpi-info">
-              <div class="kpi-label">Server Telemetry</div>
-              <div id="stat-uptime" class="kpi-value">0m</div>
-              <div id="stat-key-pool" class="kpi-sub">Gemini Keys: 0</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Two-column section: Store Breakdown & Top Searches -->
-        <div class="admin-sections-row">
-          <!-- Store Clicks Breakdown -->
-          <div class="admin-section-box">
-            <h3 class="admin-section-title">🛒 Outbound Shop Clicks by Store</h3>
-            <div id="store-clicks-bars" class="store-bars-list">
-              <!-- Dynamically rendered bar charts / counters for JPC, HHV, Discogs, eBay, Amazon -->
-            </div>
-          </div>
-
-          <!-- Top Searched Records / Artists -->
-          <div class="admin-section-box">
-            <h3 class="admin-section-title">🔥 Top Searched Vinyl</h3>
-            <div id="top-searches-list" class="top-list">
-              <!-- Dynamically rendered list -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Recent Live Activity Stream -->
-        <div class="admin-section-box">
-          <div class="stream-header">
-            <h3 class="admin-section-title">⚡ Live Activity Feed</h3>
-            <span class="live-indicator"><span class="pulse-dot"></span> Real-time</span>
-          </div>
-          <div class="activity-table-wrapper">
-            <table class="activity-table">
-              <thead>
-                <tr>
-                  <th>Time</th>
-                  <th>Type</th>
-                  <th>Details</th>
-                  <th>Store / Origin</th>
-                </tr>
-              </thead>
-              <tbody id="activity-feed-body">
-                <!-- Dynamically populated rows -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Interactive Toast Notification -->
   <div id="vinyl-toast" class="vinyl-toast"></div>
 
@@ -830,6 +711,6 @@
   <script src="https://www.youtube.com/iframe_api"></script>
 
   <!-- FIREBASE AND CLIENT APPLICATION SCRIPT -->
-  <script type="module" src="app.js?v=3.2"></script>
+  <script type="module" src="app.js?v=3.6"></script>
 </body>
 </html>

@@ -1,0 +1,172 @@
+{
+  "visits": {
+    "total": 28,
+    "uniqueSessions": [
+      "sid_test_1",
+      "sid_test_2",
+      "sid_mv42ts21_9wn0ib",
+      "sid_mv42wart_2l0llr",
+      "sid_mv42x5he_45cc4h",
+      "sid_mv434ig6_e5n0vt",
+      "sid_mv437jfp_bfbmif",
+      "sid_mv438w6s_vj1iyr",
+      "sid_mv43ae0j_oq9kgx",
+      "sid_mv43b2bu_b5rb3e",
+      "sid_mv4ckpl4_qkwlck",
+      "sid_mv4cqs1a_okiltg",
+      "sid_mv4cxutg_iqi3yh",
+      "sid_mv4d5whp_zfraot"
+    ],
+    "byDay": {
+      "2026-10-11": 28
+    }
+  },
+  "searches": {
+    "total": 25,
+    "aiAppraisals": 3,
+    "recent": [
+      {
+        "query": "Donato Dozzy K",
+        "timestamp": 1791755849039,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Voices from the Lake - Voices from the Lake",
+        "timestamp": 1791755837649,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Voices from the Lake - Voices from the Lake",
+        "timestamp": 1791755462239,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Voices from the Lake - Voices from the Lake",
+        "timestamp": 1791755132034,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Voices from the Lake Voices from the Lake",
+        "timestamp": 1791754862516,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Paul Bley - Open, to Love",
+        "timestamp": 1791754856961,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Paul Bley - Open, to Love",
+        "timestamp": 1791754848935,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Paul Bley - Open, to Love",
+        "timestamp": 1791739282352,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Paul Bley - Open, to Love",
+        "timestamp": 1791739250822,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Paul Bley - Open, to Love",
+        "timestamp": 1791739181059,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Paul Bley - Open, to Love",
+        "timestamp": 1791739117878,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Paul Bley - Open, to Love",
+        "timestamp": 1791738635621,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Paul Bley - Open, to Love",
+        "timestamp": 1791738633239,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Paul Bley - Open, to Love",
+        "timestamp": 1791738600982,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Paul Bley - Open, to Love",
+        "timestamp": 1791738593436,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Paul Bley - Open, to Love",
+        "timestamp": 1791738479669,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Paul Bley - Open, to Love",
+        "timestamp": 1791738475859,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Luigi Tozzi - Deep Blue",
+        "timestamp": 1791738256122,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Pink Floyd - Animals",
+        "timestamp": 1791738251122,
+        "hit": true,
+        "isAi": false
+      }
+    ],
+    "topQueries": {
+      "luigi tozzi - deep blue": 5,
+      "pink floyd - animals": 3,
+      "paul bley - open, to love": 12,
+      "voices from the lake voices from the lake": 1,
+      "voices from the lake - voices from the lake": 3,
+      "donato dozzy k": 1
+    }
+  },
+  "clicks": {
+    "total": 7,
+    "byStore": {
+      "jpc": 3,
+      "hhv": 2,
+      "discogs": 1,
+      "ebay": 1,
+      "amazon": 0
+    },
+    "recent": [
+      {
+        "store": "jpc",
+        "query": "Luigi Tozzi",
+        "albumTitle": "Deep Blue",
+        "timestamp": 1791738256122
+      }
+    ]
+  },
+  "createdAt": 1791738256122,
+  "lastUpdated": 1791755849039
+}

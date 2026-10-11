@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Homepage & Core Turntable Appraisal Portal -->
   <url>
     <loc>https://vinylhound.de/</loc>
     <lastmod>2026-10-11</lastmod>
@@ -7,25 +9,2237 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://vinylhound.de/?album=Pink+Floyd+-+The+Dark+Side+of+the+Moon</loc>
+    <loc>https://vinylhound.de/?album=Abdulla+Rashim+-+Unanimity</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music62/v4/a5/20/fc/a520fc3f-750c-83ab-cd55-67afd3138f63/cover.jpg/600x600bb.jpg</image:loc>
+      <image:title>Abdulla Rashim - Unanimity Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Unanimity by Abdulla Rashim</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Abdullah+Ibrahim+-+African+Piano</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/a7/60/4e/a7604e65-7249-352f-f717-68e7aac25a6e/00602537521500.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Abdullah Ibrahim - African Piano Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for African Piano by Abdullah Ibrahim</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Abdullah+Ibrahim+(Dollar+Brand)+-+African+Piano</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/a7/60/4e/a7604e65-7249-352f-f717-68e7aac25a6e/00602537521500.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Abdullah Ibrahim (Dollar Brand) - African Piano Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for African Piano by Abdullah Ibrahim (Dollar Brand)</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Acronym+-+June</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/acronym_june.jpg</image:loc>
+      <image:title>Acronym - June Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for June by Acronym</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Aesop+Rock+-+Labor+Days</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/aesop_rock_labor_days.jpg</image:loc>
+      <image:title>Aesop Rock - Labor Days Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Labor Days by Aesop Rock</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Amon+Tobin+-+Bricolage</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/amon_tobin_bricolage.jpg</image:loc>
+      <image:title>Amon Tobin - Bricolage Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Bricolage by Amon Tobin</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Andy+Stott+-+Luxury+Problems</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/9c/57/81/9c578159-2c8a-0075-8594-d12cb9ea63d9/LOVE079_Gatefold.jpg/600x600bb.jpg</image:loc>
+      <image:title>Andy Stott - Luxury Problems Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Luxury Problems by Andy Stott</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Anika+-+Anika</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/anika_anika.jpg</image:loc>
+      <image:title>Anika - Anika Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Anika by Anika</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Aphex+Twin+-+Selected+Ambient+Works+85-92</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/5f/b3/e0/5fb3e08d-c2cd-3da4-6ad7-c5dc61803683/cover.jpg/600x600bb.jpg</image:loc>
+      <image:title>Aphex Twin - Selected Ambient Works 85-92 Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Selected Ambient Works 85-92 by Aphex Twin</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Art+Lande+-+Rubisa+Patrol</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/c4/03/22/c403222e-5d14-78b0-f3c9-7fd1cdad8f6d/00731451987526.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Art Lande - Rubisa Patrol Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Rubisa Patrol by Art Lande</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Art+Lande+-+The+Eccentricities+of+Earl+Dant</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Art+Lande+%26+Jan+Garbarek+-+Red+Lanta</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/c5/15/53/c5155306-db01-931b-e2ab-dc32f3973080/00042282938329.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Art Lande &amp; Jan Garbarek - Red Lanta Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Red Lanta by Art Lande &amp; Jan Garbarek</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Arve+Henriksen+-+Chiaroscuro</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/arve_henriksen_chiaroscuro.jpg</image:loc>
+      <image:title>Arve Henriksen - Chiaroscuro Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Chiaroscuro by Arve Henriksen</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Ashra+-+New+Age+of+Earth</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Autechre+-+Amber</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Bark+Psychosis+-+Hex</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/bark_psychosis_hex.jpg</image:loc>
+      <image:title>Bark Psychosis - Hex Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Hex by Bark Psychosis</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Bauhaus+-+In+the+Flat+Field</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Beak%3E+-+Beak%3E</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/beak_beak.jpg</image:loc>
+      <image:title>Beak&gt; - Beak&gt; Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Beak&gt; by Beak&gt;</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=BEAK%3E+-+%3E%3E</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/beak.jpg</image:loc>
+      <image:title>BEAK&gt; - &gt;&gt; Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for &gt;&gt; by BEAK&gt;</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Bill+Evans+-+Alone</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/c2/d5/ad/c2d5ada3-1ab5-3a10-e733-5f56cd4d069c/06UMGIM09118.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Bill Evans - Alone Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Alone by Bill Evans</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Bill+Evans+Trio+-+Waltz+for+Debby</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/bill_evans_trio_waltz_for_debby.jpg</image:loc>
+      <image:title>Bill Evans Trio - Waltz for Debby Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Waltz for Debby by Bill Evans Trio</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Biosphere+-+Substrata</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/biosphere_substrata.jpg</image:loc>
+      <image:title>Biosphere - Substrata Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Substrata by Biosphere</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Blockhead+-+Music+by+Cavelight</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/blockhead_music_by_cavelight.jpg</image:loc>
+      <image:title>Blockhead - Music by Cavelight Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Music by Cavelight by Blockhead</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Blu+%26+Exile+-+Below+the+Heavens</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Boards+of+Canada+-+Geogaddi</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/2e/77/7c/2e777c13-60e3-c231-8be0-b0d43dc91598/mzi.yseuvnlj.jpg/600x600bb.jpg</image:loc>
+      <image:title>Boards of Canada - Geogaddi Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Geogaddi by Boards of Canada</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Boards+of+Canada+-+Music+Has+the+Right+to+Children</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Bobo+Stenson+-+Underwear</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/4c/5b/b6/4c5bb612-bdd9-2f1a-32a3-757fe293b62a/00602527307275.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Bobo Stenson - Underwear Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Underwear by Bobo Stenson</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Bowery+Electric+-+Beat</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/45/0b/69/450b6959-d7d9-8742-4844-4eff9d149974/dj.jzgswlui.jpg/600x600bb.jpg</image:loc>
+      <image:title>Bowery Electric - Beat Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Beat by Bowery Electric</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Brad+Mehldau+-+Elegiac+Cycle</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music/y2005/m08/d18/h21/mzi.zvwwhbqx.jpg/600x600bb.jpg</image:loc>
+      <image:title>Brad Mehldau - Elegiac Cycle Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Elegiac Cycle by Brad Mehldau</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Brian+Eno+-+Another+Green+World</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/a4/fe/b1/a4feb15b-126f-ce68-c6a0-a525005eb8e8/13UABIM29259.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Brian Eno - Another Green World Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Another Green World by Brian Eno</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Brian+Eno+-+Before+and+After+Science</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/brian_eno_before_and_after_science.jpg</image:loc>
+      <image:title>Brian Eno - Before and After Science Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Before and After Science by Brian Eno</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Broadcast+-+Haha+Sound</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music/d2/4e/7c/mzi.spwubhum.jpg/600x600bb.jpg</image:loc>
+      <image:title>Broadcast - Haha Sound Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Haha Sound by Broadcast</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Burial+-+Untrue</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/burial_untrue.jpg</image:loc>
+      <image:title>Burial - Untrue Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Untrue by Burial</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Can+-+Ege+Bamyasi</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Can+-+Future+Days</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/can_future_days.jpg</image:loc>
+      <image:title>Can - Future Days Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Future Days by Can</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Can+-+Tago+Mago</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music1/v4/ce/7e/be/ce7ebe2d-418a-bbf6-8fd6-054beff0cf18/724596905456.jpg/600x600bb.jpg</image:loc>
+      <image:title>Can - Tago Mago Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Tago Mago by Can</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Cannibal+Ox+-+The+Cold+Vein</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/cannibal_ox_the_cold_vein.jpg</image:loc>
+      <image:title>Cannibal Ox - The Cold Vein Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for The Cold Vein by Cannibal Ox</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Cannonball+Adderley+-+Somethin&apos;+Else</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/cannonball_adderley_somethin_else.jpg</image:loc>
+      <image:title>Cannonball Adderley - Somethin&apos; Else Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Somethin&apos; Else by Cannonball Adderley</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Carla+dal+Forno+-+You+Know+What+It&apos;s+Like</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/carla_dal_forno_you_know_what_it_s_like.jpg</image:loc>
+      <image:title>Carla dal Forno - You Know What It&apos;s Like Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for You Know What It&apos;s Like by Carla dal Forno</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Carole+King+-+Tapestry</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/carole_king_tapestry.jpg</image:loc>
+      <image:title>Carole King - Tapestry Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Tapestry by Carole King</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Chick+Corea+-+Children&apos;s+Songs</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/1a/ef/a3/1aefa356-a93c-4685-c6cf-d721a35ed8e4/00602517762176.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Chick Corea - Children&apos;s Songs Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Children&apos;s Songs by Chick Corea</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Chick+Corea+-+Piano+Improvisations+Vol.+1</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/9d/98/cd/9d98cd5b-0e3d-04bc-9dd8-5aeb0bfd094d/00042281197925.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Chick Corea - Piano Improvisations Vol. 1 Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Piano Improvisations Vol. 1 by Chick Corea</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Chick+Corea+-+Piano+Improvisations+Vol.+2</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/46/d1/6d/46d16d0d-55b0-5ceb-f417-1c611143927c/00042282919021.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Chick Corea - Piano Improvisations Vol. 2 Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Piano Improvisations Vol. 2 by Chick Corea</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Chick+Corea+%26+Gary+Burton+-+Crystal+Silence</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/91/7d/d7/917dd7f6-1949-ad1e-35af-295b4cddeafc/00602547801807.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Chick Corea &amp; Gary Burton - Crystal Silence Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Crystal Silence by Chick Corea &amp; Gary Burton</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Cio+D&apos;Or+-+All+In+All</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/d2/5d/e1/d25de1f4-35df-13bd-4d77-c4ce55201914/cover.jpg/600x600bb.jpg</image:loc>
+      <image:title>Cio D&apos;Or - All In All Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for All In All by Cio D&apos;Or</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Claudio+PRC+-+Inner+Circle</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Claudio+PRC+-+Inner+Landscapes</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Claudio+PRC+-+Inner+Voyage</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Cluster+-+Zuckerzeit</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/cluster_zuckerzeit.jpg</image:loc>
+      <image:title>Cluster - Zuckerzeit Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Zuckerzeit by Cluster</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Cocteau+Twins+-+Blue+Bell+Knoll</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/cocteau_twins_blue_bell_knoll.jpg</image:loc>
+      <image:title>Cocteau Twins - Blue Bell Knoll Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Blue Bell Knoll by Cocteau Twins</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Cocteau+Twins+-+Heaven+or+Las+Vegas</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Craig+Taborn+-+Avenging+Angel</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/12/f8/dc/12f8dcb0-f88a-e461-cf50-d4b50dc4e5e3/00602527636375.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Craig Taborn - Avenging Angel Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Avenging Angel by Craig Taborn</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Cut+Chemist+-+The+Audience&apos;s+Listening</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/cut_chemist_the_audience_s_listening.jpg</image:loc>
+      <image:title>Cut Chemist - The Audience&apos;s Listening Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for The Audience&apos;s Listening by Cut Chemist</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=David+Axelrod+-+Song+of+Innocence</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/david_axelrod_song_of_innocence.jpg</image:loc>
+      <image:title>David Axelrod - Song of Innocence Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Song of Innocence by David Axelrod</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=David+Bowie+-+%22Heroes%22</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/david_bowie_heroes.jpg</image:loc>
+      <image:title>David Bowie - &quot;Heroes&quot; Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for &quot;Heroes&quot; by David Bowie</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=David+Bowie+-+Low</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/david_bowie_low.jpg</image:loc>
+      <image:title>David Bowie - Low Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Low by David Bowie</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=David+Sylvian+-+Secrets+of+the+Beehive</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/david_sylvian_secrets_of_the_beehive.jpg</image:loc>
+      <image:title>David Sylvian - Secrets of the Beehive Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Secrets of the Beehive by David Sylvian</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Deepchord+-+Sommer</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b1/82/60/b1826011-8941-e40f-20ce-aadd72701d5b/0796122409943_cover.jpg/600x600bb.jpg</image:loc>
+      <image:title>Deepchord - Sommer Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Sommer by Deepchord</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Deepchord+presents+Echospace+-+Liumin</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/51/f5/fb/51f5fb06-7a85-2059-db99-79eae5f874d9/mzi.jtpkwzla.jpg/600x600bb.jpg</image:loc>
+      <image:title>Deepchord presents Echospace - Liumin Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Liumin by Deepchord presents Echospace</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Deepchord+presents+Echospace+-+The+Coldest+Season</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/53/a3/9c/53a39c0f-c552-dc2b-b387-be7080f8bfcd/mzi.knyvkxev.jpg/600x600bb.jpg</image:loc>
+      <image:title>Deepchord presents Echospace - The Coldest Season Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for The Coldest Season by Deepchord presents Echospace</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Deltron+3030+-+Deltron+3030</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/deltron_3030_deltron_3030.jpg</image:loc>
+      <image:title>Deltron 3030 - Deltron 3030 Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Deltron 3030 by Deltron 3030</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Demdike+Stare+-+Tryptych</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/demdike_stare_tryptych.jpg</image:loc>
+      <image:title>Demdike Stare - Tryptych Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Tryptych by Demdike Stare</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Depeche+Mode+-+Violator</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Dino+Sabatini+-+Shaman</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn-images.dzcdn.net/images/cover/363d3139c54c12be5baac0623b94523d/1000x1000-000000-80-0-0.jpg</image:loc>
+      <image:title>Dino Sabatini - Shaman Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Shaman by Dino Sabatini</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=DJ+Krush+-+Kakusei</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/dj_krush_kakusei.jpg</image:loc>
+      <image:title>DJ Krush - Kakusei Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Kakusei by DJ Krush</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=DJ+Krush+-+Strictly+Turntablized</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=DJ+Shadow+-+Endtroducing.....</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/dj_shadow_endtroducing.jpg</image:loc>
+      <image:title>DJ Shadow - Endtroducing..... Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Endtroducing..... by DJ Shadow</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Dollar+Brand+-+African+Piano</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/a7/60/4e/a7604e65-7249-352f-f717-68e7aac25a6e/00602537521500.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Dollar Brand - African Piano Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for African Piano by Dollar Brand</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Dollar+Brand+(Abdullah+Ibrahim)+-+African+Piano</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/a7/60/4e/a7604e65-7249-352f-f717-68e7aac25a6e/00602537521500.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Dollar Brand (Abdullah Ibrahim) - African Piano Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for African Piano by Dollar Brand (Abdullah Ibrahim)</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Donato+Dozzy+-+K</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/1b/c8/f5/1bc8f552-d8d8-08a6-bd29-1d52e6c10048/cover.jpg/600x600bb.jpg</image:loc>
+      <image:title>Donato Dozzy - K Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for K by Donato Dozzy</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Dr.+Octagon+-+Dr.+Octagonecologyst</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/dr_octagon_dr_octagonecologyst.jpg</image:loc>
+      <image:title>Dr. Octagon - Dr. Octagonecologyst Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Dr. Octagonecologyst by Dr. Octagon</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Eagles+-+Hotel+California</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/eagles_hotel_california.jpg</image:loc>
+      <image:title>Eagles - Hotel California Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Hotel California by Eagles</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Eberhard+Weber+-+The+Colours+of+Chlo%C3%AB</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6b/b9/73/6bb97365-eb77-1cbe-b41d-8f53a2c63675/23UMGIM75131.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Eberhard Weber - The Colours of Chloë Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for The Colours of Chloë by Eberhard Weber</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Echo+%26+the+Bunnymen+-+Ocean+Rain</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Egberto+Gismonti+-+Dan%C3%A7a+das+Cabe%C3%A7as</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/4f/e7/4c/4fe74cf8-f083-989a-ae97-ac28d1154c6e/00602547809285.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Egberto Gismonti - Dança das Cabeças Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Dança das Cabeças by Egberto Gismonti</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Egberto+Gismonti+-+Sol+Do+Meio+Dia</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/e4/86/29/e4862994-6df9-6ed1-996e-ebe410ef169e/23UMGIM75149.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Egberto Gismonti - Sol Do Meio Dia Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Sol Do Meio Dia by Egberto Gismonti</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Faust+-+Faust+IV</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/faust_faust_iv.jpg</image:loc>
+      <image:title>Faust - Faust IV Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Faust IV by Faust</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Felt+-+Forever+Breathes+the+Lonely+Word</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/felt_forever_breathes_the_lonely_word.jpg</image:loc>
+      <image:title>Felt - Forever Breathes the Lonely Word Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Forever Breathes the Lonely Word by Felt</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Feral+-+Hyperuranion</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Fleetwood+Mac+-+Fleetwood+Mac</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/fleetwood_mac_fleetwood_mac.jpg</image:loc>
+      <image:title>Fleetwood Mac - Fleetwood Mac Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Fleetwood Mac by Fleetwood Mac</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Fleetwood+Mac+-+Rumours</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/fleetwood_mac_rumours.jpg</image:loc>
+      <image:title>Fleetwood Mac - Rumours Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Rumours by Fleetwood Mac</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Floating+Points%2C+Pharoah+Sanders+%26+London+Symphony+Orchestra+-+Promises</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/floating_points_pharoah_sanders_london_symphony_orchestra_pr.jpg</image:loc>
+      <image:title>Floating Points, Pharoah Sanders &amp; London Symphony Orchestra - Promises Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Promises by Floating Points, Pharoah Sanders &amp; London Symphony Orchestra</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Floating+Points%2C+Pharoah+Sanders+%26+The+London+Symphony+Orchestra+-+Promises</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/floating_points_pharoah_sanders_the_london_symphony_orchestr.jpg</image:loc>
+      <image:title>Floating Points, Pharoah Sanders &amp; The London Symphony Orchestra - Promises Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Promises by Floating Points, Pharoah Sanders &amp; The London Symphony Orchestra</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Fluxion+-+Vibrant+Forms</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Flying+Lotus+-+Los+Angeles</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/flying_lotus_los_angeles.jpg</image:loc>
+      <image:title>Flying Lotus - Los Angeles Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Los Angeles by Flying Lotus</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Forest+Swords+-+Engravings</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/72/e3/f2/72e3f26f-9d79-bee1-f44c-c7d66bf193d3/198588574065.png/600x600bb.jpg</image:loc>
+      <image:title>Forest Swords - Engravings Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Engravings by Forest Swords</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Freddie+Gibbs+%26+Madlib+-+Pi%C3%B1ata</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/freddie_gibbs_madlib_pinata.jpg</image:loc>
+      <image:title>Freddie Gibbs &amp; Madlib - Piñata Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Piñata by Freddie Gibbs &amp; Madlib</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Gary+Burton+%26+Chick+Corea+-+Crystal+Silence</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/91/7d/d7/917dd7f6-1949-ad1e-35af-295b4cddeafc/00602547801807.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Gary Burton &amp; Chick Corea - Crystal Silence Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Crystal Silence by Gary Burton &amp; Chick Corea</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=GAS+-+Konkrete+Musik</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=GAS+-+Pop</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/5d/6a/00/5d6a0054-5145-6011-c638-3e2666d0e8dd/192641833472_Cover.jpg/600x600bb.jpg</image:loc>
+      <image:title>GAS - Pop Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Pop by GAS</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=GAS+-+Zauberberg</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Giorgio+Gigli+-+The+Right+Place+for+Every+Thing</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Global+Communication+-+76%3A14</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/global_communication_76_14.jpg</image:loc>
+      <image:title>Global Communication - 76:14 Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for 76:14 by Global Communication</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Gorillaz+-+Gorillaz</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Handsome+Boy+Modeling+School+-+So...+How&apos;s+Your+Girl%3F</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Harmonia+-+Musik+von+Harmonia</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/harmonia_musik_von_harmonia.jpg</image:loc>
+      <image:title>Harmonia - Musik von Harmonia Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Musik von Harmonia by Harmonia</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Harold+Budd+-+The+Pavilion+of+Dreams</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Herbie+Hancock+-+The+Piano</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Hooverphonic+-+A+New+Stereophonic+Sound+Spectacular</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=HTRK+-+Work+(work%2C+work)</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music2/v4/c2/6d/42/c26d4251-0db2-73a1-8a89-bf1e5879d68f/cover.jpg/600x600bb.jpg</image:loc>
+      <image:title>HTRK - Work (work, work) Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Work (work, work) by HTRK</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Iggy+Pop+-+The+Idiot</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/iggy_pop_the_idiot.jpg</image:loc>
+      <image:title>Iggy Pop - The Idiot Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for The Idiot by Iggy Pop</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=J+Dilla+-+Donuts</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/j_dilla_donuts.jpg</image:loc>
+      <image:title>J Dilla - Donuts Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Donuts by J Dilla</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Jaki+Byard+-+Solo+Piano</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/43/7d/d4/437dd418-e18b-98a9-e9a6-a95fecfc5229/192562891766.jpg/600x600bb.jpg</image:loc>
+      <image:title>Jaki Byard - Solo Piano Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Solo Piano by Jaki Byard</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=James+Blake+-+James+Blake</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Jan+Garbarek+-+Dis</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Jan+Garbarek+-+Rites</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/59/b9/41/59b941c4-2112-bd70-a084-a224eb6da200/00731455900620.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Jan Garbarek - Rites Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Rites by Jan Garbarek</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Jan+Garbarek+%26+Bobo+Stenson+Quartet+-+Witchi-Tai-To</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/b6/71/59/b67159ac-cf01-063d-d103-bff44e08c16b/00042283333024.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Jan Garbarek &amp; Bobo Stenson Quartet - Witchi-Tai-To Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Witchi-Tai-To by Jan Garbarek &amp; Bobo Stenson Quartet</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Jan+Garbarek+%26+The+Hilliard+Ensemble+-+Officium</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Jan+Jelinek+-+Loop-Finding-Jazz-Records</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/jan_jelinek_loop_finding_jazz_records.jpg</image:loc>
+      <image:title>Jan Jelinek - Loop-Finding-Jazz-Records Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Loop-Finding-Jazz-Records by Jan Jelinek</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Jan+Johansson+-+Jazz+p%C3%A5+svenska</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/36/6a/93/366a9334-224e-1d37-e6b5-4084e3fa5426/cover.jpg/600x600bb.jpg</image:loc>
+      <image:title>Jan Johansson - Jazz på svenska Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Jazz på svenska by Jan Johansson</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Japan+-+Quiet+Life</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=John+Coltrane+-+A+Love+Supreme</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/john_coltrane_a_love_supreme.jpg</image:loc>
+      <image:title>John Coltrane - A Love Supreme Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for A Love Supreme by John Coltrane</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=John+Coltrane+-+Blue+Train</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/john_coltrane_blue_train.jpg</image:loc>
+      <image:title>John Coltrane - Blue Train Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Blue Train by John Coltrane</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Jon+Hassell+%26+Brian+Eno+-+Fourth+World%2C+Vol.+1%3A+Possible+Musics</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/jon_hassell_brian_eno_fourth_world_vol_1_possible_musics.jpg</image:loc>
+      <image:title>Jon Hassell &amp; Brian Eno - Fourth World, Vol. 1: Possible Musics Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Fourth World, Vol. 1: Possible Musics by Jon Hassell &amp; Brian Eno</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Jon+Hopkins+-+Immunity</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/jon_hopkins_immunity.jpg</image:loc>
+      <image:title>Jon Hopkins - Immunity Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Immunity by Jon Hopkins</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Joy+Division+-+Closer</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Features114/v4/d9/2a/d1/d92ad12e-cdf2-e567-9612-af2fdfa82237/dj.uzqznczn.jpg/600x600bb.jpg</image:loc>
+      <image:title>Joy Division - Closer Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Closer by Joy Division</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Joy+Division+-+Unknown+Pleasures</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/joy_division_unknown_pleasures.jpg</image:loc>
+      <image:title>Joy Division - Unknown Pleasures Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Unknown Pleasures by Joy Division</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Keith+Jarrett+-+Belonging</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/83/97/4f/83974fae-272e-67be-fc0a-19e1647b6b7e/00602547301345.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Keith Jarrett - Belonging Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Belonging by Keith Jarrett</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Keith+Jarrett+-+Facing+You</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/ae/9f/50/ae9f500b-2a26-d2f8-0036-2489a07157b7/00602547299666.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Keith Jarrett - Facing You Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Facing You by Keith Jarrett</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Keith+Jarrett+-+The+K%C3%B6ln+Concert</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/88/a5/ac/88a5ac07-7eac-6e07-a970-8073f48c0ad6/00602547299819.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Keith Jarrett - The Köln Concert Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for The Köln Concert by Keith Jarrett</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Keith+Jarrett+%2F+Jan+Garbarek+-+Belonging</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/83/97/4f/83974fae-272e-67be-fc0a-19e1647b6b7e/00602547301345.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Keith Jarrett / Jan Garbarek - Belonging Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Belonging by Keith Jarrett / Jan Garbarek</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Keith+Jarrett+Trio+-+Standards%2C+Vol.+1</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/54/47/98/54479810-3c8b-64fd-f1a9-5de20d4afe1b/00602547301529.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Keith Jarrett Trio - Standards, Vol. 1 Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Standards, Vol. 1 by Keith Jarrett Trio</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Keith+Jarrett%2C+Jan+Garbarek%2C+Palle+Danielsson%2C+Jon+Christensen+-+Belonging</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/83/97/4f/83974fae-272e-67be-fc0a-19e1647b6b7e/00602547301345.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Keith Jarrett, Jan Garbarek, Palle Danielsson, Jon Christensen - Belonging Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Belonging by Keith Jarrett, Jan Garbarek, Palle Danielsson, Jon Christensen</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Kenny+Drew+-+Dark+Beauty</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/c5/7e/38/c57e382c-1411-f1f0-cb91-0cf9d4e0d470/mzi.awpldnwj.jpg/600x600bb.jpg</image:loc>
+      <image:title>Kenny Drew - Dark Beauty Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Dark Beauty by Kenny Drew</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Kenny+Wheeler+-+Gnu+High</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9c/8c/f5/9c8cf58b-a994-a1fd-2245-624f72c34254/25UM1IM98145.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Kenny Wheeler - Gnu High Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Gnu High by Kenny Wheeler</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=King+Geedorah+-+Take+Me+to+Your+Leader</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/king_geedorah_take_me_to_your_leader.jpg</image:loc>
+      <image:title>King Geedorah - Take Me to Your Leader Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Take Me to Your Leader by King Geedorah</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Laurel+Halo+-+Quarantine</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn-images.dzcdn.net/images/cover/c985b7a5b5037e3e491bc52d146c5937/1000x1000-000000-80-0-0.jpg</image:loc>
+      <image:title>Laurel Halo - Quarantine Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Quarantine by Laurel Halo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Laurie+Anderson+-+Big+Science</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Liaisons+Dangereuses+-+Liaisons+Dangereuses</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Luigi+Tozzi+-+Deep+Blue</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Luigi+Tozzi+-+Deep+Blue%3A+Volume+2</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/46/ca/8f/46ca8fc8-4cbd-c472-ed54-a456e19d8f45/8790001191273.png/600x600bb.jpg</image:loc>
+      <image:title>Luigi Tozzi - Deep Blue: Volume 2 Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Deep Blue: Volume 2 by Luigi Tozzi</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Luigi+Tozzi+-+Deep+Blue%3A+Volume+3</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/luigi_tozzi_deep_blue_volume_3.jpg</image:loc>
+      <image:title>Luigi Tozzi - Deep Blue: Volume 3 Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Deep Blue: Volume 3 by Luigi Tozzi</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Madlib+-+Shades+of+Blue</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/madlib_shades_of_blue.jpg</image:loc>
+      <image:title>Madlib - Shades of Blue Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Shades of Blue by Madlib</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Madvillain+-+Madvillainy</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/madvillain_madvillainy.jpg</image:loc>
+      <image:title>Madvillain - Madvillainy Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Madvillainy by Madvillain</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Mal+Waldron+-+All+Alone</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music62/v4/a8/b7/3e/a8b73e5e-7dd5-b2db-c6c9-7c1c9f774cf9/4251513904798_1448.jpg/600x600bb.jpg</image:loc>
+      <image:title>Mal Waldron - All Alone Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for All Alone by Mal Waldron</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Mal+Waldron+-+Free+at+Last</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/09/68/23/09682391-864e-98d3-b86d-026fbefe5e76/00042283133228.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Mal Waldron - Free at Last Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Free at Last by Mal Waldron</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Marco+Shuttle+-+Visione</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Marilyn+Crispell+-+Amaryllis</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/56/e2/a1/56e2a1eb-2fa0-0be8-9338-0ee35eae432a/00044001340024.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Marilyn Crispell - Amaryllis Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Amaryllis by Marilyn Crispell</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Mark+Hollis+-+Mark+Hollis</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/mark_hollis_mark_hollis.jpg</image:loc>
+      <image:title>Mark Hollis - Mark Hollis Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Mark Hollis by Mark Hollis</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Masabumi+Kikuchi+-+Black+Orpheus</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/a8/c7/4e/a8c74e39-72cd-860f-fe1b-fd5db5a4b093/00602547322180.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Masabumi Kikuchi - Black Orpheus Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Black Orpheus by Masabumi Kikuchi</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Massive+Attack+-+Mezzanine</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/massive_attack_mezzanine.jpg</image:loc>
+      <image:title>Massive Attack - Mezzanine Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Mezzanine by Massive Attack</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=MF+DOOM+-+Mm..Food</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/mf_doom_mm_food.jpg</image:loc>
+      <image:title>MF DOOM - Mm..Food Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Mm..Food by MF DOOM</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=MF+DOOM+-+Operation%3A+Doomsday</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/mf_doom_operation_doomsday.jpg</image:loc>
+      <image:title>MF DOOM - Operation: Doomsday Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Operation: Doomsday by MF DOOM</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Michel+Petrucciani+-+Oracle&apos;s+Destiny</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music/9b/17/60/mzi.czbydvxv.jpg/600x600bb.jpg</image:loc>
+      <image:title>Michel Petrucciani - Oracle&apos;s Destiny Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Oracle&apos;s Destiny by Michel Petrucciani</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Mike+Parker+-+Lustre</loc>
     <lastmod>2026-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://vinylhound.de/?album=Miles+Davis+-+Kind+of+Blue</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/miles_davis_kind_of_blue.jpg</image:loc>
+      <image:title>Miles Davis - Kind of Blue Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Kind of Blue by Miles Davis</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Morcheeba+-+Big+Calm</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Mos+Def+-+Black+on+Both+Sides</loc>
     <lastmod>2026-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vinylhound.de/?album=Fleetwood+Mac+-+Rumours</loc>
+    <loc>https://vinylhound.de/?album=Mount+Kimbie+-+Crooks+%26+Lovers</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/mount_kimbie_crooks_lovers.jpg</image:loc>
+      <image:title>Mount Kimbie - Crooks &amp; Lovers Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Crooks &amp; Lovers by Mount Kimbie</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Neel+-+Phobos</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5b/3d/57/5b3d5737-0dc9-c5f1-7d7b-0bd9ed8f994b/880918272177.jpg/600x600bb.jpg</image:loc>
+      <image:title>Neel - Phobos Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Phobos by Neel</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Neu!+-+Neu!+&apos;75</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/neu_neu_75.jpg</image:loc>
+      <image:title>Neu! - Neu! &apos;75 Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Neu! &apos;75 by Neu!</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=NEU!+-+NEU!</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/neu_neu.jpg</image:loc>
+      <image:title>NEU! - NEU! Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for NEU! by NEU!</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Nicolas+Jaar+-+Space+Is+Only+Noise</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/nicolas_jaar_space_is_only_noise.jpg</image:loc>
+      <image:title>Nicolas Jaar - Space Is Only Noise Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Space Is Only Noise by Nicolas Jaar</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Nightmares+on+Wax+-+Smokers+Delight</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/nightmares_on_wax_smokers_delight.jpg</image:loc>
+      <image:title>Nightmares on Wax - Smokers Delight Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Smokers Delight by Nightmares on Wax</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Nils+Frahm+-+Spaces</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/nils_frahm_spaces.jpg</image:loc>
+      <image:title>Nils Frahm - Spaces Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Spaces by Nils Frahm</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Nils+Petter+Molv%C3%A6r+-+Khmer</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/nils_petter_molv_r_khmer.jpg</image:loc>
+      <image:title>Nils Petter Molvær - Khmer Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Khmer by Nils Petter Molvær</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Nujabes+-+Modal+Soul</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/nujabes_modal_soul.jpg</image:loc>
+      <image:title>Nujabes - Modal Soul Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Modal Soul by Nujabes</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Orange+Juice+-+You+Can&apos;t+Hide+Your+Love+Forever</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/orange_juice_you_can_t_hide_your_love_forever.jpg</image:loc>
+      <image:title>Orange Juice - You Can&apos;t Hide Your Love Forever Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for You Can&apos;t Hide Your Love Forever by Orange Juice</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Pantha+du+Prince+-+Belong</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/pantha_du_prince_belong.jpg</image:loc>
+      <image:title>Pantha du Prince - Belong Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Belong by Pantha du Prince</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Paul+Bley+-+Open%2C+to+Love</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ab/4a/c7/ab4ac72a-3b39-cc4d-17c3-c2dda10dadf3/25UM1IM98120.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Paul Bley - Open, to Love Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Open, to Love by Paul Bley</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Paul+McCartney+%26+Wings+-+Band+on+the+Run</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f5/fe/a3/f5fea3f7-a858-b5ae-2c2e-b134c8b640b1/14CMGIM01182.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Paul McCartney &amp; Wings - Band on the Run Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Band on the Run by Paul McCartney &amp; Wings</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Pete+Rock+-+Petestrumentals</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/pete_rock_petestrumentals.jpg</image:loc>
+      <image:title>Pete Rock - Petestrumentals Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Petestrumentals by Pete Rock</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Peter+Van+Hoesen+-+Enthetic</loc>
     <lastmod>2026-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vinylhound.de/?album=Steely+Dan+-+Aja</loc>
+    <loc>https://vinylhound.de/?album=Pink+Floyd+-+Dark+Side+of+the+Moon</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/pink_floyd_dark_side_of_the_moon.png</image:loc>
+      <image:title>Pink Floyd - Dark Side of the Moon Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Dark Side of the Moon by Pink Floyd</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Pink+Floyd+-+The+Dark+Side+of+the+Moon</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3e/17/ec/3e17ec6d-f980-c64f-19e0-a6fd8bbf0c10/886445635850.jpg/600x600bb.jpg</image:loc>
+      <image:title>Pink Floyd - The Dark Side of the Moon Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for The Dark Side of the Moon by Pink Floyd</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Polar+Inertia+-+Kinetic+Image</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Pole+-+1</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Porter+Ricks+-+Biokinetics</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/b3/8c/95/b38c95de-d74e-8358-b0e3-9b4735c3d9cf/mzi.gtzygzjr.jpg/600x600bb.jpg</image:loc>
+      <image:title>Porter Ricks - Biokinetics Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Biokinetics by Porter Ricks</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Portishead+-+Dummy</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/portishead_dummy.jpg</image:loc>
+      <image:title>Portishead - Dummy Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Dummy by Portishead</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Portishead+-+Third</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/portishead_third.jpg</image:loc>
+      <image:title>Portishead - Third Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Third by Portishead</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Prince+of+Denmark+-+The+Body</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Public+Image+Ltd.+-+Metal+Box</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/public_image_ltd_metal_box.jpg</image:loc>
+      <image:title>Public Image Ltd. - Metal Box Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Metal Box by Public Image Ltd.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Quasimoto+-+The+Unseen</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/quasimoto_the_unseen.jpg</image:loc>
+      <image:title>Quasimoto - The Unseen Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for The Unseen by Quasimoto</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Queen+-+A+Night+at+the+Opera</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=R.E.M.+-+Murmur</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/r_e_m_murmur.jpg</image:loc>
+      <image:title>R.E.M. - Murmur Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Murmur by R.E.M.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Raime+-+Quarter+Turns+Over+a+Living+Line</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/18/36/93/18369353-cf53-a8ac-8d1d-f6568b756564/5056495194538_1.jpg/600x600bb.jpg</image:loc>
+      <image:title>Raime - Quarter Turns Over a Living Line Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Quarter Turns Over a Living Line by Raime</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Ralph+Towner+-+Diary</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ed/c0/19/edc01998-a55a-b125-e1af-aea7eacd5961/25UM1IM98127.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Ralph Towner - Diary Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Diary by Ralph Towner</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Ralph+Towner+-+Solstice</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/99/88/be/9988be0a-88b0-f99f-afca-eb81698f4c2b/00602547809179.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Ralph Towner - Solstice Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Solstice by Ralph Towner</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Rhythm+%26+Sound+-+Rhythm+%26+Sound</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/rhythm_sound_rhythm_sound.jpg</image:loc>
+      <image:title>Rhythm &amp; Sound - Rhythm &amp; Sound Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Rhythm &amp; Sound by Rhythm &amp; Sound</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Richie+Beirach+-+Hubris</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/b5/d4/db/b5d4db74-6522-35fc-19d7-990950b87be4/00602527307305.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Richie Beirach - Hubris Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Hubris by Richie Beirach</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=RJD2+-+Deadringer</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/rjd2_deadringer.jpg</image:loc>
+      <image:title>RJD2 - Deadringer Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Deadringer by RJD2</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Robert+Wyatt+-+Rock+Bottom</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/robert_wyatt_rock_bottom.jpg</image:loc>
+      <image:title>Robert Wyatt - Rock Bottom Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Rock Bottom by Robert Wyatt</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Rod+Modell+-+Captagon</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Sandwell+District+-+Feed-Forward</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Seefeel+-+Quique</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/seefeel_quique.jpg</image:loc>
+      <image:title>Seefeel - Quique Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Quique by Seefeel</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Shifted+-+Under+a+Single+Banner</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Silver+Apples+-+Silver+Apples</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/46/8f/36/468f365f-cbb2-0c38-fb23-86309176a633/00602557131529.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Silver Apples - Silver Apples Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Silver Apples by Silver Apples</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Siouxsie+and+the+Banshees+-+Juju</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/siouxsie_and_the_banshees_juju.jpg</image:loc>
+      <image:title>Siouxsie and the Banshees - Juju Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Juju by Siouxsie and the Banshees</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Slum+Village+-+Fantastic%2C+Vol.+2</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/slum_village_fantastic_vol_2.jpg</image:loc>
+      <image:title>Slum Village - Fantastic, Vol. 2 Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Fantastic, Vol. 2 by Slum Village</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Sneaker+Pimps+-+Becoming+X</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/sneaker_pimps_becoming_x.jpg</image:loc>
+      <image:title>Sneaker Pimps - Becoming X Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Becoming X by Sneaker Pimps</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Space+Afrika+-+Honest+Labour</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/99/e0/6e/99e06ea5-7fc0-85cf-f60b-ff3d471bb548/15223.jpg/600x600bb.jpg</image:loc>
+      <image:title>Space Afrika - Honest Labour Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Honest Labour by Space Afrika</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Steve+Kuhn+-+Ecstasy</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Suicide+-+Suicide</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Suuns+-+Images+Du+Futur</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/suuns_images_du_futur.jpg</image:loc>
+      <image:title>Suuns - Images Du Futur Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Images Du Futur by Suuns</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Svreca+-+Obscur</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Synkro+-+Changes</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/synkro_changes.jpg</image:loc>
+      <image:title>Synkro - Changes Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Changes by Synkro</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Talk+Talk+-+Laughing+Stock</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/talk_talk_laughing_stock.jpg</image:loc>
+      <image:title>Talk Talk - Laughing Stock Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Laughing Stock by Talk Talk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Talk+Talk+-+Spirit+of+Eden</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/talk_talk_spirit_of_eden.jpg</image:loc>
+      <image:title>Talk Talk - Spirit of Eden Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Spirit of Eden by Talk Talk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Talking+Heads+-+Remain+in+Light</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Teebs+-+Ardour</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/teebs_ardour.jpg</image:loc>
+      <image:title>Teebs - Ardour Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Ardour by Teebs</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Teenage+Fanclub+-+Bandwagonesque</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Tete+Montoliu+-+Songs+for+Love</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a8/dd/f3/a8ddf3e0-6449-d7b3-f371-627eec4c8ae8/8431194090201_3000.jpg/600x600bb.jpg</image:loc>
+      <image:title>Tete Montoliu - Songs for Love Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Songs for Love by Tete Montoliu</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=The+Avalanches+-+Since+I+Left+You</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/the_avalanches_since_i_left_you.jpg</image:loc>
+      <image:title>The Avalanches - Since I Left You Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Since I Left You by The Avalanches</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=The+Beach+Boys+-+Pet+Sounds</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/35/bb/c4/35bbc4eb-9387-97b0-b138-64b7a949ea43/13UABIM03512.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>The Beach Boys - Pet Sounds Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Pet Sounds by The Beach Boys</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=The+Beatles+-+Abbey+Road</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/the_beatles_abbey_road.jpg</image:loc>
+      <image:title>The Beatles - Abbey Road Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Abbey Road by The Beatles</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=The+Bug+-+London+Zoo</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/the_bug_london_zoo.jpg</image:loc>
+      <image:title>The Bug - London Zoo Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for London Zoo by The Bug</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=The+Cinematic+Orchestra+-+Motion</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/the_cinematic_orchestra_motion.jpg</image:loc>
+      <image:title>The Cinematic Orchestra - Motion Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Motion by The Cinematic Orchestra</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=The+Cure+-+Greatest+Hits</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/the_cure_greatest_hits.jpg</image:loc>
+      <image:title>The Cure - Greatest Hits Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Greatest Hits by The Cure</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=The+Cure+-+The+Head+on+the+Door</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/the_cure_the_head_on_the_door.jpg</image:loc>
+      <image:title>The Cure - The Head on the Door Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for The Head on the Door by The Cure</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=The+Go-Betweens+-+16+Lovers+Lane</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/the_go_betweens_16_lovers_lane.jpg</image:loc>
+      <image:title>The Go-Betweens - 16 Lovers Lane Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for 16 Lovers Lane by The Go-Betweens</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=The+Knife+-+Silent+Shout</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/the_knife_silent_shout.jpg</image:loc>
+      <image:title>The Knife - Silent Shout Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Silent Shout by The Knife</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=The+Slits+-+Cut</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/the_slits_cut.jpg</image:loc>
+      <image:title>The Slits - Cut Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Cut by The Slits</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=The+Smiths+-+The+Queen+Is+Dead</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/the_smiths_the_queen_is_dead.jpg</image:loc>
+      <image:title>The Smiths - The Queen Is Dead Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for The Queen Is Dead by The Smiths</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=The+Stone+Roses+-+The+Stone+Roses</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/the_stone_roses_the_stone_roses.jpg</image:loc>
+      <image:title>The Stone Roses - The Stone Roses Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for The Stone Roses by The Stone Roses</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=The+Zombies+-+Odessey+and+Oracle</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=This+Heat+-+Deceit</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/22/de/98/22de9857-186e-9ac9-3d05-9f4a8de07b22/5060049550039_cover.jpg/600x600bb.jpg</image:loc>
+      <image:title>This Heat - Deceit Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Deceit by This Heat</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Thom+Yorke+-+The+Eraser</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/c3/c9/0f/c3c90f8d-04cc-157d-9297-7d3c230352d9/634904020866.png/600x600bb.jpg</image:loc>
+      <image:title>Thom Yorke - The Eraser Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for The Eraser by Thom Yorke</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Tim+Hecker+-+Ravedeath%2C+1972</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/4a/68/4c/4a684c10-456b-8442-9ed3-764d57a32aed/mzi.ukvgcwzt.jpg/600x600bb.jpg</image:loc>
+      <image:title>Tim Hecker - Ravedeath, 1972 Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Ravedeath, 1972 by Tim Hecker</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Tord+Gustavsen+Trio+-+Changing+Places</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/97/5e/e3/975ee3e6-5af3-6650-c6dc-8f0c7b5a670e/00044001639722.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Tord Gustavsen Trio - Changing Places Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Changing Places by Tord Gustavsen Trio</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Tricky+-+Maxinquaye</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/da/46/8a/da468ae4-2956-89d5-de70-0fce8dcfd572/00731452408921.rgb.jpg/600x600bb.jpg</image:loc>
+      <image:title>Tricky - Maxinquaye Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Maxinquaye by Tricky</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=UNKLE+-+Psyence+Fiction</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/unkle_psyence_fiction.jpg</image:loc>
+      <image:title>UNKLE - Psyence Fiction Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Psyence Fiction by UNKLE</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Viktor+Vaughn+-+Vaudeville+Villain</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/viktor_vaughn_vaudeville_villain.jpg</image:loc>
+      <image:title>Viktor Vaughn - Vaudeville Villain Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Vaudeville Villain by Viktor Vaughn</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Vladislav+Delay+-+Multila</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/22/82/b2/2282b2d7-5324-df0b-1a3b-141dc9b37bc6/dj.hlvlpdon.jpg/600x600bb.jpg</image:loc>
+      <image:title>Vladislav Delay - Multila Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Multila by Vladislav Delay</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Voices+from+the+Lake+-+Voices+from+the+Lake</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/0b/f1/88/0bf188bf-0adf-5900-6907-d08da1f9205e/8720246793116.jpg/600x600bb.jpg</image:loc>
+      <image:title>Voices from the Lake - Voices from the Lake Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Voices from the Lake by Voices from the Lake</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Yagya+-+Rigning</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://vinylhound.de/api/images/yagya_rigning.jpg</image:loc>
+      <image:title>Yagya - Rigning Vinyl</image:title>
+      <image:caption>Vinyl Hound appraisal, 180g analog dynamic range, and German street pricing for Rigning by Yagya</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vinylhound.de/?album=Young+Marble+Giants+-+Colossal+Youth</loc>
     <lastmod>2026-10-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

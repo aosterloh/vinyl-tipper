@@ -1102,7 +1102,13 @@ const server = http.createServer(async (req, res) => {
   }
 
   // Static file serving from public/
-  let filePath = path.join(PUBLIC_DIR, pathname === '/' ? 'index.html' : pathname);
+  let effectivePath = pathname;
+  if (pathname === '/' || pathname === '') {
+    effectivePath = 'index.html';
+  } else if (pathname === '/admin' || pathname === '/admin/') {
+    effectivePath = 'admin.html';
+  }
+  let filePath = path.join(PUBLIC_DIR, effectivePath);
 
   if (!filePath.startsWith(PUBLIC_DIR)) {
     res.writeHead(403, { 'Content-Type': 'text/plain' });

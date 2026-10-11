@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
+Allow: /api/images/
+Disallow: /api/gemini
+Disallow: /api/session/
+Disallow: /healthz
+Disallow: /health
 
 Sitemap: https://vinylhound.de/sitemap.xml
