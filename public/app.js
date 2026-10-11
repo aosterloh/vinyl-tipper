@@ -64,6 +64,7 @@ const favsDrawerList = document.getElementById("favs-drawer-list");
 
 const searchForm = document.getElementById("search-form");
 const albumInput = document.getElementById("album-input");
+const autocompleteDropdown = document.getElementById("autocomplete-dropdown");
 const loadingState = document.getElementById("loading-state");
 const resultsSection = document.getElementById("results-section");
 
@@ -1921,20 +1922,167 @@ recNextBtn.addEventListener("click", () => {
 });
 
 // ============================================================================
-// 9. EVENT LISTENERS & CHIPS
+// 9. QUICK AUTOCOMPLETE & EVENT LISTENERS
 // ============================================================================
+let autocompleteTimer = null;
+let currentAutocompleteResults = [];
+let focusedAutocompleteIdx = -1;
+
+function hideAutocomplete() {
+  if (!autocompleteDropdown) return;
+  autocompleteDropdown.classList.add("hidden");
+  autocompleteDropdown.innerHTML = "";
+  currentAutocompleteResults = [];
+  focusedAutocompleteIdx = -1;
+}
+
+function renderAutocompleteResults(results) {
+  if (!autocompleteDropdown) return;
+  if (!results || results.length === 0) {
+    hideAutocomplete();
+    return;
+  }
+
+  currentAutocompleteResults = results;
+  focusedAutocompleteIdx = -1;
+
+  autocompleteDropdown.innerHTML = `
+    <div class="autocomplete-header">
+      <span class="header-tag">💿 Top Landmark Albums</span>
+      <span>Click or ↑↓ Enter</span>
+    </div>
+    ${results.map((item, idx) => `
+      <button class="autocomplete-item" type="button" data-idx="${idx}" role="option">
+        <div class="autocomplete-thumb-wrap">
+          <img class="autocomplete-thumb" src="${item.coverUrl || generateSvgCover(item.title, item.artist)}" alt="${escapeXml(item.title)}" loading="lazy" />
+          <div class="autocomplete-thumb-disc"></div>
+        </div>
+        <div class="autocomplete-info">
+          <span class="autocomplete-title" title="${escapeXml(item.title)}">${escapeXml(item.title)}</span>
+          <div class="autocomplete-meta">
+            <span class="autocomplete-artist">${escapeXml(item.artist)}</span>
+            ${item.year ? `<span class="autocomplete-year">${escapeXml(item.year)}</span>` : ''}
+          </div>
+        </div>
+        <span class="autocomplete-badge">
+          Appraise ↗
+        </span>
+      </button>
+    `).join("")}
+  `;
+
+  // Attach click listener to each option
+  const items = autocompleteDropdown.querySelectorAll(".autocomplete-item");
+  items.forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const idx = Number(btn.getAttribute("data-idx"));
+      const chosen = currentAutocompleteResults[idx];
+      if (chosen) {
+        selectAutocompleteAlbum(chosen);
+      }
+    });
+  });
+
+  autocompleteDropdown.classList.remove("hidden");
+}
+
+function selectAutocompleteAlbum(album) {
+  hideAutocomplete();
+  const fullLabel = album.artist ? `${album.artist} - ${album.title}` : album.title;
+  albumInput.value = fullLabel;
+  appraiseAlbum(album.artist ? `${album.artist} ${album.title}` : album.title);
+}
+
+// Debounced input handler on search box
+if (albumInput) {
+  albumInput.addEventListener("input", () => {
+    const query = albumInput.value.trim();
+    if (autocompleteTimer) {
+      clearTimeout(autocompleteTimer);
+      autocompleteTimer = null;
+    }
+
+    if (query.length < 2) {
+      hideAutocomplete();
+      return;
+    }
+
+    autocompleteTimer = setTimeout(async () => {
+      try {
+        const res = await fetch(`/api/autocomplete?q=${encodeURIComponent(query)}`);
+        if (res.ok) {
+          const data = await res.json();
+          // Check if query still matches current input
+          if (albumInput.value.trim() === query && data.success && Array.isArray(data.results)) {
+            renderAutocompleteResults(data.results);
+          }
+        }
+      } catch (err) {
+        console.warn("Autocomplete fetch error:", err);
+      }
+    }, 220);
+  });
+
+  // Keyboard navigation (ArrowDown, ArrowUp, Enter, Escape)
+  albumInput.addEventListener("keydown", (e) => {
+    if (!autocompleteDropdown || autocompleteDropdown.classList.contains("hidden")) return;
+
+    const items = autocompleteDropdown.querySelectorAll(".autocomplete-item");
+    if (items.length === 0) return;
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      focusedAutocompleteIdx = (focusedAutocompleteIdx + 1) % items.length;
+      updateFocusedAutocompleteItem(items);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      focusedAutocompleteIdx = (focusedAutocompleteIdx - 1 + items.length) % items.length;
+      updateFocusedAutocompleteItem(items);
+    } else if (e.key === "Enter" && focusedAutocompleteIdx >= 0) {
+      e.preventDefault();
+      const chosen = currentAutocompleteResults[focusedAutocompleteIdx];
+      if (chosen) {
+        selectAutocompleteAlbum(chosen);
+      }
+    } else if (e.key === "Escape") {
+      hideAutocomplete();
+    }
+  });
+}
+
+function updateFocusedAutocompleteItem(items) {
+  items.forEach((item, idx) => {
+    if (idx === focusedAutocompleteIdx) {
+      item.classList.add("focused");
+      item.scrollIntoView({ block: "nearest" });
+    } else {
+      item.classList.remove("focused");
+    }
+  });
+}
+
+// Dismiss autocomplete when clicking outside
+document.addEventListener("click", (e) => {
+  if (autocompleteDropdown && !autocompleteDropdown.classList.contains("hidden")) {
+    if (!searchForm.contains(e.target)) {
+      hideAutocomplete();
+    }
+  }
+});
+
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
+  hideAutocomplete();
   const query = albumInput.value.trim();
   if (query) {
-    showAiThinkingBanner();
     appraiseAlbum(query);
   }
 });
 
 document.querySelectorAll(".chip").forEach(chip => {
   chip.addEventListener("click", () => {
-    showAiThinkingBanner();
+    hideAutocomplete();
     const album = chip.getAttribute("data-album");
     albumInput.value = album;
     appraiseAlbum(album);

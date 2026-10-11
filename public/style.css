@@ -571,6 +571,209 @@ body {
   transform: scale(1.02);
 }
 
+/* -------------------------------------------------------------------------- */
+/* Quick Autocomplete Dropdown (Top 3 Albums)                                 */
+/* -------------------------------------------------------------------------- */
+.autocomplete-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18), 0 4px 12px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 2500;
+  animation: autocompleteSlideDown 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] .autocomplete-dropdown {
+  background-color: rgba(28, 30, 34, 0.96);
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55), 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.autocomplete-dropdown.hidden {
+  display: none !important;
+}
+
+@keyframes autocompleteSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.autocomplete-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 12px 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border-light);
+  margin-bottom: 2px;
+}
+
+.autocomplete-header .header-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.autocomplete-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid transparent;
+  width: 100%;
+  text-align: left;
+  transition: all var(--transition-fast);
+}
+
+.autocomplete-item:hover,
+.autocomplete-item.focused {
+  background-color: var(--bg-elevated);
+  border-color: var(--border-light);
+  transform: translateX(2px);
+}
+
+[data-theme="dark"] .autocomplete-item:hover,
+[data-theme="dark"] .autocomplete-item.focused {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.autocomplete-thumb-wrap {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+
+.autocomplete-thumb {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+  background-color: var(--bg-subtle);
+}
+
+.autocomplete-thumb-disc {
+  position: absolute;
+  top: 2px;
+  right: -5px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #222 0%, #111 60%, #000 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  z-index: -1;
+  transition: transform var(--transition-fast);
+}
+
+.autocomplete-item:hover .autocomplete-thumb-disc,
+.autocomplete-item.focused .autocomplete-thumb-disc {
+  transform: translateX(6px) rotate(20deg);
+}
+
+.autocomplete-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.autocomplete-title {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.01em;
+}
+
+.autocomplete-meta {
+  font-size: 12px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.autocomplete-artist {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.autocomplete-year {
+  font-size: 10.5px;
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  background-color: var(--bg-subtle);
+  color: var(--text-muted);
+  border: 1px solid var(--border-light);
+}
+
+.autocomplete-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #1A73E8;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background-color: rgba(26, 115, 232, 0.1);
+  border: 1px solid rgba(26, 115, 232, 0.2);
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+[data-theme="dark"] .autocomplete-badge {
+  color: #8ab4f8;
+  background-color: rgba(66, 133, 244, 0.18);
+  border-color: rgba(66, 133, 244, 0.35);
+}
+
+.autocomplete-item:hover .autocomplete-badge,
+.autocomplete-item.focused .autocomplete-badge {
+  background-color: #1A73E8;
+  color: #ffffff;
+  border-color: #1A73E8;
+}
+
+[data-theme="dark"] .autocomplete-item:hover .autocomplete-badge,
+[data-theme="dark"] .autocomplete-item.focused .autocomplete-badge {
+  background-color: #8ab4f8;
+  color: #111111;
+  border-color: #8ab4f8;
+}
+
 .quick-chips {
   display: flex;
   flex-wrap: wrap;

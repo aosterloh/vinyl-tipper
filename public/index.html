@@ -116,11 +116,14 @@
               type="text" 
               id="album-input" 
               class="album-input" 
-              placeholder="Drop an album name... (e.g. Abbey Road, Discovery, Kind of Blue)" 
+              placeholder="Drop an artist or album name... (e.g. Pink Floyd, Daft Punk, Abbey Road)" 
               autocomplete="off" 
               required
             />
             <button type="submit" id="search-submit-btn" class="search-btn">Appraise</button>
+
+            <!-- Quick Autocomplete Dropdown for Top 3 Albums -->
+            <div id="autocomplete-dropdown" class="autocomplete-dropdown hidden" role="listbox" aria-label="Top album suggestions"></div>
           </div>
         </form>
         <div class="quick-chips">
@@ -337,6 +340,6 @@
   </div>
 
   <!-- FIREBASE AND CLIENT APPLICATION SCRIPT -->
-  <script type="module" src="app.js?v=2.6"></script>
+  <script type="module" src="app.js?v=2.7"></script>
 </body>
 </html>

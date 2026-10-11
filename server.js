@@ -313,6 +313,126 @@ const MIME_TYPES = {
   '.ttf': 'font/ttf'
 };
 
+// ============================================================================
+// QUICK AUTOCOMPLETE ENGINE (TOP 3 ALBUMS PER ARTIST / QUERY)
+// ============================================================================
+const autocompleteCache = {};
+
+function fetchItunesAlbums(query) {
+  return new Promise((resolve) => {
+    const url = `https://itunes.apple.com/search?term=${encodeURIComponent(query)}&entity=album&limit=15`;
+    const req = https.get(url, {
+      headers: {
+        'User-Agent': 'VinylTipper/2.6 (Macintosh; AppleWebKit)'
+      },
+      timeout: 4500
+    }, (res) => {
+      if (res.statusCode !== 200) {
+        resolve([]);
+        return;
+      }
+      let data = '';
+      res.on('data', chunk => { data += chunk; });
+      res.on('end', () => {
+        try {
+          const json = JSON.parse(data);
+          resolve(json.results || []);
+        } catch (e) {
+          resolve([]);
+        }
+      });
+    });
+    req.on('error', () => resolve([]));
+    req.on('timeout', () => { req.destroy(); resolve([]); });
+  });
+}
+
+async function getAutocompleteAlbums(query) {
+  const norm = normalizeKey(query);
+  if (!norm || norm.length < 2) return [];
+  if (autocompleteCache[norm]) {
+    return autocompleteCache[norm];
+  }
+
+  const catalog = loadCatalog();
+  const candidates = [];
+  const seenTitles = new Set();
+
+  // 1. Check local catalog database first (0ms)
+  for (const key of Object.keys(catalog)) {
+    const item = catalog[key];
+    if (!item || !item.title) continue;
+    const artNorm = normalizeKey(item.artist || '');
+    const titleNorm = normalizeKey(item.title || '');
+    const artMatches = (artNorm.length >= 3 && (artNorm.includes(norm) || (norm.length >= 4 && norm.includes(artNorm)))) || (artNorm.length > 0 && artNorm === norm);
+    const titleMatches = (titleNorm.length >= 3 && (titleNorm.includes(norm) || (norm.length >= 4 && norm.includes(titleNorm)))) || (titleNorm.length > 0 && titleNorm === norm);
+    if (artMatches || titleMatches) {
+      const cleanTitleKey = normalizeKey(item.title);
+      if (!seenTitles.has(cleanTitleKey)) {
+        seenTitles.add(cleanTitleKey);
+        candidates.push({
+          title: item.title,
+          artist: item.artist || '',
+          year: item.year ? String(item.year) : '',
+          coverUrl: item.coverUrl || '',
+          primaryGenre: item.genre || 'Vinyl',
+          fromDb: true
+        });
+      }
+    }
+    if (candidates.length >= 3) break;
+  }
+
+  // 2. Query public iTunes index for top releases
+  if (candidates.length < 3) {
+    try {
+      const itunesResults = await fetchItunesAlbums(query);
+      const qLower = query.toLowerCase();
+      const wantsInstrumental = qLower.includes('instrumental');
+      const wantsRemix = qLower.includes('remix');
+
+      for (const item of itunesResults) {
+        if (!item.collectionName) continue;
+        const collLower = item.collectionName.toLowerCase();
+        const artLower = (item.artistName || '').toLowerCase();
+
+        // Skip singles/EPs and noise formats
+        if (collLower.includes(' - single') || collLower.endsWith(' - ep')) continue;
+        if (!wantsInstrumental && (collLower.includes('instrumental') || collLower.includes('karaoke'))) continue;
+        if (!wantsRemix && (collLower.includes('remix') || collLower.includes('remixed'))) continue;
+        if (collLower.includes('tribute') || collLower.includes('originally performed by')) continue;
+
+        // Strip clutter like "(Deluxe Edition)", "(2019 Mix)", "[2011 Remaster]", etc.
+        const baseTitle = item.collectionName.replace(/\s*[\(\[].*?(deluxe|remaster|anniversary|expanded|special|edition|bonus|live|mix|stereo|mono|version).*?[\)\]]/gi, '').trim();
+        const cleanTitleKey = normalizeKey(baseTitle);
+
+        if (!seenTitles.has(cleanTitleKey) && baseTitle.length > 0) {
+          seenTitles.add(cleanTitleKey);
+          const year = item.releaseDate ? new Date(item.releaseDate).getFullYear() : '';
+          const rawCover = item.artworkUrl100 || '';
+          const cover = rawCover ? rawCover.replace('100x100bb.jpg', '200x200bb.jpg') : '';
+
+          candidates.push({
+            title: baseTitle,
+            artist: item.artistName || '',
+            year: year ? String(year) : '',
+            coverUrl: cover,
+            primaryGenre: item.primaryGenreName || 'Vinyl',
+            fromDb: false
+          });
+        }
+        if (candidates.length >= 3) break;
+      }
+    } catch (err) {
+      console.warn('[autocomplete] iTunes fetch warning:', err.message);
+    }
+  }
+
+  const finalResults = candidates.slice(0, 3);
+  autocompleteCache[norm] = finalResults;
+  return finalResults;
+}
+
 const server = http.createServer(async (req, res) => {
   // CORS Headers
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -476,6 +596,27 @@ const server = http.createServer(async (req, res) => {
       res.writeHead(400, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: false, error: 'Invalid payload' }));
     });
+    return;
+  }
+
+  // GET /api/autocomplete?q=... -> Return top 3 landmark albums for an artist or album query
+  if (pathname === '/api/autocomplete' && req.method === 'GET') {
+    const q = (urlObj.searchParams.get('q') || '').trim();
+    if (!q || q.length < 2) {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: true, results: [] }));
+      return;
+    }
+
+    try {
+      const results = await getAutocompleteAlbums(q);
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: true, results }));
+    } catch (err) {
+      console.warn('[autocomplete] Request error:', err.message);
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, results: [] }));
+    }
     return;
   }
 
