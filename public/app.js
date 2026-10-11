@@ -71,6 +71,7 @@ let hasServerKey = false;
 let pendingFavoriteAlbum = null;
 const MODEL_NAME = "gemini-3.8-flash";
 let activeAppraisalId = 0;
+let hasUserInteracted = false;
 
 // ============================================================================
 // 2. DOM ELEMENTS
@@ -1386,6 +1387,7 @@ function updateAuthUI(isLoggedIn) {
     if (navSignInBtn) navSignInBtn.classList.add("hidden");
     if (userProfileWrap) userProfileWrap.classList.remove("hidden");
     if (signoutBtn) signoutBtn.classList.remove("hidden");
+    updateAdminUI(checkAdminAccess(currentUser));
     if (userAvatar) {
       const name = currentUser.displayName || currentUser.email || "Alex";
       userAvatar.onerror = () => {
@@ -1397,6 +1399,7 @@ function updateAuthUI(isLoggedIn) {
       userAvatar.classList.remove("hidden");
     }
   } else {
+    updateAdminUI(false);
     if (userProfileWrap) userProfileWrap.classList.add("hidden");
     if (signoutBtn) signoutBtn.classList.add("hidden");
     if (userAvatar) {
@@ -1490,7 +1493,7 @@ onAuthStateChanged(auth, async (user) => {
   await serverConfigReady;
 
   if (user) {
-    if (serverAuthMode === "corporate" && (!user.email || !user.email.toLowerCase().endsWith("@google.com"))) {
+    if (serverAuthMode === "corporate" && (!user.email || (!user.email.toLowerCase().endsWith("@google.com") && user.email.toLowerCase() !== "aosterloh@gmail.com"))) {
       await signOut(auth);
       showAuthError(`Access Denied: You authenticated with ${user.email}. Only @google.com accounts are permitted.`);
       updateAuthUI(false);
@@ -1535,6 +1538,368 @@ function createAvatarPlaceholder(name) {
   const initial = (name ? name.charAt(0) : "V").toUpperCase();
   return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="16" fill="%234285F4"/><text x="16" y="21" font-family="sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">${initial}</text></svg>`;
 }
+
+// ============================================================================
+// 4b. ADMIN AUTHORIZATION & WEBSITE ANALYTICS ENGINE
+// ============================================================================
+const ADMIN_EMAILS = ["aosterloh@gmail.com", "aosterloh@google.com"];
+
+function checkAdminAccess(user) {
+  if (!user || !user.email) return false;
+  return ADMIN_EMAILS.includes(user.email.toLowerCase());
+}
+
+function updateAdminUI(isAdmin) {
+  const adminBtn = document.getElementById("admin-stats-btn");
+  if (adminBtn) {
+    if (isAdmin) {
+      adminBtn.classList.remove("hidden");
+    } else {
+      adminBtn.classList.add("hidden");
+    }
+  }
+}
+
+function escapeAdminHtml(str) {
+  if (!str) return "";
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function getOrCreateSessionId() {
+  try {
+    let sid = sessionStorage.getItem("vh_session_id");
+    if (!sid) {
+      sid = "sid_" + Date.now().toString(36) + "_" + Math.random().toString(36).substring(2, 8);
+      sessionStorage.setItem("vh_session_id", sid);
+    }
+    return sid;
+  } catch (e) {
+    return "sid_default";
+  }
+}
+
+async function trackVisit() {
+  try {
+    const sessionId = getOrCreateSessionId();
+    await fetch("/api/track/visit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ sessionId, path: window.location.pathname, referrer: document.referrer || "" })
+    });
+  } catch (e) {}
+}
+
+async function trackSearch(query, isAi, hit) {
+  if (!query) return;
+  try {
+    await fetch("/api/track/search", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query, isAi: !!isAi, hit: !!hit })
+    });
+  } catch (e) {}
+}
+
+async function trackStoreClick(store, query, albumTitle) {
+  try {
+    await fetch("/api/track/click", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ store, query: query || "", albumTitle: albumTitle || "" })
+    });
+  } catch (e) {}
+}
+
+// Global click listener for affiliate / store links
+document.addEventListener("click", (e) => {
+  const link = e.target.closest("a");
+  if (!link || !link.href) return;
+  const href = link.href.toLowerCase();
+  let store = null;
+  if (href.includes("jpc.de") || href.includes("10711")) store = "jpc";
+  else if (href.includes("hhv.de") || href.includes("10537")) store = "hhv";
+  else if (href.includes("discogs.com")) store = "discogs";
+  else if (href.includes("ebay.")) store = "ebay";
+  else if (href.includes("amazon.")) store = "amazon";
+
+  if (store) {
+    const currentQuery = lastSearchQuery || document.getElementById("search-input")?.value || "";
+    const albumTitle = currentAppraisedAlbum?.title || "";
+    trackStoreClick(store, currentQuery, albumTitle);
+  }
+});
+
+let cachedAdminData = null;
+
+async function fetchAndRenderAdminStats(forceRefresh = false) {
+  if (!currentUser || !currentUser.email) return;
+
+  const refreshBtn = document.getElementById("refresh-stats-btn");
+  if (refreshBtn) refreshBtn.classList.add("loading");
+
+  try {
+    const res = await fetch("/api/admin/stats", {
+      headers: {
+        "x-admin-email": currentUser.email
+      }
+    });
+
+    if (!res.ok) {
+      showToast("Access Denied: Admin authorization required");
+      return;
+    }
+
+    const data = await res.json();
+    if (!data.success) {
+      showToast("Could not load admin stats");
+      return;
+    }
+
+    cachedAdminData = data;
+    renderAdminStatsUI(data);
+    if (forceRefresh) showToast("Live stats updated");
+  } catch (err) {
+    console.error("Admin stats fetch error:", err);
+    showToast("Error loading admin stats");
+  } finally {
+    if (refreshBtn) refreshBtn.classList.remove("loading");
+  }
+}
+
+function renderAdminStatsUI(data) {
+  const stats = data.stats || {};
+  const visits = stats.visits || {};
+  const searches = stats.searches || {};
+  const clicks = stats.clicks || {};
+  const byStore = clicks.byStore || {};
+
+  // 1. KPI Cards
+  const totalVisitsEl = document.getElementById("stat-total-visits");
+  if (totalVisitsEl) totalVisitsEl.textContent = (visits.total || 0).toLocaleString();
+  const todayVisitsEl = document.getElementById("stat-today-visits");
+  if (todayVisitsEl) todayVisitsEl.textContent = `Today: ${(data.todayVisits || 0).toLocaleString()} (Uniq: ${data.uniqueSessionsCount || 0})`;
+
+  const totalSearchesEl = document.getElementById("stat-total-searches");
+  if (totalSearchesEl) totalSearchesEl.textContent = (searches.total || 0).toLocaleString();
+  const aiSearchesEl = document.getElementById("stat-ai-searches");
+  if (aiSearchesEl) aiSearchesEl.textContent = `AI Sommelier: ${(searches.aiAppraisals || 0).toLocaleString()}`;
+
+  const totalClicksEl = document.getElementById("stat-total-clicks");
+  if (totalClicksEl) totalClicksEl.textContent = (clicks.total || 0).toLocaleString();
+
+  let topStoreName = "None";
+  let maxClicks = 0;
+  for (const [store, count] of Object.entries(byStore)) {
+    if (count > maxClicks) {
+      maxClicks = count;
+      topStoreName = store.toUpperCase();
+    }
+  }
+  const topStoreEl = document.getElementById("stat-top-store");
+  if (topStoreEl) topStoreEl.textContent = `Top: ${topStoreName} (${maxClicks})`;
+
+  const catalogCountEl = document.getElementById("stat-catalog-count");
+  if (catalogCountEl) catalogCountEl.textContent = (data.catalogCount || 0).toLocaleString();
+  const cachedCoversEl = document.getElementById("stat-cached-covers");
+  if (cachedCoversEl) cachedCoversEl.textContent = `Covers: ${(data.imageCount || 0).toLocaleString()}`;
+
+  const favsCountEl = document.getElementById("stat-favs-count");
+  if (favsCountEl) favsCountEl.textContent = (data.totalFavorites || 0).toLocaleString();
+  const activeUsersEl = document.getElementById("stat-active-users");
+  if (activeUsersEl) activeUsersEl.textContent = `Users: ${(data.userCount || 0).toLocaleString()}`;
+
+  const uptimeEl = document.getElementById("stat-uptime");
+  if (uptimeEl) {
+    const mins = Math.floor((data.uptimeSeconds || 0) / 60);
+    const hrs = Math.floor(mins / 60);
+    uptimeEl.textContent = hrs > 0 ? `${hrs}h ${mins % 60}m` : `${mins}m`;
+  }
+  const keyPoolEl = document.getElementById("stat-key-pool");
+  if (keyPoolEl) keyPoolEl.textContent = `Gemini Keys: ${data.keyCount || 0}`;
+
+  // 2. Store Clicks Bars
+  const storeBarsContainer = document.getElementById("store-clicks-bars");
+  if (storeBarsContainer) {
+    storeBarsContainer.innerHTML = "";
+    const storeLabels = {
+      jpc: { label: "JPC.de (Germany / EU)", color: "#e88024" },
+      hhv: { label: "HHV.de (Berlin / Vinyl)", color: "#c94a29" },
+      discogs: { label: "Discogs Marketplace", color: "#666666" },
+      ebay: { label: "eBay (New & Used)", color: "#0064d2" },
+      amazon: { label: "Amazon Vinyl", color: "#ff9900" }
+    };
+
+    const totalStoreClicks = clicks.total || 0;
+    for (const [key, meta] of Object.entries(storeLabels)) {
+      const count = byStore[key] || 0;
+      const pct = totalStoreClicks > 0 ? Math.round((count / totalStoreClicks) * 100) : 0;
+      
+      const barRow = document.createElement("div");
+      barRow.className = "store-bar-row";
+      barRow.innerHTML = `
+        <div class="store-bar-label-line">
+          <span class="store-bar-name">${meta.label}</span>
+          <span class="store-bar-count">${count} clicks (${pct}%)</span>
+        </div>
+        <div class="store-bar-track">
+          <div class="store-bar-fill" style="width: ${pct}%; background-color: ${meta.color};"></div>
+        </div>
+      `;
+      storeBarsContainer.appendChild(barRow);
+    }
+  }
+
+  // 3. Top Searched Vinyl
+  const topListContainer = document.getElementById("top-searches-list");
+  if (topListContainer) {
+    topListContainer.innerHTML = "";
+    const topQueries = Object.entries(searches.topQueries || {})
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 8);
+
+    if (topQueries.length === 0) {
+      topListContainer.innerHTML = `<div class="empty-state-text">No search history recorded yet.</div>`;
+    } else {
+      topQueries.forEach(([q, count], idx) => {
+        const item = document.createElement("div");
+        item.className = "top-search-item";
+        item.innerHTML = `
+          <span class="top-rank">#${idx + 1}</span>
+          <span class="top-query-title" title="${escapeAdminHtml(q)}">${escapeAdminHtml(q)}</span>
+          <span class="top-query-count">${count} ${count === 1 ? "search" : "searches"}</span>
+        `;
+        item.addEventListener("click", () => {
+          document.getElementById("close-admin-stats-btn")?.click();
+          const searchInput = document.getElementById("search-input");
+          if (searchInput) {
+            searchInput.value = q;
+            appraiseAlbum(q);
+          }
+        });
+        topListContainer.appendChild(item);
+      });
+    }
+  }
+
+  // 4. Live Activity Feed Table
+  const feedBody = document.getElementById("activity-feed-body");
+  if (feedBody) {
+    feedBody.innerHTML = "";
+    const combinedEvents = [];
+
+    (searches.recent || []).forEach(s => {
+      combinedEvents.push({
+        type: "SEARCH",
+        time: s.timestamp,
+        detail: s.query,
+        origin: s.hit ? "Catalog Cache Hit" : (s.isAi ? "Gemini Sommelier AI" : "Search")
+      });
+    });
+
+    (clicks.recent || []).forEach(c => {
+      combinedEvents.push({
+        type: "CLICK",
+        time: c.timestamp,
+        detail: c.albumTitle || c.query || "Outbound link",
+        origin: c.store.toUpperCase()
+      });
+    });
+
+    combinedEvents.sort((a, b) => b.time - a.time);
+    const recentEvents = combinedEvents.slice(0, 20);
+
+    if (recentEvents.length === 0) {
+      feedBody.innerHTML = `<tr><td colspan="4" class="empty-feed-cell">No recent events tracked yet.</td></tr>`;
+    } else {
+      recentEvents.forEach(evt => {
+        const tr = document.createElement("tr");
+        const dateStr = new Date(evt.time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+        const typeBadge = evt.type === "CLICK"
+          ? `<span class="event-badge badge-click">STORE CLICK</span>`
+          : `<span class="event-badge badge-search">SEARCH</span>`;
+        tr.innerHTML = `
+          <td class="event-time">${dateStr}</td>
+          <td>${typeBadge}</td>
+          <td class="event-detail">${escapeAdminHtml(evt.detail)}</td>
+          <td class="event-origin">${escapeAdminHtml(evt.origin)}</td>
+        `;
+        feedBody.appendChild(tr);
+      });
+    }
+  }
+}
+
+function exportAdminStatsJson() {
+  if (!cachedAdminData) return;
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(cachedAdminData, null, 2));
+  const downloadAnchor = document.createElement("a");
+  downloadAnchor.setAttribute("href", dataStr);
+  downloadAnchor.setAttribute("download", `vinylhound-stats-${new Date().toISOString().slice(0, 10)}.json`);
+  document.body.appendChild(downloadAnchor);
+  downloadAnchor.click();
+  downloadAnchor.remove();
+  showToast("Exported stats JSON");
+}
+
+// Modal Event Listeners
+const adminStatsBtn = document.getElementById("admin-stats-btn");
+const adminStatsModal = document.getElementById("admin-stats-modal");
+const closeAdminStatsBtn = document.getElementById("close-admin-stats-btn");
+const refreshStatsBtn = document.getElementById("refresh-stats-btn");
+const exportStatsBtn = document.getElementById("export-stats-btn");
+
+if (adminStatsBtn) {
+  adminStatsBtn.addEventListener("click", () => {
+    if (!checkAdminAccess(currentUser)) {
+      showToast("Access Restricted: Admin accounts only");
+      return;
+    }
+    if (adminStatsModal) {
+      adminStatsModal.classList.remove("hidden");
+      fetchAndRenderAdminStats();
+    }
+  });
+}
+
+if (closeAdminStatsBtn) {
+  closeAdminStatsBtn.addEventListener("click", () => {
+    if (adminStatsModal) adminStatsModal.classList.add("hidden");
+  });
+}
+
+if (refreshStatsBtn) {
+  refreshStatsBtn.addEventListener("click", () => {
+    fetchAndRenderAdminStats(true);
+  });
+}
+
+if (exportStatsBtn) {
+  exportStatsBtn.addEventListener("click", () => {
+    exportAdminStatsJson();
+  });
+}
+
+if (adminStatsModal) {
+  adminStatsModal.addEventListener("click", (e) => {
+    if (e.target === adminStatsModal) {
+      adminStatsModal.classList.add("hidden");
+    }
+  });
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && adminStatsModal && !adminStatsModal.classList.contains("hidden")) {
+    adminStatsModal.classList.add("hidden");
+  }
+});
+
+// Track initial visit
+trackVisit();
 
 // ============================================================================
 // 5. SERVER CONFIG & GEMINI API KEY MANAGEMENT
@@ -1914,7 +2279,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "The indisputable cornerstone of every serious physical collection on Earth—an auditory masterclass from the first needle drop to the run-out groove.",
       collectorScore: { overallScore: 99, discogsRating: "4.78 / 5.0", ratingsCount: "85k+ ratings", tier: "Essential Masterpiece", verdict: "The definitive analog benchmark. Unrivaled dynamic headroom, iconic gatefold packaging, and an essential physical listening journey." },
       streetPriceGermany: { newEur: "€32 – €38", usedEur: "€18 – €28", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Pink Floyd The Dark Side of the Moon"
+      coverSearchTerm: "Pink Floyd The Dark Side of the Moon",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/0b/5b/66/0b5b6697-9d7e-86aa-1971-7a370d6b1d34/859744553750_cover.jpg/600x600bb.jpg",
+      youtubeVideoId: "MERzPCJhRVE",
     },
     {
       title: "Abbey Road",
@@ -1929,7 +2296,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "An iconic gatefold landmark with legendary Medley transitions engineered specifically for uninterrupted continuous physical playback.",
       collectorScore: { overallScore: 99, discogsRating: "4.81 / 5.0", ratingsCount: "70k+ ratings", tier: "Essential Masterpiece", verdict: "The ultimate side-two vinyl medley. Immense stereo separation, timeless melodic genius, and a monumental physical listening journey." },
       streetPriceGermany: { newEur: "€30 – €36", usedEur: "€18 – €26", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "The Beatles Abbey Road"
+      coverSearchTerm: "The Beatles Abbey Road",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/53/43/485343e3-dd6a-0034-faec-f4b6403f8108/13UMGIM63890.rgb.jpg/600x600bb.jpg",
+      youtubeVideoId: "oVW6wJ7MYDM",
     },
     {
       title: "OK Computer",
@@ -1944,7 +2313,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "The definitive late-90s art-rock monument that revolutionized analog production on physical gatefold vinyl.",
       collectorScore: { overallScore: 98, discogsRating: "4.77 / 5.0", ratingsCount: "62k+ ratings", tier: "Essential Masterpiece", verdict: "Dystopian analog masterpiece. Godrich's panoramic production and acoustic dynamics sound dramatically wider and heavier on 180g physical vinyl." },
       streetPriceGermany: { newEur: "€34 – €40", usedEur: "€22 – €30", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Radiohead OK Computer"
+      coverSearchTerm: "Radiohead OK Computer",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/07/60/ba/0760ba0f-148c-b18f-d0ff-169ee96f3af5/634904078164.png/600x600bb.jpg",
+      youtubeVideoId: "xZUBP-uWwUE",
     },
     {
       title: "Led Zeppelin IV",
@@ -1959,7 +2330,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "Monumental physical rock power with acoustic folk subtleties that demand a proper turntable needle drop.",
       collectorScore: { overallScore: 98, discogsRating: "4.76 / 5.0", ratingsCount: "58k+ ratings", tier: "Essential Masterpiece", verdict: "Hard rock perfection. Bonham's thunderous drum reverb and Page's layered acoustic guitars deliver massive dynamic impact on physical vinyl." },
       streetPriceGermany: { newEur: "€28 – €34", usedEur: "€16 – €24", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Led Zeppelin IV"
+      coverSearchTerm: "Led Zeppelin IV",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/5c/15/9b/5c159b27-95ca-b9a7-84e3-28e795fffd39/dj.kvkrpptq.jpg/600x600bb.jpg",
+      youtubeVideoId: "2KPEHohJMuw",
     },
     {
       title: "The Rise and Fall of Ziggy Stardust",
@@ -1974,7 +2347,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "A dazzling, conceptual theatrical masterpiece that pulls you into Bowie's interstellar glam world with unmatched analog warmth.",
       collectorScore: { overallScore: 97, discogsRating: "4.74 / 5.0", ratingsCount: "44k+ ratings", tier: "Essential Masterpiece", verdict: "The quintessential glam rock narrative. Mick Ronson's guitars and Bowie's vocal theatricality burst with vibrant analog energy on vinyl." },
       streetPriceGermany: { newEur: "€28 – €35", usedEur: "€18 – €26", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "David Bowie Ziggy Stardust"
+      coverSearchTerm: "David Bowie Ziggy Stardust",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/5f/fa/56/5ffa56c2-ea1f-7a17-6bad-192ff9b6476d/825646124206.jpg/600x600bb.jpg",
+      youtubeVideoId: "2ObjtVdsV3I",
     },
     {
       title: "Unknown Pleasures",
@@ -1989,7 +2364,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "The ultimate dark, cold, evocative post-punk pressing housed in Peter Saville's iconic pulsar waveform textured sleeve.",
       collectorScore: { overallScore: 97, discogsRating: "4.73 / 5.0", ratingsCount: "40k+ ratings", tier: "Essential Masterpiece", verdict: "Hannett's revolutionary spatial production sounds uniquely haunting and visceral on vinyl, with Peter Hook's bass driving the analog groove." },
       streetPriceGermany: { newEur: "€26 – €32", usedEur: "€18 – €26", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Joy Division Unknown Pleasures"
+      coverSearchTerm: "Joy Division Unknown Pleasures",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/13/90/c0/1390c072-4249-3739-7b3d-fd73ee4a5698/825646562831.jpg/600x600bb.jpg",
+      youtubeVideoId: "fd6aTSWNEVU",
     }
   ],
 
@@ -2007,7 +2384,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "The ultimate late-night companion—pours out of the turntable like warm amber whiskey in a dimly lit room.",
       collectorScore: { overallScore: 98, discogsRating: "4.82 / 5.0", ratingsCount: "54k+ ratings", tier: "Essential Masterpiece", verdict: "Unsurpassed analog intimacy. The spatial realism of Bill Evans' piano chords and Miles' breath into the Harmon mute defines audiophile jazz." },
       streetPriceGermany: { newEur: "€26 – €32", usedEur: "€16 – €24", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Miles Davis Kind of Blue"
+      coverSearchTerm: "Miles Davis Kind of Blue",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music/7f/9f/d6/mzi.vtnaewef.jpg/600x600bb.jpg",
+      youtubeVideoId: "zqNTltOGh5c",
     },
     {
       title: "A Love Supreme",
@@ -2022,7 +2401,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "A deeply spiritual, transcendent midnight experience where every note reverberates with raw emotional urgency.",
       collectorScore: { overallScore: 98, discogsRating: "4.83 / 5.0", ratingsCount: "38k+ ratings", tier: "Essential Masterpiece", verdict: "Van Gelder's iconic Englewood Cliffs acoustics. The spiritual intensity and raw saxophone dynamics make this a holy grail physical pressing." },
       streetPriceGermany: { newEur: "€28 – €34", usedEur: "€18 – €28", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "John Coltrane A Love Supreme"
+      coverSearchTerm: "John Coltrane A Love Supreme",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/90/d4/3b/90d43b62-701d-c8bf-dfb3-0fdd2aabd995/198588190395.jpg/600x600bb.jpg",
+      youtubeVideoId: "clC6cgoh1sU",
     },
     {
       title: "Waltz for Debby",
@@ -2037,7 +2418,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "The pinnacle of intimate, romantic piano jazz—gentle, acoustic, and breathtakingly atmospheric.",
       collectorScore: { overallScore: 97, discogsRating: "4.79 / 5.0", ratingsCount: "22k+ ratings", tier: "Essential Masterpiece", verdict: "Unrivaled holographic realism. Scott LaFaro's counter-melodic bass and Evans' delicate touch make you feel physically present at the Vanguard." },
       streetPriceGermany: { newEur: "€28 – €36", usedEur: "€20 – €30", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Bill Evans Trio Waltz for Debby"
+      coverSearchTerm: "Bill Evans Trio Waltz for Debby",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/28/a1/59/28a1595d-5592-2490-0399-1c802c34e327/10CMGIM00782.rgb.jpg/600x600bb.jpg",
+      youtubeVideoId: "a2LFVUnRN-k",
     },
     {
       title: "Time Out",
@@ -2052,7 +2435,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "Sophisticated rhythm exploration in unusual time signatures with smooth, effortless West Coast cool.",
       collectorScore: { overallScore: 96, discogsRating: "4.72 / 5.0", ratingsCount: "35k+ ratings", tier: "Essential Masterpiece", verdict: "Desmond's crystal alto tone and Morello's pristine 5/4 drum solo deliver benchmark analog presence and effortless swing." },
       streetPriceGermany: { newEur: "€25 – €32", usedEur: "€15 – €22", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Dave Brubeck Quartet Time Out"
+      coverSearchTerm: "Dave Brubeck Quartet Time Out",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/39/da/45/39da45ea-0a55-8668-0a84-4017b45fb13e/dj.rzbgoyft.jpg/600x600bb.jpg",
+      youtubeVideoId: "kc34Uj8wlmE",
     },
     {
       title: "Chet",
@@ -2067,7 +2452,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "The definition of melancholic late-night tranquility—pure nocturnal elegance by candlelight.",
       collectorScore: { overallScore: 96, discogsRating: "4.75 / 5.0", ratingsCount: "18k+ ratings", tier: "Essential Masterpiece", verdict: "Nocturnal jazz perfection. Baker's fragile, lyrical trumpet tone paired with Bill Evans' sensitive chords creates pure analog poetry." },
       streetPriceGermany: { newEur: "€27 – €35", usedEur: "€18 – €28", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Chet Baker Chet"
+      coverSearchTerm: "Chet Baker Chet",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/62/b2/eb/62b2ebd5-8037-5e00-381a-2ef83c97171a/20CRGIM25372.rgb.jpg/600x600bb.jpg",
+      youtubeVideoId: "06p3d94qH54",
     }
   ],
 
@@ -2085,7 +2472,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "Pure 1977 California gold with monumental vocal harmonies and infectious analog rhythm.",
       collectorScore: { overallScore: 96, discogsRating: "4.69 / 5.0", ratingsCount: "42k+ ratings", tier: "Essential Masterpiece", verdict: "Pristine acoustic production with immense analog punch. Mick Fleetwood's percussion and three-part harmonies sound breathtaking on vinyl." },
       streetPriceGermany: { newEur: "€28 – €34", usedEur: "€14 – €22", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Fleetwood Mac Rumours"
+      coverSearchTerm: "Fleetwood Mac Rumours",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/4d/13/ba/4d13bac3-d3d5-7581-2c74-034219eadf2b/081227970949.jpg/600x600bb.jpg",
+      youtubeVideoId: "SLlYUlS_Awo",
     },
     {
       title: "Wish You Were Here",
@@ -2100,7 +2489,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "Sprawling, emotional analog synth landscapes and soulful guitar solos mourning Syd Barrett.",
       collectorScore: { overallScore: 98, discogsRating: "4.79 / 5.0", ratingsCount: "68k+ ratings", tier: "Essential Masterpiece", verdict: "Peak analog synthesizer architecture and emotional guitar solos. The vinyl dynamics on 'Shine On' define hi-fi listening." },
       streetPriceGermany: { newEur: "€30 – €36", usedEur: "€18 – €28", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Pink Floyd Wish You Were Here"
+      coverSearchTerm: "Pink Floyd Wish You Were Here",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/aa/e0/ab/aae0ab6a-d906-a189-81bf-70b56aa43f7a/886445635843.jpg/600x600bb.jpg",
+      youtubeVideoId: "8UXircX4AMG",
     },
     {
       title: "Exile on Main St.",
@@ -2115,7 +2506,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "A double-gatefold blues-rock masterpiece with greasy horns, soulful gospel backing, and unmatched rock-and-roll attitude.",
       collectorScore: { overallScore: 97, discogsRating: "4.73 / 5.0", ratingsCount: "36k+ ratings", tier: "Essential Masterpiece", verdict: "Murky, swampy analog greatness. Keith Richards' telecaster riffs and the loose basement atmosphere belong on 12-inch vinyl." },
       streetPriceGermany: { newEur: "€32 – €38", usedEur: "€20 – €30", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "The Rolling Stones Exile on Main St"
+      coverSearchTerm: "The Rolling Stones Exile on Main St",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/7f/e0/b4/7fe0b4da-36cd-a1d0-0f19-ef3fec18e3cd/08UMGIM15742.rgb.jpg/600x600bb.jpg",
+      youtubeVideoId: "_lNP-x94-SE",
     },
     {
       title: "Boston",
@@ -2130,7 +2523,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "Huge soaring vocal hooks, twin-lead guitar walls, and undeniable feel-good arena energy.",
       collectorScore: { overallScore: 95, discogsRating: "4.63 / 5.0", ratingsCount: "28k+ ratings", tier: "Collector Classic", verdict: "A technical triumph of analog multitracking. Scholz's layered acoustic guitars and soaring vocals sound electrifying on vinyl." },
       streetPriceGermany: { newEur: "€26 – €32", usedEur: "€14 – €20", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Boston Boston album"
+      coverSearchTerm: "Boston Boston album",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/e3/08/9a/e3089ac9-a820-5ee9-64be-39500ad8a5e2/886444824972.jpg/600x600bb.jpg",
+      youtubeVideoId: "t4QK8RxCAwo",
     }
   ],
 
@@ -2148,7 +2543,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "Summery neon-lit Tokyo cruise with shimmering slap bass and unforgettable breezy melodies.",
       collectorScore: { overallScore: 94, discogsRating: "4.65 / 5.0", ratingsCount: "12k+ ratings", tier: "Collector Classic", verdict: "Tokyo 80s analog perfection. Kadomatsu's lush brass and tight slap bass grooves deliver infectious vinyl warmth and audiophile joy." },
       streetPriceGermany: { newEur: "€35 – €45", usedEur: "€28 – €40", conditionNote: "Original Japanese pressing" },
-      coverSearchTerm: "Anri Timely"
+      coverSearchTerm: "Anri Timely",
+      coverUrl: "https://cdn-images.dzcdn.net/images/cover/08b0f0161add7040ddcdeca3d97ba27e/1000x1000-000000-80-0-0.jpg",
+      youtubeVideoId: "b738w_zQ9E0",
     },
     {
       title: "For You",
@@ -2163,7 +2560,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "The crown jewel of Japanese City Pop—pure tropical sunshine, driving rhythm sections, and impeccable analog engineering.",
       collectorScore: { overallScore: 98, discogsRating: "4.82 / 5.0", ratingsCount: "16k+ ratings", tier: "Essential Masterpiece", verdict: "The definitive holy grail of City Pop. The guitar intro to 'SPARKLE' and the sparkling rhythm section are unmatched on vinyl." },
       streetPriceGermany: { newEur: "€42 – €52", usedEur: "€34 – €48", conditionNote: "Japanese reissue / original" },
-      coverSearchTerm: "Tatsuro Yamashita For You"
+      coverSearchTerm: "Tatsuro Yamashita For You",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/71/26/d8/7126d88b-7cf5-5ba5-7043-f1d26a8dd87f/jacket_MHXX00766B00Z_550.jpg/600x600bb.jpg",
+      youtubeVideoId: "7ijMDQgvW08",
     },
     {
       title: "Pocket Park",
@@ -2178,7 +2577,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "Tokyo nightlife magic powered by an irresistible disco-funk groove and world-renowned nostalgic vocals.",
       collectorScore: { overallScore: 95, discogsRating: "4.71 / 5.0", ratingsCount: "14k+ ratings", tier: "Essential Masterpiece", verdict: "Home of 'Stay With Me'. Outstanding Tokyo session musicianship with punchy analog drums, tight bass, and irresistible City Pop hooks." },
       streetPriceGermany: { newEur: "€36 – €46", usedEur: "€28 – €38", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Miki Matsubara Pocket Park"
+      coverSearchTerm: "Miki Matsubara Pocket Park",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/06/eb/b1/06ebb16a-7e31-5818-4be9-684cb57622dc/PA00204086_0_234544_jacket.jpg/600x600bb.jpg",
+      youtubeVideoId: "M0qMgoChzGI",
     },
     {
       title: "Sunshower",
@@ -2193,7 +2594,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "Lush, breezy Tokyo jazz-fusion with sophisticated horn arrangements and sultry, breezy vocals.",
       collectorScore: { overallScore: 96, discogsRating: "4.76 / 5.0", ratingsCount: "11k+ ratings", tier: "Essential Masterpiece", verdict: "Sakamoto's genius fusion arrangements and Onuki's breezy vocals make this a revered audiophile classic in Japanese vinyl circles." },
       streetPriceGermany: { newEur: "€38 – €48", usedEur: "€30 – €42", conditionNote: "Japanese pressing" },
-      coverSearchTerm: "Taeko Onuki Sunshower"
+      coverSearchTerm: "Taeko Onuki Sunshower",
+      coverUrl: "https://cdn-images.dzcdn.net/images/cover/d97de7a8655d9ebdbdad68a4578bce8c/1000x1000-000000-80-0-0.jpg",
+      youtubeVideoId: "39G4q-G7qEw",
     }
   ],
 
@@ -2211,7 +2614,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "Heartbreakingly intimate acoustic beauty for a quiet rainy evening by candlelight.",
       collectorScore: { overallScore: 97, discogsRating: "4.74 / 5.0", ratingsCount: "28k+ ratings", tier: "Essential Masterpiece", verdict: "Sparse, spectral acoustic perfection. The analog proximity of Drake's Guild guitar and quiet vocals makes the listener feel alone in the room with him." },
       streetPriceGermany: { newEur: "€27 – €33", usedEur: "€18 – €26", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Nick Drake Pink Moon"
+      coverSearchTerm: "Nick Drake Pink Moon",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/42/e7/8d/42e78dd1-12fd-f0c0-cc0e-15ee03288664/075679760913.jpg/600x600bb.jpg",
+      youtubeVideoId: "3sQv04CFedE",
     },
     {
       title: "Blue",
@@ -2226,7 +2631,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "Raw, confessional folk poetry with staggering musical elegance and emotional honesty.",
       collectorScore: { overallScore: 98, discogsRating: "4.80 / 5.0", ratingsCount: "35k+ ratings", tier: "Essential Masterpiece", verdict: "The benchmark confessional folk record. Lewy's pristine engineering captures Joni's dulcimer and soaring soprano with astonishing physical clarity." },
       streetPriceGermany: { newEur: "€28 – €35", usedEur: "€18 – €26", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Joni Mitchell Blue"
+      coverSearchTerm: "Joni Mitchell Blue",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/00/a2/43/00a24363-cf69-bfd2-a26a-a042d57ab141/075992719926.jpg/600x600bb.jpg",
+      youtubeVideoId: "tWb_mC3-c_A",
     },
     {
       title: "Carrie & Lowell",
@@ -2241,7 +2648,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "Delicate, whisper-soft acoustic grief transformed into transcendent, luminous folk melodies.",
       collectorScore: { overallScore: 96, discogsRating: "4.72 / 5.0", ratingsCount: "26k+ ratings", tier: "Essential Masterpiece", verdict: "Intimate modern folk grief. The subtle acoustic picking and whisper-close vocal capture sound devastatingly beautiful on vinyl." },
       streetPriceGermany: { newEur: "€26 – €32", usedEur: "€16 – €22", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Sufjan Stevens Carrie and Lowell"
+      coverSearchTerm: "Sufjan Stevens Carrie and Lowell",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music91/v4/6b/20/6a/6b206ac1-e1b5-316d-334d-59df7b727fb6/656605613666.jpg/600x600bb.jpg",
+      youtubeVideoId: "lVN4S6xX8tQ",
     },
     {
       title: "Bridge Over Troubled Water",
@@ -2256,7 +2665,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "Soaring acoustic harmonies, baroque folk arrangements, and grand orchestral climaxes.",
       collectorScore: { overallScore: 96, discogsRating: "4.68 / 5.0", ratingsCount: "30k+ ratings", tier: "Essential Masterpiece", verdict: "Halee's production triumphs on vinyl. The spatial reverberation on 'The Boxer' and Garfunkel's soaring vocals demonstrate physical dynamic range." },
       streetPriceGermany: { newEur: "€26 – €32", usedEur: "€12 – €18", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Simon and Garfunkel Bridge Over Troubled Water"
+      coverSearchTerm: "Simon and Garfunkel Bridge Over Troubled Water",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a3/84/0a/a3840a6d-44e8-0afe-fc3e-316c517dddfe/5099749521421.jpg/600x600bb.jpg",
+      youtubeVideoId: "4G-YQA_mnW4",
     }
   ],
 
@@ -2274,7 +2685,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "The ultimate hi-fi demonstration record—guaranteed to showcase every ounce of detail in your cartridge and speakers.",
       collectorScore: { overallScore: 98, discogsRating: "4.79 / 5.0", ratingsCount: "35k+ ratings", tier: "Essential Masterpiece", verdict: "The undisputed holy grail of hi-fi testing. Incredible dynamic headroom, Steve Gadd's legendary drumming, and pinpoint stereo imaging." },
       streetPriceGermany: { newEur: "€30 – €36", usedEur: "€16 – €26", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Steely Dan Aja"
+      coverSearchTerm: "Steely Dan Aja",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/c2/3c/54/c23c5414-20d1-7aea-f0f5-187974c58d65/23UMGIM79990.rgb.jpg/600x600bb.jpg",
+      youtubeVideoId: "0UqX5kXoDkY",
     },
     {
       title: "The Nightfly",
@@ -2289,7 +2702,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "Sleek, futuristic 1950s optimism engineered with microscopic studio precision and infectious grooves.",
       collectorScore: { overallScore: 97, discogsRating: "4.75 / 5.0", ratingsCount: "26k+ ratings", tier: "Essential Masterpiece", verdict: "The reference recording for transient bass accuracy and clean soundstage. Fagen's perfectionism yields reference-grade physical audio." },
       streetPriceGermany: { newEur: "€28 – €34", usedEur: "€16 – €24", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Donald Fagen The Nightfly"
+      coverSearchTerm: "Donald Fagen The Nightfly",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/98/d0/87/98d0877d-3e15-0f41-ba27-3264e5ae3b09/093624943952.jpg/600x600bb.jpg",
+      youtubeVideoId: "sogYgHlnn60",
     },
     {
       title: "Brothers in Arms",
@@ -2304,7 +2719,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "Peerless dynamic range with crisp, articulate guitar tones and atmospheric synth beds.",
       collectorScore: { overallScore: 96, discogsRating: "4.67 / 5.0", ratingsCount: "42k+ ratings", tier: "Essential Masterpiece", verdict: "Explosive dynamic punch. Knopfler's fingers-on-strings guitar technique and pristine Montserrat studio air sound majestic on vinyl." },
       streetPriceGermany: { newEur: "€28 – €34", usedEur: "€14 – €22", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Dire Straits Brothers in Arms"
+      coverSearchTerm: "Dire Straits Brothers in Arms",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e8/bd/54/e8bd54fd-6595-4ebf-aa4c-58139ed316e6/dj.bngafruf.jpg/600x600bb.jpg",
+      youtubeVideoId: "x2k0cjh8t30",
     },
     {
       title: "Crime of the Century",
@@ -2319,7 +2736,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "Theatrical progressive rock with staggering dynamic range from near-silence to thunderous climaxes.",
       collectorScore: { overallScore: 96, discogsRating: "4.68 / 5.0", ratingsCount: "30k+ ratings", tier: "Essential Masterpiece", verdict: "Ken Scott's benchmark for physical acoustic dynamics. Extreme contrast between delicate whisper passages and roaring rock crescendos." },
       streetPriceGermany: { newEur: "€26 – €32", usedEur: "€14 – €22", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Supertramp Crime of the Century"
+      coverSearchTerm: "Supertramp Crime of the Century",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/39/cd/49/39cd4988-2b67-33bf-1aaa-c401b397c35d/00600753547687.rgb.jpg/600x600bb.jpg",
+      youtubeVideoId: "g02AwKFl80o",
     }
   ],
 
@@ -2337,7 +2756,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "A monumental 21st-century analog masterwork blending human disco virtuosity with electronic innovation.",
       collectorScore: { overallScore: 96, discogsRating: "4.67 / 5.0", ratingsCount: "48k+ ratings", tier: "Essential Masterpiece", verdict: "Spectacular modern analog production with peerless dynamic punch and reference-grade double vinyl mastering." },
       streetPriceGermany: { newEur: "€35 – €42", usedEur: "€24 – €32", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Daft Punk Random Access Memories"
+      coverSearchTerm: "Daft Punk Random Access Memories",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e8/43/5f/e8435ffa-b6b9-b171-40ab-4ff3959ab661/886443919266.jpg/600x600bb.jpg",
+      youtubeVideoId: "IluRBvnYMoY",
     },
     {
       title: "Dummy",
@@ -2352,7 +2773,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "Cinematic noir melancholy with haunting analog warmth and deep trip-hop sub-bass.",
       collectorScore: { overallScore: 95, discogsRating: "4.71 / 5.0", ratingsCount: "30k+ ratings", tier: "Essential Masterpiece", verdict: "A masterpiece born from vinyl sampling. Beth Gibbons' aching vocals and turntable scratching sound infinitely deeper on physical LP." },
       streetPriceGermany: { newEur: "€28 – €34", usedEur: "€16 – €24", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Portishead Dummy"
+      coverSearchTerm: "Portishead Dummy",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c1/71/93/c1719342-df7d-e9c5-c87c-53dae5afb289/00042282855329.rgb.jpg/600x600bb.jpg",
+      youtubeVideoId: "fzz6fQDCKAA",
     },
     {
       title: "Loveless",
@@ -2367,7 +2790,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "Transcendental analog sound immersion where gentle pop melodies float inside a roaring storm of guitars.",
       collectorScore: { overallScore: 97, discogsRating: "4.75 / 5.0", ratingsCount: "38k+ ratings", tier: "Essential Masterpiece", verdict: "The definitive shoegaze monument. The physical analog lacquer cut delivers unmatched spatial texture and tidal waves of tone." },
       streetPriceGermany: { newEur: "€32 – €38", usedEur: "€22 – €30", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "My Bloody Valentine Loveless"
+      coverSearchTerm: "My Bloody Valentine Loveless",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f9/7e/6b/f97e6b94-f307-ae7f-e94c-d74860a44350/887830016094.png/600x600bb.jpg",
+      youtubeVideoId: "FyYMzMa3B64",
     },
     {
       title: "Songs in the Key of Life",
@@ -2382,7 +2807,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "Pure musical genius and joyous 70s funk groove that feels alive on a turning physical platter.",
       collectorScore: { overallScore: 98, discogsRating: "4.81 / 5.0", ratingsCount: "50k+ ratings", tier: "Essential Masterpiece", verdict: "Stevie Wonder's magnum opus. Spectacular 1970s analog soul with punchy live rhythm sections and infectious brass brilliance." },
       streetPriceGermany: { newEur: "€36 – €44", usedEur: "€22 – €32", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Stevie Wonder Songs in the Key of Life"
+      coverSearchTerm: "Stevie Wonder Songs in the Key of Life",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/eb/1f/12/eb1f12ec-474c-63aa-43af-09282f423b9d/00602537004737.rgb.jpg/600x600bb.jpg",
+      youtubeVideoId: "6r3eQWv54lQ",
     },
     {
       title: "Ege Bamyasi",
@@ -2397,7 +2824,9 @@ const SOMMELIER_VAULT = {
       vibeMatch: "Hypnotic German Krautrock grooves with eccentric avant-garde funk that sounds magnificent on physical vinyl.",
       collectorScore: { overallScore: 96, discogsRating: "4.73 / 5.0", ratingsCount: "25k+ ratings", tier: "Essential Masterpiece", verdict: "German Krautrock gold. Liebezeit's robotic drum precision and Czukay's editing make this an essential physical record." },
       streetPriceGermany: { newEur: "€28 – €35", usedEur: "€20 – €30", conditionNote: "Used VG+/EX" },
-      coverSearchTerm: "Can Ege Bamyasi"
+      coverSearchTerm: "Can Ege Bamyasi",
+      coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/55/33/7e/55337e95-d781-1057-cd6a-94ee425b6850/5099930156159.jpg/600x600bb.jpg",
+      youtubeVideoId: "48bO13_kP14",
     }
   ]
 };
@@ -2460,6 +2889,7 @@ function matchSommelierVault(vibeText) {
 
 // Render Sommelier Pick Record (Unified for Vault & LLM Generation)
 function renderSommelierAlbumRecord(rec, isInstantVault = false) {
+  hasUserInteracted = true;
   const sessionToken = ++activeAppraisalId;
   stopAudiophileLoadingTicker();
   loadingState.classList.add("hidden");
@@ -2505,7 +2935,7 @@ function renderSommelierAlbumRecord(rec, isInstantVault = false) {
     playtime: rec.playtime,
     trackCount: rec.trackCount,
     firstTrackTitle: standoutSong,
-    youtubeVideoId: "",
+    youtubeVideoId: rec.youtubeVideoId || "",
     collectorScore: rec.collectorScore,
     coverUrl: rec.coverUrl || generateSvgCover(rec.title, rec.artist),
     streetPriceGermany: rec.streetPriceGermany,
@@ -2530,6 +2960,24 @@ function renderSommelierAlbumRecord(rec, isInstantVault = false) {
     });
   }
 
+  // Immediate DJ & Audio Purge: Synchronously wipe old media & sync DJ queue to new album
+  if (heroYtIframe) {
+    if (rec.youtubeVideoId) {
+      heroYtIframe.src = `https://www.youtube-nocookie.com/embed/${rec.youtubeVideoId}?enablejsapi=1&autoplay=0&origin=${encodeURIComponent(window.location.origin)}`;
+      if (heroYtLink) heroYtLink.href = `https://www.youtube.com/watch?v=${rec.youtubeVideoId}`;
+    } else {
+      heroYtIframe.src = "about:blank";
+    }
+  }
+  if (heroYtBox) heroYtBox.classList.remove("hidden");
+  if (djDeckBar && !djState.isDeckMinimized) djDeckBar.classList.remove("hidden");
+  if (ytTrackTitle) ytTrackTitle.textContent = `${rec.artist} — "${standoutSong}"`;
+
+  djState.queue = buildDjQueue(currentAlbumData, [], djState.mode);
+  djState.currentIndex = 0;
+  renderDjQueueList();
+  updateDjDeckUI();
+
   // Display initial estimated street prices immediately
   const reg = STORE_REGISTRY[currentRegion] || STORE_REGISTRY.DE;
   priceNewEl.textContent = formatRegionalPrice(rec.streetPriceGermany?.newEur || "€29", currentRegion);
@@ -2550,7 +2998,7 @@ function renderSommelierAlbumRecord(rec, isInstantVault = false) {
   renderAlternativesSkeletons();
 
   // Async DJ audio queue load with sessionToken guard
-  loadYouTubeTrack1(rec.artist, rec.title, standoutSong).then(vId => {
+  loadYouTubeTrack1(rec.artist, rec.title, standoutSong, rec.youtubeVideoId || "").then(vId => {
     if (activeAppraisalId !== sessionToken) return;
     if (vId && currentAlbumData && currentAlbumData.title === rec.title) {
       currentAlbumData.youtubeVideoId = vId;
@@ -2595,6 +3043,7 @@ function renderSommelierAlbumRecord(rec, isInstantVault = false) {
 
 async function findAndAppraiseSommelierVinyl(vibeText) {
   if (!vibeText || !vibeText.trim()) return;
+  hasUserInteracted = true;
 
   const sessionToken = ++activeAppraisalId;
   const inputEl = document.getElementById("sommelier-input");
@@ -2694,6 +3143,7 @@ function initSommelier() {
     vibePillsWrap.addEventListener("click", (e) => {
       const pill = e.target.closest(".vibe-pill");
       if (!pill) return;
+      hasUserInteracted = true;
       const vibe = pill.getAttribute("data-vibe");
       if (vibe) {
         findAndAppraiseSommelierVinyl(vibe);
@@ -2703,6 +3153,7 @@ function initSommelier() {
 
   if (sommelierSubmitBtn && sommelierInput) {
     sommelierSubmitBtn.addEventListener("click", () => {
+      hasUserInteracted = true;
       const text = sommelierInput.value.trim();
       if (text) {
         findAndAppraiseSommelierVinyl(text);
@@ -2712,6 +3163,7 @@ function initSommelier() {
     sommelierInput.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
         e.preventDefault();
+        hasUserInteracted = true;
         const text = sommelierInput.value.trim();
         if (text) {
           findAndAppraiseSommelierVinyl(text);
@@ -2921,12 +3373,102 @@ function recordLastDisplayedAlbum(query, album) {
       body: JSON.stringify(sessionRecord)
     }).catch(() => {});
   } catch (e) {}
+
+  // 4. Update dynamic SEO metadata, canonical link, and Schema.org in DOM
+  try {
+    updateDynamicSeo(displayQuery, album);
+  } catch (e) {}
+}
+
+function updateDynamicSeo(displayQuery, album) {
+  if (typeof document === "undefined") return;
+
+  const title = album?.title || "";
+  const artist = album?.artist || "";
+  const label = (artist && title) ? `${artist} – ${title}` : displayQuery;
+  const price = album?.streetPriceGermany?.newEur || "";
+  const coverUrl = album?.coverUrl || "";
+
+  // 1. Update Document Title
+  document.title = `${label} | Vinyl Hound Appraisal & German Street Price`;
+
+  // 2. Update Canonical URL
+  const encodedQuery = encodeURIComponent(displayQuery).replace(/%20/g, '+');
+  const canonicalUrl = `https://vinylhound.de/?album=${encodedQuery}`;
+  let canonicalEl = document.querySelector('link[rel="canonical"]');
+  if (!canonicalEl) {
+    canonicalEl = document.createElement('link');
+    canonicalEl.rel = 'canonical';
+    document.head.appendChild(canonicalEl);
+  }
+  canonicalEl.href = canonicalUrl;
+
+  // 3. Update Meta Description
+  let metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) {
+    metaDesc.setAttribute("content", `Discover ${label} physical vinyl pressing details${price ? ' (Approx. ' + price + ')' : ''}. German street pricing, 180g analog dynamic range, and collector tips on Vinyl Hound.`);
+  }
+
+  // 4. Update Open Graph & Twitter meta tags
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) ogTitle.setAttribute("content", `${label} | Vinyl Hound Appraisal & Crate Digging`);
+  const twTitle = document.querySelector('meta[name="twitter:title"]');
+  if (twTitle) twTitle.setAttribute("content", `${label} | Vinyl Hound Appraisal & Crate Digging`);
+
+  const descContent = `Appraise ${label} on physical vinyl${price ? ' (' + price + ')' : ''}. Analog dynamic range and German street prices.`;
+  const ogDesc = document.querySelector('meta[property="og:description"]');
+  if (ogDesc) ogDesc.setAttribute("content", descContent);
+  const twDesc = document.querySelector('meta[name="twitter:description"]');
+  if (twDesc) twDesc.setAttribute("content", descContent);
+
+  const ogUrl = document.querySelector('meta[property="og:url"]');
+  if (ogUrl) ogUrl.setAttribute("content", canonicalUrl);
+  const twUrl = document.querySelector('meta[name="twitter:url"]');
+  if (twUrl) twUrl.setAttribute("content", canonicalUrl);
+
+  if (coverUrl) {
+    const fullCover = coverUrl.startsWith('/') ? `https://vinylhound.de${coverUrl}` : coverUrl;
+    const ogImg = document.querySelector('meta[property="og:image"]');
+    if (ogImg) ogImg.setAttribute("content", fullCover);
+    const twImg = document.querySelector('meta[name="twitter:image"]');
+    if (twImg) twImg.setAttribute("content", fullCover);
+  }
+
+  // 5. Update or Inject Schema.org MusicAlbum JSON-LD
+  let albumScript = document.getElementById('schema-music-album');
+  if (!albumScript) {
+    albumScript = document.createElement('script');
+    albumScript.id = 'schema-music-album';
+    albumScript.type = 'application/ld+json';
+    document.head.appendChild(albumScript);
+  }
+  const albumSchema = {
+    "@context": "https://schema.org",
+    "@type": "MusicAlbum",
+    "name": title || displayQuery,
+    "byArtist": {
+      "@type": "MusicGroup",
+      "name": artist || "Various Artists"
+    },
+    "url": canonicalUrl,
+    ...(coverUrl ? { "image": coverUrl.startsWith('/') ? `https://vinylhound.de${coverUrl}` : coverUrl } : {}),
+    ...(album?.genre ? { "genre": album.genre } : {}),
+    ...(price ? {
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "EUR",
+        "description": `German vinyl street price: ${price}`
+      }
+    } : {})
+  };
+  albumScript.textContent = JSON.stringify(albumSchema);
 }
 
 let hasRestoredSessionAlbum = false;
 
 async function restoreLastSessionAlbum() {
-  if (hasRestoredSessionAlbum) return;
+  if (hasUserInteracted || hasRestoredSessionAlbum) return;
+  if (currentAlbumData && currentAlbumData.title) return;
   hasRestoredSessionAlbum = true;
 
   let target = null;
@@ -2943,7 +3485,7 @@ async function restoreLastSessionAlbum() {
   } catch (e) {}
 
   // 2. Check client localStorage (0ms instantaneous)
-  if (!target) {
+  if (!target && !hasUserInteracted) {
     try {
       const local = localStorage.getItem("vinyl_last_displayed_album");
       if (local) {
@@ -2953,9 +3495,10 @@ async function restoreLastSessionAlbum() {
   }
 
   // 3. Fallback to server data/last_session.json
-  if (!target || (!target.query && !target.title)) {
+  if (!target && !hasUserInteracted) {
     try {
       const res = await fetch("/api/session/last-album");
+      if (hasUserInteracted || (currentAlbumData && currentAlbumData.title)) return;
       if (res.ok) {
         const data = await res.json();
         if (data.success && data.lastAlbum && (data.lastAlbum.query || data.lastAlbum.title)) {
@@ -2964,6 +3507,8 @@ async function restoreLastSessionAlbum() {
       }
     } catch (e) {}
   }
+
+  if (hasUserInteracted || (currentAlbumData && currentAlbumData.title)) return;
 
   // 4. Fallback to user's most recent saved favorite if available
   if (!target && userFavorites && userFavorites.length > 0) {
@@ -2989,6 +3534,8 @@ async function restoreLastSessionAlbum() {
     target = { query: dayPick, title: dayPick };
   }
 
+  if (hasUserInteracted || (currentAlbumData && currentAlbumData.title)) return;
+
   if (target && (target.query || target.title)) {
     const displayLabel = (target.artist && target.title)
       ? `${target.artist} - ${target.title}`
@@ -2999,7 +3546,7 @@ async function restoreLastSessionAlbum() {
     }
 
     const appraisalQuery = target.query || `${target.artist || ''} ${target.title || ''}`.trim();
-    if (appraisalQuery) {
+    if (appraisalQuery && !hasUserInteracted) {
       // Appraise album: loads immediately from persistent storage catalog
       appraiseAlbum(appraisalQuery);
     }
@@ -3033,6 +3580,7 @@ async function appraiseAlbum(albumName) {
   if (activeAppraisalId !== sessionToken) return;
 
   if (cached) {
+    trackSearch(albumName, false, true);
     stopAudiophileLoadingTicker();
     loadingState.classList.add("hidden");
     resultsSection.classList.remove("hidden");
@@ -3074,6 +3622,24 @@ async function appraiseAlbum(albumName) {
       alternatives: cached.alternatives || [],
       currentAltOffset: 0
     };
+
+    // Immediate DJ & Audio Purge: Synchronously wipe old media & sync DJ queue to new album
+    if (heroYtIframe) {
+      if (cached.youtubeVideoId) {
+        heroYtIframe.src = `https://www.youtube-nocookie.com/embed/${cached.youtubeVideoId}?enablejsapi=1&autoplay=0&origin=${encodeURIComponent(window.location.origin)}`;
+        if (heroYtLink) heroYtLink.href = `https://www.youtube.com/watch?v=${cached.youtubeVideoId}`;
+      } else {
+        heroYtIframe.src = "about:blank";
+      }
+    }
+    if (heroYtBox) heroYtBox.classList.remove("hidden");
+    if (djDeckBar && !djState.isDeckMinimized) djDeckBar.classList.remove("hidden");
+    if (ytTrackTitle) ytTrackTitle.textContent = `${cached.artist} — "${cached.firstTrackTitle || cached.title}"`;
+
+    djState.queue = buildDjQueue(currentAlbumData, cached.alternatives || [], djState.mode);
+    djState.currentIndex = 0;
+    renderDjQueueList();
+    updateDjDeckUI();
 
     heroFavBtn.classList.toggle("active", isFavorited(cached.title, cached.artist));
 
@@ -3147,6 +3713,7 @@ async function appraiseAlbum(albumName) {
   // =========================================================================
   // STEP 2: CACHE MISS -> FULL APPRAISAL & WRITE TO STORAGE
   // =========================================================================
+  trackSearch(albumName, true, false);
   const favAltTitles = (userFavorites || []).map(f => `"${f.title}" by ${f.artist || 'Unknown'}`).join(", ");
   const favAltExclusionPrompt = favAltTitles.length > 0
     ? `\nCRITICAL EXCLUSION RULE FOR ALTERNATIVES:\nDO NOT suggest any albums that are in the user's saved favorites list (${favAltTitles})! Every alternative must be a different album they do not have saved.\n`
@@ -3262,6 +3829,17 @@ Return strictly a valid JSON object matching this schema:
       alternatives: alternatives,
       currentAltOffset: 0
     };
+
+    // Immediate DJ & Audio Purge: Synchronously wipe old media & sync DJ queue to new album
+    if (heroYtIframe) heroYtIframe.src = "about:blank";
+    if (heroYtBox) heroYtBox.classList.remove("hidden");
+    if (djDeckBar && !djState.isDeckMinimized) djDeckBar.classList.remove("hidden");
+    if (ytTrackTitle) ytTrackTitle.textContent = `${album.artist} — "${album.firstTrackTitle || album.title}"`;
+
+    djState.queue = buildDjQueue(currentAlbumData, alternatives, djState.mode);
+    djState.currentIndex = 0;
+    renderDjQueueList();
+    updateDjDeckUI();
 
     heroFavBtn.classList.toggle("active", isFavorited(album.title, album.artist));
     renderSommelierLore(window.__SOMMELIER_NOTE__);
@@ -3572,6 +4150,7 @@ function renderAlternativesProgressive(alternatives, shuffleOffset = 0) {
       }
 
       card.addEventListener("click", () => {
+        hasUserInteracted = true;
         card.classList.add("card-loading-active");
         albumInput.value = `${alt.artist} - ${alt.title}`;
         appraiseAlbum(`${alt.artist} ${alt.title}`);
@@ -3970,6 +4549,7 @@ document.addEventListener("click", (e) => {
 
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
+  hasUserInteracted = true;
   hideAutocomplete();
   const query = albumInput.value.trim();
   if (query) {
@@ -3979,6 +4559,7 @@ searchForm.addEventListener("submit", (e) => {
 
 document.querySelectorAll(".chip").forEach(chip => {
   chip.addEventListener("click", () => {
+    hasUserInteracted = true;
     hideAutocomplete();
     const album = chip.getAttribute("data-album");
     albumInput.value = album;
@@ -4498,6 +5079,7 @@ function renderFavsDrawerList() {
     // Clicking card opens appraisal in main view
     card.addEventListener("click", (e) => {
       if (e.target.closest(".fav-card-remove-btn")) return;
+      hasUserInteracted = true;
       favsDrawerContainer.classList.add("hidden");
       showAiThinkingBanner();
       albumInput.value = `${fav.artist} - ${fav.title}`;
