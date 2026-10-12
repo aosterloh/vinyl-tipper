@@ -282,6 +282,31 @@ body {
   transform: rotate(10deg) scale(1.06);
 }
 
+/* Ensure only one logo emblem is ever visible per theme */
+.logo-dark {
+  display: block;
+}
+
+.logo-light {
+  display: none;
+}
+
+[data-theme="light"] .logo-dark {
+  display: none !important;
+}
+
+[data-theme="light"] .logo-light {
+  display: block !important;
+}
+
+[data-theme="dark"] .logo-dark {
+  display: block !important;
+}
+
+[data-theme="dark"] .logo-light {
+  display: none !important;
+}
+
 .brand-name {
   font-family: var(--font-display);
   font-size: 20px;
@@ -529,7 +554,7 @@ body {
    ========================================================================== */
 .main-content {
   flex: 1;
-  max-width: 1100px;
+  max-width: 1180px;
   width: 100%;
   margin: 0 auto;
   padding: 40px 24px 80px;
@@ -539,8 +564,43 @@ body {
 }
 
 /* ==========================================================================
-   HERO SEARCH SECTION (Prominent, Full-Width, Below Title)
+   HERO HEADER & 3-COLUMN CRATE DIGGING LAYOUT
    ========================================================================== */
+.hero-header-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  max-width: 700px;
+  margin: 0 auto 18px;
+}
+
+/* ==========================================================================
+   UNIFIED 3-COLUMN CRATE DIGGING LAYOUT
+   Flanking Wings Start at Search Bar Level
+   ========================================================================== */
+.crate-layout-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.crate-center-column {
+  flex: 1;
+  max-width: 860px;
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .hero-search-section {
   display: flex;
   flex-direction: column;
@@ -549,16 +609,10 @@ body {
   gap: 12px;
   width: 100%;
   max-width: 860px;
-  margin: 4px auto 8px;
-  padding: 0 12px;
-}
-
-.hero-header-text {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  max-width: 700px;
   margin: 0 auto;
+  padding: 0;
+  position: relative;
+  z-index: 50;
 }
 
 .hero-title {
@@ -581,10 +635,13 @@ body {
   width: 100%;
   max-width: 840px;
   margin: 0 auto;
+  position: relative;
+  z-index: 100;
 }
 
 .search-bar-wrap {
   position: relative;
+  z-index: 100;
   display: flex;
   align-items: center;
   background-color: var(--bg-surface);
@@ -601,10 +658,13 @@ body {
   background-color: #1a1a20;
 }
 
-.search-bar-wrap:focus-within {
+.search-bar-wrap:focus-within,
+.search-bar-wrap.dropdown-open,
+.search-bar-wrap:has(.autocomplete-dropdown:not(.hidden)) {
   border-color: #d4af37;
   box-shadow: 0 12px 36px rgba(212, 175, 55, 0.25), 0 4px 12px rgba(0, 0, 0, 0.2);
   transform: translateY(-1px);
+  z-index: 300;
 }
 
 .search-icon {
@@ -627,6 +687,33 @@ body {
   color: var(--text-muted);
   font-size: 15px;
   transition: opacity var(--transition-fast);
+}
+
+.search-clear-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 6px 10px;
+  font-size: 15px;
+  line-height: 1;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  opacity: 0.65;
+  transition: color var(--transition-fast), opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.search-clear-btn:hover {
+  color: var(--text-primary);
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.search-clear-btn.hidden {
+  display: none !important;
 }
 
 .search-btn {
@@ -1264,6 +1351,65 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Recommendation of the Day Header Banner */
+.hero-rec-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: -10px 0 10px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.hero-rec-banner.hidden {
+  display: none !important;
+}
+
+.hero-rec-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.16), rgba(255, 215, 0, 0.08));
+  border: 1.5px solid rgba(212, 175, 55, 0.4);
+  border-radius: var(--radius-full);
+  padding: 8px 20px;
+  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.14);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.hero-rec-pill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(212, 175, 55, 0.22);
+}
+
+.hero-rec-sparkle {
+  font-size: 16px;
+}
+
+.hero-rec-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #d4af37;
+  text-transform: uppercase;
+}
+
+[data-theme="dark"] .hero-rec-label {
+  color: #f5cf47;
+}
+
+.hero-rec-dot {
+  opacity: 0.5;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.hero-rec-sub {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
 /* ==========================================================================
    HERO SHOWCASE WITH FLANKING 5+5 VINYL CRATE WINGS
    ========================================================================== */
@@ -1284,8 +1430,13 @@ body {
   flex-direction: column;
   gap: 14px;
   position: sticky;
-  top: 84px;
-  z-index: 25;
+  top: 76px;
+  z-index: 60;
+  transition: opacity 0.3s ease;
+}
+
+.recs-flanking-wing:hover {
+  z-index: 500;
 }
 
 .wing-header {
@@ -1523,6 +1674,10 @@ body {
 
 /* Responsive adjustment for tablets & mobile (<1150px) */
 @media (max-width: 1150px) {
+  .crate-layout-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
   .hero-showcase-container {
     flex-direction: column;
     align-items: center;
@@ -1636,6 +1791,139 @@ body {
   justify-content: center;
   align-items: stretch;
   width: 100%;
+}
+
+/* Sleek Audiophile Teaser Card on Initial Load */
+.hero-player-teaser {
+  width: 100%;
+  max-width: 270px;
+  box-sizing: border-box;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 16px 14px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  height: 100%;
+  min-height: 195px;
+  animation: fadeIn 0.3s ease-out;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.hero-player-teaser:hover {
+  border-color: rgba(234, 67, 53, 0.35);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.hero-player-teaser.hidden {
+  display: none !important;
+}
+
+.teaser-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.teaser-badge {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(234, 67, 53, 0.12);
+  color: #EA4335;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.teaser-track-badge {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.teaser-body {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 0;
+}
+
+.teaser-icon-disc {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #2a2a34 0%, #15151c 70%, #0d0d12 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+}
+
+.teaser-disc-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.teaser-text-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  overflow: hidden;
+}
+
+.teaser-track-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.teaser-subtext {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.35;
+  margin: 0;
+}
+
+.teaser-play-action-btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #EA4335 0%, #D93025 100%);
+  color: #fff;
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+  box-shadow: 0 3px 10px rgba(234, 67, 53, 0.35);
+}
+
+.teaser-play-action-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 16px rgba(234, 67, 53, 0.45);
+  filter: brightness(1.06);
+}
+
+.teaser-play-triangle {
+  font-size: 10px;
+  line-height: 1;
 }
 
 .hero-yt-box {
@@ -2101,6 +2389,9 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  max-width: 860px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .section-title-row {
@@ -4689,6 +4980,8 @@ body {
    PICK OF THE DAY (FROM 365 HOLY-GRAIL VINYL VAULT)
    ========================================================================== */
 .potd-banner {
+  position: relative;
+  z-index: 10;
   margin: 12px auto 6px;
   width: 100%;
   max-width: 860px;
@@ -4863,6 +5156,8 @@ body {
    VINYL SOMMELIER / CRATE DIGGER AI PANEL
    ========================================================================== */
 .sommelier-bar {
+  position: relative;
+  z-index: 5;
   margin: 10px auto 0;
   width: 100%;
   max-width: 860px;

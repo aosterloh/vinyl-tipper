@@ -142,9 +142,43 @@ if (favSignInBackdrop) favSignInBackdrop.addEventListener("click", closeFavSignI
 
 const searchForm = document.getElementById("search-form");
 const albumInput = document.getElementById("album-input");
+const searchClearBtn = document.getElementById("search-clear-btn");
 const autocompleteDropdown = document.getElementById("autocomplete-dropdown");
 const loadingState = document.getElementById("loading-state");
 const resultsSection = document.getElementById("results-section");
+
+let isInputAutoLoaded = false;
+let currentLoadedAlbumQuery = "";
+
+function updateSearchClearBtn() {
+  if (!searchClearBtn || !albumInput) return;
+  if (albumInput.value && albumInput.value.trim().length > 0) {
+    searchClearBtn.classList.remove("hidden");
+  } else {
+    searchClearBtn.classList.add("hidden");
+  }
+}
+
+function setAlbumInputValue(text, isAutoLoaded = true) {
+  if (!albumInput) return;
+  const val = text || "";
+  albumInput.value = val;
+  currentLoadedAlbumQuery = val;
+  isInputAutoLoaded = isAutoLoaded;
+  updateSearchClearBtn();
+}
+
+let isRecommendationOfDay = false;
+
+function updateRecommendationOfDayUI() {
+  const recBanner = document.getElementById("hero-rec-banner");
+  if (!recBanner) return;
+  if (isRecommendationOfDay) {
+    recBanner.classList.remove("hidden");
+  } else {
+    recBanner.classList.add("hidden");
+  }
+}
 
 // Floating AI Thinking Banner disabled per user request in favor of in-context animations
 let activeAiRequests = 0;
@@ -246,6 +280,9 @@ if (albumCoverImg) {
 // VINYL DJ LOUNGE & CONTINUOUS YOUTUBE AUTOPLAY ENGINE
 // Supports: (1) Curated Track Mix, (2) Full LP Continuous Vinyl Session
 // ============================================================================
+const heroPlayerTeaser = document.getElementById("hero-player-teaser");
+const heroTeaserPlayBtn = document.getElementById("hero-teaser-play-btn");
+const teaserTrackTitle = document.getElementById("teaser-track-title");
 const heroYtBox = document.getElementById("hero-yt-box");
 const heroYtBadge = document.getElementById("hero-yt-badge");
 const ytTrackTitle = document.getElementById("yt-track-title");
@@ -561,7 +598,7 @@ async function djPlayIndex(index, autoStart = true) {
 
   // Reveal player & bottom dock
   if (heroYtBox) heroYtBox.classList.remove("hidden");
-  if (djDeckBar && !djState.isDeckMinimized) djDeckBar.classList.remove("hidden");
+  if ((autoStart || djState.isPlaying) && djDeckBar && !djState.isDeckMinimized) djDeckBar.classList.remove("hidden");
 
   // Update hero header and link
   if (ytTrackTitle) ytTrackTitle.textContent = `${current.artist} — ${current.displayTitle}`;
@@ -783,15 +820,49 @@ function renderDjQueueList() {
   });
 }
 
+function setupHeroAudioTeaser(album, standoutTrackTitle) {
+  if (heroPlayerTeaser) {
+    heroPlayerTeaser.classList.remove("hidden");
+    const trackName = standoutTrackTitle || (album && album.firstTrackTitle) || "Standout Track Preview";
+    if (teaserTrackTitle) {
+      teaserTrackTitle.textContent = trackName;
+    }
+  }
+  if (heroYtBox) {
+    heroYtBox.classList.add("hidden");
+  }
+}
+
+async function activateHeroAudioPlayer() {
+  if (heroPlayerTeaser) heroPlayerTeaser.classList.add("hidden");
+  if (heroYtBox) heroYtBox.classList.remove("hidden");
+  if (!currentAlbumData) return;
+  const album = currentAlbumData;
+  const vId = await loadYouTubeTrack1(album.artist, album.title, album.firstTrackTitle || "", album.youtubeVideoId || "");
+  if (vId) {
+    setTimeout(() => {
+      if (typeof djPlayIndex === "function") djPlayIndex(0, true);
+    }, 400);
+  }
+}
+
+if (heroTeaserPlayBtn) {
+  heroTeaserPlayBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    activateHeroAudioPlayer();
+  });
+}
+
 async function loadYouTubeTrack1(artist, albumTitle, firstTrackTitle = "", existingVideoId = "") {
   if (!heroYtBox || !heroYtIframe) return null;
 
   const sessionToken = activeAppraisalId;
   const targetAlbum = albumTitle;
 
-  // Immediately unhide hero DJ box and bottom deck bar so controls are visible
+  // Reveal player and hide teaser when YouTube is actively loaded
+  if (heroPlayerTeaser) heroPlayerTeaser.classList.add("hidden");
   heroYtBox.classList.remove("hidden");
-  if (djDeckBar && !djState.isDeckMinimized) djDeckBar.classList.remove("hidden");
+  if (djState.isPlaying && djDeckBar && !djState.isDeckMinimized) djDeckBar.classList.remove("hidden");
 
   // Build the DJ queue with current album and alternatives
   if (currentAlbumData && currentAlbumData.title === targetAlbum) {
@@ -1683,9 +1754,114 @@ function triggerDiagnosticsError(model, errorType, message) {
 // ============================================================================
 // 6. ALBUM COVER ART RESOLVER (iTunes API + Deezer Public JSONP + SVG Fallback)
 // ============================================================================
-function fetchDeezerCoverJsonp(query) {
+// Helper: Strictly reject instrumentals, remixes, tributes, karaoke, and demos unless explicitly requested
+function isUnwantedVariant(name, targetTitle) {
+  if (!name) return false;
+  const lower = name.toLowerCase();
+  const target = (targetTitle || "").toLowerCase();
+  const wantsInstrumental = target.includes("instrumental");
+  const wantsRemix = target.includes("remix");
+  const wantsLive = target.includes("live");
+  const wantsDemo = target.includes("demo");
+
+  if (!wantsInstrumental && (lower.includes("instrumental") || lower.includes("karaoke") || lower.includes("instrumentals"))) return true;
+  if (!wantsRemix && (lower.includes("remix") || lower.includes("remixed") || lower.includes("remixes"))) return true;
+  if (!wantsDemo && (lower.includes("demo") || lower.includes("demos"))) return true;
+  if (lower.includes("tribute") || lower.includes("tributes") || lower.includes("tribute to")) return true;
+  if (!wantsLive && (lower.includes("live at") || lower.includes("live in") || lower.includes("live from") || lower.includes("(live)"))) return true;
+  return false;
+}
+
+// 1. iTunes Search Helper with Limit 25 and Strict Variant Filtering
+async function searchItunesCover(searchTerm, cleanTitle, artist = "") {
+  try {
+    const url = `https://itunes.apple.com/search?term=${encodeURIComponent(searchTerm)}&entity=album&limit=25`;
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (!data.results || data.results.length === 0) return null;
+
+    const targetTitleLower = cleanTitle.toLowerCase();
+    let bestResult = null;
+    let bestScore = -999;
+
+    for (const item of data.results) {
+      const collName = item.collectionName || "";
+      const collNameLower = collName.toLowerCase();
+      const artNameLower = (item.artistName || "").toLowerCase();
+
+      // STRICT EXCLUSION: Skip any unwanted variant (instrumental/remix/tribute/demo)
+      if (isUnwantedVariant(collName, cleanTitle)) continue;
+
+      let score = 10;
+      // Exact title match gets highest priority
+      if (collNameLower === targetTitleLower) score += 60;
+      else if (collNameLower.startsWith(targetTitleLower)) score += 30;
+
+      // Artist match bonus
+      if (artist && artNameLower.includes(artist.toLowerCase())) score += 30;
+
+      if (score > bestScore) {
+        bestScore = score;
+        bestResult = item;
+      }
+    }
+
+    if (bestResult && bestResult.artworkUrl100) {
+      return bestResult.artworkUrl100.replace("100x100bb.jpg", "600x600bb.jpg");
+    }
+  } catch (err) {
+    console.warn("iTunes search error for", searchTerm, err);
+  }
+  return null;
+}
+
+// 2. MusicBrainz / Cover Art Archive Resolver (Definitive physical vinyl artwork)
+async function fetchMusicBrainzCover(title, artist = "") {
+  try {
+    const cleanTitle = (title || "").trim();
+    if (!cleanTitle) return null;
+
+    const queryParts = [`releasegroup:"${cleanTitle}"`];
+    if (artist && artist.trim()) {
+      queryParts.push(`artist:"${artist.trim()}"`);
+    }
+    const mbUrl = `https://musicbrainz.org/ws/2/release-group/?query=${encodeURIComponent(queryParts.join(" AND "))}&fmt=json&limit=5`;
+    const res = await fetch(mbUrl, { headers: { "Accept": "application/json" } });
+    if (!res.ok) return null;
+
+    const data = await res.json();
+    const groups = data["release-groups"] || [];
+
+    for (const rg of groups) {
+      const rgTitle = rg.title || "";
+      if (isUnwantedVariant(rgTitle, cleanTitle)) continue;
+
+      try {
+        const caaUrl = `https://coverartarchive.org/release-group/${rg.id}`;
+        const caaRes = await fetch(caaUrl);
+        if (caaRes.ok) {
+          const caaData = await caaRes.json();
+          const front = (caaData.images || []).find(img => img.front) || (caaData.images || [])[0];
+          if (front) {
+            const imgUrl = front.thumbnails?.["500"] || front.thumbnails?.large || front.image;
+            if (imgUrl) return imgUrl;
+          }
+        }
+      } catch (e) {}
+    }
+  } catch (err) {
+    // MusicBrainz optional fallback notice
+  }
+  return null;
+}
+
+// 3. Deezer Public JSONP with Strict Candidate Filtering
+function fetchDeezerCoverJsonp(cleanTitle, artist = "") {
   return new Promise((resolve) => {
     try {
+      const targetTitleLower = (cleanTitle || "").toLowerCase().trim();
+      const query = `${cleanTitle} ${artist}`.trim();
       const cbName = `dz_cb_${Date.now()}_${Math.floor(Math.random() * 100000)}`;
       const script = document.createElement("script");
       const timer = setTimeout(() => {
@@ -1699,12 +1875,19 @@ function fetchDeezerCoverJsonp(query) {
         try { delete window[cbName]; } catch (e) {}
         script.remove();
         if (data && Array.isArray(data.data) && data.data.length > 0) {
-          const item = data.data[0];
-          const cover = item.cover_xl || item.cover_big || item.cover_medium;
-          resolve(cover || null);
-        } else {
-          resolve(null);
+          for (const item of data.data) {
+            const title = item.title || "";
+            // STRICT FILTERING: Reject instrumentals, karaoke, tributes
+            if (isUnwantedVariant(title, cleanTitle)) continue;
+
+            const cover = item.cover_xl || item.cover_big || item.cover_medium;
+            if (cover) {
+              resolve(cover);
+              return;
+            }
+          }
         }
+        resolve(null);
       };
 
       script.src = `https://api.deezer.com/search/album?q=${encodeURIComponent(query)}&output=jsonp&callback=${cbName}`;
@@ -1725,66 +1908,29 @@ async function fetchAlbumCover(query, artist = "", fallbackTitle = "") {
   const cleanTitle = (fallbackTitle || query || "").trim();
   const searchCombo = `${cleanTitle} ${artist}`.trim();
 
-  // 1. Primary: iTunes Search API
-  try {
-    const url = `https://itunes.apple.com/search?term=${encodeURIComponent(searchCombo)}&entity=album&limit=6`;
-    const res = await fetch(url);
-    if (res.ok) {
-      const data = await res.json();
-      if (data.results && data.results.length > 0) {
-        const targetTitleLower = cleanTitle.toLowerCase();
-        const wantsInstrumental = targetTitleLower.includes("instrumental");
-        const wantsRemix = targetTitleLower.includes("remix");
-        const wantsLive = targetTitleLower.includes("live");
+  // 1. Primary: iTunes Search with "Title + Artist" (limit=25, strict variant filter)
+  const itunesCover = await searchItunesCover(searchCombo, cleanTitle, artist);
+  if (itunesCover) return itunesCover;
 
-        let bestResult = null;
-        let bestScore = -999;
-
-        for (const item of data.results) {
-          const collName = (item.collectionName || "").toLowerCase();
-          const artName = (item.artistName || "").toLowerCase();
-          let score = 10;
-
-          // Penalize instrumentals/karaoke/tributes unless the user asked for them
-          if (!wantsInstrumental && (collName.includes("instrumental") || collName.includes("karaoke"))) score -= 50;
-          if (!wantsRemix && (collName.includes("remix") || collName.includes("remixed"))) score -= 25;
-          if (collName.includes("tribute")) score -= 50;
-          if (!wantsLive && collName.includes("live at") && !targetTitleLower.includes("live at")) score -= 15;
-
-          // Priority for exact or starting title match
-          if (collName === targetTitleLower) score += 40;
-          else if (collName.startsWith(targetTitleLower)) score += 20;
-
-          // Priority for artist match
-          if (artist && artName.includes(artist.toLowerCase())) score += 20;
-
-          if (score > bestScore) {
-            bestScore = score;
-            bestResult = item;
-          }
-        }
-
-        const chosen = bestResult || data.results[0];
-        const rawArtwork = chosen?.artworkUrl100;
-        if (rawArtwork) {
-          // Request high resolution 600x600 artwork
-          return rawArtwork.replace("100x100bb.jpg", "600x600bb.jpg");
-        }
-      }
-    }
-  } catch (err) {
-    console.warn("iTunes cover art fetch error:", searchCombo, err);
+  // 2. Secondary: iTunes Search with "Title" only (handles artist aliasing like Madvillain vs MF DOOM & Madlib)
+  if (cleanTitle) {
+    const itunesTitleOnly = await searchItunesCover(cleanTitle, cleanTitle, artist);
+    if (itunesTitleOnly) return itunesTitleOnly;
   }
 
-  // 2. Secondary: Deezer Public JSONP (Reliably has indie/underground vinyl pressings like Deadringer)
+  // 3. Tertiary: MusicBrainz / Cover Art Archive (Authentic canonical vinyl sleeve releases)
+  const mbCover = await fetchMusicBrainzCover(cleanTitle, artist);
+  if (mbCover) return mbCover;
+
+  // 4. Quaternary: Deezer Public JSONP (with strict candidate validation)
   try {
-    const deezerCover = await fetchDeezerCoverJsonp(searchCombo);
+    const deezerCover = await fetchDeezerCoverJsonp(cleanTitle, artist);
     if (deezerCover) return deezerCover;
   } catch (err) {
     console.warn("Deezer cover art fallback error:", searchCombo, err);
   }
 
-  // 3. Stylish SVG Vinyl Sleeve Fallback
+  // 5. Stylish SVG Vinyl Sleeve Fallback
   return generateSvgCover(fallbackTitle || query, artist);
 }
 
@@ -2637,6 +2783,8 @@ function matchSommelierVault(vibeText) {
 // Render Sommelier Pick Record (Unified for Vault & LLM Generation)
 function renderSommelierAlbumRecord(rec, isInstantVault = false) {
   hasUserInteracted = true;
+  isRecommendationOfDay = false;
+  updateRecommendationOfDayUI();
   const sessionToken = ++activeAppraisalId;
   stopAudiophileLoadingTicker();
   loadingState.classList.add("hidden");
@@ -2645,7 +2793,7 @@ function renderSommelierAlbumRecord(rec, isInstantVault = false) {
   if (welcomeHero) welcomeHero.classList.add("hidden");
 
   if (albumInput) {
-    albumInput.value = `${rec.artist} - ${rec.title}`;
+    setAlbumInputValue(`${rec.artist} - ${rec.title}`, true);
   }
 
   albumTitleEl.textContent = rec.title;
@@ -2717,7 +2865,7 @@ function renderSommelierAlbumRecord(rec, isInstantVault = false) {
     }
   }
   if (heroYtBox) heroYtBox.classList.remove("hidden");
-  if (djDeckBar && !djState.isDeckMinimized) djDeckBar.classList.remove("hidden");
+  if (djState.isPlaying && djDeckBar && !djState.isDeckMinimized) djDeckBar.classList.remove("hidden");
   if (ytTrackTitle) ytTrackTitle.textContent = `${rec.artist} — "${standoutSong}"`;
 
   djState.queue = buildDjQueue(currentAlbumData, [], djState.mode);
@@ -2744,13 +2892,8 @@ function renderSommelierAlbumRecord(rec, isInstantVault = false) {
 
   renderAlternativesSkeletons();
 
-  // Async DJ audio queue load with sessionToken guard
-  loadYouTubeTrack1(rec.artist, rec.title, standoutSong, rec.youtubeVideoId || "").then(vId => {
-    if (activeAppraisalId !== sessionToken) return;
-    if (vId && currentAlbumData && currentAlbumData.title === rec.title) {
-      currentAlbumData.youtubeVideoId = vId;
-    }
-  });
+  // On initial load: prepare clean teaser audio card without intrusive video embed
+  setupHeroAudioTeaser(rec, standoutSong);
 
   asyncResearchBuyLinks(rec.title, rec.artist);
 
@@ -3294,7 +3437,7 @@ function handleSubgenrePillClick(pill) {
   const record = subgenre.records[recordIndex];
 
   const displayLabel = `${record.artist} - ${record.title}`;
-  if (albumInput) albumInput.value = displayLabel;
+  if (albumInput) setAlbumInputValue(displayLabel, true);
 
   showToast(`🎧 Spun ${subgenre.name}: "${displayLabel}"`);
   appraiseAlbum(record.query || displayLabel);
@@ -3528,10 +3671,21 @@ function recordLastDisplayedAlbum(query, album) {
 
   // 1. Sync URL query param (?album=...) without reloading page
   try {
-    if (typeof window !== "undefined" && window.history && displayQuery) {
+    if (typeof window !== "undefined" && window.history) {
       const url = new URL(window.location.href);
-      url.searchParams.set("album", displayQuery);
-      window.history.replaceState({ album: displayQuery }, "", url.toString());
+      if (isRecommendationOfDay) {
+        // Keep URL clean on initial recommendation of the day
+        if (url.searchParams.has("album") || url.searchParams.has("q")) {
+          url.searchParams.delete("album");
+          url.searchParams.delete("q");
+          const cleanQuery = url.searchParams.toString();
+          const cleanUrl = url.pathname + (cleanQuery ? `?${cleanQuery}` : "") + url.hash;
+          window.history.replaceState({ recommendationOfDay: true }, "", cleanUrl);
+        }
+      } else if (displayQuery) {
+        url.searchParams.set("album", displayQuery);
+        window.history.replaceState({ album: displayQuery }, "", url.toString());
+      }
     }
   } catch (e) {}
 
@@ -3688,7 +3842,7 @@ async function rollRandomPick() {
         renderPotdBanner(data.pick.day, data.pick);
         const displayLabel = `${data.pick.artist} - ${data.pick.title}`;
         if (albumInput) {
-          albumInput.value = displayLabel;
+          setAlbumInputValue(displayLabel, true);
         }
         showToast(`🎲 Rolled from 365 Vault: ${data.pick.artist} – ${data.pick.title}`);
         appraiseAlbum(data.pick.query || displayLabel);
@@ -3712,15 +3866,21 @@ function initPotdListeners() {
   if (shuffleBtn) {
     shuffleBtn.addEventListener("click", (e) => {
       e.preventDefault();
+      hasUserInteracted = true;
+      isRecommendationOfDay = false;
+      updateRecommendationOfDayUI();
       rollRandomPick();
     });
   }
 
   const handleSpinCurrent = (e) => {
     e.preventDefault();
+    hasUserInteracted = true;
+    isRecommendationOfDay = false;
+    updateRecommendationOfDayUI();
     if (currentPotd) {
       const displayLabel = `${currentPotd.artist} - ${currentPotd.title}`;
-      if (albumInput) albumInput.value = displayLabel;
+      if (albumInput) setAlbumInputValue(displayLabel, true);
       appraiseAlbum(currentPotd.query || displayLabel);
     }
   };
@@ -3746,6 +3906,7 @@ async function restoreLastSessionAlbum() {
 
   let target = null;
 
+  let hasExplicitUrlParam = false;
   // 1. Check URL query parameters first (?album=... or ?q=...)
   try {
     if (typeof window !== "undefined") {
@@ -3753,9 +3914,13 @@ async function restoreLastSessionAlbum() {
       const urlAlbum = urlParams.get("album") || urlParams.get("q");
       if (urlAlbum && urlAlbum.trim().length > 0) {
         target = { query: urlAlbum.trim(), title: urlAlbum.trim() };
+        hasExplicitUrlParam = true;
       }
     }
   } catch (e) {}
+
+  // If loading without explicit query, mark as recommendation of the day
+  isRecommendationOfDay = !hasExplicitUrlParam;
 
   // 2. Default to today's official 365 Holy-Grail Pick of the Day!
   if (!target && potd) {
@@ -3779,7 +3944,7 @@ async function restoreLastSessionAlbum() {
       : (target.title || target.query);
 
     if (albumInput) {
-      albumInput.value = displayLabel;
+      setAlbumInputValue(displayLabel, true);
     }
 
     const appraisalQuery = target.query || `${target.artist || ''} ${target.title || ''}`.trim();
@@ -3794,13 +3959,18 @@ async function appraiseAlbum(albumName) {
 
   const sessionToken = ++activeAppraisalId;
 
+  if (hasUserInteracted) {
+    isRecommendationOfDay = false;
+  }
+  updateRecommendationOfDayUI();
+
   if (!hasServerKey && !getActiveApiKey()) {
     await checkServerConfig();
     if (activeAppraisalId !== sessionToken) return;
   }
 
   if (albumInput && !albumInput.value) {
-    albumInput.value = albumName;
+    setAlbumInputValue(albumName, true);
   }
 
   loadingState.classList.remove("hidden");
@@ -3820,6 +3990,7 @@ async function appraiseAlbum(albumName) {
     stopAudiophileLoadingTicker();
     loadingState.classList.add("hidden");
     resultsSection.classList.remove("hidden");
+    updateRecommendationOfDayUI();
 
     // Instantly load all static information from database
     albumTitleEl.textContent = cached.title;
@@ -3869,7 +4040,7 @@ async function appraiseAlbum(albumName) {
       }
     }
     if (heroYtBox) heroYtBox.classList.remove("hidden");
-    if (djDeckBar && !djState.isDeckMinimized) djDeckBar.classList.remove("hidden");
+    if (djState.isPlaying && djDeckBar && !djState.isDeckMinimized) djDeckBar.classList.remove("hidden");
     if (ytTrackTitle) ytTrackTitle.textContent = `${cached.artist} — "${cached.firstTrackTitle || cached.title}"`;
 
     djState.queue = buildDjQueue(currentAlbumData, cached.alternatives || [], djState.mode);
@@ -3879,14 +4050,8 @@ async function appraiseAlbum(albumName) {
 
     heroFavBtn.classList.toggle("active", isFavorited(cached.title, cached.artist));
 
-    // Load Track 1 YouTube Listening Station & DJ queue
-    loadYouTubeTrack1(cached.artist, cached.title, cached.firstTrackTitle, cached.youtubeVideoId).then(vId => {
-      if (activeAppraisalId !== sessionToken) return;
-      if (vId && !cached.youtubeVideoId) {
-        cached.youtubeVideoId = vId;
-        saveAlbumToCache(cached);
-      }
-    });
+    // Prepare clean audio teaser card on load (no intrusive video embed until user clicks)
+    setupHeroAudioTeaser(cached, cached.firstTrackTitle);
 
     // In-context animated skeleton for price area
     renderPriceLoadingSkeletons();
@@ -4028,6 +4193,7 @@ Return strictly a valid JSON object matching this schema:
     stopAudiophileLoadingTicker();
     loadingState.classList.add("hidden");
     resultsSection.classList.remove("hidden");
+    updateRecommendationOfDayUI();
 
     albumTitleEl.textContent = album.title;
     albumArtistEl.textContent = album.artist;
@@ -4066,11 +4232,9 @@ Return strictly a valid JSON object matching this schema:
       currentAltOffset: 0
     };
 
-    // Immediate DJ & Audio Purge: Synchronously wipe old media & sync DJ queue to new album
+    // Immediate DJ & Audio Purge: Synchronously wipe old media & prepare clean audio teaser
     if (heroYtIframe) heroYtIframe.src = "about:blank";
-    if (heroYtBox) heroYtBox.classList.remove("hidden");
-    if (djDeckBar && !djState.isDeckMinimized) djDeckBar.classList.remove("hidden");
-    if (ytTrackTitle) ytTrackTitle.textContent = `${album.artist} — "${album.firstTrackTitle || album.title}"`;
+    setupHeroAudioTeaser(album, album.firstTrackTitle);
 
     djState.queue = buildDjQueue(currentAlbumData, alternatives, djState.mode);
     djState.currentIndex = 0;
@@ -4079,28 +4243,6 @@ Return strictly a valid JSON object matching this schema:
 
     heroFavBtn.classList.toggle("active", isFavorited(album.title, album.artist));
     renderSommelierLore(window.__SOMMELIER_NOTE__);
-
-    // Load Track 1 YouTube Listening Station below fav heart
-    loadYouTubeTrack1(album.artist, album.title, album.firstTrackTitle).then(vId => {
-      if (activeAppraisalId !== sessionToken) return;
-      if (vId) {
-        album.youtubeVideoId = vId;
-        saveAlbumToCache({
-          title: album.title,
-          artist: album.artist,
-          genre: album.genre,
-          year: album.year,
-          playtime: album.playtime,
-          trackCount: album.trackCount,
-          firstTrackTitle: album.firstTrackTitle,
-          youtubeVideoId: vId,
-          collectorScore: album.collectorScore,
-          streetPriceGermany: album.streetPriceGermany,
-          coverUrl: albumCoverImg.src,
-          alternatives: alternatives
-        });
-      }
-    });
 
     // Save initial record to database
     saveAlbumToCache({
@@ -4388,7 +4530,7 @@ function renderAlternativesProgressive(alternatives, shuffleOffset = 0) {
       card.addEventListener("click", () => {
         hasUserInteracted = true;
         card.classList.add("card-loading-active");
-        albumInput.value = `${alt.artist} - ${alt.title}`;
+        setAlbumInputValue(`${alt.artist} - ${alt.title}`, true);
         appraiseAlbum(`${alt.artist} ${alt.title}`);
         window.scrollTo({ top: 0, behavior: "smooth" });
         setTimeout(() => { card.classList.remove("card-loading-active"); }, 2500);
@@ -4593,9 +4735,10 @@ async function renderRecommendationCarousel(recs) {
 
     // Clicking a vinyl cover flips/loads that album into main appraiser
     coverEl.addEventListener("click", () => {
+      hasUserInteracted = true;
       coverEl.classList.add("card-loading-active");
       showAiThinkingBanner();
-      albumInput.value = `${item.artist} - ${item.title}`;
+      setAlbumInputValue(`${item.artist} - ${item.title}`, true);
       appraiseAlbum(`${item.artist} ${item.title}`);
       window.scrollTo({ top: 0, behavior: "smooth" });
       setTimeout(() => { coverEl.classList.remove("card-loading-active"); }, 2500);
@@ -4646,6 +4789,8 @@ function hideAutocomplete() {
   autocompleteDropdown.innerHTML = "";
   currentAutocompleteResults = [];
   focusedAutocompleteIdx = -1;
+  const searchWrap = document.querySelector(".search-bar-wrap");
+  if (searchWrap) searchWrap.classList.remove("dropdown-open");
 }
 
 function renderAutocompleteResults(results) {
@@ -4677,7 +4822,7 @@ function renderAutocompleteResults(results) {
           </div>
         </div>
         <span class="autocomplete-badge">
-          Appraise ↗
+          Dig Price ↗
         </span>
       </button>
     `).join("")}
@@ -4697,18 +4842,45 @@ function renderAutocompleteResults(results) {
   });
 
   autocompleteDropdown.classList.remove("hidden");
+  const searchWrap = document.querySelector(".search-bar-wrap");
+  if (searchWrap) searchWrap.classList.add("dropdown-open");
 }
 
 function selectAutocompleteAlbum(album) {
+  hasUserInteracted = true;
+  isRecommendationOfDay = false;
+  updateRecommendationOfDayUI();
   hideAutocomplete();
   const fullLabel = album.artist ? `${album.artist} - ${album.title}` : album.title;
-  albumInput.value = fullLabel;
+  setAlbumInputValue(fullLabel, true);
   appraiseAlbum(album.artist ? `${album.artist} ${album.title}` : album.title);
 }
 
-// Debounced input handler on search box
+// Click-to-clear for preloaded text, blur restore, and clear button
 if (albumInput) {
+  albumInput.addEventListener("focus", () => {
+    if (isInputAutoLoaded && albumInput.value) {
+      currentLoadedAlbumQuery = albumInput.value;
+      albumInput.value = "";
+      isInputAutoLoaded = false;
+      updateSearchClearBtn();
+      hideAutocomplete();
+    }
+  });
+
+  albumInput.addEventListener("blur", () => {
+    setTimeout(() => {
+      if (!albumInput.value.trim() && currentLoadedAlbumQuery) {
+        albumInput.value = currentLoadedAlbumQuery;
+        isInputAutoLoaded = true;
+        updateSearchClearBtn();
+      }
+    }, 160);
+  });
+
   albumInput.addEventListener("input", () => {
+    isInputAutoLoaded = false;
+    updateSearchClearBtn();
     const query = albumInput.value.trim();
     if (autocompleteTimer) {
       clearTimeout(autocompleteTimer);
@@ -4763,6 +4935,21 @@ if (albumInput) {
   });
 }
 
+if (searchClearBtn) {
+  searchClearBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (albumInput) {
+      albumInput.value = "";
+      currentLoadedAlbumQuery = "";
+      isInputAutoLoaded = false;
+      updateSearchClearBtn();
+      hideAutocomplete();
+      albumInput.focus();
+    }
+  });
+}
+
 function updateFocusedAutocompleteItem(items) {
   items.forEach((item, idx) => {
     if (idx === focusedAutocompleteIdx) {
@@ -4786,9 +4973,14 @@ document.addEventListener("click", (e) => {
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
   hasUserInteracted = true;
+  isRecommendationOfDay = false;
+  updateRecommendationOfDayUI();
   hideAutocomplete();
   const query = albumInput.value.trim();
   if (query) {
+    currentLoadedAlbumQuery = query;
+    isInputAutoLoaded = true;
+    updateSearchClearBtn();
     appraiseAlbum(query);
   }
 });
@@ -4796,9 +4988,11 @@ searchForm.addEventListener("submit", (e) => {
 document.querySelectorAll(".chip").forEach(chip => {
   chip.addEventListener("click", () => {
     hasUserInteracted = true;
+    isRecommendationOfDay = false;
+    updateRecommendationOfDayUI();
     hideAutocomplete();
     const album = chip.getAttribute("data-album");
-    albumInput.value = album;
+    setAlbumInputValue(album, true);
     appraiseAlbum(album);
   });
 });
@@ -4988,7 +5182,51 @@ function renderMiniSleeveList(items, side) {
   }).join("");
 }
 
-function renderFlankingWingsRecommendations(recs) {
+async function load365VaultDiscoveryRecs() {
+  try {
+    const res = await fetch("/api/vault/discovery-wings");
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.success && Array.isArray(data.recommendations) && data.recommendations.length >= 5) {
+        return data.recommendations;
+      }
+    }
+  } catch (err) {
+    console.warn("Failed to fetch discovery-wings from vault:", err);
+  }
+  return null;
+}
+
+async function enrichRecommendationsWithCovers(recs) {
+  if (!Array.isArray(recs)) return [];
+  const promises = recs.map(async (rec) => {
+    if (rec.coverUrl && !rec.coverUrl.startsWith("data:image/svg")) {
+      return rec;
+    }
+    // Check local catalog cache first
+    try {
+      const cached = await checkAlbumCache(rec.title);
+      if (cached && cached.coverUrl && !cached.coverUrl.startsWith("data:image/svg")) {
+        rec.coverUrl = cached.coverUrl;
+        return rec;
+      }
+    } catch (e) {}
+
+    // Fetch from iTunes
+    try {
+      const cover = await fetchAlbumCover(rec.coverSearchTerm || rec.title, rec.artist, rec.title);
+      if (cover && !cover.startsWith("data:image/svg")) {
+        rec.coverUrl = cover;
+      }
+    } catch (e) {}
+    return rec;
+  });
+
+  await Promise.allSettled(promises);
+  return recs;
+}
+
+async function renderFlankingWingsRecommendations(recs) {
   const wingLeft = document.getElementById("recs-wing-left");
   const wingRight = document.getElementById("recs-wing-right");
   const cardsLeft = document.getElementById("wing-cards-left");
@@ -4998,21 +5236,24 @@ function renderFlankingWingsRecommendations(recs) {
 
   let displayRecs = (recs || []).filter(r => !isAlbumInFavorites(r.title, r.artist));
   
-  // Benchmark fallback if user has no recommendations yet
-  if (displayRecs.length < 5) {
-    const fallbackPool = [
-      { title: "Kind of Blue", artist: "Miles Davis", year: 1959, score: 99, matchReason: "Audiophile benchmark modal jazz recorded in 30th Street Studio Columbia.", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bf/25/7f/bf257fe8-1c42-5e60-449e-1144f8f4a13e/074646493526.jpg/600x600bb.jpg" },
-      { title: "The Dark Side of the Moon", artist: "Pink Floyd", year: 1973, score: 99, matchReason: "The definitive analog benchmark mastered at Abbey Road Studios by Alan Parsons.", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/0b/5b/66/0b5b6697-9d7e-86aa-1971-7a370d6b1d34/859744553750_cover.jpg/600x600bb.jpg" },
-      { title: "The Low End Theory", artist: "A Tribe Called Quest", year: 1991, score: 98, matchReason: "Legendary upright jazz bass recorded by Bob Power with timeless boom bap grooves.", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/95/9d/54/959d54a2-cf29-b630-f38e-0b16599cf06b/886443673552.jpg/600x600bb.jpg" },
-      { title: "Selected Ambient Works 85-92", artist: "Aphex Twin", year: 1992, score: 98, matchReason: "Seminal electronic landmark with lush tape textures and intimate analog warmth.", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/6c/42/47/6c424756-31f4-90be-845d-c6a6fbb8d641/cover.jpg/600x600bb.jpg" },
-      { title: "In Utero", artist: "Nirvana", year: 1993, score: 97, matchReason: "Steve Albini raw room recording capturing explosive dynamic contrast and natural room reverb.", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/ec/3b/b3/ec3bb329-a359-3d77-d7d4-0683a4ff8aa1/13UMGIM55074.rgb.jpg/600x600bb.jpg" },
-      { title: "A Love Supreme", artist: "John Coltrane", year: 1965, score: 99, matchReason: "Spiritual jazz pinnacle with Rudy Van Gelder acoustic resonance and transcendent saxophone.", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/21/df/f2/21dff2ea-7e78-0e9e-561b-90f679774fa1/00602547146524.rgb.jpg/600x600bb.jpg" },
-      { title: "Unknown Pleasures", artist: "Joy Division", year: 1979, score: 97, matchReason: "Martin Hannett iconic spatial production with icy reverb and driving basslines.", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/33/c2/f3/33c2f357-1bf6-905c-e58f-287950c4bb63/825646183906.jpg/600x600bb.jpg" },
-      { title: "BCD-2", artist: "Basic Channel", year: 1995, score: 98, matchReason: "Holy-grail Berlin dub techno with cavernous tape delays and continuous 4/4 vinyl pulse.", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/a5/11/bf/a511bf03-3467-33f1-d7ec-547e704179e3/4250101400262.jpg/600x600bb.jpg" },
-      { title: "Madvillainy", artist: "Madvillain", year: 2004, score: 98, matchReason: "Madlib SP-303 analog sample collage and MF DOOM off-kilter rhymes.", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/f4/05/cf/f405cf58-3012-1f41-a1b7-a87754d9203a/659457004456.jpg/600x600bb.jpg" },
-      { title: "Loveless", artist: "My Bloody Valentine", year: 1991, score: 98, matchReason: "The definitive shoegaze monument with swirling reverse reverb and glide guitar tremolo.", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/4d/93/ea/4d93ea4c-d92d-94c6-f761-002d2fc751a0/887830015939.png/600x600bb.jpg" }
-    ];
-    displayRecs = fallbackPool;
+  // Gate: Only include items that have verified real album covers (never raw SVG placeholders)
+  let withValidCovers = displayRecs.filter(r => r.coverUrl && !r.coverUrl.startsWith("data:image/svg"));
+
+  if (withValidCovers.length < 10) {
+    // If not all 10 covers are available yet, load instantly from the 365 Vault discovery pool!
+    const vaultRecs = await load365VaultDiscoveryRecs();
+    if (vaultRecs && vaultRecs.length >= 10) {
+      displayRecs = vaultRecs.filter(r => !isAlbumInFavorites(r.title, r.artist)).slice(0, 10);
+    } else {
+      displayRecs = withValidCovers;
+    }
+  } else {
+    displayRecs = withValidCovers.slice(0, 10);
+  }
+
+  // Strictly only display when all 10 recommendations have verified covers available!
+  if (displayRecs.length < 10) {
+    return;
   }
 
   const leftItems = displayRecs.slice(0, 5);
@@ -5034,7 +5275,7 @@ function renderFlankingWingsRecommendations(recs) {
         const score = card.getAttribute("data-score");
         if (query) {
           hasUserInteracted = true;
-          if (albumInput) albumInput.value = `${artist} - ${title}`;
+          if (albumInput) setAlbumInputValue(`${artist} - ${title}`, true);
           showToast(`🎧 Spinning crate match: "${title}" (${score}% match)`);
           appraiseAlbum(query);
           window.scrollTo({ top: 0, behavior: "smooth" });
@@ -5113,42 +5354,57 @@ async function loadAndDisplayCachedRecommendations() {
     } catch (e) {}
   }
 
-  // 4. Immediately render recommendations if found
+  const favCount = (userFavorites || []).length;
+
+  // Requirement: If user does not have 3 saves yet -> Display random vinyl from 365 Vault with 100% verified covers!
+  if (favCount < 3) {
+    const vaultPicks = await load365VaultDiscoveryRecs();
+    if (vaultPicks && vaultPicks.length >= 10) {
+      cachedFavRecs = vaultPicks.filter(r => !isAlbumInFavorites(r.title, r.artist)).slice(0, 10);
+      primeRecommendationsInCatalog(cachedFavRecs);
+      renderFlankingWingsRecommendations(cachedFavRecs);
+      renderRecommendationCarousel(cachedFavRecs);
+      if (recLockedBanner) recLockedBanner.classList.add("hidden");
+      if (recCarouselContainer) recCarouselContainer.classList.remove("hidden");
+      return;
+    }
+  }
+
+  // 4. For users with 3+ saves: render personalized recommendations if cached
   if (cachedPayload && Array.isArray(cachedPayload.recommendations) && cachedPayload.recommendations.length > 0) {
     const clean = cachedPayload.recommendations.filter(r => !isAlbumInFavorites(r.title, r.artist));
-    if (clean.length > 0) {
-      cachedFavRecs = clean.slice(0, 10);
+    const withCovers = clean.filter(r => r.coverUrl && !r.coverUrl.startsWith("data:image/svg"));
+    if (withCovers.length >= 10) {
+      cachedFavRecs = withCovers.slice(0, 10);
       lastFavsSignature = cachedPayload.signature || currentSig;
       lastRecsUpdatedAt = Number(cachedPayload.updatedAt || Date.now());
       isRecsExpanded = true;
 
-      // Render modal list and update button
       renderFavoritesRecommendations();
-      if (favRecsBtn) favRecsBtn.classList.remove("hidden");
-
-      // Render bottom crate carousel and flanking wings!
       renderRecommendationCarousel(cachedFavRecs);
       renderFlankingWingsRecommendations(cachedFavRecs);
-      recLockedBanner.classList.add("hidden");
-      recCarouselContainer.classList.remove("hidden");
-
-      // Auto-prime in catalog DB
+      if (recLockedBanner) recLockedBanner.classList.add("hidden");
+      if (recCarouselContainer) recCarouselContainer.classList.remove("hidden");
       primeRecommendationsInCatalog(cachedFavRecs);
 
-      // Only refresh in background if cache is older than 24 hours
       const isStale = (Date.now() - lastRecsUpdatedAt) > TWENTY_FOUR_HOURS_MS;
-      if (isStale && (userFavorites.length > 0 || userSearches.length > 0)) {
+      if (isStale) {
         setTimeout(() => generateFavoritesRecommendations(true), 600);
       }
       return;
     }
   }
 
-  // Render initial benchmark flanking wings if no user recommendations yet
-  renderFlankingWingsRecommendations([]);
+  // Fallback to 365 Vault discovery pool while waiting for personalized taste generation
+  const fallbackPicks = await load365VaultDiscoveryRecs();
+  if (fallbackPicks && fallbackPicks.length >= 10) {
+    cachedFavRecs = fallbackPicks.filter(r => !isAlbumInFavorites(r.title, r.artist)).slice(0, 10);
+    renderFlankingWingsRecommendations(cachedFavRecs);
+    renderRecommendationCarousel(cachedFavRecs);
+  }
 
-  // 5. If no cache exists yet, but user has favorites or recent searches, trigger background generation
-  if (userFavorites.length > 0 || userSearches.length > 0) {
+  // If user has 3+ saves and no cache exists yet, generate in background
+  if (favCount >= 3) {
     setTimeout(() => generateFavoritesRecommendations(true), 800);
   }
 }
@@ -5328,15 +5584,28 @@ function toggleFavorite(album) {
 
   saveUserFavorites();
 
-  const newSig = getLast3LikedSignature();
-  // Update recommendations: only call Gemini if older than 24h or if cachedFavRecs is empty!
-  const isStale = !lastRecsUpdatedAt || (Date.now() - lastRecsUpdatedAt) > TWENTY_FOUR_HOURS_MS || cachedFavRecs.length === 0;
-  if (isStale && (userFavorites.length > 0 || userSearches.length > 0)) {
-    setTimeout(() => generateFavoritesRecommendations(true), 800);
+  const favCount = userFavorites.length;
+  if (favCount < 3) {
+    // Under 3 saves: display 365 Vault discovery recommendations with 100% verified covers
+    load365VaultDiscoveryRecs().then(vaultRecs => {
+      if (vaultRecs && vaultRecs.length >= 10) {
+        cachedFavRecs = vaultRecs.filter(r => !isAlbumInFavorites(r.title, r.artist)).slice(0, 10);
+        renderFlankingWingsRecommendations(cachedFavRecs);
+        renderRecommendationCarousel(cachedFavRecs);
+      }
+    });
   } else {
-    // Re-render local cache immediately (0ms delay, $0.00 cost)
-    renderFavoritesRecommendations();
-    renderFlankingWingsRecommendations(cachedFavRecs);
+    // 3+ saves: trigger personalized Taste Engine
+    const isStale = !lastRecsUpdatedAt || (Date.now() - lastRecsUpdatedAt) > TWENTY_FOUR_HOURS_MS || cachedFavRecs.length === 0;
+    if (isStale) {
+      if (wasAdded && favCount === 3) {
+        showToast("✨ 3 saves reached! Curating your personalized taste crate...");
+      }
+      setTimeout(() => generateFavoritesRecommendations(true), 800);
+    } else {
+      renderFavoritesRecommendations();
+      renderFlankingWingsRecommendations(cachedFavRecs);
+    }
   }
 }
 
@@ -5348,15 +5617,6 @@ function updateFavsUI() {
     favsCountBadge.classList.remove("hidden");
   } else {
     favsCountBadge.classList.add("hidden");
-  }
-
-  // Vinyl Recommendations button (Unlocked once user has 1+ fav saves OR 1+ searches)
-  if (favRecsBtn) {
-    if (count >= 1 || searchCount >= 1) {
-      favRecsBtn.classList.remove("hidden");
-    } else {
-      favRecsBtn.classList.add("hidden");
-    }
   }
 
   if (favsDrawerCount) {
@@ -5454,7 +5714,7 @@ function renderFavsDrawerList() {
       hasUserInteracted = true;
       favsDrawerContainer.classList.add("hidden");
       showAiThinkingBanner();
-      albumInput.value = `${fav.artist} - ${fav.title}`;
+      setAlbumInputValue(`${fav.artist} - ${fav.title}`, true);
       appraiseAlbum(`${fav.artist} ${fav.title}`);
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
@@ -5608,26 +5868,49 @@ Return strictly a valid JSON object matching this schema:
     if (data && Array.isArray(data.recommendations) && data.recommendations.length > 0) {
       // Deterministic filter: strictly exclude any album in the favorites list
       const nonFavs = data.recommendations.filter(rec => !isAlbumInFavorites(rec.title, rec.artist));
-      cachedFavRecs = nonFavs.slice(0, 10);
-      lastFavsSignature = currentSig;
-      lastRecsUpdatedAt = Date.now();
-      isRecsExpanded = true;
 
-      // Auto-prime in catalog DB so clicking any recommendation is instantaneous (0ms)
-      primeRecommendationsInCatalog(cachedFavRecs);
+      // Proactively enrich all recommendations with real covers in parallel
+      const enriched = await enrichRecommendationsWithCovers(nonFavs);
 
-      // Persist to local & server storage with timestamp
-      saveRecommendationsToStorage(cachedFavRecs, currentSig, lastRecsUpdatedAt);
+      // Ensure all 10 items have valid covers; fallback to 365 Vault for any failed lookups:
+      const vaultBackup = await load365VaultDiscoveryRecs();
+      let backupIdx = 0;
+      const validTen = enriched.map(rec => {
+        if (!rec.coverUrl || rec.coverUrl.startsWith("data:image/svg")) {
+          if (vaultBackup && vaultBackup[backupIdx]) {
+            const repl = vaultBackup[backupIdx++];
+            return {
+              ...repl,
+              matchReason: `Curated analog classic matching your crate discovery aesthetic.`
+            };
+          }
+        }
+        return rec;
+      }).filter(r => r.coverUrl && !r.coverUrl.startsWith("data:image/svg")).slice(0, 10);
 
-      recsModalLoading.classList.add("hidden");
-      favRecsList.classList.remove("hidden");
-      renderFavoritesRecommendations();
-      renderFlankingWingsRecommendations(cachedFavRecs);
+      // Requirement: Only display 10 recommendations once all cover work is verified and available!
+      if (validTen.length >= 10) {
+        cachedFavRecs = validTen;
+        lastFavsSignature = currentSig;
+        lastRecsUpdatedAt = Date.now();
+        isRecsExpanded = true;
 
-      // Immediately render bottom crate carousel and unlock it
-      renderRecommendationCarousel(cachedFavRecs);
-      recLockedBanner.classList.add("hidden");
-      recCarouselContainer.classList.remove("hidden");
+        // Auto-prime in catalog DB so clicking any recommendation is instantaneous (0ms)
+        primeRecommendationsInCatalog(cachedFavRecs);
+
+        // Persist to local & server storage with timestamp
+        saveRecommendationsToStorage(cachedFavRecs, currentSig, lastRecsUpdatedAt);
+
+        recsModalLoading.classList.add("hidden");
+        favRecsList.classList.remove("hidden");
+        renderFavoritesRecommendations();
+        renderFlankingWingsRecommendations(cachedFavRecs);
+
+        // Immediately render bottom crate carousel and unlock it
+        renderRecommendationCarousel(cachedFavRecs);
+        recLockedBanner.classList.add("hidden");
+        recCarouselContainer.classList.remove("hidden");
+      }
     } else {
       throw new Error("No recommendations returned");
     }
@@ -5711,8 +5994,8 @@ function renderFavoritesRecommendations() {
           </div>
         </div>
         <div class="rec-card-actions">
-          <button class="rec-inspect-btn" type="button" title="Appraise this record">
-            Appraise ↗
+          <button class="rec-inspect-btn" type="button" title="Dig Price of this record">
+            Dig Price ↗
           </button>
           <button class="rec-fav-btn ${isFav ? 'active' : ''}" type="button" title="Favorite this vinyl">
             <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
@@ -5745,9 +6028,10 @@ function renderFavoritesRecommendations() {
 
     // Appraise button or clicking title/cover loads album in main view and closes modal
     const triggerAppraisal = () => {
+      hasUserInteracted = true;
       favRecsModalContainer.classList.add("hidden");
       showAiThinkingBanner();
-      albumInput.value = `${rec.artist} - ${rec.title}`;
+      setAlbumInputValue(`${rec.artist} - ${rec.title}`, true);
       appraiseAlbum(`${rec.artist} ${rec.title}`);
       window.scrollTo({ top: 0, behavior: "smooth" });
     };

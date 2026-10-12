@@ -828,6 +828,36 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // GET /api/vault/discovery-wings -> Return 10 random holy-grail albums with guaranteed high-res covers
+  if (pathname === '/api/vault/discovery-wings' && req.method === 'GET') {
+    const vault = loadVault365();
+    const catalog = loadCatalog();
+    const catList = Object.values(catalog);
+
+    // Enrich vault entries with verified catalog covers
+    const enriched = (vault || []).map(v => {
+      const hit = catList.find(c => c.title && c.title.toLowerCase() === v.title.toLowerCase());
+      const cover = (hit && hit.coverUrl && !hit.coverUrl.startsWith('data:image/svg')) ? hit.coverUrl : null;
+      return {
+        title: v.title,
+        artist: v.artist,
+        year: v.year,
+        genre: v.genre,
+        score: 93 + (v.day % 7),
+        matchReason: v.tagline || 'Essential holy-grail analog landmark from the 365 Vault.',
+        query: v.query || `${v.artist} - ${v.title}`,
+        coverUrl: cover
+      };
+    }).filter(v => Boolean(v.coverUrl));
+
+    // Shuffle and pick 10
+    const shuffled = enriched.sort(() => 0.5 - Math.random());
+    const recommendations = shuffled.slice(0, 10);
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ success: true, count: recommendations.length, recommendations }));
+    return;
+  }
+
   // GET /api/session/last-album -> Retrieve last displayed album across sessions & server restarts
   if (pathname === '/api/session/last-album' && req.method === 'GET') {
     const lastSession = loadLastSession();

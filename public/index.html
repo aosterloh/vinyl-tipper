@@ -121,12 +121,6 @@
           <span id="favs-count-badge" class="favs-count-badge hidden">0</span>
         </button>
 
-        <!-- Vinyl Recommendations Button (Based on saved favorites or last 3 searches) -->
-        <button id="fav-recs-btn" class="nav-recs-btn hidden" type="button" aria-label="Vinyl Recommendations" title="Get Vinyl Recommendations based on your favorite albums or recent searches">
-          <span class="recs-sparkle-icon">✨</span>
-          <span class="recs-btn-text">Vinyl Recommendations</span>
-        </button>
-
         <!-- Region & Localized Shop Selector -->
         <div class="region-selector-wrapper">
           <button id="region-toggle-btn" class="region-toggle-btn" type="button" aria-haspopup="true" aria-expanded="false" title="Change Vinyl Market Region & Shop Links">
@@ -196,14 +190,27 @@
 
     <!-- Main Content Flow -->
     <main class="main-content">
-      <!-- Prominent Hero Section with Full-Width Search Bar -->
-      <section class="hero-search-section">
-        <div class="hero-header-text">
-          <h1 class="hero-title">Crate Digging Reimagined</h1>
-          <p class="hero-subtitle">Discover real-time vinyl street appraisals, spin virtual turntable audio previews, and unearth curated crate alternatives.</p>
-        </div>
+      <!-- Centered Hero Header -->
+      <div class="hero-header-text">
+        <h1 class="hero-title">Crate Digging Reimagined</h1>
+        <p class="hero-subtitle">Discover real-time vinyl street appraisals, spin virtual turntable audio previews, and unearth curated crate alternatives.</p>
+      </div>
 
-        <form id="search-form" class="search-form hero-search-form">
+      <!-- Unified 3-Column Crate Digging Layout (Flanking Wings Starting at Search Bar Level) -->
+      <div class="crate-layout-wrapper">
+        <!-- Left Flanking Wing (Recs 1 to 5) -->
+        <aside id="recs-wing-left" class="recs-flanking-wing recs-wing-left hidden" aria-label="Curated Recommendations 1 to 5">
+          <div class="wing-header">
+            <span class="wing-badge">✨ Crate Recs</span>
+          </div>
+          <div class="wing-cards-list" id="wing-cards-left"></div>
+        </aside>
+
+        <!-- Center Column -->
+        <div class="crate-center-column">
+          <!-- Prominent Hero Section with Full-Width Search Bar -->
+          <section class="hero-search-section">
+            <form id="search-form" class="search-form hero-search-form">
           <div class="search-bar-wrap">
             <span class="search-icon">🔍</span>
             <input 
@@ -214,7 +221,8 @@
               autocomplete="off" 
               required
             />
-            <button type="submit" id="search-submit-btn" class="search-btn">Appraise</button>
+            <button type="button" id="search-clear-btn" class="search-clear-btn hidden" aria-label="Clear search input" title="Clear search">✕</button>
+            <button type="submit" id="search-submit-btn" class="search-btn">Dig Price</button>
 
             <!-- Quick Autocomplete Dropdown for Top 3 Albums -->
             <div id="autocomplete-dropdown" class="autocomplete-dropdown hidden" role="listbox" aria-label="Top album suggestions"></div>
@@ -234,7 +242,7 @@
             </div>
           </div>
           <div class="potd-actions">
-            <button type="button" id="potd-spin-btn" class="potd-action-btn potd-spin-btn" title="Appraise & Spin on Turntable">
+            <button type="button" id="potd-spin-btn" class="potd-action-btn potd-spin-btn" title="Dig Price & Spin on Turntable">
               ▶ Spin
             </button>
             <button type="button" id="potd-shuffle-btn" class="potd-action-btn potd-shuffle-btn" title="Roll another landmark from the 365 Vault">
@@ -356,15 +364,17 @@
 
       <!-- Main Appraisal Results Section -->
       <section id="results-section" class="results-section hidden">
-        <div class="hero-showcase-container">
-          <!-- Left Flanking Wing (Recs 1 to 5) -->
-          <aside id="recs-wing-left" class="recs-flanking-wing recs-wing-left hidden" aria-label="Curated Recommendations 1 to 5">
-            <div class="wing-header">
-              <span class="wing-badge">✨ Crate Recs</span>
-            </div>
-            <div class="wing-cards-list" id="wing-cards-left"></div>
-          </aside>
+        <!-- Recommendation of the Day Header Banner -->
+        <div id="hero-rec-banner" class="hero-rec-banner hidden" role="status" aria-live="polite">
+          <div class="hero-rec-pill">
+            <span class="hero-rec-sparkle">✨</span>
+            <span class="hero-rec-label">Recommendation of the Day</span>
+            <span class="hero-rec-dot">•</span>
+            <span class="hero-rec-sub">Today's Holy-Grail Pressing</span>
+          </div>
+        </div>
 
+        <div class="hero-showcase-container">
           <!-- Hero Album Appraisal Card (2x2 Grid: Cover & Info in Row 1, Player & Pricing in Row 2) -->
           <div class="album-hero-card">
           <!-- Cell 1: Vinyl Sleeve Cover (Top Left) -->
@@ -429,6 +439,27 @@
 
           <!-- Cell 3: YouTube Listening Station & Vinyl DJ Deck (Bottom Left, Level with Pricing) -->
           <div class="album-hero-player-cell">
+            <!-- Sleek Audiophile Teaser Card on Loading (No intrusive video embed until clicked) -->
+            <div id="hero-player-teaser" class="hero-player-teaser">
+              <div class="teaser-header-row">
+                <span class="teaser-badge">🎧 Vinyl DJ Station</span>
+                <span id="teaser-track-badge" class="teaser-track-badge">Audio Preview</span>
+              </div>
+              <div class="teaser-body">
+                <div class="teaser-icon-disc">
+                  <span class="teaser-disc-icon">💿</span>
+                </div>
+                <div class="teaser-text-wrap">
+                  <h4 id="teaser-track-title" class="teaser-track-title">Standout Track Preview</h4>
+                  <p class="teaser-subtext">Drop the needle to sample the master pressing audio on demand.</p>
+                </div>
+              </div>
+              <button id="hero-teaser-play-btn" class="teaser-play-action-btn" type="button" title="Listen to audio preview">
+                <span class="teaser-play-triangle">▶</span>
+                <span id="teaser-play-btn-text">Listen to Preview</span>
+              </button>
+            </div>
+
             <div id="hero-yt-box" class="hero-yt-box hidden">
               <div class="hero-yt-header">
                 <span id="hero-yt-badge" class="yt-badge">▶ Vinyl DJ</span>
@@ -482,15 +513,8 @@
               </div>
             </div>
           </div>
-
-          <!-- Right Flanking Wing (Recs 6 to 10) -->
-          <aside id="recs-wing-right" class="recs-flanking-wing recs-wing-right hidden" aria-label="Curated Recommendations 6 to 10">
-            <div class="wing-header">
-              <span class="wing-badge">🎯 Top Matches</span>
-            </div>
-            <div class="wing-cards-list" id="wing-cards-right"></div>
-          </aside>
         </div>
+      </div>
 
         <!-- Genre Alternatives Section with Extended Pool & Fresh Picks Shuffle -->
         <div class="alternatives-section">
@@ -510,6 +534,16 @@
           </div>
         </div>
       </section>
+    </div><!-- /.crate-center-column -->
+
+    <!-- Right Flanking Wing (Recs 6 to 10) -->
+    <aside id="recs-wing-right" class="recs-flanking-wing recs-wing-right hidden" aria-label="Curated Recommendations 6 to 10">
+      <div class="wing-header">
+        <span class="wing-badge">🎯 Top Matches</span>
+      </div>
+      <div class="wing-cards-list" id="wing-cards-right"></div>
+    </aside>
+  </div><!-- /.crate-layout-wrapper -->
 
       <!-- Bottom Recommendations Carousel Section -->
       <section id="recommendations-section" class="recommendations-section">

@@ -1,6 +1,6 @@
 {
   "visits": {
-    "total": 34,
+    "total": 73,
     "uniqueSessions": [
       "sid_test_1",
       "sid_test_2",
@@ -20,16 +20,318 @@
       "sid_mv4e7ut2_ulu8ag",
       "sid_mv4e7vd8_7q2rnn",
       "sid_mv4e7vs0_1dcaao",
-      "sid_mv4e7wqu_xu7vg0"
+      "sid_mv4e7wqu_xu7vg0",
+      "sid_mv4tw6lh_6sj2ll",
+      "sid_mv4twsae_1e3e21",
+      "sid_mv4u5oco_8yt8i3",
+      "sid_mv4u6i0k_tc11cw",
+      "sid_mv4unvw6_9wecbx",
+      "sid_mv4v2jlw_x39buq",
+      "sid_mv4v3kff_ccbzsu",
+      "sid_mv4v3y99_d5er1c",
+      "sid_mv4vb606_iasfxe",
+      "sid_mv4vdkh6_aangl7",
+      "sid_mv4vf23e_4s5eea",
+      "sid_mv4vrq1l_gg0c00",
+      "sid_mv4vvg62_ew5508",
+      "sid_mv4vvtbp_9b25dp",
+      "sid_mv4xunga_k52o8b",
+      "sid_mv4xxcj0_qc2vf2",
+      "sid_mv4y4ylj_fwqsb7",
+      "sid_mv4y9oll_gfan8a",
+      "sid_mv4zyw11_lqynxf"
     ],
     "byDay": {
-      "2026-10-11": 34
+      "2026-10-11": 34,
+      "2026-10-12": 39
     }
   },
   "searches": {
-    "total": 31,
-    "aiAppraisals": 3,
+    "total": 78,
+    "aiAppraisals": 4,
     "recent": [
+      {
+        "query": "Brad Mehldau Elegiac Cycle",
+        "timestamp": 1791794172777,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "DJ Shadow Endtroducing.....",
+        "timestamp": 1791794164722,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "J Dilla Donuts",
+        "timestamp": 1791794152319,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791794141644,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Basic Channel BCD-2",
+        "timestamp": 1791794128966,
+        "hit": false,
+        "isAi": true
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791794125839,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791792940791,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791792900512,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791792319126,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791792298646,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791792295960,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791792287129,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Bill Evans Trio Waltz for Debby",
+        "timestamp": 1791791377415,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791791344612,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791791335973,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791791332196,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791791286014,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791791065731,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791790875479,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791790719375,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791790710500,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791790616426,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791790584707,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791787601467,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791787598968,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791787426646,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791787279688,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791787270668,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791787262633,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791787088825,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791786523459,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Madvillain - Madvillainy",
+        "timestamp": 1791786497924,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791786428425,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791786316347,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791786026525,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791786015717,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791785979717,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791785961832,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791785914121,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Madvillain Madvillainy",
+        "timestamp": 1791785238866,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791785232935,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791785230247,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Chick Corea Children's Songs",
+        "timestamp": 1791784633849,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791784419067,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791784380605,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791783965834,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791783937771,
+        "hit": true,
+        "isAi": false
+      },
       {
         "query": "Paul Bley - Open, to Love",
         "timestamp": 1791757610906,
@@ -47,138 +349,6 @@
         "timestamp": 1791757609107,
         "hit": true,
         "isAi": false
-      },
-      {
-        "query": "Keith Jarrett - Facing You",
-        "timestamp": 1791757608413,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Portishead - Dummy",
-        "timestamp": 1791757566296,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Portishead - Dummy",
-        "timestamp": 1791757551932,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Donato Dozzy K",
-        "timestamp": 1791755849039,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Voices from the Lake - Voices from the Lake",
-        "timestamp": 1791755837649,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Voices from the Lake - Voices from the Lake",
-        "timestamp": 1791755462239,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Voices from the Lake - Voices from the Lake",
-        "timestamp": 1791755132034,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Voices from the Lake Voices from the Lake",
-        "timestamp": 1791754862516,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Paul Bley - Open, to Love",
-        "timestamp": 1791754856961,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Paul Bley - Open, to Love",
-        "timestamp": 1791754848935,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Paul Bley - Open, to Love",
-        "timestamp": 1791739282352,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Paul Bley - Open, to Love",
-        "timestamp": 1791739250822,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Paul Bley - Open, to Love",
-        "timestamp": 1791739181059,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Paul Bley - Open, to Love",
-        "timestamp": 1791739117878,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Paul Bley - Open, to Love",
-        "timestamp": 1791738635621,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Paul Bley - Open, to Love",
-        "timestamp": 1791738633239,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Paul Bley - Open, to Love",
-        "timestamp": 1791738600982,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Paul Bley - Open, to Love",
-        "timestamp": 1791738593436,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Paul Bley - Open, to Love",
-        "timestamp": 1791738479669,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Paul Bley - Open, to Love",
-        "timestamp": 1791738475859,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Luigi Tozzi - Deep Blue",
-        "timestamp": 1791738256122,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Pink Floyd - Animals",
-        "timestamp": 1791738251122,
-        "hit": true,
-        "isAi": false
       }
     ],
     "topQueries": {
@@ -189,7 +359,16 @@
       "voices from the lake - voices from the lake": 3,
       "donato dozzy k": 1,
       "portishead - dummy": 2,
-      "keith jarrett - facing you": 3
+      "keith jarrett - facing you": 3,
+      "miles davis - kind of blue": 39,
+      "chick corea children's songs": 1,
+      "madvillain madvillainy": 1,
+      "madvillain - madvillainy": 1,
+      "bill evans trio waltz for debby": 1,
+      "basic channel bcd-2": 1,
+      "j dilla donuts": 1,
+      "dj shadow endtroducing.....": 1,
+      "brad mehldau elegiac cycle": 1
     }
   },
   "clicks": {
@@ -211,5 +390,5 @@
     ]
   },
   "createdAt": 1791738256122,
-  "lastUpdated": 1791757610906
+  "lastUpdated": 1791794172777
 }

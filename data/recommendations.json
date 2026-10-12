@@ -156,315 +156,335 @@
     "updatedAt": 1791717787570
   },
   "NL6ThyqIeDcfX1j9aotKDsppXoE3": {
-    "signature": "searches:voices from the lake:voices from the lake",
+    "signature": "favs:endtroducing:dj shadow|donuts:j dilla|voices from the lake:voices from the lake",
     "recommendations": [
       {
-        "title": "K",
-        "artist": "Donato Dozzy",
-        "genre": "Ambient Techno / Hypnotic Techno",
-        "year": 2010,
-        "score": 99,
-        "matchReason": "As one-half of Voices from the Lake, Donato Dozzy's solo magnum opus lays down the exact DNA of sub-aquatic 303 modulations and meditative ambient techno.",
-        "playtime": "43 min",
-        "trackCount": 7,
-        "streetPriceGermany": {
-          "newEur": "€28 – €35",
-          "usedEur": "€35 – €60"
-        },
-        "coverSearchTerm": "Donato Dozzy K"
-      },
-      {
-        "title": "Phobos",
-        "artist": "Neel",
-        "genre": "Deep Techno / Dark Ambient",
-        "year": 2014,
+        "title": "Untrue",
+        "artist": "Burial",
+        "genre": "Dubstep / Ambient / Future Garage",
+        "year": 2007,
         "score": 98,
-        "matchReason": "Engineered by the other half of Voices from the Lake, this solo tour de force translates their signature fluid acoustic depth into an immersive, deep-space sound design journey.",
-        "playtime": "48 min",
-        "trackCount": 6,
+        "matchReason": "Marries the emotional vocal-chopping ethos of J Dilla with the rainy, hypnotic sub-bass depth of Voices from the Lake. The record is drenched in authentic vinyl crackle and nocturnal melancholy that any DJ Shadow disciple will instantly revere.",
+        "playtime": "50 min",
+        "trackCount": 13,
         "streetPriceGermany": {
           "newEur": "€26 – €32",
-          "usedEur": "€30 – €50"
+          "usedEur": "€18 – €24"
         },
-        "coverSearchTerm": "Neel Phobos"
+        "coverSearchTerm": "Burial Untrue",
+        "coverUrl": "/api/images/burial_untrue.jpg"
       },
       {
-        "title": "Wadjet",
-        "artist": "Luigi Tozzi",
-        "genre": "Hypnotic Techno / Deep Techno",
-        "year": 2016,
+        "title": "Since I Left You",
+        "artist": "The Avalanches",
+        "genre": "Plunderphonics / Turntablism",
+        "year": 2000,
         "score": 96,
-        "matchReason": "Directly continuing the Italian deep techno lineage, Tozzi pairs aquatic atmospheric pads with rolling, serpentine low-end grooves that mirror Voices from the Lake's subtle pacing.",
-        "playtime": "41 min",
-        "trackCount": 6,
-        "streetPriceGermany": {
-          "newEur": "€25 – €30",
-          "usedEur": "€20 – €35"
-        },
-        "coverSearchTerm": "Luigi Tozzi Wadjet"
-      },
-      {
-        "title": "Shaman",
-        "artist": "Dino Sabatini",
-        "genre": "Hypnotic Techno / Tribal Ambient",
-        "year": 2012,
-        "score": 95,
-        "matchReason": "Released on Prologue in the same golden era as Voices from the Lake, this record merges ancient ritual percussion with slick, modern modular soundscapes.",
-        "playtime": "62 min",
-        "trackCount": 11,
-        "streetPriceGermany": {
-          "newEur": "€32 – €38",
-          "usedEur": "€45 – €75"
-        },
-        "coverSearchTerm": "Dino Sabatini Shaman"
-      },
-      {
-        "title": "Inner Structures",
-        "artist": "Claudio PRC",
-        "genre": "Hypnotic Techno / Ambient Techno",
-        "year": 2011,
-        "score": 93,
-        "matchReason": "A cornerstone of Italian deep techno, offering the same clinical attention to reverberant acoustics, deep pulses, and patient atmospheric shifts.",
-        "playtime": "68 min",
-        "trackCount": 10,
+        "matchReason": "The direct spiritual successor to DJ Shadow's 100% sample-based architecture, assembled entirely from thousands of neglected bargain-bin vinyl records. Its euphoric, seamless crate-digging narrative shares Dilla's ear for joyous soul chops and infectious rhythm.",
+        "playtime": "60 min",
+        "trackCount": 18,
         "streetPriceGermany": {
           "newEur": "€30 – €36",
-          "usedEur": "€40 – €65"
+          "usedEur": "€22 – €28"
         },
-        "coverSearchTerm": "Claudio PRC Inner Structures"
+        "coverSearchTerm": "The Avalanches Since I Left You",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/dc/38/47/dc3847df-0457-0c03-467c-cf4d1ac57896/19UMGIM71485.rgb.jpg/600x600bb.jpg"
       },
       {
-        "title": "The Coldest Season",
-        "artist": "Deepchord presents Echospace",
+        "title": "Music Has the Right to Children",
+        "artist": "Boards of Canada",
+        "genre": "IDM / Downtempo / Ambient",
+        "year": 1998,
+        "score": 95,
+        "matchReason": "Fuses heavy boom-bap drum programming with tape-saturated analog synths and spectral vignettes, bridging the gap between hip-hop beats and atmospheric sound design. It mirrors the hazy, memory-evoking textures found across both 'Endtroducing.....' and deep ambient techno.",
+        "playtime": "63 min",
+        "trackCount": 18,
+        "streetPriceGermany": {
+          "newEur": "€28 – €34",
+          "usedEur": "€20 – €26"
+        },
+        "coverSearchTerm": "Boards of Canada Music Has the Right to Children",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/b5/4c/c2/b54cc20d-03f5-f2c4-4a0d-9b51ad65af89/dj.txuslqgv.jpg/600x600bb.jpg"
+      },
+      {
+        "title": "Los Angeles",
+        "artist": "Flying Lotus",
+        "genre": "Wonky / Instrumental Hip-Hop / Experimental",
+        "year": 2008,
+        "score": 94,
+        "matchReason": "Directly expands upon J Dilla's unquantized rhythmic swing while pushing MPC beatmaking into cosmic, sub-heavy electronic territories. Its gritty compression and cinematic transitions evoke DJ Shadow's darker instrumental masterclasses.",
+        "playtime": "44 min",
+        "trackCount": 17,
+        "streetPriceGermany": {
+          "newEur": "€25 – €30",
+          "usedEur": "€18 – €23"
+        },
+        "coverSearchTerm": "Flying Lotus Los Angeles",
+        "coverUrl": "/api/images/flying_lotus_los_angeles.jpg"
+      },
+      {
+        "title": "Biokinetics",
+        "artist": "Porter Ricks",
         "genre": "Dub Techno / Ambient Techno",
-        "year": 2007,
+        "year": 1996,
+        "score": 93,
+        "matchReason": "Essential listening for fans of Voices from the Lake, offering an aquatic, low-end masterclass built on subaquatic reverberations and tape decay. Its deep underwater pulse parallels the dark, filtered basslines favored by mid-90s sample-based hip-hop producers.",
+        "playtime": "58 min",
+        "trackCount": 8,
+        "streetPriceGermany": {
+          "newEur": "€27 – €33",
+          "usedEur": "€22 – €30"
+        },
+        "coverSearchTerm": "Porter Ricks Biokinetics",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/b3/8c/95/b38c95de-d74e-8358-b0e3-9b4735c3d9cf/mzi.gtzygzjr.jpg/600x600bb.jpg"
+      },
+      {
+        "title": "Shades of Blue",
+        "artist": "Madlib",
+        "genre": "Jazz-Rap / Instrumental Hip-Hop",
+        "year": 2003,
         "score": 92,
-        "matchReason": "Matches the organic, enveloping oceanic atmospheres of Voices from the Lake through tape-saturated analog synthesizers and deep oceanic dub textures.",
+        "matchReason": "Authorized to raid the legendary Blue Note vaults, Madlib crafts an MPC-driven jazz tapestry that sits right alongside Dilla's crate-dug brilliance. The unhurried drum swing and dusty acoustic instrument samples satisfy the purest vinyl hunter sensibilities.",
+        "playtime": "58 min",
+        "trackCount": 16,
+        "streetPriceGermany": {
+          "newEur": "€29 – €35",
+          "usedEur": "€20 – €27"
+        },
+        "coverSearchTerm": "Madlib Shades of Blue",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/0d/96/1d/0d961d09-8e54-e2f5-f5ce-b08690b1e797/00602537641079.rgb.jpg/600x600bb.jpg"
+      },
+      {
+        "title": "Rounds",
+        "artist": "Four Tet",
+        "genre": "Folktronica / Downtempo / IDM",
+        "year": 2003,
+        "score": 91,
+        "matchReason": "Crafted with micro-sampled acoustic instruments layered over hip-hop breakbeats, this album mirrors DJ Shadow's collage methodology with pastoral warmth. Its hypnotic, cyclical grooves also channel the patient repetition of ambient techno.",
+        "playtime": "45 min",
+        "trackCount": 10,
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€17 – €23"
+        },
+        "coverSearchTerm": "Four Tet Rounds",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/4a/82/02/mzi.wggtbdbs.jpg/600x600bb.jpg"
+      },
+      {
+        "title": "Liumin",
+        "artist": "Deepchord presents Echospace",
+        "genre": "Dub Techno / Field Recording",
+        "year": 2010,
+        "score": 90,
+        "matchReason": "Recorded on location in Tokyo and processed through vintage analog delay units, matching the organic spatial immersion of Voices from the Lake. The marriage of city field recordings and subterranean pulse mirrors the concrete, nocturnal ambiance of early instrumental trip hop.",
         "playtime": "78 min",
         "trackCount": 9,
         "streetPriceGermany": {
-          "newEur": "€34 – €42",
-          "usedEur": "€45 – €80"
+          "newEur": "€32 – €38",
+          "usedEur": "€24 – €32"
         },
-        "coverSearchTerm": "Deepchord presents Echospace The Coldest Season"
+        "coverSearchTerm": "Deepchord presents Echospace Liumin",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/51/f5/fb/51f5fb06-7a85-2059-db99-79eae5f874d9/mzi.jtpkwzla.jpg/600x600bb.jpg"
       },
       {
-        "title": "Die Faser",
-        "artist": "Cio D'Or",
-        "genre": "Hypnotic Techno / Minimal Ambient",
-        "year": 2009,
-        "score": 90,
-        "matchReason": "A cinematic and narrative-driven Prologue masterwork that shares Dozzy and Neel's devotion to delicate tension and water-like resonance.",
-        "playtime": "65 min",
-        "trackCount": 10,
-        "streetPriceGermany": {
-          "newEur": "€30 – €36",
-          "usedEur": "€35 – €55"
-        },
-        "coverSearchTerm": "Cio D'Or Die Faser"
-      },
-      {
-        "title": "Unanimity",
-        "artist": "Abdulla Rashim",
-        "genre": "Hypnotic Techno / Nordic Deep Techno",
-        "year": 2014,
+        "title": "Smokers Delight",
+        "artist": "Nightmares on Wax",
+        "genre": "Trip Hop / Downtempo / Instrumental Hip-Hop",
+        "year": 1995,
         "score": 89,
-        "matchReason": "Brings the user from Mediterranean water basins to frozen Scandinavian landscapes, retaining the cyclical, trance-inducing polyrhythms and sub-heavy mixdowns.",
-        "playtime": "49 min",
-        "trackCount": 8,
+        "matchReason": "A cornerstone of mid-90s European vinyl culture that blends funk crate discoveries with warm dub basslines and lazy hip-hop breaks. It shares 'Endtroducing.....''s reliance on vinyl soul loops while providing an effortless, smoke-filled groove.",
+        "playtime": "74 min",
+        "trackCount": 16,
         "streetPriceGermany": {
           "newEur": "€28 – €34",
-          "usedEur": "€30 – €48"
+          "usedEur": "€19 – €25"
         },
-        "coverSearchTerm": "Abdulla Rashim Unanimity"
-      },
-      {
-        "title": "Hymn to Moisture",
-        "artist": "Rrose",
-        "genre": "Hypnotic Techno / Modular Techno",
-        "year": 2019,
-        "score": 88,
-        "matchReason": "Explores acoustic psychoacoustics and microtonal modular swells that deliver the same cerebral, spine-tingling immersion found on Voices from the Lake.",
-        "playtime": "50 min",
-        "trackCount": 8,
-        "streetPriceGermany": {
-          "newEur": "€28 – €34",
-          "usedEur": "€22 – €32"
-        },
-        "coverSearchTerm": "Rrose Hymn to Moisture"
+        "coverSearchTerm": "Nightmares on Wax Smokers Delight",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4b/c3/c8/4bc3c8a9-652b-0ab3-4edf-d5eeaada7dc0/0801061003630.png/600x600bb.jpg"
       },
       {
         "title": "Zauberberg",
         "artist": "GAS",
-        "genre": "Ambient Techno / Dark Ambient",
+        "genre": "Ambient Techno / Minimal / Drone",
         "year": 1997,
-        "score": 87,
-        "matchReason": "Wolfgang Voigt's definitive work provides the historical framework for the suffocating, lush ambient techno pads and muffled subterranean kicks of modern hypnotic techno.",
-        "playtime": "56 min",
+        "score": 88,
+        "matchReason": "Wolfgang Voigt's definitive German techno masterwork uses heavily obscured, pitched-down classical vinyl samples pulsing beneath muffled 4/4 bass drums. It directly unites DJ Shadow's plunderphonics aesthetics with the deep, misty hypnosis of Voices from the Lake.",
+        "playtime": "62 min",
         "trackCount": 7,
         "streetPriceGermany": {
-          "newEur": "€32 – €40",
-          "usedEur": "€28 – €45"
+          "newEur": "€30 – €36",
+          "usedEur": "€22 – €29"
         },
-        "coverSearchTerm": "GAS Zauberberg"
+        "coverSearchTerm": "GAS Zauberberg",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music111/v4/6e/72/f8/6e72f806-797d-3e81-07cb-4dcc1248a99c/880319823718_cover.jpg/600x600bb.jpg"
       }
     ],
-    "updatedAt": 1791755871556
+    "updatedAt": 1791794203555
   },
   "4WVnvaQkwzOhniVyNnP0Ja47zof2": {
-    "signature": "searches:piano improvisations vol 1:chick corea",
+    "signature": "searches:kind of blue:miles davis",
     "recommendations": [
       {
-        "title": "Facing You",
-        "artist": "Keith Jarrett",
-        "genre": "Post-Bop / Solo Piano",
-        "year": 1972,
+        "title": "Somethin' Else",
+        "artist": "Cannonball Adderley",
+        "genre": "Hard Bop / Modal Jazz",
+        "year": 1958,
         "score": 99,
-        "matchReason": "Recorded at the exact same Oslo studio by Manfred Eicher just months after Chick Corea's sessions, this is ECM's definitive solo acoustic statement blending gospel warmth with rigorous European classical precision.",
-        "playtime": "43 min",
-        "trackCount": 8,
-        "streetPriceGermany": {
-          "newEur": "€26 – €32",
-          "usedEur": "€14 – €20"
-        },
-        "coverSearchTerm": "Keith Jarrett Facing You"
-      },
-      {
-        "title": "Open, to Love",
-        "artist": "Paul Bley",
-        "genre": "Avant-Garde Jazz / Solo Piano",
-        "year": 1973,
-        "score": 97,
-        "matchReason": "Sharing Chick Corea's impressionistic clarity, Bley strips away ornamentation to explore lingering resonance, micro-intervals, and cavernous silence on the Steinway grand.",
-        "playtime": "42 min",
-        "trackCount": 7,
-        "streetPriceGermany": {
-          "newEur": "€26 – €32",
-          "usedEur": "€16 – €24"
-        },
-        "coverSearchTerm": "Paul Bley Open to Love"
-      },
-      {
-        "title": "Hubris",
-        "artist": "Richie Beirach",
-        "genre": "Contemporary Jazz / Solo Piano",
-        "year": 1977,
-        "score": 95,
-        "matchReason": "Richie Beirach shares Corea’s profound debt to Bartók, Scriabin, and Bill Evans, yielding an intensely lyrical ECM piano document cut through with European melancholia.",
+        "matchReason": "Recorded just months prior to Kind of Blue and featuring Miles Davis as a rare sideman, this album shares the exact same understated swing, cool poise, and delicate trumpet phrasing.",
         "playtime": "38 min",
-        "trackCount": 8,
-        "streetPriceGermany": {
-          "newEur": "€28 – €34",
-          "usedEur": "€12 – €18"
-        },
-        "coverSearchTerm": "Richie Beirach Hubris"
-      },
-      {
-        "title": "African Piano",
-        "artist": "Abdullah Ibrahim",
-        "genre": "Spiritual Jazz / Solo Piano",
-        "year": 1970,
-        "score": 94,
-        "matchReason": "Recorded live in Copenhagen, this foundational solo recording mirrors Corea's percussive left-hand ostinatos while infusing hymnal folk melodies and relentless South African township rhythms.",
-        "playtime": "45 min",
-        "trackCount": 7,
-        "streetPriceGermany": {
-          "newEur": "€25 – €30",
-          "usedEur": "€15 – €22"
-        },
-        "coverSearchTerm": "Abdullah Ibrahim African Piano"
-      },
-      {
-        "title": "Ecstasy",
-        "artist": "Steve Kuhn",
-        "genre": "Post-Bop / Solo Piano",
-        "year": 1975,
-        "score": 93,
-        "matchReason": "Another essential early ECM gem captured at Arne Bendiksen Studio, balancing adventurous harmonic shifts with tender, introspective romanticism.",
-        "playtime": "38 min",
-        "trackCount": 4,
-        "streetPriceGermany": {
-          "newEur": "€27 – €32",
-          "usedEur": "€12 – €19"
-        },
-        "coverSearchTerm": "Steve Kuhn Ecstasy"
-      },
-      {
-        "title": "Alone",
-        "artist": "Bill Evans",
-        "genre": "Post-Bop / Cool Jazz",
-        "year": 1968,
-        "score": 91,
-        "matchReason": "Evans is the primary forefather of Corea’s delicate chord voicings, and this Grammy-winning solo session lays bare the rich impressionistic architecture that birthed 1970s solo jazz piano.",
-        "playtime": "43 min",
         "trackCount": 5,
-        "streetPriceGermany": {
-          "newEur": "€28 – €35",
-          "usedEur": "€18 – €26"
-        },
-        "coverSearchTerm": "Bill Evans Alone"
-      },
-      {
-        "title": "Children's Songs",
-        "artist": "Chick Corea",
-        "genre": "Chamber Jazz / Modern Classical",
-        "year": 1984,
-        "score": 90,
-        "matchReason": "The direct compositional evolution of themes first drafted on Piano Improvisations, distilled into twenty crystalline, Bartókian miniatures recorded with pristine acoustic depth.",
-        "playtime": "34 min",
-        "trackCount": 20,
-        "streetPriceGermany": {
-          "newEur": "€26 – €32",
-          "usedEur": "€14 – €20"
-        },
-        "coverSearchTerm": "Chick Corea Children's Songs"
-      },
-      {
-        "title": "All Alone",
-        "artist": "Mal Waldron",
-        "genre": "Modal Jazz / Solo Piano",
-        "year": 1966,
-        "score": 89,
-        "matchReason": "Recorded in Milan, Waldron's minimalist, repetitive motifs and dark harmonic palette provide a brooding European counterpart to Corea's light-footed Iberian lyricism.",
-        "playtime": "36 min",
-        "trackCount": 6,
         "streetPriceGermany": {
           "newEur": "€26 – €32",
           "usedEur": "€18 – €28"
         },
-        "coverSearchTerm": "Mal Waldron All Alone"
+        "coverSearchTerm": "Cannonball Adderley Somethin' Else",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/47/0c/66/470c6637-381c-5ad9-073b-8b863d6fa965/00724349532953.rgb.jpg/600x600bb.jpg"
       },
       {
-        "title": "Distance",
-        "artist": "Joachim Kühn",
-        "genre": "Chamber Jazz / Solo Piano",
-        "year": 1979,
+        "title": "Portrait in Jazz",
+        "artist": "Bill Evans Trio",
+        "genre": "Cool Jazz / Post-Bop",
+        "year": 1960,
+        "score": 98,
+        "matchReason": "Pianist Bill Evans was the primary harmonic architect behind Kind of Blue; here, his trio expands those impressionistic chord voicings and deep melancholy into the definitive piano trio format.",
+        "playtime": "42 min",
+        "trackCount": 9,
+        "streetPriceGermany": {
+          "newEur": "€24 – €30",
+          "usedEur": "€16 – €25"
+        },
+        "coverSearchTerm": "Bill Evans Trio Portrait in Jazz",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/0a/fe/00/0afe00de-f7dc-b8b9-5faa-55627c4cd10a/00888072024182.rgb.jpg/600x600bb.jpg"
+      },
+      {
+        "title": "Maiden Voyage",
+        "artist": "Herbie Hancock",
+        "genre": "Modal Jazz / Post-Bop",
+        "year": 1965,
+        "score": 97,
+        "matchReason": "Directly evolving the modal concepts pioneered on Kind of Blue, this maritime-themed suite utilizes suspended modal harmonies, oceanic spaciousness, and Miles Davis's 1960s rhythm section.",
+        "playtime": "42 min",
+        "trackCount": 5,
+        "streetPriceGermany": {
+          "newEur": "€25 – €32",
+          "usedEur": "€18 – €26"
+        },
+        "coverSearchTerm": "Herbie Hancock Maiden Voyage",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/64/b6/04/64b6040c-a931-0a5c-6b7c-82e0dd5c3d4c/19UMGIM73745.rgb.jpg/600x600bb.jpg"
+      },
+      {
+        "title": "Crescent",
+        "artist": "John Coltrane",
+        "genre": "Modal Jazz / Spiritual Jazz",
+        "year": 1964,
+        "score": 95,
+        "matchReason": "Coltrane channels the meditative, brooding intensity of his Kind of Blue tenure into a profoundly spiritual and disciplined set of modal ballads.",
+        "playtime": "40 min",
+        "trackCount": 5,
+        "streetPriceGermany": {
+          "newEur": "€28 – €35",
+          "usedEur": "€20 – €30"
+        },
+        "coverSearchTerm": "John Coltrane Crescent",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/91/b6/bb/91b6bb11-26ab-13fb-95aa-67abec45aa5d/15UMGIM36230.rgb.jpg/600x600bb.jpg"
+      },
+      {
+        "title": "Idle Moments",
+        "artist": "Grant Green",
+        "genre": "Soul Jazz / Modal Jazz",
+        "year": 1965,
+        "score": 94,
+        "matchReason": "The 15-minute title track shares the hypnotic, slow-motion nocturnal atmosphere of 'Flamenco Sketches', pairing unhurried guitar lines with Bobby Hutcherson's crystalline vibraphone.",
+        "playtime": "43 min",
+        "trackCount": 4,
+        "streetPriceGermany": {
+          "newEur": "€26 – €34",
+          "usedEur": "€18 – €27"
+        },
+        "coverSearchTerm": "Grant Green Idle Moments",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/24/c7/6a/24c76a46-496b-ef6a-c7e1-7ba7997c7c24/13UABIM41432.rgb.jpg/600x600bb.jpg"
+      },
+      {
+        "title": "Mingus Ah Um",
+        "artist": "Charles Mingus",
+        "genre": "Post-Bop / Modal Jazz",
+        "year": 1959,
+        "score": 93,
+        "matchReason": "Cut in the exact same Columbia 30th Street Studio in 1959, this record shares the same lush acoustic room reverb while exploring deeply emotional blues roots and modal composition.",
+        "playtime": "46 min",
+        "trackCount": 9,
+        "streetPriceGermany": {
+          "newEur": "€24 – €30",
+          "usedEur": "€15 – €24"
+        },
+        "coverSearchTerm": "Charles Mingus Mingus Ah Um",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music2/v4/de/3d/f3/de3df34f-9628-4a61-c14c-d0187fac484c/5099749523128.jpg/600x600bb.jpg"
+      },
+      {
+        "title": "In a Silent Way",
+        "artist": "Miles Davis",
+        "genre": "Modal Jazz / Jazz-Fusion / Ambient",
+        "year": 1969,
+        "score": 92,
+        "matchReason": "A decade after Kind of Blue, Miles revisited minimal, floating modal sketches to forge proto-ambient jazz with the same exquisite restraint and breathy trumpet tone.",
+        "playtime": "38 min",
+        "trackCount": 2,
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€17 – €25"
+        },
+        "coverSearchTerm": "Miles Davis In a Silent Way",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4a/6c/db/4a6cdbee-444e-9416-93da-c448f5ad5ea1/696998655621.jpg/600x600bb.jpg"
+      },
+      {
+        "title": "Speak No Evil",
+        "artist": "Wayne Shorter",
+        "genre": "Post-Bop / Modal Jazz",
+        "year": 1966,
+        "score": 91,
+        "matchReason": "Shorter masterfully expands modal jazz into mystical, dark folklore narratives, propelled by Herbie Hancock's understated piano chords and Ron Carter's anchoring bass.",
+        "playtime": "37 min",
+        "trackCount": 6,
+        "streetPriceGermany": {
+          "newEur": "€26 – €33",
+          "usedEur": "€19 – €28"
+        },
+        "coverSearchTerm": "Wayne Shorter Speak No Evil",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/4f/26/3c/4f263c51-4053-4ca9-602b-47816398c45a/13UAEIM18774.rgb.jpg/600x600bb.jpg"
+      },
+      {
+        "title": "Undercurrent",
+        "artist": "Bill Evans & Jim Hall",
+        "genre": "Cool Jazz / Modal Jazz",
+        "year": 1962,
+        "score": 90,
+        "matchReason": "An intimate, nocturnal duo session that strips jazz down to pure conversational nuance, directly echoing the meditative sensitivity of 'Blue in Green'.",
+        "playtime": "32 min",
+        "trackCount": 6,
+        "streetPriceGermany": {
+          "newEur": "€25 – €31",
+          "usedEur": "€16 – €24"
+        },
+        "coverSearchTerm": "Bill Evans Jim Hall Undercurrent",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/dc/0d/ae/dc0daef8-093e-757d-2b09-90a3d0943075/13ULAIM49008.rgb.jpg/600x600bb.jpg"
+      },
+      {
+        "title": "Midnight Blue",
+        "artist": "Kenny Burrell",
+        "genre": "Hard Bop / Blues / Cool Jazz",
+        "year": 1963,
         "score": 88,
-        "matchReason": "Released on the revered German audiophile imprint CMP, Kühn unleashes jaw-dropping classical technique and blistering improvisational fire across an immaculately staged grand piano.",
-        "playtime": "39 min",
+        "matchReason": "Engineered by Rudy Van Gelder, this quintessential late-night session relies on unforced groove, velvety guitar lines, and subdued congas that appeal directly to lovers of relaxed modal warmth.",
+        "playtime": "34 min",
         "trackCount": 7,
         "streetPriceGermany": {
           "newEur": "€24 – €30",
-          "usedEur": "€10 – €16"
+          "usedEur": "€15 – €22"
         },
-        "coverSearchTerm": "Joachim Kühn Distance"
-      },
-      {
-        "title": "Breakthru",
-        "artist": "Ran Blake",
-        "genre": "Third Stream / Avant-Garde Jazz",
-        "year": 1976,
-        "score": 86,
-        "matchReason": "Issued on Paul Bley’s IAI label, Blake merges film noir moodiness with dissonant classical tonalities that appeal directly to lovers of thoughtful, avant-garde piano phrasing.",
-        "playtime": "41 min",
-        "trackCount": 14,
-        "streetPriceGermany": {
-          "newEur": "€28 – €34",
-          "usedEur": "€16 – €24"
-        },
-        "coverSearchTerm": "Ran Blake Breakthru"
+        "coverSearchTerm": "Kenny Burrell Midnight Blue",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/57/05/fd/5705fdb5-73a9-9275-591f-2fb823ed01cc/00724349533554.tif/600x600bb.jpg"
       }
     ],
-    "updatedAt": 1791737650175
+    "updatedAt": 1791794155520
   }
 }

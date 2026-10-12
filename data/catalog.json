@@ -54,104 +54,39 @@
     "title": "Pet Sounds",
     "artist": "The Beach Boys",
     "genre": "Baroque Pop",
-    "year": "",
-    "playtime": "36 min",
-    "trackCount": 13,
+    "year": 1980,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
-    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/35/bb/c4/35bbc4eb-9387-97b0-b138-64b7a949ea43/13UABIM03512.rgb.jpg/600x600bb.jpg",
-    "streetPriceGermany": {
-      "newEur": "€28 – €35",
-      "usedEur": "€20 – €28"
+    "collectorScore": {
+      "overallScore": 93,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Baroque Pop album featuring renowned dynamic range and vinyl staging."
     },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/35/bb/c4/35bbc4eb-9387-97b0-b138-64b7a949ea43/13UABIM03512.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791717736107
+    "updatedAt": 1791787521384
   },
   "the beatles abbey road": {
     "title": "Abbey Road",
     "artist": "The Beatles",
-    "genre": "Rock",
+    "genre": "Classic Rock",
     "year": 1969,
-    "playtime": "47 min 23 sec",
-    "trackCount": 17,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
-    "youtubeVideoId": "oolpPmuK2I8",
-    "collectorScore": null,
-    "coverUrl": "/api/images/the_beatles_abbey_road.jpg",
-    "streetPriceGermany": {
-      "newEur": "€28 – €34",
-      "usedEur": "€20 – €28",
-      "conditionNote": "VG+ / EX condition (typical 1970s/1980s German Apple/EMI pressings)"
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 97,
+      "tier": "Curated Crate Match",
+      "verdict": "The final recorded Beatles masterpiece, culminating in the seamless eight-song side-two medley."
     },
-    "alternatives": [
-      {
-        "title": "The Dark Side of the Moon",
-        "artist": "Pink Floyd",
-        "genre": "Progressive Rock",
-        "playtime": "43 min",
-        "trackCount": 10,
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3e/17/ec/3e17ec6d-f980-c64f-19e0-a6fd8bbf0c10/886445635850.jpg/600x600bb.jpg",
-        "coverSearchTerm": "Pink Floyd The Dark Side of the Moon",
-        "streetPriceGermany": {
-          "newEur": "€26 – €32",
-          "usedEur": "€18 – €30"
-        }
-      },
-      {
-        "title": "Pet Sounds",
-        "artist": "The Beach Boys",
-        "genre": "Baroque Pop",
-        "playtime": "36 min",
-        "trackCount": 13,
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/35/bb/c4/35bbc4eb-9387-97b0-b138-64b7a949ea43/13UABIM03512.rgb.jpg/600x600bb.jpg",
-        "coverSearchTerm": "The Beach Boys Pet Sounds",
-        "streetPriceGermany": {
-          "newEur": "€28 – €35",
-          "usedEur": "€20 – €28"
-        }
-      },
-      {
-        "title": "Band on the Run",
-        "artist": "Paul McCartney & Wings",
-        "genre": "Pop Rock",
-        "playtime": "44 min",
-        "trackCount": 9,
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f5/fe/a3/f5fea3f7-a858-b5ae-2c2e-b134c8b640b1/14CMGIM01182.rgb.jpg/600x600bb.jpg",
-        "coverSearchTerm": "Paul McCartney Wings Band on the Run",
-        "streetPriceGermany": {
-          "newEur": "€27 – €34",
-          "usedEur": "€12 – €20"
-        }
-      },
-      {
-        "title": "Odessey and Oracle",
-        "artist": "The Zombies",
-        "genre": "Psychedelic Pop",
-        "playtime": "35 min",
-        "trackCount": 12,
-        "coverUrl": "",
-        "coverSearchTerm": "The Zombies Odessey and Oracle",
-        "streetPriceGermany": {
-          "newEur": "€25 – €32",
-          "usedEur": "€20 – €35"
-        }
-      },
-      {
-        "title": "A Night at the Opera",
-        "artist": "Queen",
-        "genre": "Art Rock",
-        "playtime": "43 min",
-        "trackCount": 12,
-        "coverUrl": "",
-        "coverSearchTerm": "Queen A Night at the Opera",
-        "streetPriceGermany": {
-          "newEur": "€28 – €35",
-          "usedEur": "€15 – €25"
-        }
-      }
-    ],
-    "updatedAt": 1791717742305
+    "coverUrl": "/api/images/the_beatles_abbey_road.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791787521394
   },
   "abbey road": {
     "title": "Abbey Road",
@@ -178,15 +113,24 @@
   "boards of canada music has the right to children": {
     "title": "Music Has the Right to Children",
     "artist": "Boards of Canada",
-    "genre": "IDM / Downtempo",
-    "year": "",
-    "playtime": "62 min 49 sec",
+    "genre": "IDM / Downtempo / Ambient",
+    "year": 1998,
+    "playtime": "63 min",
     "trackCount": 18,
     "firstTrackTitle": "",
-    "youtubeVideoId": "OjvgGE_q-5I",
-    "coverUrl": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 95,
+      "tier": "Curated Crate Match",
+      "verdict": "Fuses heavy boom-bap drum programming with tape-saturated analog synths and spectral vignettes, bridging the gap between hip-hop beats and atmospheric sound design. It mirrors the hazy, memory-evoking textures found across both 'Endtroducing.....' and deep ambient techno."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/b5/4c/c2/b54cc20d-03f5-f2c4-4a0d-9b51ad65af89/dj.txuslqgv.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€28 – €34",
+      "usedEur": "€20 – €26"
+    },
     "alternatives": [],
-    "updatedAt": 1791580730318
+    "updatedAt": 1791794203528
   },
   "autechre amber": {
     "title": "Amber",
@@ -203,13 +147,19 @@
     "artist": "Global Communication",
     "genre": "Ambient Techno / IDM",
     "year": 1994,
-    "playtime": "76 min",
+    "playtime": "45 min",
     "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 95,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Ambient Techno / IDM album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/global_communication_76_14.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791607091921
+    "updatedAt": 1791787521372
   },
   "aphex twin selected ambient works 85 92": {
     "title": "Selected Ambient Works 85-92",
@@ -355,46 +305,57 @@
     "artist": "Jan Jelinek",
     "genre": "Microhouse / Glitch / Ambient",
     "year": 2001,
-    "playtime": "54 min",
-    "trackCount": 8,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 98,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Microhouse / Glitch / Ambient album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/jan_jelinek_loop_finding_jazz_records.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791607091973
+    "updatedAt": 1791787520397
   },
   "tim hecker ravedeath 1972": {
     "title": "Ravedeath, 1972",
     "artist": "Tim Hecker",
     "genre": "Ambient / Drone / Noise",
     "year": 2011,
-    "playtime": "52 min",
-    "trackCount": 12,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 99,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Ambient / Drone / Noise album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/4a/68/4c/4a684c10-456b-8442-9ed3-764d57a32aed/mzi.ukvgcwzt.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791717736162
+    "updatedAt": 1791787526370
   },
   "gas pop": {
     "title": "Pop",
     "artist": "Gas",
     "genre": "Ambient Techno",
-    "year": "",
-    "playtime": "67 min 14 sec",
-    "trackCount": 7,
+    "year": 1980,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
-    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/5d/6a/00/5d6a0054-5145-6011-c638-3e2666d0e8dd/192641833472_Cover.jpg/600x600bb.jpg",
-    "streetPriceGermany": {
-      "newEur": "€32 – €38",
-      "usedEur": "€24 – €30"
+    "collectorScore": {
+      "overallScore": 93,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Ambient Techno album featuring renowned dynamic range and vinyl staging."
     },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/5d/6a/00/5d6a0054-5145-6011-c638-3e2666d0e8dd/192641833472_Cover.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791755837660
+    "updatedAt": 1791787432480
   },
   "pop": {
     "title": "Pop",
@@ -452,257 +413,78 @@
     "artist": "Porter Ricks",
     "genre": "Dub Techno / Ambient Techno",
     "year": 1996,
-    "playtime": "62 min",
-    "trackCount": 9,
+    "playtime": "58 min",
+    "trackCount": 8,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 93,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential listening for fans of Voices from the Lake, offering an aquatic, low-end masterclass built on subaquatic reverberations and tape decay. Its deep underwater pulse parallels the dark, filtered basslines favored by mid-90s sample-based hip-hop producers."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/b3/8c/95/b38c95de-d74e-8358-b0e3-9b4735c3d9cf/mzi.gtzygzjr.jpg/600x600bb.jpg",
-    "streetPriceGermany": null,
+    "streetPriceGermany": {
+      "newEur": "€27 – €33",
+      "usedEur": "€22 – €30"
+    },
     "alternatives": [],
-    "updatedAt": 1791738523723
+    "updatedAt": 1791794203536
   },
   "deepchord presents echospace the coldest season": {
     "title": "The Coldest Season",
-    "artist": "Deepchord presents Echospace",
-    "genre": "Dub Techno / Ambient Techno",
-    "year": 2007,
-    "playtime": "78 min",
+    "artist": "Deepchord Presents Echospace",
+    "genre": "Dub Techno",
+    "year": "",
+    "playtime": "81 min 45 sec",
     "trackCount": 9,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/53/a3/9c/53a39c0f-c552-dc2b-b387-be7080f8bfcd/mzi.knyvkxev.jpg/600x600bb.jpg",
-    "streetPriceGermany": null,
+    "streetPriceGermany": {
+      "newEur": "€32 – €38",
+      "usedEur": "€24 – €32"
+    },
     "alternatives": [],
-    "updatedAt": 1791755871598
+    "updatedAt": 1791794167048
   },
   "donato dozzy k": {
     "title": "K",
     "artist": "Donato Dozzy",
     "genre": "Hypnotic Techno / Ambient Techno",
-    "year": "",
-    "playtime": "48 min 12 sec",
-    "trackCount": 9,
+    "year": 1980,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
-    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/1b/c8/f5/1bc8f552-d8d8-08a6-bd29-1d52e6c10048/cover.jpg/600x600bb.jpg",
-    "streetPriceGermany": {
-      "newEur": "€28 – €34",
-      "usedEur": "€22 – €30"
+    "collectorScore": {
+      "overallScore": 96,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Hypnotic Techno / Ambient Techno album featuring renowned dynamic range and vinyl staging."
     },
-    "alternatives": [
-      {
-        "title": "Inner Blue",
-        "artist": "Claudio PRC",
-        "genre": "Hypnotic Techno",
-        "playtime": "54 min",
-        "trackCount": 8,
-        "coverUrl": "",
-        "coverSearchTerm": "Claudio PRC Inner Blue",
-        "streetPriceGermany": {
-          "newEur": "€30 – €38",
-          "usedEur": "€24 – €32"
-        }
-      },
-      {
-        "title": "A Shell of Speed",
-        "artist": "Abdulla Rashim",
-        "genre": "Deep Hypnotic Techno",
-        "playtime": "48 min",
-        "trackCount": 7,
-        "coverUrl": "",
-        "coverSearchTerm": "Abdulla Rashim A Shell of Speed",
-        "streetPriceGermany": {
-          "newEur": "€28 – €35",
-          "usedEur": "€22 – €30"
-        }
-      },
-      {
-        "title": "Deep Blue",
-        "artist": "Luigi Tozzi",
-        "genre": "Ambient Techno",
-        "playtime": "52 min",
-        "trackCount": 8,
-        "coverUrl": "",
-        "coverSearchTerm": "Luigi Tozzi Deep Blue",
-        "streetPriceGermany": {
-          "newEur": "€26 – €32",
-          "usedEur": "€20 – €28"
-        }
-      },
-      {
-        "title": "All Ballerinas Have That Special Smile",
-        "artist": "Cio D'Or",
-        "genre": "Ambient Techno",
-        "playtime": "71 min",
-        "trackCount": 11,
-        "coverUrl": "",
-        "coverSearchTerm": "Cio D'Or All Ballerinas Have That Special Smile",
-        "streetPriceGermany": {
-          "newEur": "€35 – €45",
-          "usedEur": "€28 – €38"
-        }
-      },
-      {
-        "title": "Lustrations",
-        "artist": "Mike Parker",
-        "genre": "Hypnotic Techno",
-        "playtime": "58 min",
-        "trackCount": 9,
-        "coverUrl": "",
-        "coverSearchTerm": "Mike Parker Lustrations",
-        "streetPriceGermany": {
-          "newEur": "€30 – €38",
-          "usedEur": "€25 – €34"
-        }
-      },
-      {
-        "title": "Agartha",
-        "artist": "Wata Igarashi",
-        "genre": "Hypnotic Techno",
-        "playtime": "49 min",
-        "trackCount": 10,
-        "coverUrl": "",
-        "coverSearchTerm": "Wata Igarashi Agartha",
-        "streetPriceGermany": {
-          "newEur": "€28 – €34",
-          "usedEur": "€22 – €27"
-        }
-      },
-      {
-        "title": "Feed-Forward",
-        "artist": "Sandwell District",
-        "genre": "Hypnotic Techno",
-        "playtime": "54 min",
-        "trackCount": 8,
-        "coverUrl": "",
-        "coverSearchTerm": "Sandwell District Feed-Forward",
-        "streetPriceGermany": {
-          "newEur": "€32 – €40",
-          "usedEur": "€25 – €35"
-        }
-      }
-    ],
-    "updatedAt": 1791755880599
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/1b/c8/f5/1bc8f552-d8d8-08a6-bd29-1d52e6c10048/cover.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791786026634
   },
   "voices from the lake voices from the lake": {
     "title": "Voices from the Lake",
     "artist": "Voices from the Lake",
-    "genre": "Ambient Techno / Hypnotic Techno",
+    "genre": "Hypnotic Techno",
     "year": 2012,
-    "playtime": "75 min 42 sec",
-    "trackCount": 7,
-    "firstTrackTitle": "Isole",
-    "youtubeVideoId": "A8DxTc9CG00",
+    "playtime": "45 min",
+    "trackCount": 10,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
     "collectorScore": {
-      "overallScore": 94,
-      "discogsRating": "4.62 / 5.0",
-      "ratingsCount": "2.8k+ ratings",
-      "tier": "Audiophile Landmark",
-      "verdict": "An ambient techno benchmark. Pristine dynamic range, profound sub-bass architecture, and hypnotic spatial separation render this immaculate pressing an essential centerpiece for discerning electronic audiophiles."
+      "overallScore": 98,
+      "tier": "Curated Crate Match",
+      "verdict": "Pristine dynamic range, deep sub-bass architecture, and hypnotic ambient-techno spatial design."
     },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/0b/f1/88/0bf188bf-0adf-5900-6907-d08da1f9205e/8720246793116.jpg/600x600bb.jpg",
-    "streetPriceGermany": {
-      "newEur": "€38 – €46",
-      "usedEur": "€30 – €40",
-      "conditionNote": "Reflects the 2023 3xLP reissue (VG+/EX); original 2012 Prologue pressing commands €150+ in Germany"
-    },
-    "alternatives": [
-      {
-        "title": "Pop",
-        "artist": "Gas",
-        "genre": "Ambient Techno",
-        "playtime": "67 min 14 sec",
-        "trackCount": 7,
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/5d/6a/00/5d6a0054-5145-6011-c638-3e2666d0e8dd/192641833472_Cover.jpg/600x600bb.jpg",
-        "coverSearchTerm": "Gas Pop vinyl",
-        "streetPriceGermany": {
-          "newEur": "€32 – €38",
-          "usedEur": "€24 – €30"
-        }
-      },
-      {
-        "title": "K",
-        "artist": "Donato Dozzy",
-        "genre": "Hypnotic Techno / Ambient Techno",
-        "playtime": "48 min 12 sec",
-        "trackCount": 9,
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/1b/c8/f5/1bc8f552-d8d8-08a6-bd29-1d52e6c10048/cover.jpg/600x600bb.jpg",
-        "coverSearchTerm": "Donato Dozzy K vinyl",
-        "streetPriceGermany": {
-          "newEur": "€28 – €34",
-          "usedEur": "€22 – €30"
-        }
-      },
-      {
-        "title": "Sommer",
-        "artist": "Deepchord",
-        "genre": "Dub Techno / Ambient Techno",
-        "playtime": "73 min 05 sec",
-        "trackCount": 11,
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b1/82/60/b1826011-8941-e40f-20ce-aadd72701d5b/0796122409943_cover.jpg/600x600bb.jpg",
-        "coverSearchTerm": "Deepchord Sommer vinyl",
-        "streetPriceGermany": {
-          "newEur": "€30 – €36",
-          "usedEur": "€20 – €28"
-        }
-      },
-      {
-        "title": "Deep Blue",
-        "artist": "Luigi Tozzi",
-        "genre": "Hypnotic Techno",
-        "playtime": "52 min 18 sec",
-        "trackCount": 8,
-        "coverUrl": "",
-        "coverSearchTerm": "Luigi Tozzi Deep Blue vinyl",
-        "streetPriceGermany": {
-          "newEur": "€28 – €34",
-          "usedEur": "€22 – €28"
-        }
-      },
-      {
-        "title": "Feed-Forward",
-        "artist": "Sandwell District",
-        "genre": "Hypnotic Techno",
-        "playtime": "62 min 40 sec",
-        "trackCount": 9,
-        "coverUrl": "",
-        "coverSearchTerm": "Sandwell District Feed-Forward vinyl",
-        "streetPriceGermany": {
-          "newEur": "€35 – €42",
-          "usedEur": "€28 – €38"
-        }
-      },
-      {
-        "title": "Captagon",
-        "artist": "Rod Modell",
-        "genre": "Dub Techno / Ambient",
-        "playtime": "65 min 10 sec",
-        "trackCount": 8,
-        "coverUrl": "",
-        "coverSearchTerm": "Rod Modell Captagon vinyl",
-        "streetPriceGermany": {
-          "newEur": "€28 – €35",
-          "usedEur": "€20 – €26"
-        }
-      },
-      {
-        "title": "The Body",
-        "artist": "Prince of Denmark",
-        "genre": "Dub Techno / Ambient Techno",
-        "playtime": "74 min 22 sec",
-        "trackCount": 11,
-        "coverUrl": "",
-        "coverSearchTerm": "Prince of Denmark The Body vinyl",
-        "streetPriceGermany": {
-          "newEur": "€35 – €45",
-          "usedEur": "€30 – €45"
-        }
-      }
-    ],
-    "updatedAt": 1791755846712
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791787432517
   },
   "voices from the lake": {
     "title": "Voices from the Lake",
@@ -780,15 +562,19 @@
     "artist": "Luigi Tozzi",
     "genre": "Deep Techno / Hypnotic",
     "year": 2016,
-    "playtime": "36 min",
-    "trackCount": 6,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 99,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Deep Techno / Hypnotic album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/46/ca/8f/46ca8fc8-4cbd-c472-ed54-a456e19d8f45/8790001191273.png/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791755162761
+    "updatedAt": 1791787428481
   },
   "deep blue volume 2": {
     "title": "Deep Blue: Volume 2",
@@ -1005,17 +791,24 @@
   "gas zauberberg": {
     "title": "Zauberberg",
     "artist": "GAS",
-    "genre": "Ambient Techno / Dark Ambient",
+    "genre": "Ambient Techno / Minimal / Drone",
     "year": 1997,
-    "playtime": "56 min",
+    "playtime": "62 min",
     "trackCount": 7,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 88,
+      "tier": "Curated Crate Match",
+      "verdict": "Wolfgang Voigt's definitive German techno masterwork uses heavily obscured, pitched-down classical vinyl samples pulsing beneath muffled 4/4 bass drums. It directly unites DJ Shadow's plunderphonics aesthetics with the deep, misty hypnosis of Voices from the Lake."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music111/v4/6e/72/f8/6e72f806-797d-3e81-07cb-4dcc1248a99c/880319823718_cover.jpg/600x600bb.jpg",
-    "streetPriceGermany": null,
+    "streetPriceGermany": {
+      "newEur": "€30 – €36",
+      "usedEur": "€22 – €29"
+    },
     "alternatives": [],
-    "updatedAt": 1791755871892
+    "updatedAt": 1791794203552
   },
   "pole 1": {
     "title": "1",
@@ -1207,160 +1000,71 @@
     "title": "Facing You",
     "artist": "Keith Jarrett",
     "genre": "Contemporary Jazz / Solo Piano",
-    "year": "",
+    "year": 1972,
     "playtime": "44 min",
     "trackCount": 8,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/ae/9f/50/ae9f500b-2a26-d2f8-0036-2489a07157b7/00602547299666.rgb.jpg/600x600bb.jpg",
-    "streetPriceGermany": {
-      "newEur": "€26 – €32",
-      "usedEur": "€12 – €20"
-    },
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791757610915
+    "updatedAt": 1791784455196
   },
   "chick corea piano improvisations vol 1": {
     "title": "Piano Improvisations Vol. 1",
     "artist": "Chick Corea",
     "genre": "Post-Bop / Solo Acoustic Piano",
     "year": 1971,
-    "playtime": "40 min",
-    "trackCount": 8,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 94,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Post-Bop / Solo Acoustic Piano album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/9d/98/cd/9d98cd5b-0e3d-04bc-9dd8-5aeb0bfd094d/00042281197925.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791754884820
+    "updatedAt": 1791787432502
   },
   "paul bley open to love": {
     "title": "Open, to Love",
     "artist": "Paul Bley",
-    "genre": "Avant-Garde Jazz / Solo Acoustic Piano",
-    "year": 1973,
-    "playtime": "40 min",
+    "genre": "Contemporary Jazz / Solo Acoustic Piano",
+    "year": "",
+    "playtime": "41 min",
     "trackCount": 7,
     "firstTrackTitle": "",
-    "youtubeVideoId": "ev7TsdXPgXI",
+    "youtubeVideoId": "",
     "collectorScore": null,
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ab/4a/c7/ab4ac72a-3b39-cc4d-17c3-c2dda10dadf3/25UM1IM98120.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": {
-      "newEur": "€26 – €32",
-      "usedEur": "€15 – €22",
-      "conditionNote": "VG+ / EX for vintage German ECM pressings; new reflects standard ECM 180g catalog reissues"
+      "newEur": "€24 – €30",
+      "usedEur": "€15 – €24"
     },
-    "alternatives": [
-      {
-        "title": "Facing You",
-        "artist": "Keith Jarrett",
-        "genre": "Contemporary Jazz / Solo Piano",
-        "playtime": "44 min",
-        "trackCount": 8,
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/ae/9f/50/ae9f500b-2a26-d2f8-0036-2489a07157b7/00602547299666.rgb.jpg/600x600bb.jpg",
-        "coverSearchTerm": "Keith Jarrett Facing You",
-        "streetPriceGermany": {
-          "newEur": "€26 – €32",
-          "usedEur": "€12 – €20"
-        }
-      },
-      {
-        "title": "Avenging Angel",
-        "artist": "Craig Taborn",
-        "genre": "Avant-Garde Jazz / Solo Piano",
-        "playtime": "60 min",
-        "trackCount": 13,
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/12/f8/dc/12f8dcb0-f88a-e461-cf50-d4b50dc4e5e3/00602527636375.rgb.jpg/600x600bb.jpg",
-        "coverSearchTerm": "Craig Taborn Avenging Angel",
-        "streetPriceGermany": {
-          "newEur": "€28 – €35",
-          "usedEur": "€20 – €28"
-        }
-      },
-      {
-        "title": "Ecstasy",
-        "artist": "Steve Kuhn",
-        "genre": "Post-Bop / Solo Piano",
-        "playtime": "37 min",
-        "trackCount": 3,
-        "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23222725%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3EEcstasy%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3ESteve%20Kuhn%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
-        "coverSearchTerm": "Steve Kuhn Ecstasy",
-        "streetPriceGermany": {
-          "newEur": "€24 – €30",
-          "usedEur": "€12 – €18"
-        }
-      },
-      {
-        "title": "Breakthru",
-        "artist": "Ran Blake",
-        "genre": "Third Stream / Avant-Garde Solo Piano",
-        "playtime": "38 min",
-        "trackCount": 14,
-        "coverUrl": "",
-        "coverSearchTerm": "Ran Blake Breakthru",
-        "streetPriceGermany": {
-          "newEur": "€25 – €32",
-          "usedEur": "€15 – €24"
-        }
-      },
-      {
-        "title": "Silent Tongues",
-        "artist": "Cecil Taylor",
-        "genre": "Free Jazz / Solo Piano",
-        "playtime": "41 min",
-        "trackCount": 5,
-        "coverUrl": "",
-        "coverSearchTerm": "Cecil Taylor Silent Tongues",
-        "streetPriceGermany": {
-          "newEur": "€25 – €30",
-          "usedEur": "€14 – €22"
-        }
-      },
-      {
-        "title": "African Piano",
-        "artist": "Abdullah Ibrahim",
-        "genre": "Avant-Garde Jazz / Solo Piano",
-        "playtime": "39 min",
-        "trackCount": 4,
-        "coverUrl": "",
-        "coverSearchTerm": "Abdullah Ibrahim African Piano",
-        "streetPriceGermany": {
-          "newEur": "€24 – €30",
-          "usedEur": "€12 – €19"
-        }
-      },
-      {
-        "title": "Black Orpheus",
-        "artist": "Masabumi Kikuchi",
-        "genre": "Avant-Garde Jazz / Solo Piano",
-        "playtime": "58 min",
-        "trackCount": 12,
-        "coverUrl": "",
-        "coverSearchTerm": "Masabumi Kikuchi Black Orpheus",
-        "streetPriceGermany": {
-          "newEur": "€30 – €38",
-          "usedEur": "€22 – €30"
-        }
-      }
-    ],
-    "updatedAt": 1791754861684
+    "alternatives": [],
+    "updatedAt": 1791794194365
   },
   "keith jarrett the koln concert": {
     "title": "The Köln Concert",
     "artist": "Keith Jarrett",
-    "genre": "Modal Jazz / Free Improvisation",
-    "year": 1975,
+    "genre": "Contemporary Jazz / Solo Acoustic Piano",
+    "year": "",
     "playtime": "66 min",
     "trackCount": 4,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
-    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/88/a5/ac/88a5ac07-7eac-6e07-a970-8073f48c0ad6/00602547299819.rgb.jpg/600x600bb.jpg",
-    "streetPriceGermany": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/8a/c0/17/8ac0178b-e3a4-7d1e-b0c8-c91a2f9577c4/00731454794923.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€28 – €36",
+      "usedEur": "€14 – €22"
+    },
     "alternatives": [],
-    "updatedAt": 1791737647337
+    "updatedAt": 1791794194356
   },
   "the koln concert": {
     "title": "The Köln Concert",
@@ -1429,13 +1133,19 @@
     "artist": "Nils Frahm",
     "genre": "Modern Classical / Ambient Jazz",
     "year": 2013,
-    "playtime": "76 min",
-    "trackCount": 11,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 96,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Modern Classical / Ambient Jazz album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/nils_frahm_spaces.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791577958662
+    "updatedAt": 1791787520393
   },
   "spaces": {
     "title": "Spaces",
@@ -1451,17 +1161,24 @@
   "deepchord presents echospace liumin": {
     "title": "Liumin",
     "artist": "Deepchord presents Echospace",
-    "genre": "Dub Techno / Ambient Techno",
+    "genre": "Dub Techno / Field Recording",
     "year": 2010,
     "playtime": "78 min",
     "trackCount": 9,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 90,
+      "tier": "Curated Crate Match",
+      "verdict": "Recorded on location in Tokyo and processed through vintage analog delay units, matching the organic spatial immersion of Voices from the Lake. The marriage of city field recordings and subterranean pulse mirrors the concrete, nocturnal ambiance of early instrumental trip hop."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/51/f5/fb/51f5fb06-7a85-2059-db99-79eae5f874d9/mzi.jtpkwzla.jpg/600x600bb.jpg",
-    "streetPriceGermany": null,
+    "streetPriceGermany": {
+      "newEur": "€32 – €38",
+      "usedEur": "€24 – €32"
+    },
     "alternatives": [],
-    "updatedAt": 1791755162764
+    "updatedAt": 1791794203543
   },
   "liumin": {
     "title": "Liumin",
@@ -1479,18 +1196,18 @@
     "artist": "Rhythm & Sound",
     "genre": "Dub Techno",
     "year": "",
-    "playtime": "44 min",
-    "trackCount": 7,
+    "playtime": "46 min 20 sec",
+    "trackCount": 8,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
-    "coverUrl": "/api/images/rhythm_sound_rhythm_sound.jpg",
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/y2005/m03/d07/h19/s05.whlwlvem.jpg/600x600bb.jpg",
     "streetPriceGermany": {
       "newEur": "€24 – €30",
-      "usedEur": "€18 – €26"
+      "usedEur": "€18 – €25"
     },
     "alternatives": [],
-    "updatedAt": 1791701268962
+    "updatedAt": 1791794167215
   },
   "rhythm sound": {
     "title": "Rhythm & Sound",
@@ -1523,38 +1240,148 @@
     "trackCount": 15,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "coverUrl": "/api/images/mf_doom_mm_food.jpg",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/23/40/b5/2340b514-8149-da62-3fe5-f6e5bd3ec172/0878390000593_cover.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€30 – €36",
+      "usedEur": "€24 – €30"
+    },
     "alternatives": [],
-    "updatedAt": 1791698813086
+    "updatedAt": 1791786497940
   },
   "j dilla donuts": {
     "title": "Donuts",
     "artist": "J Dilla",
     "genre": "Instrumental Hip-Hop",
-    "year": "",
-    "playtime": "43 min 39 sec",
-    "trackCount": 31,
+    "year": 2006,
+    "playtime": "45 min",
+    "trackCount": 10,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 97,
+      "tier": "Curated Crate Match",
+      "verdict": "Completed in hospital with an SP-303; micro-chopped soul vinyl loops transformed into emotional art."
+    },
     "coverUrl": "/api/images/j_dilla_donuts.jpg",
-    "alternatives": [],
-    "updatedAt": 1791577652081
+    "streetPriceGermany": {
+      "newEur": "€29 – €35",
+      "usedEur": "€20 – €26",
+      "conditionNote": "VG+ / EX condition (standard 2xLP reissue)"
+    },
+    "alternatives": [
+      {
+        "title": "Petestrumentals",
+        "artist": "Pete Rock",
+        "genre": "Instrumental Hip-Hop",
+        "playtime": "53 min",
+        "trackCount": 14,
+        "coverUrl": "",
+        "coverSearchTerm": "Pete Rock Petestrumentals",
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€18 – €25"
+        }
+      },
+      {
+        "title": "Shades of Blue",
+        "artist": "Madlib",
+        "genre": "Instrumental Hip-Hop",
+        "playtime": "62 min",
+        "trackCount": 16,
+        "coverUrl": "",
+        "coverSearchTerm": "Madlib Shades of Blue",
+        "streetPriceGermany": {
+          "newEur": "€28 – €35",
+          "usedEur": "€20 – €28"
+        }
+      },
+      {
+        "title": "Endtroducing.....",
+        "artist": "DJ Shadow",
+        "genre": "Instrumental Hip-Hop",
+        "playtime": "63 min",
+        "trackCount": 16,
+        "coverUrl": "",
+        "coverSearchTerm": "DJ Shadow Endtroducing.....",
+        "streetPriceGermany": {
+          "newEur": "€30 – €38",
+          "usedEur": "€22 – €30"
+        }
+      },
+      {
+        "title": "1988",
+        "artist": "Knxwledge",
+        "genre": "Instrumental Hip-Hop",
+        "playtime": "37 min",
+        "trackCount": 22,
+        "coverUrl": "",
+        "coverSearchTerm": "Knxwledge 1988",
+        "streetPriceGermany": {
+          "newEur": "€24 – €30",
+          "usedEur": "€16 – €22"
+        }
+      },
+      {
+        "title": "Los Angeles",
+        "artist": "Flying Lotus",
+        "genre": "Instrumental Hip-Hop",
+        "playtime": "44 min",
+        "trackCount": 17,
+        "coverUrl": "",
+        "coverSearchTerm": "Flying Lotus Los Angeles",
+        "streetPriceGermany": {
+          "newEur": "€27 – €34",
+          "usedEur": "€18 – €25"
+        }
+      },
+      {
+        "title": "Special Herbs, Vol. 1 & 2",
+        "artist": "Metal Fingers",
+        "genre": "Instrumental Hip-Hop",
+        "playtime": "45 min",
+        "trackCount": 16,
+        "coverUrl": "",
+        "coverSearchTerm": "Metal Fingers Special Herbs Vol. 1 & 2",
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€18 – €26"
+        }
+      },
+      {
+        "title": "Modal Soul",
+        "artist": "Nujabes",
+        "genre": "Instrumental Hip-Hop",
+        "playtime": "63 min",
+        "trackCount": 14,
+        "coverUrl": "",
+        "coverSearchTerm": "Nujabes Modal Soul",
+        "streetPriceGermany": {
+          "newEur": "€48 – €58",
+          "usedEur": "€38 – €48"
+        }
+      }
+    ],
+    "updatedAt": 1791794166588
   },
   "quasimoto the unseen": {
     "title": "The Unseen",
     "artist": "Quasimoto",
     "genre": "Hip Hop",
-    "year": "",
-    "playtime": "63 min 40 sec",
-    "trackCount": 24,
+    "year": 1980,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
-    "coverUrl": "/api/images/quasimoto_the_unseen.jpg",
-    "streetPriceGermany": {
-      "newEur": "€29 – €36",
-      "usedEur": "€22 – €28"
+    "collectorScore": {
+      "overallScore": 93,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Hip Hop album featuring renowned dynamic range and vinyl staging."
     },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/8b/4d/96/mzi.smokjgvc.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791701582630
+    "updatedAt": 1791787525368
   },
   "madvillain madvillainy": {
     "title": "Madvillainy",
@@ -1564,8 +1391,20 @@
     "playtime": "46 min 22 sec",
     "trackCount": 22,
     "firstTrackTitle": "Illest Villains",
-    "youtubeVideoId": "",
-    "coverUrl": "/api/images/madvillain_madvillainy.jpg",
+    "youtubeVideoId": "Y8eopWPE0Vg",
+    "collectorScore": {
+      "overallScore": 96,
+      "discogsRating": "4.81 / 5.0",
+      "ratingsCount": "22k+ ratings",
+      "tier": "Essential Masterpiece",
+      "verdict": "An undisputed hip-hop milestone. Standard Stones Throw pressings sound surprisingly punchy, though occasional surface noise persists. A vital centerpiece for any serious vinyl collection."
+    },
+    "coverUrl": "",
+    "streetPriceGermany": {
+      "newEur": "€30 – €36",
+      "usedEur": "€20 – €26",
+      "conditionNote": "VG+ / EX condition (standard 2xLP reissue)"
+    },
     "alternatives": [
       {
         "title": "Mm..Food",
@@ -1573,7 +1412,7 @@
         "genre": "Hip Hop / Abstract Hip Hop",
         "playtime": "48 min 57 sec",
         "trackCount": 15,
-        "coverUrl": "",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/23/40/b5/2340b514-8149-da62-3fe5-f6e5bd3ec172/0878390000593_cover.jpg/600x600bb.jpg",
         "coverSearchTerm": "MF DOOM Mm Food",
         "streetPriceGermany": {
           "newEur": "€30 – €36",
@@ -1586,7 +1425,7 @@
         "genre": "Hip Hop / Abstract Hip Hop",
         "playtime": "64 min 34 sec",
         "trackCount": 24,
-        "coverUrl": "",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/8b/4d/96/mzi.smokjgvc.jpg/600x600bb.jpg",
         "coverSearchTerm": "Quasimoto The Unseen",
         "streetPriceGermany": {
           "newEur": "€28 – €34",
@@ -1599,7 +1438,7 @@
         "genre": "Instrumental Hip Hop / Jazz Rap",
         "playtime": "64 min 58 sec",
         "trackCount": 16,
-        "coverUrl": "",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/0d/96/1d/0d961d09-8e54-e2f5-f5ce-b08690b1e797/00602537641079.rgb.jpg/600x600bb.jpg",
         "coverSearchTerm": "Madlib Shades of Blue",
         "streetPriceGermany": {
           "newEur": "€32 – €38",
@@ -1633,7 +1472,7 @@
         }
       }
     ],
-    "updatedAt": 1791698812816
+    "updatedAt": 1791785243329
   },
   "madvillainy": {
     "title": "Madvillainy",
@@ -1735,15 +1574,24 @@
   "madlib shades of blue": {
     "title": "Shades of Blue",
     "artist": "Madlib",
-    "genre": "Instrumental Hip Hop / Jazz Rap",
-    "year": "",
-    "playtime": "64 min 58 sec",
+    "genre": "Jazz-Rap / Instrumental Hip-Hop",
+    "year": 2003,
+    "playtime": "58 min",
     "trackCount": 16,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "coverUrl": "/api/images/madlib_shades_of_blue.jpg",
+    "collectorScore": {
+      "overallScore": 92,
+      "tier": "Curated Crate Match",
+      "verdict": "Authorized to raid the legendary Blue Note vaults, Madlib crafts an MPC-driven jazz tapestry that sits right alongside Dilla's crate-dug brilliance. The unhurried drum swing and dusty acoustic instrument samples satisfy the purest vinyl hunter sensibilities."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/0d/96/1d/0d961d09-8e54-e2f5-f5ce-b08690b1e797/00602537641079.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€29 – €35",
+      "usedEur": "€20 – €27"
+    },
     "alternatives": [],
-    "updatedAt": 1791698813013
+    "updatedAt": 1791794203539
   },
   "shades of blue": {
     "title": "Shades of Blue",
@@ -1776,13 +1624,19 @@
     "artist": "Floating Points, Pharoah Sanders & London Symphony Orchestra",
     "genre": "Spiritual Jazz / Modern Classical / Ambient",
     "year": 2021,
-    "playtime": "46 min",
-    "trackCount": 9,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 95,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Spiritual Jazz / Modern Classical / Ambient album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/floating_points_pharoah_sanders_london_symphony_orchestra_pr.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791577957948
+    "updatedAt": 1791787521391
   },
   "promises": {
     "title": "Promises",
@@ -1830,15 +1684,19 @@
     "artist": "Eberhard Weber",
     "genre": "ECM Chamber Jazz",
     "year": 1974,
-    "playtime": "49 min",
-    "trackCount": 4,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 97,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential ECM Chamber Jazz album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/6b/b9/73/6bb97365-eb77-1cbe-b41d-8f53a2c63675/23UMGIM75131.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791733288194
+    "updatedAt": 1791787525385
   },
   "the colours of chloe": {
     "title": "The Colours of Chloë",
@@ -1862,7 +1720,13 @@
     "trackCount": 16,
     "firstTrackTitle": "Best Foot Forward",
     "youtubeVideoId": "",
+    "collectorScore": null,
     "coverUrl": "/api/images/dj_shadow_endtroducing.jpg",
+    "streetPriceGermany": {
+      "newEur": "€32 – €38",
+      "usedEur": "€22 – €28",
+      "conditionNote": "Standard 2xLP reissue in VG+ / EX condition"
+    },
     "alternatives": [
       {
         "title": "Deadringer",
@@ -1870,7 +1734,7 @@
         "genre": "Instrumental Hip Hop / Downtempo",
         "playtime": "54 min 12 sec",
         "trackCount": 16,
-        "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%232a2438%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3EDeadringer%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3ERJD2%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/6f/78/67/6f78671e-6a43-4d04-dfa7-6d180aec69a1/194491267391.jpg/600x600bb.jpg",
         "coverSearchTerm": "RJD2 Deadringer",
         "streetPriceGermany": {
           "newEur": "€26 – €32",
@@ -1904,7 +1768,7 @@
         }
       }
     ],
-    "updatedAt": 1791578857970
+    "updatedAt": 1791794169837
   },
   "endtroducing": {
     "title": "Endtroducing.....",
@@ -1950,15 +1814,19 @@
     "artist": "Vladislav Delay",
     "genre": "Ambient / Minimal Dub",
     "year": 2000,
-    "playtime": "75 min",
+    "playtime": "45 min",
     "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 99,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Ambient / Minimal Dub album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/22/82/b2/2282b2d7-5324-df0b-1a3b-141dc9b37bc6/dj.hlvlpdon.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791732071847
+    "updatedAt": 1791787525401
   },
   "multila": {
     "title": "Multila",
@@ -2004,13 +1872,19 @@
     "artist": "The Cinematic Orchestra",
     "genre": "Nu Jazz / Downtempo / Trip-Hop",
     "year": 1999,
-    "playtime": "51 min",
-    "trackCount": 7,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 94,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Nu Jazz / Downtempo / Trip-Hop album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/the_cinematic_orchestra_motion.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791578227349
+    "updatedAt": 1791787432414
   },
   "motion": {
     "title": "Motion",
@@ -2056,13 +1930,19 @@
     "artist": "Floating Points, Pharoah Sanders & The London Symphony Orchestra",
     "genre": "Spiritual Jazz / Ambient",
     "year": 2021,
-    "playtime": "46 min",
-    "trackCount": 9,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "coverUrl": "/api/images/floating_points_pharoah_sanders_the_london_symphony_orchestr.jpg",
+    "collectorScore": {
+      "overallScore": 96,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Spiritual Jazz / Ambient album featuring renowned dynamic range and vinyl staging."
+    },
+    "coverUrl": "/api/images/floating_points_pharoah_sanders_london_symphony_orchestra_pr.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791578313167
+    "updatedAt": 1791787520388
   },
   "biokinetics": {
     "title": "Biokinetics",
@@ -2080,68 +1960,24 @@
   "burial untrue": {
     "title": "Untrue",
     "artist": "Burial",
-    "genre": "Future Garage / Dubstep / Ambient",
+    "genre": "Dubstep / Ambient / Future Garage",
     "year": 2007,
-    "playtime": "51 min",
+    "playtime": "50 min",
     "trackCount": 13,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 98,
+      "tier": "Curated Crate Match",
+      "verdict": "Marries the emotional vocal-chopping ethos of J Dilla with the rainy, hypnotic sub-bass depth of Voices from the Lake. The record is drenched in authentic vinyl crackle and nocturnal melancholy that any DJ Shadow disciple will instantly revere."
+    },
     "coverUrl": "/api/images/burial_untrue.jpg",
-    "alternatives": [
-      {
-        "title": "Crooks & Lovers",
-        "artist": "Mount Kimbie",
-        "genre": "Post-Dubstep / Future Garage",
-        "playtime": "36 min",
-        "trackCount": 11,
-        "coverUrl": "",
-        "coverSearchTerm": "Mount Kimbie Crooks & Lovers",
-        "streetPriceGermany": {
-          "newEur": "€25 – €30",
-          "usedEur": "€18 – €24"
-        }
-      },
-      {
-        "title": "Luxury Problems",
-        "artist": "Andy Stott",
-        "genre": "Dub Techno / Post-Industrial / Ambient",
-        "playtime": "44 min",
-        "trackCount": 8,
-        "coverUrl": "",
-        "coverSearchTerm": "Andy Stott Luxury Problems",
-        "streetPriceGermany": {
-          "newEur": "€28 – €35",
-          "usedEur": "€20 – €28"
-        }
-      },
-      {
-        "title": "Changes",
-        "artist": "Synkro",
-        "genre": "Future Garage / Ambient / Downtempo",
-        "playtime": "46 min",
-        "trackCount": 10,
-        "coverUrl": "",
-        "coverSearchTerm": "Synkro Changes",
-        "streetPriceGermany": {
-          "newEur": "€26 – €32",
-          "usedEur": "€18 – €25"
-        }
-      },
-      {
-        "title": "James Blake",
-        "artist": "James Blake",
-        "genre": "Post-Dubstep / Ambient Soul",
-        "playtime": "38 min",
-        "trackCount": 11,
-        "coverUrl": "",
-        "coverSearchTerm": "James Blake James Blake",
-        "streetPriceGermany": {
-          "newEur": "€27 – €33",
-          "usedEur": "€18 – €25"
-        }
-      }
-    ],
-    "updatedAt": 1791646847408
+    "streetPriceGermany": {
+      "newEur": "€26 – €32",
+      "usedEur": "€18 – €24"
+    },
+    "alternatives": [],
+    "updatedAt": 1791794203518
   },
   "untrue": {
     "title": "Untrue",
@@ -2161,13 +1997,19 @@
     "artist": "Arve Henriksen",
     "genre": "Nordic Jazz / Ambient",
     "year": 2004,
-    "playtime": "44 min",
+    "playtime": "45 min",
     "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 97,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Nordic Jazz / Ambient album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/arve_henriksen_chiaroscuro.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791578313186
+    "updatedAt": 1791787526375
   },
   "chiaroscuro": {
     "title": "Chiaroscuro",
@@ -2185,41 +2027,64 @@
   "rjd2 deadringer": {
     "title": "Deadringer",
     "artist": "RJD2",
-    "genre": "Instrumental Hip-Hop / Downtempo",
-    "year": 2002,
-    "playtime": "58 min",
+    "genre": "Instrumental Hip Hop / Downtempo",
+    "year": "",
+    "playtime": "54 min 12 sec",
     "trackCount": 16,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "coverUrl": "/api/images/rjd2_deadringer.jpg",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/6f/78/67/6f78671e-6a43-4d04-dfa7-6d180aec69a1/194491267391.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€26 – €32",
+      "usedEur": "€18 – €24"
+    },
     "alternatives": [],
-    "updatedAt": 1791646852714
+    "updatedAt": 1791794165462
   },
   "the avalanches since i left you": {
     "title": "Since I Left You",
     "artist": "The Avalanches",
-    "genre": "Plunderphonics / Instrumental Hip-Hop",
+    "genre": "Plunderphonics / Turntablism",
     "year": 2000,
-    "playtime": "61 min",
+    "playtime": "60 min",
     "trackCount": 18,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "coverUrl": "/api/images/the_avalanches_since_i_left_you.jpg",
+    "collectorScore": {
+      "overallScore": 96,
+      "tier": "Curated Crate Match",
+      "verdict": "The direct spiritual successor to DJ Shadow's 100% sample-based architecture, assembled entirely from thousands of neglected bargain-bin vinyl records. Its euphoric, seamless crate-digging narrative shares Dilla's ear for joyous soul chops and infectious rhythm."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/dc/38/47/dc3847df-0457-0c03-467c-cf4d1ac57896/19UMGIM71485.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€30 – €36",
+      "usedEur": "€22 – €28"
+    },
     "alternatives": [],
-    "updatedAt": 1791646790364
+    "updatedAt": 1791794203524
   },
   "nightmares on wax smokers delight": {
     "title": "Smokers Delight",
     "artist": "Nightmares on Wax",
-    "genre": "Downtempo / Trip Hop",
+    "genre": "Trip Hop / Downtempo / Instrumental Hip-Hop",
     "year": 1995,
     "playtime": "74 min",
     "trackCount": 16,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "coverUrl": "/api/images/nightmares_on_wax_smokers_delight.jpg",
+    "collectorScore": {
+      "overallScore": 89,
+      "tier": "Curated Crate Match",
+      "verdict": "A cornerstone of mid-90s European vinyl culture that blends funk crate discoveries with warm dub basslines and lazy hip-hop breaks. It shares 'Endtroducing.....''s reliance on vinyl soul loops while providing an effortless, smoke-filled groove."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4b/c3/c8/4bc3c8a9-652b-0ab3-4edf-d5eeaada7dc0/0801061003630.png/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€28 – €34",
+      "usedEur": "€19 – €25"
+    },
     "alternatives": [],
-    "updatedAt": 1791646830036
+    "updatedAt": 1791794203547
   },
   "deadringer": {
     "title": "Deadringer",
@@ -2263,28 +2128,46 @@
   "cannonball adderley somethin else": {
     "title": "Somethin' Else",
     "artist": "Cannonball Adderley",
-    "genre": "Hard Bop",
-    "year": "",
-    "playtime": "38 min 47 sec",
+    "genre": "Hard Bop / Modal Jazz",
+    "year": 1958,
+    "playtime": "38 min",
     "trackCount": 5,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "coverUrl": "/api/images/cannonball_adderley_somethin_else.jpg",
+    "collectorScore": {
+      "overallScore": 98,
+      "tier": "Curated Crate Match",
+      "verdict": "Recorded just months before Kind of Blue, this session essentially features the same core lineup with Miles Davis performing as a rare sideman. Davis's muted trumpet on 'Autumn Leaves' shares the exact melancholic resonance and minimalist restraint that defined his 1959 masterpiece."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/47/0c/66/470c6637-381c-5ad9-073b-8b863d6fa965/00724349532953.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€24 – €30",
+      "usedEur": "€16 – €25"
+    },
     "alternatives": [],
-    "updatedAt": 1791579491527
+    "updatedAt": 1791794175266
   },
   "john coltrane blue train": {
     "title": "Blue Train",
     "artist": "John Coltrane",
     "genre": "Hard Bop",
-    "year": "",
-    "playtime": "42 min 18 sec",
+    "year": 1958,
+    "playtime": "42 min",
     "trackCount": 5,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 97,
+      "tier": "Curated Crate Match",
+      "verdict": "Showcases Coltrane's ascendant horn power alongside Paul Chambers' driving bass, serving as the fiery hard-bop counterweight to the introspective modal approach of 'Kind of Blue'."
+    },
     "coverUrl": "/api/images/john_coltrane_blue_train.jpg",
+    "streetPriceGermany": {
+      "newEur": "€26 – €34",
+      "usedEur": "€18 – €26"
+    },
     "alternatives": [],
-    "updatedAt": 1791579489671
+    "updatedAt": 1791790606028
   },
   "bill evans trio waltz for debby": {
     "title": "Waltz for Debby",
@@ -2295,9 +2178,14 @@
     "trackCount": 6,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "coverUrl": "/api/images/bill_evans_trio_waltz_for_debby.jpg",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/28/a1/59/28a1595d-5592-2490-0399-1c802c34e327/10CMGIM00782.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€24 – €32",
+      "usedEur": "€16 – €24"
+    },
     "alternatives": [],
-    "updatedAt": 1791579491537
+    "updatedAt": 1791794125889
   },
   "miles davis kind of blue": {
     "title": "Kind of Blue",
@@ -2310,7 +2198,11 @@
     "youtubeVideoId": "",
     "collectorScore": null,
     "coverUrl": "",
-    "streetPriceGermany": null,
+    "streetPriceGermany": {
+      "newEur": "€24 – €32",
+      "usedEur": "€18 – €26",
+      "conditionNote": "VG+ / EX for common vintage or standard modern reissues"
+    },
     "alternatives": [
       {
         "title": "Somethin' Else",
@@ -2318,7 +2210,7 @@
         "genre": "Modal Jazz",
         "playtime": "39 min",
         "trackCount": 5,
-        "coverUrl": "",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/47/0c/66/470c6637-381c-5ad9-073b-8b863d6fa965/00724349532953.rgb.jpg/600x600bb.jpg",
         "coverSearchTerm": "Cannonball Adderley Somethin' Else",
         "streetPriceGermany": {
           "newEur": "€26 – €32",
@@ -2331,7 +2223,7 @@
         "genre": "Modal Jazz",
         "playtime": "33 min",
         "trackCount": 4,
-        "coverUrl": "",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e5/24/aa/e524aacd-467b-66f3-8931-0fcd6750a4b9/08UMGIM07914.rgb.jpg/600x600bb.jpg",
         "coverSearchTerm": "John Coltrane A Love Supreme",
         "streetPriceGermany": {
           "newEur": "€28 – €35",
@@ -2344,7 +2236,7 @@
         "genre": "Modal Jazz",
         "playtime": "42 min",
         "trackCount": 5,
-        "coverUrl": "",
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/64/b6/04/64b6040c-a931-0a5c-6b7c-82e0dd5c3d4c/19UMGIM73745.rgb.jpg/600x600bb.jpg",
         "coverSearchTerm": "Herbie Hancock Maiden Voyage",
         "streetPriceGermany": {
           "newEur": "€25 – €32",
@@ -2404,7 +2296,7 @@
         }
       }
     ],
-    "updatedAt": 1791755871865
+    "updatedAt": 1791794147541
   },
   "kind of blue": {
     "title": "Kind of Blue",
@@ -2502,93 +2394,77 @@
     "title": "Fleetwood Mac",
     "artist": "Fleetwood Mac",
     "genre": "Soft Rock",
-    "year": "",
-    "playtime": "42 min 12 sec",
-    "trackCount": 11,
+    "year": 1980,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 96,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Soft Rock album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/fleetwood_mac_fleetwood_mac.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791579485411
+    "updatedAt": 1791787432416
   },
   "eagles hotel california": {
     "title": "Hotel California",
     "artist": "Eagles",
     "genre": "Classic Rock",
-    "year": "",
-    "playtime": "43 min 28 sec",
-    "trackCount": 9,
+    "year": 1980,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 97,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Classic Rock album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/eagles_hotel_california.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791579485508
+    "updatedAt": 1791787520377
   },
   "carole king tapestry": {
     "title": "Tapestry",
     "artist": "Carole King",
     "genre": "Singer-Songwriter",
-    "year": "",
-    "playtime": "44 min 31 sec",
-    "trackCount": 12,
+    "year": 1980,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 98,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Singer-Songwriter album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/carole_king_tapestry.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791579485254
+    "updatedAt": 1791787432432
   },
   "fleetwood mac rumours": {
     "title": "Rumours",
     "artist": "Fleetwood Mac",
-    "genre": "Soft Rock",
+    "genre": "Pop Rock",
     "year": 1977,
-    "playtime": "39 min 43 sec",
-    "trackCount": 11,
-    "firstTrackTitle": "Second Hand News",
-    "youtubeVideoId": "SLlYUlS_Awo",
+    "playtime": "45 min",
+    "trackCount": 10,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 97,
+      "tier": "Curated Crate Match",
+      "verdict": "Emotional turmoil transformed into sonic perfection; the gold standard for warm analog mastering."
+    },
     "coverUrl": "/api/images/fleetwood_mac_rumours.jpg",
-    "alternatives": [
-      {
-        "title": "Fleetwood Mac",
-        "artist": "Fleetwood Mac",
-        "genre": "Soft Rock",
-        "playtime": "42 min 12 sec",
-        "trackCount": 11,
-        "coverUrl": "/api/images/fleetwood_mac_fleetwood_mac.jpg",
-        "coverSearchTerm": "Fleetwood Mac Fleetwood Mac",
-        "streetPriceGermany": {
-          "newEur": "€25 – €32",
-          "usedEur": "€14 – €22"
-        }
-      },
-      {
-        "title": "Hotel California",
-        "artist": "Eagles",
-        "genre": "Classic Rock",
-        "playtime": "43 min 28 sec",
-        "trackCount": 9,
-        "coverUrl": "/api/images/eagles_hotel_california.jpg",
-        "coverSearchTerm": "Eagles Hotel California",
-        "streetPriceGermany": {
-          "newEur": "€26 – €34",
-          "usedEur": "€12 – €20"
-        }
-      },
-      {
-        "title": "Tapestry",
-        "artist": "Carole King",
-        "genre": "Singer-Songwriter",
-        "playtime": "44 min 31 sec",
-        "trackCount": 12,
-        "coverUrl": "/api/images/carole_king_tapestry.jpg",
-        "coverSearchTerm": "Carole King Tapestry",
-        "streetPriceGermany": {
-          "newEur": "€24 – €30",
-          "usedEur": "€10 – €18"
-        }
-      }
-    ],
-    "updatedAt": 1791579486601
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791787432500
   },
   "rumours": {
     "title": "Rumours",
@@ -2685,109 +2561,20 @@
   "john coltrane a love supreme": {
     "title": "A Love Supreme",
     "artist": "John Coltrane",
-    "genre": "Spiritual Jazz",
+    "genre": "Modal Jazz",
     "year": "",
-    "playtime": "",
-    "trackCount": 0,
+    "playtime": "33 min",
+    "trackCount": 4,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
-    "coverUrl": "",
-    "streetPriceGermany": null,
-    "alternatives": [
-      {
-        "title": "Journey in Satchidananda",
-        "artist": "Alice Coltrane",
-        "genre": "Spiritual Jazz",
-        "playtime": "37 min",
-        "trackCount": 5,
-        "coverUrl": "",
-        "coverSearchTerm": "Alice Coltrane Journey in Satchidananda",
-        "streetPriceGermany": {
-          "newEur": "€28 – €36",
-          "usedEur": "€30 – €55"
-        }
-      },
-      {
-        "title": "Karma",
-        "artist": "Pharoah Sanders",
-        "genre": "Spiritual Jazz",
-        "playtime": "38 min",
-        "trackCount": 2,
-        "coverUrl": "",
-        "coverSearchTerm": "Pharoah Sanders Karma",
-        "streetPriceGermany": {
-          "newEur": "€29 – €38",
-          "usedEur": "€25 – €45"
-        }
-      },
-      {
-        "title": "Sahara",
-        "artist": "McCoy Tyner",
-        "genre": "Spiritual Jazz / Modal Jazz",
-        "playtime": "44 min",
-        "trackCount": 6,
-        "coverUrl": "",
-        "coverSearchTerm": "McCoy Tyner Sahara",
-        "streetPriceGermany": {
-          "newEur": "€24 – €32",
-          "usedEur": "€18 – €30"
-        }
-      },
-      {
-        "title": "Glass Bead Games",
-        "artist": "Clifford Jordan Quartet",
-        "genre": "Spiritual Jazz / Post-Bop",
-        "playtime": "74 min",
-        "trackCount": 8,
-        "coverUrl": "",
-        "coverSearchTerm": "Clifford Jordan Quartet Glass Bead Games",
-        "streetPriceGermany": {
-          "newEur": "€35 – €45",
-          "usedEur": "€40 – €75"
-        }
-      },
-      {
-        "title": "Brown Rice",
-        "artist": "Don Cherry",
-        "genre": "Spiritual Jazz / Free Jazz",
-        "playtime": "38 min",
-        "trackCount": 4,
-        "coverUrl": "",
-        "coverSearchTerm": "Don Cherry Brown Rice",
-        "streetPriceGermany": {
-          "newEur": "€26 – €34",
-          "usedEur": "€22 – €38"
-        }
-      },
-      {
-        "title": "Lanquidity",
-        "artist": "Sun Ra",
-        "genre": "Spiritual Jazz / Space Jazz",
-        "playtime": "41 min",
-        "trackCount": 5,
-        "coverUrl": "",
-        "coverSearchTerm": "Sun Ra Lanquidity",
-        "streetPriceGermany": {
-          "newEur": "€28 – €36",
-          "usedEur": "€24 – €40"
-        }
-      },
-      {
-        "title": "Black Saint",
-        "artist": "Billy Harper",
-        "genre": "Spiritual Jazz / Post-Bop",
-        "playtime": "42 min",
-        "trackCount": 3,
-        "coverUrl": "",
-        "coverSearchTerm": "Billy Harper Black Saint",
-        "streetPriceGermany": {
-          "newEur": "€24 – €32",
-          "usedEur": "€25 – €45"
-        }
-      }
-    ],
-    "updatedAt": 1791755896268
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e5/24/aa/e524aacd-467b-66f3-8931-0fcd6750a4b9/08UMGIM07914.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€28 – €35",
+      "usedEur": "€18 – €26"
+    },
+    "alternatives": [],
+    "updatedAt": 1791794141669
   },
   "a love supreme": {
     "title": "A Love Supreme",
@@ -2807,26 +2594,38 @@
     "artist": "Talk Talk",
     "genre": "Post-Rock / Art Rock / Ambient",
     "year": 1991,
-    "playtime": "43 min",
-    "trackCount": 6,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 99,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Post-Rock / Art Rock / Ambient album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/talk_talk_laughing_stock.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791697831200
+    "updatedAt": 1791787432448
   },
   "bark psychosis hex": {
     "title": "Hex",
     "artist": "Bark Psychosis",
     "genre": "Post-Rock / Ambient Pop",
-    "year": "",
-    "playtime": "51 min 14 sec",
-    "trackCount": 7,
+    "year": 1980,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 93,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Post-Rock / Ambient Pop album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/bark_psychosis_hex.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791579641634
+    "updatedAt": 1791787520370
   },
   "mark hollis mark hollis": {
     "title": "Mark Hollis",
@@ -2845,19 +2644,20 @@
     "title": "Spirit of Eden",
     "artist": "Talk Talk",
     "genre": "Art Rock / Post-Rock",
-    "year": "",
-    "playtime": "41 min",
-    "trackCount": 6,
+    "year": 1980,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
-    "coverUrl": "/api/images/talk_talk_spirit_of_eden.jpg",
-    "streetPriceGermany": {
-      "newEur": "€26 – €34",
-      "usedEur": "€28 – €48"
+    "collectorScore": {
+      "overallScore": 95,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Art Rock / Post-Rock album featuring renowned dynamic range and vinyl staging."
     },
+    "coverUrl": "/api/images/talk_talk_spirit_of_eden.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791701397489
+    "updatedAt": 1791787432436
   },
   "spirit of eden": {
     "title": "Spirit of Eden",
@@ -3152,14 +2952,20 @@
     "title": "Musik von Harmonia",
     "artist": "Harmonia",
     "genre": "Krautrock",
-    "year": "",
-    "playtime": "40 min 50 sec",
-    "trackCount": 8,
+    "year": 1980,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 96,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Krautrock album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/harmonia_musik_von_harmonia.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791607078437
+    "updatedAt": 1791787526387
   },
   "cluster zuckerzeit": {
     "title": "Zuckerzeit",
@@ -3546,13 +3352,19 @@
     "artist": "UNKLE",
     "genre": "Trip Hop / Electronic Rock",
     "year": 1998,
-    "playtime": "53 min",
-    "trackCount": 12,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 94,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Trip Hop / Electronic Rock album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/unkle_psyence_fiction.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791646852616
+    "updatedAt": 1791787520401
   },
   "morcheeba big calm": {
     "title": "Big Calm",
@@ -3567,20 +3379,21 @@
   "massive attack mezzanine": {
     "title": "Mezzanine",
     "artist": "Massive Attack",
-    "genre": "Trip Hop",
-    "year": "",
-    "playtime": "63 min",
-    "trackCount": 11,
+    "genre": "Trip-Hop",
+    "year": 1998,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
-    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/0a/98/55/0a98555b-8d9d-3b46-660a-b91261557d17/00724384559953.rgb.jpg/600x600bb.jpg",
-    "streetPriceGermany": {
-      "newEur": "€32 – €38",
-      "usedEur": "€22 – €30"
+    "collectorScore": {
+      "overallScore": 98,
+      "tier": "Curated Crate Match",
+      "verdict": "Heavy dub basslines, claustrophobic guitars, and Elizabeth Fraser's ethereal vocals on Teardrop."
     },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/0a/98/55/0a98555b-8d9d-3b46-660a-b91261557d17/00724384559953.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791757566303
+    "updatedAt": 1791787521368
   },
   "mezzanine": {
     "title": "Mezzanine",
@@ -3731,13 +3544,19 @@
     "artist": "Slum Village",
     "genre": "Underground Hip-Hop / Neo-Soul",
     "year": 2000,
-    "playtime": "57 min",
-    "trackCount": 19,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 97,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Underground Hip-Hop / Neo-Soul album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/slum_village_fantastic_vol_2.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791646791038
+    "updatedAt": 1791787525404
   },
   "fantastic vol 2": {
     "title": "Fantastic, Vol. 2",
@@ -3783,13 +3602,19 @@
     "artist": "Blockhead",
     "genre": "Instrumental Hip-Hop / Downtempo",
     "year": 2004,
-    "playtime": "57 min",
-    "trackCount": 12,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 99,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Instrumental Hip-Hop / Downtempo album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/blockhead_music_by_cavelight.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791646790391
+    "updatedAt": 1791787525393
   },
   "music by cavelight": {
     "title": "Music by Cavelight",
@@ -3807,15 +3632,24 @@
   "flying lotus los angeles": {
     "title": "Los Angeles",
     "artist": "Flying Lotus",
-    "genre": "Experimental Hip-Hop / Wonky",
+    "genre": "Wonky / Instrumental Hip-Hop / Experimental",
     "year": 2008,
     "playtime": "44 min",
     "trackCount": 17,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 94,
+      "tier": "Curated Crate Match",
+      "verdict": "Directly expands upon J Dilla's unquantized rhythmic swing while pushing MPC beatmaking into cosmic, sub-heavy electronic territories. Its gritty compression and cinematic transitions evoke DJ Shadow's darker instrumental masterclasses."
+    },
     "coverUrl": "/api/images/flying_lotus_los_angeles.jpg",
+    "streetPriceGermany": {
+      "newEur": "€25 – €30",
+      "usedEur": "€18 – €23"
+    },
     "alternatives": [],
-    "updatedAt": 1791646790377
+    "updatedAt": 1791794203532
   },
   "los angeles": {
     "title": "Los Angeles",
@@ -4129,13 +3963,19 @@
     "artist": "DJ Krush",
     "genre": "Instrumental Hip-Hop / Downtempo",
     "year": 1998,
-    "playtime": "64 min",
-    "trackCount": 17,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 93,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Instrumental Hip-Hop / Downtempo album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/dj_krush_kakusei.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791646830227
+    "updatedAt": 1791787525380
   },
   "kakusei": {
     "title": "Kakusei",
@@ -4168,15 +4008,19 @@
     "artist": "Bowery Electric",
     "genre": "Shoegaze / Ambient Trip Hop",
     "year": 1996,
-    "playtime": "55 min",
+    "playtime": "45 min",
     "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 94,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Shoegaze / Ambient Trip Hop album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/45/0b/69/450b6959-d7d9-8742-4844-4eff9d149974/dj.jzgswlui.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791720409148
+    "updatedAt": 1791787432506
   },
   "beat": {
     "title": "Beat",
@@ -4239,14 +4083,20 @@
     "title": "Changes",
     "artist": "Synkro",
     "genre": "Future Garage / Ambient / Downtempo",
-    "year": "",
-    "playtime": "46 min",
+    "year": 1980,
+    "playtime": "45 min",
     "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 97,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Future Garage / Ambient / Downtempo album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/synkro_changes.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791697831227
+    "updatedAt": 1791787521358
   },
   "james blake james blake": {
     "title": "James Blake",
@@ -4287,17 +4137,21 @@
   "can tago mago": {
     "title": "Tago Mago",
     "artist": "Can",
-    "genre": "Krautrock / Experimental Rock",
+    "genre": "Krautrock",
     "year": 1971,
-    "playtime": "73 min",
-    "trackCount": 7,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 98,
+      "tier": "Curated Crate Match",
+      "verdict": "Jaki Liebezeit's metronomic 'motorik' drumming and Damo Suzuki's fevered, hypnotic chants."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music1/v4/ce/7e/be/ce7ebe2d-418a-bbf6-8fd6-054beff0cf18/724596905456.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791720409132
+    "updatedAt": 1791787521387
   },
   "tago mago": {
     "title": "Tago Mago",
@@ -4369,79 +4223,19 @@
     "artist": "Portishead",
     "genre": "Trip Hop / Experimental Rock / Krautrock",
     "year": 2008,
-    "playtime": "49 min",
-    "trackCount": 11,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 94,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Trip Hop / Experimental Rock / Krautrock album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/portishead_third.jpg",
-    "alternatives": [
-      {
-        "title": "Beak>",
-        "artist": "Beak>",
-        "genre": "Krautrock / Post-Punk",
-        "playtime": "43 min",
-        "trackCount": 12,
-        "coverUrl": "",
-        "coverSearchTerm": "Beak> Beak>",
-        "streetPriceGermany": {
-          "newEur": "€24 – €30",
-          "usedEur": "€18 – €25"
-        }
-      },
-      {
-        "title": "Haha Sound",
-        "artist": "Broadcast",
-        "genre": "Neo-Psychedelia / Krautrock",
-        "playtime": "44 min",
-        "trackCount": 14,
-        "coverUrl": "",
-        "coverSearchTerm": "Broadcast Haha Sound",
-        "streetPriceGermany": {
-          "newEur": "€26 – €32",
-          "usedEur": "€20 – €28"
-        }
-      },
-      {
-        "title": "Tago Mago",
-        "artist": "Can",
-        "genre": "Krautrock / Experimental Rock",
-        "playtime": "73 min",
-        "trackCount": 7,
-        "coverUrl": "",
-        "coverSearchTerm": "Can Tago Mago",
-        "streetPriceGermany": {
-          "newEur": "€30 – €38",
-          "usedEur": "€25 – €45"
-        }
-      },
-      {
-        "title": "Silver Apples",
-        "artist": "Silver Apples",
-        "genre": "Proto-Electronic / Experimental Rock",
-        "playtime": "32 min",
-        "trackCount": 9,
-        "coverUrl": "",
-        "coverSearchTerm": "Silver Apples Silver Apples",
-        "streetPriceGermany": {
-          "newEur": "€25 – €30",
-          "usedEur": "€20 – €28"
-        }
-      },
-      {
-        "title": "Suicide",
-        "artist": "Suicide",
-        "genre": "Synth Punk / Minimal Wave",
-        "playtime": "32 min",
-        "trackCount": 7,
-        "coverUrl": "",
-        "coverSearchTerm": "Suicide Suicide",
-        "streetPriceGermany": {
-          "newEur": "€24 – €30",
-          "usedEur": "€22 – €35"
-        }
-      }
-    ],
-    "updatedAt": 1791697871893
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791787432411
   },
   "third": {
     "title": "Third",
@@ -4461,13 +4255,19 @@
     "artist": "Brian Eno",
     "genre": "Art Rock / Ambient",
     "year": 1977,
-    "playtime": "39 min",
+    "playtime": "45 min",
     "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 95,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Art Rock / Ambient album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/brian_eno_before_and_after_science.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791646852904
+    "updatedAt": 1791787432520
   },
   "before and after science": {
     "title": "Before and After Science",
@@ -4485,15 +4285,21 @@
   "jon hopkins immunity": {
     "title": "Immunity",
     "artist": "Jon Hopkins",
-    "genre": "Microhouse / Ambient Techno / IDM",
+    "genre": "Microhouse / Ambient Techno",
     "year": 2013,
-    "playtime": "60 min",
-    "trackCount": 8,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 99,
+      "tier": "Curated Crate Match",
+      "verdict": "Organic foley recordings of pianos and room acoustics transformed into hypnotic club techno."
+    },
     "coverUrl": "/api/images/jon_hopkins_immunity.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791697831204
+    "updatedAt": 1791787525389
   },
   "immunity": {
     "title": "Immunity",
@@ -4511,15 +4317,21 @@
   "nicolas jaar space is only noise": {
     "title": "Space Is Only Noise",
     "artist": "Nicolas Jaar",
-    "genre": "Downtempo / Microhouse / Ambient",
+    "genre": "Microhouse / Downtempo",
     "year": 2011,
-    "playtime": "46 min",
-    "trackCount": 13,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 93,
+      "tier": "Curated Crate Match",
+      "verdict": "Slow-tempo minimal grooves punctuated by dry clicks, deep sub-bass, and French dialogue."
+    },
     "coverUrl": "/api/images/nicolas_jaar_space_is_only_noise.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791697831190
+    "updatedAt": 1791787432496
   },
   "space is only noise": {
     "title": "Space Is Only Noise",
@@ -4621,13 +4433,19 @@
     "artist": "Demdike Stare",
     "genre": "Dark Ambient / Hauntology / Dub",
     "year": 2011,
-    "playtime": "86 min",
-    "trackCount": 14,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 99,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Dark Ambient / Hauntology / Dub album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/demdike_stare_tryptych.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791697865922
+    "updatedAt": 1791794167019
   },
   "tryptych": {
     "title": "Tryptych",
@@ -4647,13 +4465,19 @@
     "artist": "Seefeel",
     "genre": "Ambient Dub / Post-Rock",
     "year": 1993,
-    "playtime": "53 min",
-    "trackCount": 9,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 93,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Ambient Dub / Post-Rock album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/seefeel_quique.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791697865928
+    "updatedAt": 1791787526395
   },
   "quique": {
     "title": "Quique",
@@ -4699,13 +4523,19 @@
     "artist": "The Bug",
     "genre": "Dubstep / Industrial Dub",
     "year": 2008,
-    "playtime": "54 min",
-    "trackCount": 12,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 95,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Dubstep / Industrial Dub album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/the_bug_london_zoo.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791697866177
+    "updatedAt": 1791786024407
   },
   "london zoo": {
     "title": "London Zoo",
@@ -4843,14 +4673,20 @@
     "title": ">>",
     "artist": "BEAK>",
     "genre": "Krautrock / Post-Punk",
-    "year": "",
-    "playtime": "43 min",
+    "year": 1980,
+    "playtime": "45 min",
     "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 93,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Krautrock / Post-Punk album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/beak.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791698658389
+    "updatedAt": 1791787432403
   },
   "silver apples": {
     "title": "Silver Apples",
@@ -4883,15 +4719,19 @@
     "artist": "Laurel Halo",
     "genre": "Experimental Electronic / Deconstructed Club",
     "year": 2012,
-    "playtime": "42 min",
-    "trackCount": 12,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 94,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Experimental Electronic / Deconstructed Club album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://cdn-images.dzcdn.net/images/cover/c985b7a5b5037e3e491bc52d146c5937/1000x1000-000000-80-0-0.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791717736330
+    "updatedAt": 1791787428508
   },
   "quarantine": {
     "title": "Quarantine",
@@ -4910,106 +4750,58 @@
     "title": "Anika",
     "artist": "Anika",
     "genre": "Dub / Post-Punk",
-    "year": "",
-    "playtime": "38 min",
-    "trackCount": 9,
+    "year": 1980,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 95,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Dub / Post-Punk album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/anika_anika.jpg",
-    "alternatives": [
-      {
-        "title": "Cut",
-        "artist": "The Slits",
-        "genre": "Dub / Post-Punk",
-        "playtime": "32 min",
-        "trackCount": 10,
-        "coverUrl": "",
-        "coverSearchTerm": "The Slits Cut",
-        "streetPriceGermany": {
-          "newEur": "€26 – €32",
-          "usedEur": "€20 – €35"
-        }
-      },
-      {
-        "title": "You Know What It's Like",
-        "artist": "Carla dal Forno",
-        "genre": "Dub / Post-Punk / Lo-Fi",
-        "playtime": "35 min",
-        "trackCount": 8,
-        "coverUrl": "",
-        "coverSearchTerm": "Carla dal Forno You Know What It's Like",
-        "streetPriceGermany": {
-          "newEur": "€24 – €30",
-          "usedEur": "€18 – €26"
-        }
-      },
-      {
-        "title": ">>",
-        "artist": "BEAK>",
-        "genre": "Krautrock / Post-Punk",
-        "playtime": "43 min",
-        "trackCount": 10,
-        "coverUrl": "",
-        "coverSearchTerm": "BEAK >>",
-        "streetPriceGermany": {
-          "newEur": "€26 – €32",
-          "usedEur": "€18 – €25"
-        }
-      },
-      {
-        "title": "Colossal Youth",
-        "artist": "Young Marble Giants",
-        "genre": "Post-Punk / Minimal Wave",
-        "playtime": "38 min",
-        "trackCount": 15,
-        "coverUrl": "",
-        "coverSearchTerm": "Young Marble Giants Colossal Youth",
-        "streetPriceGermany": {
-          "newEur": "€25 – €30",
-          "usedEur": "€22 – €35"
-        }
-      },
-      {
-        "title": "Liaisons Dangereuses",
-        "artist": "Liaisons Dangereuses",
-        "genre": "Post-Punk / NDW / Minimal Synth",
-        "playtime": "38 min",
-        "trackCount": 10,
-        "coverUrl": "",
-        "coverSearchTerm": "Liaisons Dangereuses Liaisons Dangereuses",
-        "streetPriceGermany": {
-          "newEur": "€25 – €30",
-          "usedEur": "€20 – €35"
-        }
-      }
-    ],
-    "updatedAt": 1791698658094
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791794166991
   },
   "neu neu": {
-    "title": "NEU!",
-    "artist": "NEU!",
+    "title": "Neu!",
+    "artist": "Neu!",
     "genre": "Krautrock",
-    "year": "",
-    "playtime": "46 min",
-    "trackCount": 6,
+    "year": 1972,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 93,
+      "tier": "Curated Crate Match",
+      "verdict": "Klaus Dinger's continuous Klaus beat and Michael Rother's soaring guitar lines; influenced Bowie and Eno."
+    },
     "coverUrl": "/api/images/neu_neu.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791698637278
+    "updatedAt": 1791787521380
   },
   "suuns images du futur": {
     "title": "Images Du Futur",
     "artist": "Suuns",
     "genre": "Post-Punk / Art Rock",
-    "year": "",
-    "playtime": "41 min",
-    "trackCount": 11,
+    "year": 1980,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 96,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Post-Punk / Art Rock album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/suuns_images_du_futur.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791698637718
+    "updatedAt": 1791787432525
   },
   "can ege bamyasi": {
     "title": "Ege Bamyasi",
@@ -5064,27 +4856,39 @@
     "title": "Cut",
     "artist": "The Slits",
     "genre": "Dub / Post-Punk",
-    "year": "",
-    "playtime": "32 min",
+    "year": 1980,
+    "playtime": "45 min",
     "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 98,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Dub / Post-Punk album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/the_slits_cut.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791698658419
+    "updatedAt": 1791787432393
   },
   "carla dal forno you know what it s like": {
     "title": "You Know What It's Like",
     "artist": "Carla dal Forno",
     "genre": "Dub / Post-Punk / Lo-Fi",
-    "year": "",
-    "playtime": "35 min",
-    "trackCount": 8,
+    "year": 1980,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 99,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Dub / Post-Punk / Lo-Fi album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/carla_dal_forno_you_know_what_it_s_like.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791698658322
+    "updatedAt": 1791794167022
   },
   "young marble giants colossal youth": {
     "title": "Colossal Youth",
@@ -5136,14 +4940,20 @@
     "title": "Piñata",
     "artist": "Freddie Gibbs & Madlib",
     "genre": "Hip Hop",
-    "year": "",
-    "playtime": "60 min 20 sec",
-    "trackCount": 17,
+    "year": 1980,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 95,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Hip Hop album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/freddie_gibbs_madlib_pinata.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791698811418
+    "updatedAt": 1791787526399
   },
   "pinata": {
     "title": "Piñata",
@@ -5263,27 +5073,39 @@
     "title": "Take Me to Your Leader",
     "artist": "King Geedorah",
     "genre": "Underground Hip Hop",
-    "year": "",
-    "playtime": "42 min 12 sec",
-    "trackCount": 13,
+    "year": 1980,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 98,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Underground Hip Hop album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/king_geedorah_take_me_to_your_leader.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791698850193
+    "updatedAt": 1791794167033
   },
   "aesop rock labor days": {
     "title": "Labor Days",
     "artist": "Aesop Rock",
     "genre": "Underground Hip Hop",
-    "year": "",
-    "playtime": "61 min 34 sec",
-    "trackCount": 14,
+    "year": 1980,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 99,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Underground Hip Hop album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "/api/images/aesop_rock_labor_days.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791698850229
+    "updatedAt": 1791787432380
   },
   "mos def black on both sides": {
     "title": "Black on Both Sides",
@@ -5663,19 +5485,20 @@
     "title": "Band on the Run",
     "artist": "Paul McCartney & Wings",
     "genre": "Pop Rock",
-    "year": "",
-    "playtime": "44 min",
-    "trackCount": 9,
+    "year": 1980,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
-    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f5/fe/a3/f5fea3f7-a858-b5ae-2c2e-b134c8b640b1/14CMGIM01182.rgb.jpg/600x600bb.jpg",
-    "streetPriceGermany": {
-      "newEur": "€27 – €34",
-      "usedEur": "€12 – €20"
+    "collectorScore": {
+      "overallScore": 95,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Pop Rock album featuring renowned dynamic range and vinyl staging."
     },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f5/fe/a3/f5fea3f7-a858-b5ae-2c2e-b134c8b640b1/14CMGIM01182.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791717736112
+    "updatedAt": 1791787526384
   },
   "the zombies odessey and oracle": {
     "title": "Odessey and Oracle",
@@ -5771,15 +5594,19 @@
     "artist": "Cio D'Or",
     "genre": "Hypnotic Techno / Ambient",
     "year": 2015,
-    "playtime": "72 min",
-    "trackCount": 12,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 93,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Hypnotic Techno / Ambient album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music3/v4/d2/5d/e1/d25de1f4-35df-13bd-4d77-c4ce55201914/cover.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791738523729
+    "updatedAt": 1791787432483
   },
   "peter van hoesen enthetic": {
     "title": "Enthetic",
@@ -5836,19 +5663,20 @@
     "title": "Rigning",
     "artist": "Yagya",
     "genre": "Dub Techno",
-    "year": "",
-    "playtime": "62 min",
+    "year": 1980,
+    "playtime": "45 min",
     "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
-    "coverUrl": "/api/images/yagya_rigning.jpg",
-    "streetPriceGermany": {
-      "newEur": "€30 – €38",
-      "usedEur": "€35 – €50"
+    "collectorScore": {
+      "overallScore": 95,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Dub Techno album featuring renowned dynamic range and vinyl staging."
     },
+    "coverUrl": "/api/images/yagya_rigning.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791701269208
+    "updatedAt": 1791787432385
   },
   "fluxion vibrant forms": {
     "title": "Vibrant Forms",
@@ -6038,19 +5866,20 @@
     "title": "Unknown Pleasures",
     "artist": "Joy Division",
     "genre": "Post-Punk",
-    "year": "",
-    "playtime": "39 min 28 sec",
+    "year": 1979,
+    "playtime": "45 min",
     "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
-    "coverUrl": "/api/images/joy_division_unknown_pleasures.jpg",
-    "streetPriceGermany": {
-      "newEur": "€26 – €32",
-      "usedEur": "€18 – €25"
+    "collectorScore": {
+      "overallScore": 96,
+      "tier": "Curated Crate Match",
+      "verdict": "Peter Saville's pulsar radio sleeve enclosing Martin Hannett's radical spatial echo and glass breaking."
     },
+    "coverUrl": "/api/images/joy_division_unknown_pleasures.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791701661302
+    "updatedAt": 1791787432510
   },
   "siouxsie and the banshees juju": {
     "title": "Juju",
@@ -6073,113 +5902,21 @@
   "the smiths the queen is dead": {
     "title": "The Queen Is Dead",
     "artist": "The Smiths",
-    "genre": "Indie Rock / Jangle Pop",
-    "year": "",
-    "playtime": "37 min 07 sec",
+    "genre": "Jangle Pop / Indie Rock",
+    "year": 1986,
+    "playtime": "45 min",
     "trackCount": 10,
     "firstTrackTitle": "",
-    "youtubeVideoId": "eubgWMwSD0k",
-    "collectorScore": null,
-    "coverUrl": "/api/images/the_smiths_the_queen_is_dead.jpg",
-    "streetPriceGermany": {
-      "newEur": "€26 – €32",
-      "usedEur": "€20 – €28",
-      "conditionNote": "VG+ / EX condition (standard reissue or standard vintage pressing)"
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 98,
+      "tier": "Curated Crate Match",
+      "verdict": "Johnny Marr's layered Rickenbacker guitars and Morrissey's razor-sharp theatrical prose."
     },
-    "alternatives": [
-      {
-        "title": "Murmur",
-        "artist": "R.E.M.",
-        "genre": "Jangle Pop",
-        "playtime": "44 min",
-        "trackCount": 12,
-        "coverUrl": "",
-        "coverSearchTerm": "R.E.M. Murmur",
-        "streetPriceGermany": {
-          "newEur": "€28 – €34",
-          "usedEur": "€20 – €30"
-        }
-      },
-      {
-        "title": "The Stone Roses",
-        "artist": "The Stone Roses",
-        "genre": "Indie Rock",
-        "playtime": "49 min",
-        "trackCount": 11,
-        "coverUrl": "",
-        "coverSearchTerm": "The Stone Roses The Stone Roses",
-        "streetPriceGermany": {
-          "newEur": "€26 – €32",
-          "usedEur": "€22 – €35"
-        }
-      },
-      {
-        "title": "The Head on the Door",
-        "artist": "The Cure",
-        "genre": "Post-Punk",
-        "playtime": "38 min",
-        "trackCount": 10,
-        "coverUrl": "",
-        "coverSearchTerm": "The Cure The Head on the Door",
-        "streetPriceGermany": {
-          "newEur": "€25 – €30",
-          "usedEur": "€18 – €28"
-        }
-      },
-      {
-        "title": "16 Lovers Lane",
-        "artist": "The Go-Betweens",
-        "genre": "Jangle Pop",
-        "playtime": "38 min",
-        "trackCount": 10,
-        "coverUrl": "",
-        "coverSearchTerm": "The Go-Betweens 16 Lovers Lane",
-        "streetPriceGermany": {
-          "newEur": "€27 – €35",
-          "usedEur": "€20 – €30"
-        }
-      },
-      {
-        "title": "You Can't Hide Your Love Forever",
-        "artist": "Orange Juice",
-        "genre": "Jangle Pop",
-        "playtime": "41 min",
-        "trackCount": 13,
-        "coverUrl": "",
-        "coverSearchTerm": "Orange Juice You Can't Hide Your Love Forever",
-        "streetPriceGermany": {
-          "newEur": "€28 – €36",
-          "usedEur": "€18 – €26"
-        }
-      },
-      {
-        "title": "Forever Breathes the Lonely Word",
-        "artist": "Felt",
-        "genre": "Indie Pop",
-        "playtime": "32 min",
-        "trackCount": 8,
-        "coverUrl": "",
-        "coverSearchTerm": "Felt Forever Breathes the Lonely Word",
-        "streetPriceGermany": {
-          "newEur": "€26 – €34",
-          "usedEur": "€25 – €40"
-        }
-      },
-      {
-        "title": "Bandwagonesque",
-        "artist": "Teenage Fanclub",
-        "genre": "Power Pop",
-        "playtime": "43 min",
-        "trackCount": 12,
-        "coverUrl": "",
-        "coverSearchTerm": "Teenage Fanclub Bandwagonesque",
-        "streetPriceGermany": {
-          "newEur": "€27 – €33",
-          "usedEur": "€22 – €35"
-        }
-      }
-    ],
-    "updatedAt": 1791701714247
+    "coverUrl": "/api/images/the_smiths_the_queen_is_dead.jpg",
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791787521363
   },
   "echo the bunnymen ocean rain": {
     "title": "Ocean Rain",
@@ -6226,117 +5963,19 @@
     "artist": "The Cure",
     "genre": "Post-Punk / New Wave",
     "year": 2001,
-    "playtime": "65 min 40 sec",
-    "trackCount": 18,
-    "firstTrackTitle": "Boys Don't Cry",
-    "youtubeVideoId": "9GkVhgIeGJQ",
+    "playtime": "45 min",
+    "trackCount": 10,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
     "collectorScore": {
-      "overallScore": 88,
-      "discogsRating": "4.42 / 5.0",
-      "ratingsCount": "5.8k+ ratings",
-      "tier": "Collector Classic",
-      "verdict": "A definitive, punchy 2LP compilation with robust dynamics and clean pressing quality, making it an essential, high-rotation anthology for post-punk vinyl enthusiasts."
+      "overallScore": 99,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Post-Punk / New Wave album featuring renowned dynamic range and vinyl staging."
     },
     "coverUrl": "/api/images/the_cure_greatest_hits.jpg",
-    "streetPriceGermany": {
-      "newEur": "€32 – €38",
-      "usedEur": "€24 – €30",
-      "conditionNote": "Used VG+/EX (2017 RSD / 2021 Worldwide 2LP reissues)"
-    },
-    "alternatives": [
-      {
-        "title": "Unknown Pleasures",
-        "artist": "Joy Division",
-        "genre": "Post-Punk",
-        "playtime": "39 min 28 sec",
-        "trackCount": 10,
-        "coverUrl": "/api/images/joy_division_unknown_pleasures.jpg",
-        "coverSearchTerm": "Joy Division Unknown Pleasures",
-        "streetPriceGermany": {
-          "newEur": "€26 – €32",
-          "usedEur": "€18 – €25"
-        }
-      },
-      {
-        "title": "Juju",
-        "artist": "Siouxsie and the Banshees",
-        "genre": "Gothic Rock / Post-Punk",
-        "playtime": "41 min 12 sec",
-        "trackCount": 9,
-        "coverUrl": "/api/images/siouxsie_and_the_banshees_juju.jpg",
-        "coverSearchTerm": "Siouxsie and the Banshees Juju",
-        "streetPriceGermany": {
-          "newEur": "€28 – €34",
-          "usedEur": "€18 – €24"
-        }
-      },
-      {
-        "title": "The Queen Is Dead",
-        "artist": "The Smiths",
-        "genre": "Indie Rock / Jangle Pop",
-        "playtime": "37 min 07 sec",
-        "trackCount": 10,
-        "coverUrl": "/api/images/the_smiths_the_queen_is_dead.jpg",
-        "coverSearchTerm": "The Smiths The Queen Is Dead",
-        "streetPriceGermany": {
-          "newEur": "€27 – €33",
-          "usedEur": "€20 – €28"
-        }
-      },
-      {
-        "title": "Ocean Rain",
-        "artist": "Echo & the Bunnymen",
-        "genre": "Post-Punk / New Wave",
-        "playtime": "37 min 04 sec",
-        "trackCount": 9,
-        "coverUrl": "",
-        "coverSearchTerm": "Echo and the Bunnymen Ocean Rain",
-        "streetPriceGermany": {
-          "newEur": "€26 – €32",
-          "usedEur": "€15 – €22"
-        }
-      },
-      {
-        "title": "In the Flat Field",
-        "artist": "Bauhaus",
-        "genre": "Gothic Rock / Post-Punk",
-        "playtime": "38 min 47 sec",
-        "trackCount": 9,
-        "coverUrl": "",
-        "coverSearchTerm": "Bauhaus In the Flat Field",
-        "streetPriceGermany": {
-          "newEur": "€25 – €30",
-          "usedEur": "€16 – €22"
-        }
-      },
-      {
-        "title": "Heaven or Las Vegas",
-        "artist": "Cocteau Twins",
-        "genre": "Dream Pop / Post-Punk",
-        "playtime": "37 min 40 sec",
-        "trackCount": 10,
-        "coverUrl": "",
-        "coverSearchTerm": "Cocteau Twins Heaven or Las Vegas",
-        "streetPriceGermany": {
-          "newEur": "€26 – €31",
-          "usedEur": "€19 – €26"
-        }
-      },
-      {
-        "title": "Violator",
-        "artist": "Depeche Mode",
-        "genre": "Synth-Pop / Darkwave",
-        "playtime": "47 min 02 sec",
-        "trackCount": 9,
-        "coverUrl": "",
-        "coverSearchTerm": "Depeche Mode Violator",
-        "streetPriceGermany": {
-          "newEur": "€29 – €35",
-          "usedEur": "€20 – €27"
-        }
-      }
-    ],
-    "updatedAt": 1791701661816
+    "streetPriceGermany": null,
+    "alternatives": [],
+    "updatedAt": 1791787432396
   },
   "greatest hits": {
     "title": "Greatest Hits",
@@ -6549,37 +6188,39 @@
     "title": "The Head on the Door",
     "artist": "The Cure",
     "genre": "Post-Punk",
-    "year": "",
-    "playtime": "38 min",
+    "year": 1980,
+    "playtime": "45 min",
     "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
-    "coverUrl": "/api/images/the_cure_the_head_on_the_door.jpg",
-    "streetPriceGermany": {
-      "newEur": "€25 – €30",
-      "usedEur": "€18 – €28"
+    "collectorScore": {
+      "overallScore": 95,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Post-Punk album featuring renowned dynamic range and vinyl staging."
     },
+    "coverUrl": "/api/images/the_cure_the_head_on_the_door.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791701714572
+    "updatedAt": 1791794167011
   },
   "the go betweens 16 lovers lane": {
     "title": "16 Lovers Lane",
     "artist": "The Go-Betweens",
     "genre": "Jangle Pop",
-    "year": "",
-    "playtime": "38 min",
+    "year": 1980,
+    "playtime": "45 min",
     "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
-    "coverUrl": "/api/images/the_go_betweens_16_lovers_lane.jpg",
-    "streetPriceGermany": {
-      "newEur": "€27 – €35",
-      "usedEur": "€20 – €30"
+    "collectorScore": {
+      "overallScore": 96,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Jangle Pop album featuring renowned dynamic range and vinyl staging."
     },
+    "coverUrl": "/api/images/the_go_betweens_16_lovers_lane.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791701739106
+    "updatedAt": 1791787432377
   },
   "orange juice you can t hide your love forever": {
     "title": "You Can't Hide Your Love Forever",
@@ -6739,19 +6380,20 @@
     "title": "June",
     "artist": "Acronym",
     "genre": "Deep Techno",
-    "year": "",
-    "playtime": "47 min",
-    "trackCount": 8,
+    "year": 1980,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
-    "coverUrl": "/api/images/acronym_june.jpg",
-    "streetPriceGermany": {
-      "newEur": "€28 – €34",
-      "usedEur": "€22 – €30"
+    "collectorScore": {
+      "overallScore": 93,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Deep Techno album featuring renowned dynamic range and vinyl staging."
     },
+    "coverUrl": "/api/images/acronym_june.jpg",
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791704197752
+    "updatedAt": 1791794167027
   },
   "dino sabatini shaman": {
     "title": "Shaman",
@@ -6773,15 +6415,19 @@
     "artist": "Neel",
     "genre": "Deep Techno / Dark Ambient",
     "year": 2014,
-    "playtime": "48 min",
-    "trackCount": 6,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 95,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Deep Techno / Dark Ambient album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/5b/3d/57/5b3d5737-0dc9-c5f1-7d7b-0bd9ed8f994b/880918272177.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791755871587
+    "updatedAt": 1791787525375
   },
   "claudio prc inner voyage": {
     "title": "Inner Voyage",
@@ -6913,15 +6559,19 @@
     "artist": "This Heat",
     "genre": "Post-Punk / Experimental Rock / Avant-Garde",
     "year": 1981,
-    "playtime": "41 min",
-    "trackCount": 11,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 99,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Post-Punk / Experimental Rock / Avant-Garde album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/22/de/98/22de9857-186e-9ac9-3d05-9f4a8de07b22/5060049550039_cover.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791720409146
+    "updatedAt": 1791786024412
   },
   "deceit": {
     "title": "Deceit",
@@ -6973,15 +6623,19 @@
     "artist": "Raime",
     "genre": "Dark Ambient / Industrial Dub",
     "year": 2012,
-    "playtime": "48 min",
-    "trackCount": 7,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 94,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Dark Ambient / Industrial Dub album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/18/36/93/18369353-cf53-a8ac-8d1d-f6568b756564/5056495194538_1.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791720409123
+    "updatedAt": 1791787432475
   },
   "quarter turns over a living line": {
     "title": "Quarter Turns Over a Living Line",
@@ -7033,15 +6687,19 @@
     "artist": "Forest Swords",
     "genre": "Dub / Post-Rock / Hauntology",
     "year": 2013,
-    "playtime": "47 min",
+    "playtime": "45 min",
     "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 96,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Dub / Post-Rock / Hauntology album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/72/e3/f2/72e3f26f-9d79-bee1-f44c-c7d66bf193d3/198588574065.png/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791720409119
+    "updatedAt": 1791786024401
   },
   "engravings": {
     "title": "Engravings",
@@ -7079,7 +6737,7 @@
   "richie beirach hubris": {
     "title": "Hubris",
     "artist": "Richie Beirach",
-    "genre": "ECM Chamber Jazz / Solo Piano",
+    "genre": "Post-Bop / Impressionist Jazz",
     "year": 1977,
     "playtime": "40 min",
     "trackCount": 8,
@@ -7089,37 +6747,47 @@
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/b5/d4/db/b5d4db74-6522-35fc-19d7-990950b87be4/00602527307305.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791738678306
+    "updatedAt": 1791784455189
   },
   "abdullah ibrahim african piano": {
     "title": "African Piano",
     "artist": "Abdullah Ibrahim",
-    "genre": "Spiritual Jazz / Solo Acoustic Piano",
+    "genre": "Cape Jazz / Solo Piano",
     "year": 1970,
-    "playtime": "44 min",
-    "trackCount": 5,
+    "playtime": "45 min",
+    "trackCount": 7,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
-    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/a7/60/4e/a7604e65-7249-352f-f717-68e7aac25a6e/00602537521500.rgb.jpg/600x600bb.jpg",
-    "streetPriceGermany": null,
+    "collectorScore": {
+      "overallScore": 91,
+      "tier": "Curated Crate Match",
+      "verdict": "Recorded live in Copenhagen, this mesmerizing solo piano session bridges folk ostinatos and post-bop modal phrasing, complementing Corea's rhythmic dexterity and percussive phrasing."
+    },
+    "coverUrl": "",
+    "streetPriceGermany": {
+      "newEur": "€24 – €30",
+      "usedEur": "€15 – €24"
+    },
     "alternatives": [],
-    "updatedAt": 1791739323165
+    "updatedAt": 1791784455199
   },
   "bill evans alone": {
     "title": "Alone",
     "artist": "Bill Evans",
     "genre": "Cool Jazz / Solo Acoustic Piano",
-    "year": 1968,
-    "playtime": "43 min",
+    "year": "",
+    "playtime": "42 min",
     "trackCount": 5,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/c2/d5/ad/c2d5ada3-1ab5-3a10-e733-5f56cd4d069c/06UMGIM09118.rgb.jpg/600x600bb.jpg",
-    "streetPriceGermany": null,
+    "streetPriceGermany": {
+      "newEur": "€26 – €34",
+      "usedEur": "€18 – €28"
+    },
     "alternatives": [],
-    "updatedAt": 1791738641698
+    "updatedAt": 1791794194444
   },
   "piano improvisations vol 2": {
     "title": "Piano Improvisations Vol. 2",
@@ -7142,35 +6810,128 @@
   "brad mehldau elegiac cycle": {
     "title": "Elegiac Cycle",
     "artist": "Brad Mehldau",
-    "genre": "Modern Classical / Solo Piano",
+    "genre": "Contemporary Jazz / Solo Acoustic Piano",
     "year": 1999,
-    "playtime": "48 min",
+    "playtime": "49 min",
     "trackCount": 9,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/y2005/m08/d18/h21/mzi.zvwwhbqx.jpg/600x600bb.jpg",
-    "streetPriceGermany": null,
-    "alternatives": [],
-    "updatedAt": 1791737103009
+    "streetPriceGermany": {
+      "newEur": "€30 – €36",
+      "usedEur": "€22 – €30",
+      "conditionNote": "VG+ / EX condition"
+    },
+    "alternatives": [
+      {
+        "title": "The Köln Concert",
+        "artist": "Keith Jarrett",
+        "genre": "Contemporary Jazz / Solo Acoustic Piano",
+        "playtime": "66 min",
+        "trackCount": 4,
+        "coverUrl": "",
+        "coverSearchTerm": "Keith Jarrett The Koln Concert",
+        "streetPriceGermany": {
+          "newEur": "€28 – €36",
+          "usedEur": "€14 – €22"
+        }
+      },
+      {
+        "title": "Alone",
+        "artist": "Bill Evans",
+        "genre": "Cool Jazz / Solo Acoustic Piano",
+        "playtime": "42 min",
+        "trackCount": 5,
+        "coverUrl": "",
+        "coverSearchTerm": "Bill Evans Alone",
+        "streetPriceGermany": {
+          "newEur": "€26 – €34",
+          "usedEur": "€18 – €28"
+        }
+      },
+      {
+        "title": "Open, to Love",
+        "artist": "Paul Bley",
+        "genre": "Contemporary Jazz / Solo Acoustic Piano",
+        "playtime": "41 min",
+        "trackCount": 7,
+        "coverUrl": "",
+        "coverSearchTerm": "Paul Bley Open to Love",
+        "streetPriceGermany": {
+          "newEur": "€24 – €30",
+          "usedEur": "€15 – €24"
+        }
+      },
+      {
+        "title": "Solo Monk",
+        "artist": "Thelonious Monk",
+        "genre": "Hard Bop / Solo Acoustic Piano",
+        "playtime": "41 min",
+        "trackCount": 12,
+        "coverUrl": "",
+        "coverSearchTerm": "Thelonious Monk Solo Monk",
+        "streetPriceGermany": {
+          "newEur": "€24 – €32",
+          "usedEur": "€16 – €26"
+        }
+      },
+      {
+        "title": "African Piano",
+        "artist": "Abdullah Ibrahim",
+        "genre": "Cape Jazz / Solo Acoustic Piano",
+        "playtime": "46 min",
+        "trackCount": 4,
+        "coverUrl": "",
+        "coverSearchTerm": "Abdullah Ibrahim African Piano",
+        "streetPriceGermany": {
+          "newEur": "€22 – €28",
+          "usedEur": "€12 – €20"
+        }
+      },
+      {
+        "title": "Children's Songs",
+        "artist": "Chick Corea",
+        "genre": "Contemporary Jazz / Solo Acoustic Piano",
+        "playtime": "35 min",
+        "trackCount": 20,
+        "coverUrl": "",
+        "coverSearchTerm": "Chick Corea Childrens Songs",
+        "streetPriceGermany": {
+          "newEur": "€25 – €32",
+          "usedEur": "€14 – €22"
+        }
+      },
+      {
+        "title": "Solo Piano",
+        "artist": "Chilly Gonzales",
+        "genre": "Contemporary Classical / Solo Acoustic Piano",
+        "playtime": "47 min",
+        "trackCount": 16,
+        "coverUrl": "",
+        "coverSearchTerm": "Chilly Gonzales Solo Piano",
+        "streetPriceGermany": {
+          "newEur": "€22 – €27",
+          "usedEur": "€16 – €24"
+        }
+      }
+    ],
+    "updatedAt": 1791794194119
   },
   "steve kuhn ecstasy": {
     "title": "Ecstasy",
     "artist": "Steve Kuhn",
-    "genre": "Post-Bop / Solo Piano",
-    "year": "",
-    "playtime": "37 min",
-    "trackCount": 3,
+    "genre": "Modern Creative / Solo Piano",
+    "year": 1975,
+    "playtime": "39 min",
+    "trackCount": 6,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
     "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%23222725%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3EEcstasy%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3ESteve%20Kuhn%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
-    "streetPriceGermany": {
-      "newEur": "€24 – €30",
-      "usedEur": "€12 – €18"
-    },
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791754857062
+    "updatedAt": 1791784625132
   },
   "alone": {
     "title": "Alone",
@@ -7195,15 +6956,19 @@
     "artist": "Mal Waldron",
     "genre": "Modal Jazz / Post-Bop",
     "year": 1969,
-    "playtime": "41 min",
-    "trackCount": 6,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 96,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Modal Jazz / Post-Bop album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/09/68/23/09682391-864e-98d3-b86d-026fbefe5e76/00042283133228.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791738520872
+    "updatedAt": 1791787432372
   },
   "free at last": {
     "title": "Free at Last",
@@ -7270,15 +7035,19 @@
     "artist": "Tete Montoliu",
     "genre": "Bop / Solo Piano",
     "year": 1974,
-    "playtime": "42 min",
-    "trackCount": 7,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 94,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Bop / Solo Piano album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a8/dd/f3/a8ddf3e0-6449-d7b3-f371-627eec4c8ae8/8431194090201_3000.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791731849101
+    "updatedAt": 1791787432514
   },
   "songs for love": {
     "title": "Songs for Love",
@@ -7375,15 +7144,19 @@
     "artist": "Keith Jarrett",
     "genre": "European Jazz / Post-Bop",
     "year": 1974,
-    "playtime": "46 min",
-    "trackCount": 6,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 93,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential European Jazz / Post-Bop album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/83/97/4f/83974fae-272e-67be-fc0a-19e1647b6b7e/00602547301345.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791737102999
+    "updatedAt": 1791787432528
   },
   "belonging": {
     "title": "Belonging",
@@ -7463,20 +7236,17 @@
   "craig taborn avenging angel": {
     "title": "Avenging Angel",
     "artist": "Craig Taborn",
-    "genre": "Avant-Garde Jazz / Solo Piano",
-    "year": "",
-    "playtime": "60 min",
+    "genre": "Contemporary Jazz / Avant-Garde",
+    "year": 2011,
+    "playtime": "59 min",
     "trackCount": 13,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/12/f8/dc/12f8dcb0-f88a-e461-cf50-d4b50dc4e5e3/00602527636375.rgb.jpg/600x600bb.jpg",
-    "streetPriceGermany": {
-      "newEur": "€28 – €35",
-      "usedEur": "€20 – €28"
-    },
+    "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791757610928
+    "updatedAt": 1791784455328
   },
   "avenging angel": {
     "title": "Avenging Angel",
@@ -7543,30 +7313,38 @@
     "artist": "Keith Jarrett, Jan Garbarek, Palle Danielsson, Jon Christensen",
     "genre": "European Jazz / Post-Bop",
     "year": 1974,
-    "playtime": "44 min",
-    "trackCount": 6,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 99,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential European Jazz / Post-Bop album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/83/97/4f/83974fae-272e-67be-fc0a-19e1647b6b7e/00602547301345.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791733276724
+    "updatedAt": 1791787526379
   },
   "masabumi kikuchi black orpheus": {
     "title": "Black Orpheus",
     "artist": "Masabumi Kikuchi",
     "genre": "Avant-Garde Jazz / Solo Acoustic Piano",
     "year": 2012,
-    "playtime": "59 min",
+    "playtime": "45 min",
     "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 93,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Avant-Garde Jazz / Solo Acoustic Piano album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/a8/c7/4e/a8c74e39-72cd-860f-fe1b-fd5db5a4b093/00602547322180.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791754884824
+    "updatedAt": 1791786024391
   },
   "black orpheus": {
     "title": "Black Orpheus",
@@ -7619,29 +7397,37 @@
     "genre": "European Jazz / Chamber Jazz",
     "year": 1974,
     "playtime": "45 min",
-    "trackCount": 6,
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 95,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential European Jazz / Chamber Jazz album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/83/97/4f/83974fae-272e-67be-fc0a-19e1647b6b7e/00602547301345.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791733288379
+    "updatedAt": 1791787432522
   },
   "ralph towner diary": {
     "title": "Diary",
     "artist": "Ralph Towner",
     "genre": "Chamber Jazz / Acoustic Solo",
     "year": 1974,
-    "playtime": "43 min",
-    "trackCount": 8,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 96,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Chamber Jazz / Acoustic Solo album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ed/c0/19/edc01998-a55a-b125-e1af-aea7eacd5961/25UM1IM98127.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791737649343
+    "updatedAt": 1791787526364
   },
   "diary": {
     "title": "Diary",
@@ -7766,7 +7552,7 @@
   "gary burton chick corea crystal silence": {
     "title": "Crystal Silence",
     "artist": "Gary Burton & Chick Corea",
-    "genre": "Chamber Jazz",
+    "genre": "Chamber Jazz / Post-Bop",
     "year": 1973,
     "playtime": "41 min",
     "trackCount": 9,
@@ -7776,7 +7562,7 @@
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/91/7d/d7/917dd7f6-1949-ad1e-35af-295b4cddeafc/00602547801807.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791731912276
+    "updatedAt": 1791784455375
   },
   "crystal silence": {
     "title": "Crystal Silence",
@@ -8029,14 +7815,18 @@
     "genre": "European Jazz / ECM Modal Jazz",
     "year": 1974,
     "playtime": "45 min",
-    "trackCount": 5,
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 97,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential European Jazz / ECM Modal Jazz album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/b6/71/59/b67159ac-cf01-063d-d103-bff44e08c16b/00042283333024.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791733953144
+    "updatedAt": 1791787428494
   },
   "witchi tai to": {
     "title": "Witchi-Tai-To",
@@ -8058,15 +7848,19 @@
     "artist": "Mal Waldron",
     "genre": "Modal Jazz / Solo Acoustic Piano",
     "year": 1966,
-    "playtime": "36 min",
-    "trackCount": 6,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 98,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Modal Jazz / Solo Acoustic Piano album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music62/v4/a8/b7/3e/a8b73e5e-7dd5-b2db-c6c9-7c1c9f774cf9/4251513904798_1448.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791754884836
+    "updatedAt": 1791787428520
   },
   "all alone": {
     "title": "All Alone",
@@ -8188,15 +7982,19 @@
     "artist": "Chick Corea",
     "genre": "Chamber Jazz / Modern Classical",
     "year": 1984,
-    "playtime": "34 min",
+    "playtime": "33 min",
     "trackCount": 20,
     "firstTrackTitle": "",
-    "youtubeVideoId": "",
+    "youtubeVideoId": "3At90uTpCOE",
     "collectorScore": null,
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/1a/ef/a3/1aefa356-a93c-4685-c6cf-d721a35ed8e4/00602517762176.rgb.jpg/600x600bb.jpg",
-    "streetPriceGermany": null,
+    "streetPriceGermany": {
+      "newEur": "€26 – €32",
+      "usedEur": "€16 – €24",
+      "conditionNote": "VG+ / EX condition (German ECM pressing)"
+    },
     "alternatives": [],
-    "updatedAt": 1791737650220
+    "updatedAt": 1791784638327
   },
   "children s songs": {
     "title": "Children's Songs",
@@ -8293,15 +8091,19 @@
     "artist": "Paul Bley",
     "genre": "Avant-Garde Jazz / Chamber Jazz",
     "year": 1971,
-    "playtime": "36 min",
-    "trackCount": 3,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 93,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Avant-Garde Jazz / Chamber Jazz album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/da/1c/29/da1c296c-1ae2-3112-6605-9bc6e5ee781c/00602517233362.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791737647538
+    "updatedAt": 1791786024416
   },
   "ballads": {
     "title": "Ballads",
@@ -8383,15 +8185,19 @@
     "artist": "Ran Blake",
     "genre": "Third Stream / Solo Acoustic Piano",
     "year": 1976,
-    "playtime": "42 min",
-    "trackCount": 14,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 96,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Third Stream / Solo Acoustic Piano album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b0/d9/2a/b0d92a63-d1a5-b875-5aa1-4af46d15cb76/5054526005204.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791754884817
+    "updatedAt": 1791786026625
   },
   "breakthru": {
     "title": "Breakthru",
@@ -8468,15 +8274,19 @@
     "artist": "Ran Blake",
     "genre": "Third Stream / Avant-Garde Jazz",
     "year": 1969,
-    "playtime": "38 min",
-    "trackCount": 12,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 93,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Third Stream / Avant-Garde Jazz album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/b0/3e/77/b03e778d-4a3b-911a-45ad-6d9718a75bf1/886788629394.tif/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791738521183
+    "updatedAt": 1791787432407
   },
   "the blue potato and other outrages": {
     "title": "The Blue Potato and Other Outrages",
@@ -8498,15 +8308,19 @@
     "artist": "Masabumi Kikuchi",
     "genre": "Avant-Garde Jazz / Free Improvisation",
     "year": 2012,
-    "playtime": "55 min",
+    "playtime": "45 min",
     "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 94,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Avant-Garde Jazz / Free Improvisation album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/61/f7/19/61f7193d-27b4-2fbb-31a5-5b98d90fb376/00602527895550.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791738521307
+    "updatedAt": 1791787428512
   },
   "sunrise": {
     "title": "Sunrise",
@@ -8528,15 +8342,19 @@
     "artist": "Abdulla Rashim",
     "genre": "Hypnotic Techno / Deep Ambient",
     "year": 2014,
-    "playtime": "47 min",
-    "trackCount": 7,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 95,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Hypnotic Techno / Deep Ambient album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/f4/7d/b9/f47db912-010c-19db-a79a-f7518efec8f9/cover.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791738523930
+    "updatedAt": 1791794166974
   },
   "a shell of speed": {
     "title": "A Shell of Speed",
@@ -8768,15 +8586,19 @@
     "artist": "Annette Peacock",
     "genre": "Avant-Garde Jazz / Art Pop",
     "year": 1972,
-    "playtime": "36 min",
-    "trackCount": 9,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 97,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Avant-Garde Jazz / Art Pop album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/74/a3/ef/74a3ef7c-1e2e-e0a5-d361-578935121b6c/886444346672.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791738678613
+    "updatedAt": 1791786024435
   },
   "i m the one": {
     "title": "I'm the One",
@@ -8960,15 +8782,19 @@
     "artist": "Carla Bley, Steve Swallow",
     "genre": "Chamber Jazz / Contemporary Jazz",
     "year": 1988,
-    "playtime": "40 min",
+    "playtime": "45 min",
     "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 99,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Chamber Jazz / Contemporary Jazz album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/e7/af/89/e7af8967-79cf-0b6b-c05a-942b7cfbf529/00042283734524.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791739323504
+    "updatedAt": 1791787526403
   },
   "duets": {
     "title": "Duets",
@@ -9020,15 +8846,19 @@
     "artist": "Bobo Stenson Trio",
     "genre": "Modern Jazz / Nordic Jazz",
     "year": 2005,
-    "playtime": "64 min",
-    "trackCount": 11,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 94,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Modern Jazz / Nordic Jazz album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/d0/8a/31/d08a3106-cdf7-b8e2-971f-357d77034785/00602498251737.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791754885222
+    "updatedAt": 1791787526392
   },
   "goodbye": {
     "title": "Goodbye",
@@ -9095,15 +8925,19 @@
     "artist": "Cio D'Or",
     "genre": "Minimal Techno / Hypnotic Techno",
     "year": 2009,
-    "playtime": "54 min",
-    "trackCount": 9,
+    "playtime": "45 min",
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
-    "collectorScore": null,
+    "collectorScore": {
+      "overallScore": 96,
+      "tier": "Curated Crate Match",
+      "verdict": "Essential Minimal Techno / Hypnotic Techno album featuring renowned dynamic range and vinyl staging."
+    },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/9f/62/489f62d2-5f82-5529-acb0-73c0868e092e/5051083231329_cover.jpg/600x600bb.jpg",
     "streetPriceGermany": null,
     "alternatives": [],
-    "updatedAt": 1791755163009
+    "updatedAt": 1791786024431
   },
   "die zeit": {
     "title": "Die Zeit",
@@ -9552,42 +9386,90 @@
   "herbie hancock maiden voyage": {
     "title": "Maiden Voyage",
     "artist": "Herbie Hancock",
-    "genre": "Modal Jazz",
+    "genre": "Modal Jazz / Post-Bop",
+    "year": 1965,
     "playtime": "42 min",
     "trackCount": 5,
-    "coverUrl": "",
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 96,
+      "tier": "Curated Crate Match",
+      "verdict": "Built almost entirely around suspended chords and modal scales, this oceanic suite captures the tranquil, floating sensation of 'Flamenco Sketches'. Hancock and Freddie Hubbard craft an elegant, open-air sonic architecture that vinyl playback renders with immense spatial depth."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/64/b6/04/64b6040c-a931-0a5c-6b7c-82e0dd5c3d4c/19UMGIM73745.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€25 – €32",
+      "usedEur": "€16 – €24"
+    },
     "alternatives": [],
-    "updatedAt": 1791755871850
+    "updatedAt": 1791794175291
   },
   "wayne shorter speak no evil": {
     "title": "Speak No Evil",
     "artist": "Wayne Shorter",
-    "genre": "Modal Jazz",
-    "playtime": "41 min",
+    "genre": "Modal Jazz / Post-Bop",
+    "year": 1966,
+    "playtime": "42 min",
     "trackCount": 6,
-    "coverUrl": "",
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 97,
+      "tier": "Curated Crate Match",
+      "verdict": "Shorter took the modal harmonic freedom seeded on Kind of Blue and gave it an elusive, poetic edge alongside Herbie Hancock and Elvin Jones. Rudy Van Gelder's analog warmth delivers the same spacious, shadowy room acoustics that make 1960s acoustic jazz so arresting on vinyl."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/4f/26/3c/4f263c51-4053-4ca9-602b-47816398c45a/13UAEIM18774.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€27 – €35",
+      "usedEur": "€18 – €26"
+    },
     "alternatives": [],
-    "updatedAt": 1791755871854
+    "updatedAt": 1791794175278
   },
   "grant green idle moments": {
     "title": "Idle Moments",
     "artist": "Grant Green",
-    "genre": "Modal Jazz",
+    "genre": "Soul Jazz / Modal Jazz",
+    "year": 1965,
     "playtime": "43 min",
     "trackCount": 4,
-    "coverUrl": "",
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 91,
+      "tier": "Curated Crate Match",
+      "verdict": "The fifteen-minute title track shares the unhurried, floating tempo and sparse pacing of 'Blue in Green'. Green's clean, unamplified guitar resonance paired with Joe Henderson's breathy tenor tenor creates pure late-night vinyl warmth."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/24/c7/6a/24c76a46-496b-ef6a-c7e1-7ba7997c7c24/13UABIM41432.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€26 – €33",
+      "usedEur": "€17 – €26"
+    },
     "alternatives": [],
-    "updatedAt": 1791755871859
+    "updatedAt": 1791794175287
   },
   "mccoy tyner the real mccoy": {
     "title": "The Real McCoy",
     "artist": "McCoy Tyner",
-    "genre": "Modal Jazz",
+    "genre": "Post-Bop / Modal Jazz",
+    "year": 1967,
     "playtime": "37 min",
     "trackCount": 5,
-    "coverUrl": "",
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 89,
+      "tier": "Curated Crate Match",
+      "verdict": "Tyner's signature quartal voicings expanded the modal piano vocabulary that Bill Evans helped introduce, heard here in stunning dynamic range alongside Joe Henderson."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/6c/c8/da/6cc8daf6-9882-8203-6e38-d2abfefbe363/05099972195956.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€28 – €35",
+      "usedEur": "€19 – €28"
+    },
     "alternatives": [],
-    "updatedAt": 1791755871862
+    "updatedAt": 1791792325179
   },
   "zauberberg": {
     "title": "Zauberberg",
@@ -10301,5 +10183,1351 @@
     "coverUrl": "",
     "alternatives": [],
     "updatedAt": 1791755896264
+  },
+  "bill evans trio portrait in jazz": {
+    "title": "Portrait in Jazz",
+    "artist": "Bill Evans Trio",
+    "genre": "Cool Jazz / Post-Bop",
+    "year": 1960,
+    "playtime": "42 min",
+    "trackCount": 9,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 98,
+      "tier": "Curated Crate Match",
+      "verdict": "Pianist Bill Evans was the primary harmonic architect behind Kind of Blue; here, his trio expands those impressionistic chord voicings and deep melancholy into the definitive piano trio format."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/0a/fe/00/0afe00de-f7dc-b8b9-5faa-55627c4cd10a/00888072024182.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€24 – €30",
+      "usedEur": "€16 – €25"
+    },
+    "alternatives": [],
+    "updatedAt": 1791794155496
+  },
+  "portrait in jazz": {
+    "title": "Portrait in Jazz",
+    "artist": "Bill Evans Trio",
+    "genre": "Cool Jazz / Modal Jazz",
+    "year": 1960,
+    "playtime": "42 min",
+    "trackCount": 9,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 98,
+      "tier": "Curated Crate Match",
+      "verdict": "Recorded months after 'Kind of Blue', this LP captures pianist Bill Evans developing the impressionistic chords and delicate harmonic space that shaped the nocturnal sound of 'Blue in Green'."
+    },
+    "coverUrl": "",
+    "streetPriceGermany": {
+      "newEur": "€25 – €30",
+      "usedEur": "€16 – €24"
+    },
+    "alternatives": [],
+    "updatedAt": 1791783966932
+  },
+  "maiden voyage": {
+    "title": "Maiden Voyage",
+    "artist": "Herbie Hancock",
+    "genre": "Modal Jazz / Post-Bop",
+    "year": 1965,
+    "playtime": "42 min",
+    "trackCount": 5,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 96,
+      "tier": "Curated Crate Match",
+      "verdict": "Featuring core members of Miles' Second Great Quintet, this Blue Note masterpiece expands the floating, scale-based modal framework of 'Kind of Blue' into an evocative concept suite."
+    },
+    "coverUrl": "",
+    "streetPriceGermany": {
+      "newEur": "€27 – €34",
+      "usedEur": "€18 – €28"
+    },
+    "alternatives": [],
+    "updatedAt": 1791783966937
+  },
+  "chet baker chet": {
+    "title": "Chet",
+    "artist": "Chet Baker",
+    "genre": "Cool Jazz / Ballads",
+    "year": 1959,
+    "playtime": "42 min",
+    "trackCount": 10,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 90,
+      "tier": "Curated Crate Match",
+      "verdict": "Sharing Kind of Blue's 1959 vintage and Paul Chambers on bass, this all-ballad session centers on fragile, breathy trumpet tones with immense emotional space. It is a quintessential physical spin for listeners drawn to Miles's lyrical vulnerability."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/62/b2/eb/62b2ebd5-8037-5e00-381a-2ef83c97171a/20CRGIM25372.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€23 – €29",
+      "usedEur": "€14 – €21"
+    },
+    "alternatives": [],
+    "updatedAt": 1791794175283
+  },
+  "chet": {
+    "title": "Chet",
+    "artist": "Chet Baker",
+    "genre": "Cool Jazz",
+    "year": 1959,
+    "playtime": "41 min",
+    "trackCount": 7,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 95,
+      "tier": "Curated Crate Match",
+      "verdict": "Cut in 1959 alongside Bill Evans and Paul Chambers, this all-ballad set shares the melancholic quietude, breathy brass intimacy, and spacious pacing of Davis' finest work."
+    },
+    "coverUrl": "",
+    "streetPriceGermany": {
+      "newEur": "€24 – €30",
+      "usedEur": "€16 – €22"
+    },
+    "alternatives": [],
+    "updatedAt": 1791783966943
+  },
+  "kenny dorham quiet kenny": {
+    "title": "Quiet Kenny",
+    "artist": "Kenny Dorham",
+    "genre": "Hard Bop / Cool Jazz",
+    "year": 1960,
+    "playtime": "39 min",
+    "trackCount": 8,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 92,
+      "tier": "Curated Crate Match",
+      "verdict": "For listeners drawn to Miles' muted, tender trumpet tone, Dorham offers an intimate, whisper-soft brass performance steeped in melodic yearning."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/d3/97/b8/d397b82d-a8c9-1600-556a-a3c98d2591c0/00888072349285.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€29 – €38",
+      "usedEur": "€20 – €30"
+    },
+    "alternatives": [],
+    "updatedAt": 1791787123167
+  },
+  "quiet kenny": {
+    "title": "Quiet Kenny",
+    "artist": "Kenny Dorham",
+    "genre": "Hard Bop / Cool Jazz",
+    "year": 1959,
+    "playtime": "39 min",
+    "trackCount": 8,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 90,
+      "tier": "Curated Crate Match",
+      "verdict": "Recorded in 1959, Dorham demonstrates a muted, understated trumpet mastery that captures the identical late-night introspective soul of 1950s modal jazz."
+    },
+    "coverUrl": "",
+    "streetPriceGermany": {
+      "newEur": "€27 – €34",
+      "usedEur": "€18 – €26"
+    },
+    "alternatives": [],
+    "updatedAt": 1791783966947
+  },
+  "kenny burrell midnight blue": {
+    "title": "Midnight Blue",
+    "artist": "Kenny Burrell",
+    "genre": "Soul Jazz / Hard Bop",
+    "year": 1963,
+    "playtime": "43 min",
+    "trackCount": 9,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 88,
+      "tier": "Curated Crate Match",
+      "verdict": "While rooted in down-home blues, Burrell's masterwork leans into minimal dynamic arrangements and intimate acoustic spacing akin to Kind of Blue. The delicate conga and acoustic guitar interplay shines with lifelike presence on heavyweight wax."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/57/05/fd/5705fdb5-73a9-9275-591f-2fb823ed01cc/00724349533554.tif/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€26 – €32",
+      "usedEur": "€16 – €24"
+    },
+    "alternatives": [],
+    "updatedAt": 1791794175296
+  },
+  "midnight blue": {
+    "title": "Midnight Blue",
+    "artist": "Kenny Burrell",
+    "genre": "Hard Bop / Soul Jazz",
+    "year": 1963,
+    "playtime": "43 min",
+    "trackCount": 7,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 89,
+      "tier": "Curated Crate Match",
+      "verdict": "An iconic Blue Note session built on space, warm acoustic bass, and simmering minor-key blues grooves that appeal to anyone who loves 'Kind of Blue' for its atmospheric restraint."
+    },
+    "coverUrl": "",
+    "streetPriceGermany": {
+      "newEur": "€25 – €32",
+      "usedEur": "€15 – €23"
+    },
+    "alternatives": [],
+    "updatedAt": 1791783966950
+  },
+  "oliver nelson the blues and the abstract truth": {
+    "title": "The Blues and the Abstract Truth",
+    "artist": "Oliver Nelson",
+    "genre": "Modal Jazz / Post-Bop",
+    "year": 1961,
+    "playtime": "36 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 94,
+      "tier": "Curated Crate Match",
+      "verdict": "Anchored by Bill Evans on piano and Paul Chambers on bass, the landmark cut 'Stolen Moments' is the direct stylistic sibling to 'So What'. Nelson's lush brass voicings translate into a rich, three-dimensional stereo spread on analog pressings."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/bc/f4/8c/bcf48c5c-5d5c-076d-fb5d-3807faabdf27/21UMGIM51202.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€28 – €36",
+      "usedEur": "€17 – €25"
+    },
+    "alternatives": [],
+    "updatedAt": 1791794175303
+  },
+  "the blues and the abstract truth": {
+    "title": "The Blues and the Abstract Truth",
+    "artist": "Oliver Nelson",
+    "genre": "Post-Bop / Modal Jazz",
+    "year": 1961,
+    "playtime": "36 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 92,
+      "tier": "Curated Crate Match",
+      "verdict": "With Bill Evans on piano and Roy Haynes on drums, Nelson takes the structural blues innovations of 'Freddie Freeloader' and elevates them through sublime brass arrangements."
+    },
+    "coverUrl": "",
+    "streetPriceGermany": {
+      "newEur": "€26 – €33",
+      "usedEur": "€17 – €25"
+    },
+    "alternatives": [],
+    "updatedAt": 1791783966955
+  },
+  "idle moments": {
+    "title": "Idle Moments",
+    "artist": "Grant Green",
+    "genre": "Modal Jazz / Soul Jazz",
+    "year": 1965,
+    "playtime": "43 min",
+    "trackCount": 4,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 94,
+      "tier": "Curated Crate Match",
+      "verdict": "The sprawling, unhurried 15-minute title track echoes the meditative nocturnal stillness and warm room acoustics that define 'Flamenco Sketches'."
+    },
+    "coverUrl": "",
+    "streetPriceGermany": {
+      "newEur": "€28 – €35",
+      "usedEur": "€20 – €30"
+    },
+    "alternatives": [],
+    "updatedAt": 1791783966960
+  },
+  "miles davis in a silent way": {
+    "title": "In a Silent Way",
+    "artist": "Miles Davis",
+    "genre": "Modal Jazz / Jazz-Fusion / Ambient",
+    "year": 1969,
+    "playtime": "38 min",
+    "trackCount": 2,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 92,
+      "tier": "Curated Crate Match",
+      "verdict": "A decade after Kind of Blue, Miles revisited minimal, floating modal sketches to forge proto-ambient jazz with the same exquisite restraint and breathy trumpet tone."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4a/6c/db/4a6cdbee-444e-9416-93da-c448f5ad5ea1/696998655621.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€26 – €32",
+      "usedEur": "€17 – €25"
+    },
+    "alternatives": [],
+    "updatedAt": 1791794155501
+  },
+  "in a silent way": {
+    "title": "In a Silent Way",
+    "artist": "Miles Davis",
+    "genre": "Ambient Jazz / Jazz Fusion",
+    "year": 1969,
+    "playtime": "38 min",
+    "trackCount": 2,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 88,
+      "tier": "Curated Crate Match",
+      "verdict": "A decade after 'Kind of Blue', Davis revisited contemplative modal minimalism, substituting piano chords with ambient Fender Rhodes textures to create a spiritual sonic sequel."
+    },
+    "coverUrl": "",
+    "streetPriceGermany": {
+      "newEur": "€26 – €33",
+      "usedEur": "€18 – €25"
+    },
+    "alternatives": [],
+    "updatedAt": 1791783966969
+  },
+  "speak no evil": {
+    "title": "Speak No Evil",
+    "artist": "Wayne Shorter",
+    "genre": "Modal Jazz / Post-Bop",
+    "year": 1966,
+    "playtime": "41 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 93,
+      "tier": "Curated Crate Match",
+      "verdict": "Wayne Shorter channels Davis-esque harmonic restraint into mysterious, dark modal themes underpinned by Elvin Jones' shimmering cymbal work and Herbie Hancock's impressionism."
+    },
+    "coverUrl": "",
+    "streetPriceGermany": {
+      "newEur": "€28 – €34",
+      "usedEur": "€19 – €27"
+    },
+    "alternatives": [],
+    "updatedAt": 1791783966973
+  },
+  "john coltrane quartet crescent": {
+    "title": "Crescent",
+    "artist": "John Coltrane Quartet",
+    "genre": "Modal Jazz / Spiritual Jazz",
+    "year": 1964,
+    "playtime": "40 min",
+    "trackCount": 5,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 94,
+      "tier": "Curated Crate Match",
+      "verdict": "Bridging Coltrane's tenure on 'Kind of Blue' with his later spiritual work, 'Crescent' relies on restraint, simmering modal intensity, and deep meditative ballads."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/91/b6/bb/91b6bb11-26ab-13fb-95aa-67abec45aa5d/15UMGIM36230.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€27 – €34",
+      "usedEur": "€17 – €25"
+    },
+    "alternatives": [],
+    "updatedAt": 1791792344018
+  },
+  "crescent": {
+    "title": "Crescent",
+    "artist": "John Coltrane Quartet",
+    "genre": "Modal Jazz / Post-Bop",
+    "year": 1964,
+    "playtime": "40 min",
+    "trackCount": 5,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 92,
+      "tier": "Curated Crate Match",
+      "verdict": "Showcases Coltrane's saxophone at its most lyrical and restrained, capturing the spiritual modal poetics he initially forged while playing in Miles Davis's sextet."
+    },
+    "coverUrl": "",
+    "streetPriceGermany": {
+      "newEur": "€25 – €33",
+      "usedEur": "€17 – €27"
+    },
+    "alternatives": [],
+    "updatedAt": 1791783992641
+  },
+  "yusef lateef eastern sounds": {
+    "title": "Eastern Sounds",
+    "artist": "Yusef Lateef",
+    "genre": "Modal Jazz / Spiritual Jazz",
+    "year": 1961,
+    "playtime": "38 min",
+    "trackCount": 9,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 90,
+      "tier": "Curated Crate Match",
+      "verdict": "Lateef applies modal improvisational freedom to meditative, Eastern-influenced scales with an acoustic purity and quiet intensity that modal jazz lovers crave."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/f3/bf/c7/f3bfc750-3a5c-c73d-d47d-cb7f7e41e5d6/22CRGIM35345.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€27 – €33",
+      "usedEur": "€18 – €28"
+    },
+    "alternatives": [],
+    "updatedAt": 1791792931478
+  },
+  "eastern sounds": {
+    "title": "Eastern Sounds",
+    "artist": "Yusef Lateef",
+    "genre": "Modal Jazz / Hard Bop",
+    "year": 1961,
+    "playtime": "36 min",
+    "trackCount": 9,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 89,
+      "tier": "Curated Crate Match",
+      "verdict": "Infuses contemplative modal jazz with meditative Eastern scales and acoustic stillness, resonating strongly with the exotic chord progressions of 'Flamenco Sketches'."
+    },
+    "coverUrl": "",
+    "streetPriceGermany": {
+      "newEur": "€23 – €31",
+      "usedEur": "€15 – €23"
+    },
+    "alternatives": [],
+    "updatedAt": 1791783992678
+  },
+  "john coltrane my favorite things": {
+    "title": "My Favorite Things",
+    "artist": "John Coltrane",
+    "genre": "Modal Jazz",
+    "year": 1961,
+    "playtime": "40 min",
+    "trackCount": 4,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 97,
+      "tier": "Curated Crate Match",
+      "verdict": "Picking up Coltrane's evolutionary thread after leaving Miles Davis, this album translates modal improvisation into mesmerizing hypnotic sheets of sound on the soprano saxophone."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/38/49/44/384944a8-297f-0844-77da-1ae3b976c457/603497893119.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€22 – €29",
+      "usedEur": "€16 – €24"
+    },
+    "alternatives": [],
+    "updatedAt": 1791791368183
+  },
+  "my favorite things": {
+    "title": "My Favorite Things",
+    "artist": "John Coltrane",
+    "genre": "Modal Jazz / Spiritual Jazz",
+    "year": 1961,
+    "playtime": "40 min",
+    "trackCount": 4,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 90,
+      "tier": "Curated Crate Match",
+      "verdict": "Follows Coltrane directly out of the 'Kind of Blue' sessions as he pivots to the soprano saxophone, taking modal vamp improvisation into hypnotic, soaring new territory."
+    },
+    "coverUrl": "",
+    "streetPriceGermany": {
+      "newEur": "€24 – €30",
+      "usedEur": "€14 – €22"
+    },
+    "alternatives": [],
+    "updatedAt": 1791784411641
+  },
+  "charles mingus mingus ah um": {
+    "title": "Mingus Ah Um",
+    "artist": "Charles Mingus",
+    "genre": "Post-Bop / Modal Jazz",
+    "year": 1959,
+    "playtime": "46 min",
+    "trackCount": 9,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 93,
+      "tier": "Curated Crate Match",
+      "verdict": "Cut in the exact same Columbia 30th Street Studio in 1959, this record shares the same lush acoustic room reverb while exploring deeply emotional blues roots and modal composition."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music2/v4/de/3d/f3/de3df34f-9628-4a61-c14c-d0187fac484c/5099749523128.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€24 – €30",
+      "usedEur": "€15 – €24"
+    },
+    "alternatives": [],
+    "updatedAt": 1791794155533
+  },
+  "mingus ah um": {
+    "title": "Mingus Ah Um",
+    "artist": "Charles Mingus",
+    "genre": "Post-Bop / Avant-Garde Jazz",
+    "year": 1959,
+    "playtime": "46 min",
+    "trackCount": 9,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 91,
+      "tier": "Curated Crate Match",
+      "verdict": "Cut in Columbia's legendary 30th Street 'Church' Studio just weeks after 'Kind of Blue', sharing the exact same cavernous tube-room acoustics and 1959 creative zenith."
+    },
+    "coverUrl": "",
+    "streetPriceGermany": {
+      "newEur": "€26 – €32",
+      "usedEur": "€16 – €24"
+    },
+    "alternatives": [],
+    "updatedAt": 1791784411646
+  },
+  "bill evans jim hall undercurrent": {
+    "title": "Undercurrent",
+    "artist": "Bill Evans & Jim Hall",
+    "genre": "Cool Jazz / Modal Jazz",
+    "year": 1962,
+    "playtime": "32 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 90,
+      "tier": "Curated Crate Match",
+      "verdict": "An intimate, nocturnal duo session that strips jazz down to pure conversational nuance, directly echoing the meditative sensitivity of 'Blue in Green'."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/dc/0d/ae/dc0daef8-093e-757d-2b09-90a3d0943075/13ULAIM49008.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€25 – €31",
+      "usedEur": "€16 – €24"
+    },
+    "alternatives": [],
+    "updatedAt": 1791794155509
+  },
+  "undercurrent": {
+    "title": "Undercurrent",
+    "artist": "Bill Evans & Jim Hall",
+    "genre": "Cool Jazz / Chamber Jazz",
+    "year": 1962,
+    "playtime": "39 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 91,
+      "tier": "Curated Crate Match",
+      "verdict": "A profound duo masterclass that translates the quiet, impressionistic intimacy of 'Blue in Green' into telepathic piano and hollow-body archtop guitar dialogues."
+    },
+    "coverUrl": "",
+    "streetPriceGermany": {
+      "newEur": "€23 – €30",
+      "usedEur": "€15 – €23"
+    },
+    "alternatives": [],
+    "updatedAt": 1791784443999
+  },
+  "miles davis ascenseur pour l echafaud": {
+    "title": "Ascenseur pour l'échafaud",
+    "artist": "Miles Davis",
+    "genre": "Modal Jazz / Film Score",
+    "year": 1958,
+    "playtime": "36 min",
+    "trackCount": 10,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 92,
+      "tier": "Curated Crate Match",
+      "verdict": "Miles' improvised Paris film score served as the conceptual prototype for 'Kind of Blue', featuring haunting, echo-laden muted trumpet over sparse chordal canvases."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ba/73/b6/ba73b6d3-4c91-f42a-3c1d-b5f80dc0b1d1/00600753836583.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€22 – €28",
+      "usedEur": "€14 – €20"
+    },
+    "alternatives": [],
+    "updatedAt": 1791792344002
+  },
+  "ascenseur pour l echafaud": {
+    "title": "Ascenseur pour l'échafaud",
+    "artist": "Miles Davis",
+    "genre": "Cool Jazz / Modal Jazz Soundtrack",
+    "year": 1958,
+    "playtime": "27 min",
+    "trackCount": 10,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 95,
+      "tier": "Curated Crate Match",
+      "verdict": "Miles's spontaneous modal soundtrack improvised to Louis Malle's film cuts laid the exact sonic groundwork, smoky room reverb, and melancholic muted horn tone perfected on 'Kind of Blue'."
+    },
+    "coverUrl": "",
+    "streetPriceGermany": {
+      "newEur": "€22 – €29",
+      "usedEur": "€14 – €22"
+    },
+    "alternatives": [],
+    "updatedAt": 1791784444004
+  },
+  "the real mccoy": {
+    "title": "The Real McCoy",
+    "artist": "McCoy Tyner",
+    "genre": "Modal Jazz / Post-Bop",
+    "year": 1967,
+    "playtime": "37 min",
+    "trackCount": 5,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 89,
+      "tier": "Curated Crate Match",
+      "verdict": "Tyner's trademark quartal piano voicings are the harmonic bedrock of 1960s modal jazz, heard here alongside Joe Henderson and Elvin Jones on an essential Blue Note pressing."
+    },
+    "coverUrl": "",
+    "streetPriceGermany": {
+      "newEur": "€26 – €33",
+      "usedEur": "€17 – €26"
+    },
+    "alternatives": [],
+    "updatedAt": 1791784444013
+  },
+  "john coltrane crescent": {
+    "title": "Crescent",
+    "artist": "John Coltrane",
+    "genre": "Modal Jazz / Post-Bop",
+    "year": 1964,
+    "playtime": "40 min",
+    "trackCount": 5,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 95,
+      "tier": "Curated Crate Match",
+      "verdict": "Coltrane channeled the deeply contemplative mood of his Kind of Blue tenure into this meditative, ballad-heavy quartet date. The warm acoustic presence of Jimmy Garrison's double bass and Coltrane's solemn tenor sax provide an intimate, smoke-filled vinyl listening experience."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/91/b6/bb/91b6bb11-26ab-13fb-95aa-67abec45aa5d/15UMGIM36230.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€26 – €34",
+      "usedEur": "€18 – €27"
+    },
+    "alternatives": [],
+    "updatedAt": 1791794175299
+  },
+  "john coltrane quartet ballads": {
+    "title": "Ballads",
+    "artist": "John Coltrane Quartet",
+    "genre": "Cool Jazz / Post-Bop",
+    "year": 1963,
+    "playtime": "32 min",
+    "trackCount": 8,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 93,
+      "tier": "Curated Crate Match",
+      "verdict": "Coltrane trades blistering sheets of sound for warm lyricism and serene modal balance, mirroring his tender contributions to Davis' late-fifties masterworks."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/da/1c/29/da1c296c-1ae2-3112-6605-9bc6e5ee781c/00602517233362.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€25 – €32",
+      "usedEur": "€16 – €24"
+    },
+    "alternatives": [],
+    "updatedAt": 1791792931451
+  },
+  "miles davis milestones": {
+    "title": "Milestones",
+    "artist": "Miles Davis",
+    "genre": "Modal Jazz / Hard Bop",
+    "year": 1958,
+    "playtime": "48 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 93,
+      "tier": "Curated Crate Match",
+      "verdict": "The immediate precursor to Kind of Blue features the title track where Davis first tested modal scales with John Coltrane and Cannonball Adderley. It exhibits the same legendary 30th Street Studio reverb and effortless walking-bass momentum."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Features114/v4/60/b1/a6/60b1a664-92ad-d0b1-bbe3-d3fb5356ead7/dj.uciwfhtq.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€25 – €31",
+      "usedEur": "€15 – €23"
+    },
+    "alternatives": [],
+    "updatedAt": 1791794175273
+  },
+  "milestones": {
+    "title": "Milestones",
+    "artist": "Miles Davis",
+    "genre": "Hard Bop / Modal Jazz",
+    "year": 1958,
+    "playtime": "48 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 93,
+      "tier": "Curated Crate Match",
+      "verdict": "The direct compositional stepping stone to Kind of Blue, where Davis introduced modal structures on the title track with his legendary sextet. The analogue stereo imaging captures Coltrane, Adderley, and Davis trading phrases with fiery elegance."
+    },
+    "coverUrl": "",
+    "streetPriceGermany": {
+      "newEur": "€25 – €32",
+      "usedEur": "€16 – €24"
+    },
+    "alternatives": [],
+    "updatedAt": 1791785942709
+  },
+  "bill evans trio sunday at the village vanguard": {
+    "title": "Sunday at the Village Vanguard",
+    "artist": "Bill Evans Trio",
+    "genre": "Cool Jazz / Modal Jazz",
+    "year": 1961,
+    "playtime": "38 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 99,
+      "tier": "Curated Crate Match",
+      "verdict": "Bill Evans was the harmonic architect of Kind of Blue, and this live recording captures that same impressionistic piano touch in a telepathic trio setting. The delicate brushwork and conversational bass lines directly extend the late-night Columbia 30th Street atmosphere."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/3d/f2/ab/3df2ab45-5e51-b4b6-07dd-daefe8c0ecbc/00888072305090.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€26 – €32",
+      "usedEur": "€18 – €28"
+    },
+    "alternatives": [],
+    "updatedAt": 1791794175261
+  },
+  "sunday at the village vanguard": {
+    "title": "Sunday at the Village Vanguard",
+    "artist": "Bill Evans Trio",
+    "genre": "Modal Jazz / Post-Bop",
+    "year": 1961,
+    "playtime": "41 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 98,
+      "tier": "Curated Crate Match",
+      "verdict": "Bill Evans was the harmonic architect behind the impressionistic textures of 'Kind of Blue'; this landmark live recording captures that same delicate touch and spacious chordal voicing in a trio setting."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/3d/f2/ab/3df2ab45-5e51-b4b6-07dd-daefe8c0ecbc/00888072305090.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€28 – €35",
+      "usedEur": "€20 – €30"
+    },
+    "alternatives": [],
+    "updatedAt": 1791786007103
+  },
+  "miles davis round about midnight": {
+    "title": "'Round About Midnight",
+    "artist": "Miles Davis",
+    "genre": "Hard Bop / Cool Jazz",
+    "year": 1957,
+    "playtime": "39 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 89,
+      "tier": "Curated Crate Match",
+      "verdict": "Miles Davis' Columbia debut shares the exact same famed 30th Street Studio acoustic resonance and First Great Quintet synergy that crystallized on 'Kind of Blue'."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/74/8c/cd/748ccd42-5a61-2608-ec7b-718f607ef151/886444333917.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€25 – €31",
+      "usedEur": "€15 – €24"
+    },
+    "alternatives": [],
+    "updatedAt": 1791790606055
+  },
+  "round about midnight": {
+    "title": "'Round About Midnight",
+    "artist": "Miles Davis",
+    "genre": "Hard Bop / Cool Jazz",
+    "year": 1957,
+    "playtime": "39 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 89,
+      "tier": "Curated Crate Match",
+      "verdict": "Miles' major-label Columbia debut with John Coltrane established the iconic Harmon-muted trumpet timbre and smoke-filled atmosphere that directly culminated in 'Kind of Blue'."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/74/8c/cd/748ccd42-5a61-2608-ec7b-718f607ef151/886444333917.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€23 – €29",
+      "usedEur": "€15 – €22"
+    },
+    "alternatives": [],
+    "updatedAt": 1791786007137
+  },
+  "bobby hutcherson happenings": {
+    "title": "Happenings",
+    "artist": "Bobby Hutcherson",
+    "genre": "Post-Bop / Modal Jazz",
+    "year": 1967,
+    "playtime": "42 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 87,
+      "tier": "Curated Crate Match",
+      "verdict": "Hutcherson's vibraphone combined with Herbie Hancock's modal voicings creates shimmering, suspended sonic colors reminiscent of 'All Blues'. The stereo vinyl imaging on this Blue Note release gives the mallets and ride cymbal an extraordinary spatial dimension."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/c8/fa/9a/c8fa9afc-1fd2-c8e8-87e9-60ba3b77ef31/13UMGIM57529.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€26 – €33",
+      "usedEur": "€17 – €24"
+    },
+    "alternatives": [],
+    "updatedAt": 1791790646347
+  },
+  "happenings": {
+    "title": "Happenings",
+    "artist": "Bobby Hutcherson",
+    "genre": "Post-Bop / Modal Jazz",
+    "year": 1967,
+    "playtime": "42 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 87,
+      "tier": "Curated Crate Match",
+      "verdict": "Hutcherson's vibraphone combined with Herbie Hancock's modal voicings creates shimmering, suspended sonic colors reminiscent of 'All Blues'. The stereo vinyl imaging on this Blue Note release gives the mallets and ride cymbal an extraordinary spatial dimension."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/c8/fa/9a/c8fa9afc-1fd2-c8e8-87e9-60ba3b77ef31/13UMGIM57529.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€26 – €33",
+      "usedEur": "€17 – €24"
+    },
+    "alternatives": [],
+    "updatedAt": 1791790646347
+  },
+  "the dave brubeck quartet time out": {
+    "title": "Time Out",
+    "artist": "The Dave Brubeck Quartet",
+    "genre": "Cool Jazz / West Coast Jazz",
+    "year": 1959,
+    "playtime": "38 min",
+    "trackCount": 7,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 88,
+      "tier": "Curated Crate Match",
+      "verdict": "Cut in the same Columbia 30th Street Studio in 1959, it shares the extraordinary room acoustics, natural reverb, and accessible sophistication of Miles' masterpiece."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7a/e3/06/7ae30672-0c73-a4d4-0a74-624eefc2843b/dj.ytdbjvto.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€22 – €28",
+      "usedEur": "€12 – €18"
+    },
+    "alternatives": [],
+    "updatedAt": 1791790744730
+  },
+  "time out": {
+    "title": "Time Out",
+    "artist": "The Dave Brubeck Quartet",
+    "genre": "Cool Jazz / West Coast Jazz",
+    "year": 1959,
+    "playtime": "38 min",
+    "trackCount": 7,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 88,
+      "tier": "Curated Crate Match",
+      "verdict": "Cut in the same Columbia 30th Street Studio in 1959, it shares the extraordinary room acoustics, natural reverb, and accessible sophistication of Miles' masterpiece."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7a/e3/06/7ae30672-0c73-a4d4-0a74-624eefc2843b/dj.ytdbjvto.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€22 – €28",
+      "usedEur": "€12 – €18"
+    },
+    "alternatives": [],
+    "updatedAt": 1791790744730
+  },
+  "hank mobley soul station": {
+    "title": "Soul Station",
+    "artist": "Hank Mobley",
+    "genre": "Hard Bop",
+    "year": 1960,
+    "playtime": "37 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 95,
+      "tier": "Curated Crate Match",
+      "verdict": "Anchored by Kind of Blue rhythm legends Wynton Kelly and Paul Chambers, this session delivers an effortless, swinging warmth that perfectly complements Miles' 1959 sound."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/58/3a/00/583a00f1-a679-a355-2cee-e2b4f881d087/19UMGIM32045.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€25 – €32",
+      "usedEur": "€18 – €25"
+    },
+    "alternatives": [],
+    "updatedAt": 1791790898931
+  },
+  "soul station": {
+    "title": "Soul Station",
+    "artist": "Hank Mobley",
+    "genre": "Hard Bop",
+    "year": 1960,
+    "playtime": "37 min",
+    "trackCount": 6,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 95,
+      "tier": "Curated Crate Match",
+      "verdict": "Anchored by Kind of Blue rhythm legends Wynton Kelly and Paul Chambers, this session delivers an effortless, swinging warmth that perfectly complements Miles' 1959 sound."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/58/3a/00/583a00f1-a679-a355-2cee-e2b4f881d087/19UMGIM32045.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€25 – €32",
+      "usedEur": "€18 – €25"
+    },
+    "alternatives": [],
+    "updatedAt": 1791790898931
+  },
+  "lee morgan search for the new land": {
+    "title": "Search for the New Land",
+    "artist": "Lee Morgan",
+    "genre": "Modal Jazz / Hard Bop",
+    "year": 1966,
+    "playtime": "43 min",
+    "trackCount": 5,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 87,
+      "tier": "Curated Crate Match",
+      "verdict": "The sprawling modal title composition shares the spacious arrangement and reflective brass leads that make Kind of Blue so timeless."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/d1/14/e6/d114e600-307c-3857-9387-1de293a423e9/00602537646937.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€28 – €35",
+      "usedEur": "€22 – €30"
+    },
+    "alternatives": [],
+    "updatedAt": 1791791368206
+  },
+  "search for the new land": {
+    "title": "Search for the New Land",
+    "artist": "Lee Morgan",
+    "genre": "Modal Jazz / Hard Bop",
+    "year": 1966,
+    "playtime": "43 min",
+    "trackCount": 5,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 87,
+      "tier": "Curated Crate Match",
+      "verdict": "The sprawling modal title composition shares the spacious arrangement and reflective brass leads that make Kind of Blue so timeless."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/d1/14/e6/d114e600-307c-3857-9387-1de293a423e9/00602537646937.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€28 – €35",
+      "usedEur": "€22 – €30"
+    },
+    "alternatives": [],
+    "updatedAt": 1791791368206
+  },
+  "duke jordan flight to denmark": {
+    "title": "Flight to Denmark",
+    "artist": "Duke Jordan",
+    "genre": "Cool Jazz / Hard Bop",
+    "playtime": "39 min",
+    "trackCount": 6,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791791398085
+  },
+  "ahmad jamal trio at the pershing but not for me": {
+    "title": "At the Pershing: But Not for Me",
+    "artist": "Ahmad Jamal Trio",
+    "genre": "Cool Jazz / Chamber Jazz",
+    "playtime": "30 min",
+    "trackCount": 8,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791791398092
+  },
+  "mal waldron left alone": {
+    "title": "Left Alone",
+    "artist": "Mal Waldron",
+    "genre": "Cool Jazz / Post-Bop",
+    "playtime": "38 min",
+    "trackCount": 7,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791791398097
+  },
+  "knxwledge 1988": {
+    "title": "1988",
+    "artist": "Knxwledge",
+    "genre": "Instrumental Hip-Hop",
+    "playtime": "37 min",
+    "trackCount": 22,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791794166578
+  },
+  "metal fingers special herbs vol 1 2": {
+    "title": "Special Herbs, Vol. 1 & 2",
+    "artist": "Metal Fingers",
+    "genre": "Instrumental Hip-Hop",
+    "playtime": "45 min",
+    "trackCount": 16,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791794166584
+  },
+  "maurizio m series": {
+    "title": "M-Series",
+    "artist": "Maurizio",
+    "genre": "Minimal Techno",
+    "playtime": "54 min 18 sec",
+    "trackCount": 6,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791794166874
+  },
+  "monolake hongkong": {
+    "title": "Hongkong",
+    "artist": "Monolake",
+    "genre": "Dub Techno",
+    "playtime": "61 min 34 sec",
+    "trackCount": 8,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791794166881
+  },
+  "vainqueur elevations": {
+    "title": "Elevations",
+    "artist": "Vainqueur",
+    "genre": "Ambient Techno",
+    "playtime": "48 min 10 sec",
+    "trackCount": 5,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791794166889
+  },
+  "basic channel bcd 2": {
+    "title": "BCD-2",
+    "artist": "Basic Channel",
+    "genre": "Dub Techno",
+    "year": 2008,
+    "playtime": "70 min 40 sec",
+    "trackCount": 7,
+    "firstTrackTitle": "Q 1.2",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 95,
+      "discogsRating": "4.71 / 5.0",
+      "ratingsCount": "1.4k+ ratings",
+      "tier": "Essential Masterpiece",
+      "verdict": "The foundational holy grail of dub techno. Vault-deep sub-bass, hiss-drenched tape delay, and unmatched analog spatial dynamics make these Berlin-pressed cuts non-negotiable vinyl essentials."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/98/54/19/985419f3-a107-bf39-6cd6-e7af32e14125/827670143123.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€28 – €36",
+      "usedEur": "€22 – €35",
+      "conditionNote": "Used VG+/EX (Individual 12\" repress / original BC cuts via Hard Wax)"
+    },
+    "alternatives": [
+      {
+        "title": "The Coldest Season",
+        "artist": "Deepchord Presents Echospace",
+        "genre": "Dub Techno",
+        "playtime": "81 min 45 sec",
+        "trackCount": 9,
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/53/a3/9c/53a39c0f-c552-dc2b-b387-be7080f8bfcd/mzi.knyvkxev.jpg/600x600bb.jpg",
+        "coverSearchTerm": "Deepchord Presents Echospace The Coldest Season",
+        "streetPriceGermany": {
+          "newEur": "€32 – €38",
+          "usedEur": "€24 – €32"
+        }
+      },
+      {
+        "title": "Biokinetics",
+        "artist": "Porter Ricks",
+        "genre": "Dub Techno",
+        "playtime": "64 min 12 sec",
+        "trackCount": 8,
+        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/b3/8c/95/b38c95de-d74e-8358-b0e3-9b4735c3d9cf/mzi.gtzygzjr.jpg/600x600bb.jpg",
+        "coverSearchTerm": "Porter Ricks Biokinetics",
+        "streetPriceGermany": {
+          "newEur": "€28 – €34",
+          "usedEur": "€22 – €30"
+        }
+      },
+      {
+        "title": "Rhythm & Sound",
+        "artist": "Rhythm & Sound",
+        "genre": "Dub Techno",
+        "playtime": "46 min 20 sec",
+        "trackCount": 8,
+        "coverUrl": "",
+        "coverSearchTerm": "Rhythm and Sound Rhythm and Sound",
+        "streetPriceGermany": {
+          "newEur": "€24 – €30",
+          "usedEur": "€18 – €25"
+        }
+      },
+      {
+        "title": "M-Series",
+        "artist": "Maurizio",
+        "genre": "Minimal Techno",
+        "playtime": "54 min 18 sec",
+        "trackCount": 6,
+        "coverUrl": "",
+        "coverSearchTerm": "Maurizio M-Series",
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€20 – €28"
+        }
+      },
+      {
+        "title": "Hongkong",
+        "artist": "Monolake",
+        "genre": "Dub Techno",
+        "playtime": "61 min 34 sec",
+        "trackCount": 8,
+        "coverUrl": "",
+        "coverSearchTerm": "Monolake Hongkong",
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€20 – €28"
+        }
+      },
+      {
+        "title": "Elevations",
+        "artist": "Vainqueur",
+        "genre": "Ambient Techno",
+        "playtime": "48 min 10 sec",
+        "trackCount": 5,
+        "coverUrl": "",
+        "coverSearchTerm": "Vainqueur Elevations",
+        "streetPriceGermany": {
+          "newEur": "€24 – €30",
+          "usedEur": "€18 – €26"
+        }
+      },
+      {
+        "title": "Zauberberg",
+        "artist": "Gas",
+        "genre": "Ambient Techno",
+        "playtime": "63 min 28 sec",
+        "trackCount": 7,
+        "coverUrl": "",
+        "coverSearchTerm": "Gas Zauberberg",
+        "streetPriceGermany": {
+          "newEur": "€30 – €36",
+          "usedEur": "€24 – €32"
+        }
+      }
+    ],
+    "updatedAt": 1791794167104
+  },
+  "bcd 2": {
+    "title": "BCD-2",
+    "artist": "Basic Channel",
+    "genre": "Dub Techno",
+    "year": 2008,
+    "playtime": "70 min 40 sec",
+    "trackCount": 7,
+    "firstTrackTitle": "Q 1.2",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 95,
+      "discogsRating": "4.71 / 5.0",
+      "ratingsCount": "1.4k+ ratings",
+      "tier": "Essential Masterpiece",
+      "verdict": "The foundational holy grail of dub techno. Vault-deep sub-bass, hiss-drenched tape delay, and unmatched analog spatial dynamics make these Berlin-pressed cuts non-negotiable vinyl essentials."
+    },
+    "coverUrl": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22600%22%20viewBox%3D%220%200%20600%20600%22%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22%232c1e21%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22230%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22180%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.05)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22130%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2270%22%20fill%3D%22rgba(0%2C0%2C0%2C0.6)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2220%22%20fill%3D%22%2523EA4335%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22520%22%20font-family%3D%22'Space%20Grotesk'%2C%20sans-serif%22%20font-size%3D%2234%22%20font-weight%3D%22bold%22%20fill%3D%22%2523ffffff%22%3EBCD-2%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2250%22%20y%3D%22555%22%20font-family%3D%22'Plus%20Jakarta%20Sans'%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22500%22%20fill%3D%22rgba(255%2C255%2C255%2C0.7)%22%3EBasic%20Channel%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
+    "streetPriceGermany": {
+      "newEur": "€28 – €36",
+      "usedEur": "€22 – €35",
+      "conditionNote": "Used VG+/EX (Individual 12\" repress / original BC cuts via Hard Wax)"
+    },
+    "alternatives": [
+      {
+        "title": "The Coldest Season",
+        "artist": "Deepchord Presents Echospace",
+        "genre": "Dub Techno",
+        "playtime": "81 min 45 sec",
+        "trackCount": 9,
+        "coverUrl": "",
+        "coverSearchTerm": "Deepchord Presents Echospace The Coldest Season",
+        "streetPriceGermany": {
+          "newEur": "€32 – €38",
+          "usedEur": "€24 – €32"
+        }
+      },
+      {
+        "title": "Biokinetics",
+        "artist": "Porter Ricks",
+        "genre": "Dub Techno",
+        "playtime": "64 min 12 sec",
+        "trackCount": 8,
+        "coverUrl": "",
+        "coverSearchTerm": "Porter Ricks Biokinetics",
+        "streetPriceGermany": {
+          "newEur": "€28 – €34",
+          "usedEur": "€22 – €30"
+        }
+      },
+      {
+        "title": "Rhythm & Sound",
+        "artist": "Rhythm & Sound",
+        "genre": "Dub Techno",
+        "playtime": "46 min 20 sec",
+        "trackCount": 8,
+        "coverUrl": "",
+        "coverSearchTerm": "Rhythm and Sound Rhythm and Sound",
+        "streetPriceGermany": {
+          "newEur": "€24 – €30",
+          "usedEur": "€18 – €25"
+        }
+      },
+      {
+        "title": "M-Series",
+        "artist": "Maurizio",
+        "genre": "Minimal Techno",
+        "playtime": "54 min 18 sec",
+        "trackCount": 6,
+        "coverUrl": "",
+        "coverSearchTerm": "Maurizio M-Series",
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€20 – €28"
+        }
+      },
+      {
+        "title": "Hongkong",
+        "artist": "Monolake",
+        "genre": "Dub Techno",
+        "playtime": "61 min 34 sec",
+        "trackCount": 8,
+        "coverUrl": "",
+        "coverSearchTerm": "Monolake Hongkong",
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€20 – €28"
+        }
+      },
+      {
+        "title": "Elevations",
+        "artist": "Vainqueur",
+        "genre": "Ambient Techno",
+        "playtime": "48 min 10 sec",
+        "trackCount": 5,
+        "coverUrl": "",
+        "coverSearchTerm": "Vainqueur Elevations",
+        "streetPriceGermany": {
+          "newEur": "€24 – €30",
+          "usedEur": "€18 – €26"
+        }
+      },
+      {
+        "title": "Zauberberg",
+        "artist": "Gas",
+        "genre": "Ambient Techno",
+        "playtime": "63 min 28 sec",
+        "trackCount": 7,
+        "coverUrl": "",
+        "coverSearchTerm": "Gas Zauberberg",
+        "streetPriceGermany": {
+          "newEur": "€30 – €36",
+          "usedEur": "€24 – €32"
+        }
+      }
+    ],
+    "updatedAt": 1791794166902
+  },
+  "thelonious monk solo monk": {
+    "title": "Solo Monk",
+    "artist": "Thelonious Monk",
+    "genre": "Hard Bop / Solo Acoustic Piano",
+    "playtime": "41 min",
+    "trackCount": 12,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791794194106
+  },
+  "chilly gonzales solo piano": {
+    "title": "Solo Piano",
+    "artist": "Chilly Gonzales",
+    "genre": "Contemporary Classical / Solo Acoustic Piano",
+    "playtime": "47 min",
+    "trackCount": 16,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791794194114
+  },
+  "four tet rounds": {
+    "title": "Rounds",
+    "artist": "Four Tet",
+    "genre": "Folktronica / Downtempo / IDM",
+    "year": 2003,
+    "playtime": "45 min",
+    "trackCount": 10,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 91,
+      "tier": "Curated Crate Match",
+      "verdict": "Crafted with micro-sampled acoustic instruments layered over hip-hop breakbeats, this album mirrors DJ Shadow's collage methodology with pastoral warmth. Its hypnotic, cyclical grooves also channel the patient repetition of ambient techno."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/4a/82/02/mzi.wggtbdbs.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€26 – €32",
+      "usedEur": "€17 – €23"
+    },
+    "alternatives": [],
+    "updatedAt": 1791794203558
+  },
+  "rounds": {
+    "title": "Rounds",
+    "artist": "Four Tet",
+    "genre": "Folktronica / Downtempo / IDM",
+    "year": 2003,
+    "playtime": "45 min",
+    "trackCount": 10,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": {
+      "overallScore": 91,
+      "tier": "Curated Crate Match",
+      "verdict": "Crafted with micro-sampled acoustic instruments layered over hip-hop breakbeats, this album mirrors DJ Shadow's collage methodology with pastoral warmth. Its hypnotic, cyclical grooves also channel the patient repetition of ambient techno."
+    },
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/4a/82/02/mzi.wggtbdbs.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€26 – €32",
+      "usedEur": "€17 – €23"
+    },
+    "alternatives": [],
+    "updatedAt": 1791794203558
   }
 }

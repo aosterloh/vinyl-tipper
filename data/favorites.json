@@ -229,6 +229,47 @@
   ],
   "NL6ThyqIeDcfX1j9aotKDsppXoE3": [
     {
+      "title": "Elegiac Cycle",
+      "artist": "Brad Mehldau",
+      "genre": "Contemporary Jazz / Solo Acoustic Piano",
+      "year": 1999,
+      "playtime": "49 min",
+      "trackCount": 9,
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/y2005/m08/d18/h21/mzi.zvwwhbqx.jpg/600x600bb.jpg",
+      "streetPriceGermany": null,
+      "timestamp": 1791794174733
+    },
+    {
+      "title": "Endtroducing.....",
+      "artist": "DJ Shadow",
+      "genre": "Instrumental Hip Hop / Plunderphonics",
+      "year": 1996,
+      "playtime": "63 min 22 sec",
+      "trackCount": 16,
+      "coverUrl": "http://localhost:8088/api/images/dj_shadow_endtroducing.jpg",
+      "streetPriceGermany": {
+        "newEur": "€32 – €38",
+        "usedEur": "€22 – €28",
+        "conditionNote": "Standard 2xLP reissue in VG+ / EX condition"
+      },
+      "timestamp": 1791794169934
+    },
+    {
+      "title": "Donuts",
+      "artist": "J Dilla",
+      "genre": "Instrumental Hip-Hop",
+      "year": 2006,
+      "playtime": "45 min",
+      "trackCount": 10,
+      "coverUrl": "http://localhost:8088/api/images/j_dilla_donuts.jpg",
+      "streetPriceGermany": {
+        "newEur": "€29 – €35",
+        "usedEur": "€20 – €26",
+        "conditionNote": "VG+ / EX condition (standard 2xLP reissue)"
+      },
+      "timestamp": 1791794156217
+    },
+    {
       "title": "Voices from the Lake",
       "artist": "Voices from the Lake",
       "genre": "Ambient Techno",
@@ -242,6 +283,23 @@
         "conditionNote": "Based on 3xLP 2023 reissue in VG+/EX condition; original 2012 Prologue pressing commands €180+"
       },
       "timestamp": 1791732045169
+    }
+  ],
+  "4WVnvaQkwzOhniVyNnP0Ja47zof2": [
+    {
+      "title": "Kind of Blue",
+      "artist": "Miles Davis",
+      "genre": "Modal Jazz",
+      "year": 1959,
+      "playtime": "45 min 44 sec",
+      "trackCount": 5,
+      "coverUrl": "http://localhost:8088/api/images/miles_davis_kind_of_blue.jpg",
+      "streetPriceGermany": {
+        "newEur": "€24 – €32",
+        "usedEur": "€18 – €26",
+        "conditionNote": "VG+ / EX condition for standard European reissues; original or audiophile pressings command substantially more"
+      },
+      "timestamp": 1791784624875
     }
   ]
 }
