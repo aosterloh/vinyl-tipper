@@ -1,6 +1,6 @@
 {
   "visits": {
-    "total": 73,
+    "total": 77,
     "uniqueSessions": [
       "sid_test_1",
       "sid_test_2",
@@ -39,17 +39,49 @@
       "sid_mv4xxcj0_qc2vf2",
       "sid_mv4y4ylj_fwqsb7",
       "sid_mv4y9oll_gfan8a",
-      "sid_mv4zyw11_lqynxf"
+      "sid_mv4zyw11_lqynxf",
+      "sid_mv51j93r_ar1f4z",
+      "sid_mv5351rk_hpz8uk"
     ],
     "byDay": {
       "2026-10-11": 34,
-      "2026-10-12": 39
+      "2026-10-12": 43
     }
   },
   "searches": {
-    "total": 78,
+    "total": 83,
     "aiAppraisals": 4,
     "recent": [
+      {
+        "query": "John Coltrane A Love Supreme",
+        "timestamp": 1791799486580,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791799470312,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791799467871,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791796878929,
+        "hit": true,
+        "isAi": false
+      },
+      {
+        "query": "Miles Davis - Kind of Blue",
+        "timestamp": 1791796771365,
+        "hit": true,
+        "isAi": false
+      },
       {
         "query": "Brad Mehldau Elegiac Cycle",
         "timestamp": 1791794172777,
@@ -319,36 +351,6 @@
         "timestamp": 1791784380605,
         "hit": true,
         "isAi": false
-      },
-      {
-        "query": "Miles Davis - Kind of Blue",
-        "timestamp": 1791783965834,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Miles Davis - Kind of Blue",
-        "timestamp": 1791783937771,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Paul Bley - Open, to Love",
-        "timestamp": 1791757610906,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Keith Jarrett - Facing You",
-        "timestamp": 1791757609651,
-        "hit": true,
-        "isAi": false
-      },
-      {
-        "query": "Keith Jarrett - Facing You",
-        "timestamp": 1791757609107,
-        "hit": true,
-        "isAi": false
       }
     ],
     "topQueries": {
@@ -360,7 +362,7 @@
       "donato dozzy k": 1,
       "portishead - dummy": 2,
       "keith jarrett - facing you": 3,
-      "miles davis - kind of blue": 39,
+      "miles davis - kind of blue": 43,
       "chick corea children's songs": 1,
       "madvillain madvillainy": 1,
       "madvillain - madvillainy": 1,
@@ -368,7 +370,8 @@
       "basic channel bcd-2": 1,
       "j dilla donuts": 1,
       "dj shadow endtroducing.....": 1,
-      "brad mehldau elegiac cycle": 1
+      "brad mehldau elegiac cycle": 1,
+      "john coltrane a love supreme": 1
     }
   },
   "clicks": {
@@ -390,5 +393,5 @@
     ]
   },
   "createdAt": 1791738256122,
-  "lastUpdated": 1791794172777
+  "lastUpdated": 1791799486580
 }

@@ -850,9 +850,9 @@ const server = http.createServer(async (req, res) => {
       };
     }).filter(v => Boolean(v.coverUrl));
 
-    // Shuffle and pick 10
+    // Shuffle and pick up to 20 candidates so favorites filtering never starves the 10 flanking wings
     const shuffled = enriched.sort(() => 0.5 - Math.random());
-    const recommendations = shuffled.slice(0, 10);
+    const recommendations = shuffled.slice(0, 20);
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ success: true, count: recommendations.length, recommendations }));
     return;

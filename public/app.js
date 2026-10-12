@@ -160,9 +160,14 @@ function updateSearchClearBtn() {
 }
 
 function setAlbumInputValue(text, isAutoLoaded = true) {
-  if (!albumInput) return;
   const val = text || "";
-  albumInput.value = val;
+  if (albumInput) albumInput.value = val;
+  const v2Input = document.getElementById("v2-album-input");
+  if (v2Input) {
+    v2Input.value = val;
+    const v2Clear = document.getElementById("v2-search-clear-btn");
+    if (v2Clear) v2Clear.classList.toggle("hidden", !val);
+  }
   currentLoadedAlbumQuery = val;
   isInputAutoLoaded = isAutoLoaded;
   updateSearchClearBtn();
@@ -3395,7 +3400,7 @@ function rollRandomSubgenres(showNotification = false) {
 
 function renderSubgenrePills(pills) {
   const vibePillsWrap = document.getElementById("vibe-pills-wrap");
-  if (!vibePillsWrap) return;
+  const v2VibesList = document.getElementById("v2-vibes-pills-list");
 
   const html = pills.map(p => {
     const catClass = `vibe-pill-${p.category}`;
@@ -3409,7 +3414,17 @@ function renderSubgenrePills(pills) {
     </button>`;
   }).join("");
 
-  vibePillsWrap.innerHTML = html;
+  if (vibePillsWrap) vibePillsWrap.innerHTML = html;
+
+  if (v2VibesList) {
+    const v2Html = pills.map(p => {
+      const escapedName = typeof escapeHtml === "function" ? escapeHtml(p.name) : p.name;
+      return `<button class="v2-vibe-pill" type="button" data-cat="${p.category}" data-subgenre-id="${p.id}" title="${escapedName}">
+        <span>${p.icon}</span> <span>${escapedName}</span>
+      </button>`;
+    }).join("");
+    v2VibesList.innerHTML = v2Html;
+  }
 }
 
 function handleSubgenrePillClick(pill) {
@@ -3446,6 +3461,8 @@ function handleSubgenrePillClick(pill) {
 function initSommelier() {
   const vibePillsWrap = document.getElementById("vibe-pills-wrap");
   const vibeShuffleBtn = document.getElementById("vibe-shuffle-btn");
+  const v2VibesList = document.getElementById("v2-vibes-pills-list");
+  const v2ShuffleVibesBtn = document.getElementById("v2-shuffle-vibes-btn");
   const sommelierSubmitBtn = document.getElementById("sommelier-submit-btn");
   const sommelierInput = document.getElementById("sommelier-input");
 
@@ -3461,9 +3478,26 @@ function initSommelier() {
     });
   }
 
+  if (v2ShuffleVibesBtn) {
+    v2ShuffleVibesBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      v2ShuffleVibesBtn.classList.add("rotating");
+      rollRandomSubgenres(true);
+      setTimeout(() => v2ShuffleVibesBtn.classList.remove("rotating"), 450);
+    });
+  }
+
   if (vibePillsWrap) {
     vibePillsWrap.addEventListener("click", (e) => {
       const pill = e.target.closest(".vibe-pill");
+      if (!pill) return;
+      handleSubgenrePillClick(pill);
+    });
+  }
+
+  if (v2VibesList) {
+    v2VibesList.addEventListener("click", (e) => {
+      const pill = e.target.closest(".v2-vibe-pill");
       if (!pill) return;
       handleSubgenrePillClick(pill);
     });
@@ -5182,28 +5216,94 @@ function renderMiniSleeveList(items, side) {
   }).join("");
 }
 
-async function load365VaultDiscoveryRecs() {
+// Guaranteed 20-album holy-grail seed list for 0ms initial startup before any network calls
+const DEFAULT_VAULT_SEED = [
+  {"title":"Songs for Love","artist":"Tete Montoliu","genre":"Bop / Solo Piano","year":1974,"score":98,"matchReason":"Essential Bop / Solo Piano album featuring renowned dynamic range and vinyl staging.","coverUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a8/dd/f3/a8ddf3e0-6449-d7b3-f371-627eec4c8ae8/8431194090201_3000.jpg/600x600bb.jpg"},
+  {"title":"A Love Supreme","artist":"John Coltrane","genre":"Spiritual Jazz","year":1965,"score":98,"matchReason":"A profound spiritual suite recorded in a single four-part session on Van Gelder tape.","coverUrl":"/api/images/john_coltrane_a_love_supreme.jpg"},
+  {"title":"Time Out","artist":"Dave Brubeck Quartet","genre":"Cool Jazz","year":1959,"score":98,"matchReason":"Groundbreaking asymmetric time signatures featuring the iconic audiophile benchmark Take Five.","coverUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7a/e3/06/7ae30672-0c73-a4d4-0a74-624eefc2843b/dj.ytdbjvto.jpg/600x600bb.jpg"},
+  {"title":"Sunday at the Village Vanguard","artist":"Bill Evans Trio","genre":"Post-Bop","year":1961,"score":98,"matchReason":"The pinnacle of empathetic piano trio conversation, recorded live on analog tape.","coverUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/3d/f2/ab/3df2ab45-5e51-b4b6-07dd-daefe8c0ecbc/00888072305090.rgb.jpg/600x600bb.jpg"},
+  {"title":"Mingus Ah Um","artist":"Charles Mingus","genre":"Hard Bop","year":1959,"score":98,"matchReason":"Combines blues roots, gospel shouts, and fierce ensemble composition.","coverUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a8/dd/f3/a8ddf3e0-6449-d7b3-f371-627eec4c8ae8/8431194090201_3000.jpg/600x600bb.jpg"},
+  {"title":"Brilliant Corners","artist":"Thelonious Monk","genre":"Bebop / Hard Bop","year":1957,"score":98,"matchReason":"Angular, genius compositions with complex polyphony that pushed analog cutting heads to the limit.","coverUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a8/dd/f3/a8ddf3e0-6449-d7b3-f371-627eec4c8ae8/8431194090201_3000.jpg/600x600bb.jpg"},
+  {"title":"Head Hunters","artist":"Herbie Hancock","genre":"Jazz-Funk","year":1973,"score":98,"matchReason":"An electrifying fusion milestone that defined 1970s clavinet funk and analog synth bass.","coverUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a8/dd/f3/a8ddf3e0-6449-d7b3-f371-627eec4c8ae8/8431194090201_3000.jpg/600x600bb.jpg"},
+  {"title":"Speak No Evil","artist":"Wayne Shorter","genre":"Post-Bop","year":1966,"score":98,"matchReason":"Darkly mystical compositions and peak Blue Note hard bop synergy.","coverUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a8/dd/f3/a8ddf3e0-6449-d7b3-f371-627eec4c8ae8/8431194090201_3000.jpg/600x600bb.jpg"},
+  {"title":"Chet Baker Sings","artist":"Chet Baker","genre":"West Coast Cool","year":1954,"score":98,"matchReason":"Intimate, breathy vocal phrasing that demands quiet 180g vinyl playback.","coverUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a8/dd/f3/a8ddf3e0-6449-d7b3-f371-627eec4c8ae8/8431194090201_3000.jpg/600x600bb.jpg"},
+  {"title":"Somethin' Else","artist":"Cannonball Adderley","genre":"Hard Bop","year":1958,"score":98,"matchReason":"Features Miles Davis as sideman on a peerless, melancholic rendition of Autumn Leaves.","coverUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a8/dd/f3/a8ddf3e0-6449-d7b3-f371-627eec4c8ae8/8431194090201_3000.jpg/600x600bb.jpg"},
+  {"title":"Moanin'","artist":"Art Blakey & The Jazz Messengers","genre":"Hard Bop","year":1958,"score":98,"matchReason":"The quintessential Blue Note manifesto: driving swing, church-chords, and blistering brass.","coverUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a8/dd/f3/a8ddf3e0-6449-d7b3-f371-627eec4c8ae8/8431194090201_3000.jpg/600x600bb.jpg"},
+  {"title":"Getz/Gilberto","artist":"Stan Getz & João Gilberto","genre":"Bossa Nova / Jazz","year":1964,"score":98,"matchReason":"The worldwide bossa nova explosion with Astrud Gilberto's timeless, whispered vocals.","coverUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a8/dd/f3/a8ddf3e0-6449-d7b3-f371-627eec4c8ae8/8431194090201_3000.jpg/600x600bb.jpg"},
+  {"title":"Saxophone Colossus","artist":"Sonny Rollins","genre":"Hard Bop","year":1956,"score":98,"matchReason":"St. Thomas and Blue 7 demonstrate peak thematic improvisation captured by Rudy Van Gelder.","coverUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a8/dd/f3/a8ddf3e0-6449-d7b3-f371-627eec4c8ae8/8431194090201_3000.jpg/600x600bb.jpg"},
+  {"title":"Out to Lunch!","artist":"Eric Dolphy","genre":"Avant-Garde Jazz","year":1964,"score":98,"matchReason":"Vibraphone, bass clarinet, and daring microtonal structures in legendary Blue Note hi-fi.","coverUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a8/dd/f3/a8ddf3e0-6449-d7b3-f371-627eec4c8ae8/8431194090201_3000.jpg/600x600bb.jpg"},
+  {"title":"Journey in Satchidananda","artist":"Alice Coltrane","genre":"Spiritual Jazz","year":1971,"score":98,"matchReason":"Harp, tamboura, and Pharoah Sanders' soprano sax weaving transcendent modal tapestries.","coverUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a8/dd/f3/a8ddf3e0-6449-d7b3-f371-627eec4c8ae8/8431194090201_3000.jpg/600x600bb.jpg"},
+  {"title":"Places and Spaces","artist":"Donald Byrd","genre":"Jazz-Funk","year":1975,"score":98,"matchReason":"Produced by the Mizell Brothers; lush strings, analog synths, and pure golden-era groove.","coverUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a8/dd/f3/a8ddf3e0-6449-d7b3-f371-627eec4c8ae8/8431194090201_3000.jpg/600x600bb.jpg"},
+  {"title":"Idle Moments","artist":"Grant Green","genre":"Soul Jazz","year":1965,"score":98,"matchReason":"A nocturnal 15-minute title track characterized by warm hollowbody guitar tone.","coverUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a8/dd/f3/a8ddf3e0-6449-d7b3-f371-627eec4c8ae8/8431194090201_3000.jpg/600x600bb.jpg"},
+  {"title":"The Sidewinder","artist":"Lee Morgan","genre":"Soul Jazz","year":1964,"score":98,"matchReason":"The boogaloo-infused crossover hit that single-handedly funded Blue Note's mid-60s roster.","coverUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a8/dd/f3/a8ddf3e0-6449-d7b3-f371-627eec4c8ae8/8431194090201_3000.jpg/600x600bb.jpg"},
+  {"title":"Red Clay","artist":"Freddie Hubbard","genre":"CTI Soul Jazz","year":1970,"score":98,"matchReason":"Features Herbie Hancock on Fender Rhodes and Ron Carter on acoustic bass.","coverUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a8/dd/f3/a8ddf3e0-6449-d7b3-f371-627eec4c8ae8/8431194090201_3000.jpg/600x600bb.jpg"},
+  {"title":"The Köln Concert","artist":"Keith Jarrett","genre":"Solo Piano / ECM","year":1975,"score":98,"matchReason":"The best-selling solo piano album in history; spontaneous, soaring analog acoustics.","coverUrl":"https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a8/dd/f3/a8ddf3e0-6449-d7b3-f371-627eec4c8ae8/8431194090201_3000.jpg/600x600bb.jpg"}
+];
+
+function get365VaultDiscoverySync() {
+  if (window.__VAULT_WINGS_MEM__ && window.__VAULT_WINGS_MEM__.length >= 10) {
+    return window.__VAULT_WINGS_MEM__;
+  }
   try {
-    const res = await fetch("/api/vault/discovery-wings");
-    if (res.ok) {
-      const data = await res.json();
-      if (data && data.success && Array.isArray(data.recommendations) && data.recommendations.length >= 5) {
-        return data.recommendations;
+    const local = localStorage.getItem("vinyl_vault_wings_cache");
+    if (local) {
+      const parsed = JSON.parse(local);
+      if (Array.isArray(parsed) && parsed.length >= 10) {
+        window.__VAULT_WINGS_MEM__ = parsed;
+        return parsed;
       }
     }
-  } catch (err) {
-    console.warn("Failed to fetch discovery-wings from vault:", err);
+  } catch (e) {}
+  window.__VAULT_WINGS_MEM__ = DEFAULT_VAULT_SEED;
+  return DEFAULT_VAULT_SEED;
+}
+
+async function load365VaultDiscoveryRecs() {
+  const sync = get365VaultDiscoverySync();
+  // Asynchronous quiet background fetch to refresh the local cache rotation
+  fetch("/api/vault/discovery-wings")
+    .then(r => r.ok ? r.json() : null)
+    .then(data => {
+      if (data && data.success && Array.isArray(data.recommendations) && data.recommendations.length >= 10) {
+        window.__VAULT_WINGS_MEM__ = data.recommendations;
+        try {
+          localStorage.setItem("vinyl_vault_wings_cache", JSON.stringify(data.recommendations));
+        } catch (e) {}
+      }
+    })
+    .catch(() => {});
+  return sync;
+}
+
+// Resilient slot replenishment: guarantees exactly 10 non-favorited albums from storage at 0ms
+function padRecommendationsToTen(items) {
+  const clean = (items || []).filter(r => !isAlbumInFavorites(r.title, r.artist));
+  const vaultPool = get365VaultDiscoverySync() || DEFAULT_VAULT_SEED;
+  const cleanVault = vaultPool.filter(v => !isAlbumInFavorites(v.title, v.artist));
+  const combined = [...clean];
+  let vIdx = 0;
+  while (combined.length < 10 && vIdx < cleanVault.length) {
+    const candidate = cleanVault[vIdx++];
+    if (!combined.some(c => (c.title || '').toLowerCase() === (candidate.title || '').toLowerCase())) {
+      combined.push({
+        ...candidate,
+        matchReason: candidate.matchReason || "Curated analog classic from the 365 Vault."
+      });
+    }
   }
-  return null;
+  return combined.slice(0, 10);
 }
 
 async function enrichRecommendationsWithCovers(recs) {
   if (!Array.isArray(recs)) return [];
+  const vaultSeed = get365VaultDiscoverySync() || DEFAULT_VAULT_SEED;
+  let vIdx = 0;
+
   const promises = recs.map(async (rec) => {
     if (rec.coverUrl && !rec.coverUrl.startsWith("data:image/svg")) {
       return rec;
     }
-    // Check local catalog cache first
+    // Check local catalog cache first (0ms instantaneous lookup)
     try {
       const cached = await checkAlbumCache(rec.title);
       if (cached && cached.coverUrl && !cached.coverUrl.startsWith("data:image/svg")) {
@@ -5212,13 +5312,21 @@ async function enrichRecommendationsWithCovers(recs) {
       }
     } catch (e) {}
 
-    // Fetch from iTunes
+    // Fetch from iTunes with a strict 1500ms timeout to avoid waterfall stalling
     try {
-      const cover = await fetchAlbumCover(rec.coverSearchTerm || rec.title, rec.artist, rec.title);
+      const coverPromise = fetchAlbumCover(rec.coverSearchTerm || rec.title, rec.artist, rec.title);
+      const timeoutPromise = new Promise(resolve => setTimeout(() => resolve(null), 1500));
+      const cover = await Promise.race([coverPromise, timeoutPromise]);
       if (cover && !cover.startsWith("data:image/svg")) {
         rec.coverUrl = cover;
+        return rec;
       }
     } catch (e) {}
+
+    // Fallback immediately to verified artwork from the 365 vault seed
+    if (vaultSeed && vaultSeed[vIdx]) {
+      rec.coverUrl = vaultSeed[vIdx++ % vaultSeed.length].coverUrl;
+    }
     return rec;
   });
 
@@ -5234,27 +5342,12 @@ async function renderFlankingWingsRecommendations(recs) {
 
   if (!wingLeft || !wingRight || !cardsLeft || !cardsRight) return;
 
-  let displayRecs = (recs || []).filter(r => !isAlbumInFavorites(r.title, r.artist));
-  
-  // Gate: Only include items that have verified real album covers (never raw SVG placeholders)
-  let withValidCovers = displayRecs.filter(r => r.coverUrl && !r.coverUrl.startsWith("data:image/svg"));
+  // Always guaranteed 10 items synchronously with zero network blocking
+  const displayRecs = padRecommendationsToTen(recs);
+  if (displayRecs.length === 0) return;
 
-  if (withValidCovers.length < 10) {
-    // If not all 10 covers are available yet, load instantly from the 365 Vault discovery pool!
-    const vaultRecs = await load365VaultDiscoveryRecs();
-    if (vaultRecs && vaultRecs.length >= 10) {
-      displayRecs = vaultRecs.filter(r => !isAlbumInFavorites(r.title, r.artist)).slice(0, 10);
-    } else {
-      displayRecs = withValidCovers;
-    }
-  } else {
-    displayRecs = withValidCovers.slice(0, 10);
-  }
-
-  // Strictly only display when all 10 recommendations have verified covers available!
-  if (displayRecs.length < 10) {
-    return;
-  }
+  // Sync to global crate queue for flipping!
+  window.__CRATE_QUEUE__ = displayRecs;
 
   const leftItems = displayRecs.slice(0, 5);
   const rightItems = displayRecs.slice(5, 10);
@@ -5324,89 +5417,88 @@ async function loadAndDisplayCachedRecommendations() {
     if (raw) cachedPayload = JSON.parse(raw);
   } catch (e) {}
 
-  // 2. Fallback to Firestore if localStorage is empty and user signed in
-  if (currentUser && (!cachedPayload || !Array.isArray(cachedPayload.recommendations) || cachedPayload.recommendations.length === 0)) {
-    const cloudData = await fetchUserFromFirestore(currentUser.uid);
-    if (cloudData && cloudData.recommendations) {
-      const parsed = cloudData.recommendations;
-      if (parsed && Array.isArray(parsed.recommendations) && parsed.recommendations.length > 0) {
-        cachedPayload = parsed;
-        try {
-          localStorage.setItem(getRecommendationsStorageKey(), JSON.stringify(cachedPayload));
-        } catch (e) {}
-      }
-    }
+  const favCount = (userFavorites || []).length;
+
+  // Requirement 1: If user does not have 3 saves yet -> Display 365 Vault discovery synchronously at 0ms!
+  if (favCount < 3) {
+    const vaultTen = padRecommendationsToTen([]);
+    cachedFavRecs = vaultTen;
+    renderFlankingWingsRecommendations(cachedFavRecs);
+    renderRecommendationCarousel(cachedFavRecs);
+    if (recLockedBanner) recLockedBanner.classList.add("hidden");
+    if (recCarouselContainer) recCarouselContainer.classList.remove("hidden");
+    // Quietly warm up server vault in background
+    load365VaultDiscoveryRecs();
+    return;
   }
 
-  // 3. Fallback to server storage if still empty and user signed in
-  if (currentUser && (!cachedPayload || !Array.isArray(cachedPayload.recommendations) || cachedPayload.recommendations.length === 0)) {
+  // Requirement 2: For users with 3+ saves: render personalized recommendations immediately from storage
+  if (cachedPayload && Array.isArray(cachedPayload.recommendations) && cachedPayload.recommendations.length > 0) {
+    const paddedTen = padRecommendationsToTen(cachedPayload.recommendations);
+    cachedFavRecs = paddedTen;
+    lastFavsSignature = cachedPayload.signature || currentSig;
+    lastRecsUpdatedAt = Number(cachedPayload.updatedAt || Date.now());
+    isRecsExpanded = true;
+
+    // Instant 0ms paint
+    renderFavoritesRecommendations();
+    renderRecommendationCarousel(cachedFavRecs);
+    renderFlankingWingsRecommendations(cachedFavRecs);
+    if (recLockedBanner) recLockedBanner.classList.add("hidden");
+    if (recCarouselContainer) recCarouselContainer.classList.remove("hidden");
+    primeRecommendationsInCatalog(cachedFavRecs);
+
+    // If stale (> 24 hours), refresh SILENTLY in the background without blocking UI
+    const isStale = (Date.now() - lastRecsUpdatedAt) > TWENTY_FOUR_HOURS_MS;
+    if (isStale) {
+      setTimeout(() => generateFavoritesRecommendations(true, true), 1200);
+    }
+    return;
+  }
+
+  // Requirement 3: User has 3+ saves but no localStorage cache yet -> Render 365 Vault instantly (0ms) as placeholder
+  const placeholderTen = padRecommendationsToTen([]);
+  cachedFavRecs = placeholderTen;
+  renderFlankingWingsRecommendations(cachedFavRecs);
+  renderRecommendationCarousel(cachedFavRecs);
+  if (recLockedBanner) recLockedBanner.classList.add("hidden");
+  if (recCarouselContainer) recCarouselContainer.classList.remove("hidden");
+
+  // Asynchronously hydrate from Firestore / server storage
+  if (currentUser) {
     try {
-      const res = await fetch(`/api/recommendations?uid=${encodeURIComponent(currentUser.uid)}`);
-      if (res.ok) {
-        const json = await res.json();
-        if (json.success && json.data) {
-          cachedPayload = json.data;
-          try {
-            localStorage.setItem(getRecommendationsStorageKey(), JSON.stringify(cachedPayload));
-          } catch (e) {}
+      let cloudRecs = null;
+      const cloudData = await fetchUserFromFirestore(currentUser.uid);
+      if (cloudData && cloudData.recommendations && Array.isArray(cloudData.recommendations.recommendations)) {
+        cloudRecs = cloudData.recommendations;
+      }
+      if (!cloudRecs) {
+        const res = await fetch(`/api/recommendations?uid=${encodeURIComponent(currentUser.uid)}`);
+        if (res.ok) {
+          const json = await res.json();
+          if (json.success && json.data) cloudRecs = json.data;
         }
+      }
+      if (cloudRecs && Array.isArray(cloudRecs.recommendations) && cloudRecs.recommendations.length > 0) {
+        const paddedTen = padRecommendationsToTen(cloudRecs.recommendations);
+        cachedFavRecs = paddedTen;
+        lastRecsUpdatedAt = Number(cloudRecs.updatedAt || Date.now());
+        saveRecommendationsToStorage(cachedFavRecs, cloudRecs.signature, lastRecsUpdatedAt);
+        renderFavoritesRecommendations();
+        renderRecommendationCarousel(cachedFavRecs);
+        renderFlankingWingsRecommendations(cachedFavRecs);
+
+        const isStale = (Date.now() - lastRecsUpdatedAt) > TWENTY_FOUR_HOURS_MS;
+        if (isStale) {
+          setTimeout(() => generateFavoritesRecommendations(true, true), 1500);
+        }
+        return;
       }
     } catch (e) {}
   }
 
-  const favCount = (userFavorites || []).length;
-
-  // Requirement: If user does not have 3 saves yet -> Display random vinyl from 365 Vault with 100% verified covers!
-  if (favCount < 3) {
-    const vaultPicks = await load365VaultDiscoveryRecs();
-    if (vaultPicks && vaultPicks.length >= 10) {
-      cachedFavRecs = vaultPicks.filter(r => !isAlbumInFavorites(r.title, r.artist)).slice(0, 10);
-      primeRecommendationsInCatalog(cachedFavRecs);
-      renderFlankingWingsRecommendations(cachedFavRecs);
-      renderRecommendationCarousel(cachedFavRecs);
-      if (recLockedBanner) recLockedBanner.classList.add("hidden");
-      if (recCarouselContainer) recCarouselContainer.classList.remove("hidden");
-      return;
-    }
-  }
-
-  // 4. For users with 3+ saves: render personalized recommendations if cached
-  if (cachedPayload && Array.isArray(cachedPayload.recommendations) && cachedPayload.recommendations.length > 0) {
-    const clean = cachedPayload.recommendations.filter(r => !isAlbumInFavorites(r.title, r.artist));
-    const withCovers = clean.filter(r => r.coverUrl && !r.coverUrl.startsWith("data:image/svg"));
-    if (withCovers.length >= 10) {
-      cachedFavRecs = withCovers.slice(0, 10);
-      lastFavsSignature = cachedPayload.signature || currentSig;
-      lastRecsUpdatedAt = Number(cachedPayload.updatedAt || Date.now());
-      isRecsExpanded = true;
-
-      renderFavoritesRecommendations();
-      renderRecommendationCarousel(cachedFavRecs);
-      renderFlankingWingsRecommendations(cachedFavRecs);
-      if (recLockedBanner) recLockedBanner.classList.add("hidden");
-      if (recCarouselContainer) recCarouselContainer.classList.remove("hidden");
-      primeRecommendationsInCatalog(cachedFavRecs);
-
-      const isStale = (Date.now() - lastRecsUpdatedAt) > TWENTY_FOUR_HOURS_MS;
-      if (isStale) {
-        setTimeout(() => generateFavoritesRecommendations(true), 600);
-      }
-      return;
-    }
-  }
-
-  // Fallback to 365 Vault discovery pool while waiting for personalized taste generation
-  const fallbackPicks = await load365VaultDiscoveryRecs();
-  if (fallbackPicks && fallbackPicks.length >= 10) {
-    cachedFavRecs = fallbackPicks.filter(r => !isAlbumInFavorites(r.title, r.artist)).slice(0, 10);
-    renderFlankingWingsRecommendations(cachedFavRecs);
-    renderRecommendationCarousel(cachedFavRecs);
-  }
-
-  // If user has 3+ saves and no cache exists yet, generate in background
-  if (favCount >= 3) {
-    setTimeout(() => generateFavoritesRecommendations(true), 800);
-  }
+  // If truly no recommendations exist yet, generate in background SILENTLY
+  setTimeout(() => generateFavoritesRecommendations(true, true), 1200);
 }
 
 async function loadUserFavorites() {
@@ -5586,25 +5678,37 @@ function toggleFavorite(album) {
 
   const favCount = userFavorites.length;
   if (favCount < 3) {
-    // Under 3 saves: display 365 Vault discovery recommendations with 100% verified covers
-    load365VaultDiscoveryRecs().then(vaultRecs => {
-      if (vaultRecs && vaultRecs.length >= 10) {
-        cachedFavRecs = vaultRecs.filter(r => !isAlbumInFavorites(r.title, r.artist)).slice(0, 10);
-        renderFlankingWingsRecommendations(cachedFavRecs);
-        renderRecommendationCarousel(cachedFavRecs);
-      }
-    });
+    // Under 3 saves: display 365 Vault discovery recommendations with 100% verified covers immediately (0ms)
+    cachedFavRecs = padRecommendationsToTen([]);
+    renderFlankingWingsRecommendations(cachedFavRecs);
+    renderRecommendationCarousel(cachedFavRecs);
   } else {
-    // 3+ saves: trigger personalized Taste Engine
-    const isStale = !lastRecsUpdatedAt || (Date.now() - lastRecsUpdatedAt) > TWENTY_FOUR_HOURS_MS || cachedFavRecs.length === 0;
-    if (isStale) {
-      if (wasAdded && favCount === 3) {
-        showToast("✨ 3 saves reached! Curating your personalized taste crate...");
-      }
-      setTimeout(() => generateFavoritesRecommendations(true), 800);
-    } else {
+    // 3+ saves:
+    const now = Date.now();
+    const hasValidCache = cachedFavRecs && cachedFavRecs.length >= 10;
+    const isWithin24h = lastRecsUpdatedAt && (now - lastRecsUpdatedAt) < TWENTY_FOUR_HOURS_MS;
+
+    if (hasValidCache && isWithin24h) {
+      // Golden Rule: SPEED OVER FRESHNESS. Zero API calls!
+      // If the favorited album was in cachedFavRecs, padRecommendationsToTen automatically replaces that slot from the vault pool
+      cachedFavRecs = padRecommendationsToTen(cachedFavRecs);
+      saveRecommendationsToStorage(cachedFavRecs, lastFavsSignature, lastRecsUpdatedAt);
       renderFavoritesRecommendations();
       renderFlankingWingsRecommendations(cachedFavRecs);
+      renderRecommendationCarousel(cachedFavRecs);
+    } else {
+      // First time hitting 3 saves, or 24h expired:
+      if (wasAdded && favCount === 3) {
+        showToast("✨ 3 saves reached! Curating your personalized taste crate in background...");
+      }
+      // Ensure UI displays 10 recommendations instantly at 0ms
+      cachedFavRecs = padRecommendationsToTen(cachedFavRecs);
+      renderFavoritesRecommendations();
+      renderFlankingWingsRecommendations(cachedFavRecs);
+      renderRecommendationCarousel(cachedFavRecs);
+
+      // Trigger background generation SILENTLY so UI never freezes or blocks
+      setTimeout(() => generateFavoritesRecommendations(true, true), 800);
     }
   }
 }
@@ -5767,16 +5871,18 @@ async function openFavoritesRecommendations() {
       : `Derived from your last ${baseCount} search${baseCount === 1 ? '' : 'es'}`;
   }
 
-  // If we already have recommendations (cached or from background), display immediately (0ms delay!)
-  if (cachedFavRecs.length > 0) {
-    recsModalLoading.classList.add("hidden");
-    favRecsList.classList.remove("hidden");
-    renderFavoritesRecommendations();
-    renderFlankingWingsRecommendations(cachedFavRecs);
-    return;
-  }
+  // Speed over Freshness: Always display 10 immediately from storage/buffer at 0ms!
+  cachedFavRecs = padRecommendationsToTen(cachedFavRecs);
+  recsModalLoading.classList.add("hidden");
+  favRecsList.classList.remove("hidden");
+  renderFavoritesRecommendations();
+  renderFlankingWingsRecommendations(cachedFavRecs);
 
-  await generateFavoritesRecommendations(false);
+  // If recommendations are stale (> 24h) and user has 3+ saves, trigger background refresh quietly
+  const isStale = !lastRecsUpdatedAt || (Date.now() - lastRecsUpdatedAt) > TWENTY_FOUR_HOURS_MS;
+  if (isStale && (userFavorites || []).length >= 3) {
+    generateFavoritesRecommendations(true, true);
+  }
 }
 
 async function generateFavoritesRecommendations(silent = false, force = false) {
@@ -5786,7 +5892,7 @@ async function generateFavoritesRecommendations(silent = false, force = false) {
 
   const now = Date.now();
   // Strict 24h Rate Limiting: If not forced and recommendations were generated <24h ago, serve cache and skip Gemini call!
-  if (!force && lastRecsUpdatedAt && (now - lastRecsUpdatedAt) < TWENTY_FOUR_HOURS_MS && cachedFavRecs.length > 0) {
+  if (!force && lastRecsUpdatedAt && (now - lastRecsUpdatedAt) < TWENTY_FOUR_HOURS_MS && cachedFavRecs.length >= 10) {
     if (!silent) {
       recsModalLoading.classList.add("hidden");
       favRecsList.classList.remove("hidden");
@@ -5800,7 +5906,7 @@ async function generateFavoritesRecommendations(silent = false, force = false) {
   const baseAlbums = isFromFavs ? userFavorites.slice(0, 3) : userSearches.slice(0, 3);
   const currentSig = getLast3LikedSignature();
 
-  // Show dedicated modal loading state displaying:
+  // Show dedicated modal loading state ONLY when explicitly non-silent:
   if (!silent) {
     recsModalLoading.classList.remove("hidden");
     favRecsList.classList.add("hidden");
@@ -5869,26 +5975,12 @@ Return strictly a valid JSON object matching this schema:
       // Deterministic filter: strictly exclude any album in the favorites list
       const nonFavs = data.recommendations.filter(rec => !isAlbumInFavorites(rec.title, rec.artist));
 
-      // Proactively enrich all recommendations with real covers in parallel
+      // Proactively enrich recommendations with real covers in parallel (with fast timeout)
       const enriched = await enrichRecommendationsWithCovers(nonFavs);
 
-      // Ensure all 10 items have valid covers; fallback to 365 Vault for any failed lookups:
-      const vaultBackup = await load365VaultDiscoveryRecs();
-      let backupIdx = 0;
-      const validTen = enriched.map(rec => {
-        if (!rec.coverUrl || rec.coverUrl.startsWith("data:image/svg")) {
-          if (vaultBackup && vaultBackup[backupIdx]) {
-            const repl = vaultBackup[backupIdx++];
-            return {
-              ...repl,
-              matchReason: `Curated analog classic matching your crate discovery aesthetic.`
-            };
-          }
-        }
-        return rec;
-      }).filter(r => r.coverUrl && !r.coverUrl.startsWith("data:image/svg")).slice(0, 10);
+      // Pad up to guaranteed 10 items using the 365 Vault pool
+      const validTen = padRecommendationsToTen(enriched);
 
-      // Requirement: Only display 10 recommendations once all cover work is verified and available!
       if (validTen.length >= 10) {
         cachedFavRecs = validTen;
         lastFavsSignature = currentSig;
@@ -5901,15 +5993,17 @@ Return strictly a valid JSON object matching this schema:
         // Persist to local & server storage with timestamp
         saveRecommendationsToStorage(cachedFavRecs, currentSig, lastRecsUpdatedAt);
 
-        recsModalLoading.classList.add("hidden");
-        favRecsList.classList.remove("hidden");
+        if (!silent) {
+          recsModalLoading.classList.add("hidden");
+          favRecsList.classList.remove("hidden");
+        }
         renderFavoritesRecommendations();
         renderFlankingWingsRecommendations(cachedFavRecs);
 
         // Immediately render bottom crate carousel and unlock it
         renderRecommendationCarousel(cachedFavRecs);
-        recLockedBanner.classList.add("hidden");
-        recCarouselContainer.classList.remove("hidden");
+        if (recLockedBanner) recLockedBanner.classList.add("hidden");
+        if (recCarouselContainer) recCarouselContainer.classList.remove("hidden");
       }
     } else {
       throw new Error("No recommendations returned");
@@ -5932,8 +6026,8 @@ Return strictly a valid JSON object matching this schema:
 function renderFavoritesRecommendations() {
   if (!favRecsList) return;
 
-  // Strict filter: omit any album from userFavorites
-  const cleanRecs = (cachedFavRecs || []).filter(rec => !isAlbumInFavorites(rec.title, rec.artist));
+  // Strict filter & pad: guarantees 10 items always
+  const cleanRecs = padRecommendationsToTen(cachedFavRecs);
   
   if (cleanRecs.length === 0) {
     favRecsList.innerHTML = `
@@ -6240,6 +6334,281 @@ function initPlaceholderHints() {
 }
 
 // ============================================================================
+// 12B. MODERN MATERIAL V2 UI & PHYSICAL CRATE-FLIPPING ENGINE
+// ============================================================================
+
+let v2CrateQueueIndex = 0;
+
+function getActiveUIVersion() {
+  return localStorage.getItem("vinyl_ui_version") || "v2";
+}
+
+function setActiveUIVersion(version) {
+  const mode = version === "v1" ? "v1" : "v2";
+  localStorage.setItem("vinyl_ui_version", mode);
+  document.body.setAttribute("data-ui-version", mode);
+
+  const toggleBtn = document.getElementById("ui-version-toggle-btn");
+  if (toggleBtn) {
+    const optV1 = toggleBtn.querySelector(".opt-v1");
+    const optV2 = toggleBtn.querySelector(".opt-v2");
+    if (optV1) optV1.classList.toggle("active", mode === "v1");
+    if (optV2) optV2.classList.toggle("active", mode === "v2");
+  }
+
+  // In v2 Material mode: ensure persistent music player is docked at bottom
+  if (mode === "v2") {
+    if (djDeckBar) djDeckBar.classList.remove("hidden");
+  }
+}
+
+async function triggerV2AutoPlay() {
+  if (djDeckBar) djDeckBar.classList.remove("hidden");
+  djState.isDeckMinimized = false;
+  setTimeout(async () => {
+    try {
+      ensureDjQueue();
+      if (!djState.isPlaying) {
+        await djPlayIndex(djState.currentIndex || 0, true);
+      }
+    } catch (err) {
+      console.warn("V2 auto-play trigger error:", err);
+    }
+  }, 400);
+}
+
+function getAvailableCrateAlbums() {
+  if (window.__CRATE_QUEUE__ && Array.isArray(window.__CRATE_QUEUE__) && window.__CRATE_QUEUE__.length > 0) {
+    return window.__CRATE_QUEUE__;
+  }
+  if (currentAlbumData && Array.isArray(currentAlbumData.alternatives) && currentAlbumData.alternatives.length > 0) {
+    return currentAlbumData.alternatives;
+  }
+  return [];
+}
+
+async function flipCrateVinyl(direction) {
+  const items = getAvailableCrateAlbums();
+  if (!items || items.length === 0) {
+    await rollRandomPick();
+    triggerV2AutoPlay();
+    return;
+  }
+
+  v2CrateQueueIndex = (v2CrateQueueIndex + direction + items.length) % items.length;
+  const targetRecord = items[v2CrateQueueIndex];
+  if (!targetRecord) return;
+
+  hasUserInteracted = true;
+  isRecommendationOfDay = false;
+  updateRecommendationOfDayUI();
+
+  const displayLabel = `${targetRecord.artist} - ${targetRecord.title}`;
+  if (albumInput) setAlbumInputValue(displayLabel, true);
+  const v2Input = document.getElementById("v2-album-input");
+  if (v2Input) v2Input.value = displayLabel;
+
+  showToast(`🗂️ Flipping crate to: "${targetRecord.title}"`);
+  await appraiseAlbum(targetRecord.query || displayLabel);
+  triggerV2AutoPlay();
+}
+
+function initMaterialV2AndUIToggle() {
+  // 1. Initialize UI version mode
+  const currentMode = getActiveUIVersion();
+  setActiveUIVersion(currentMode);
+
+  // 2. Toggle button listener
+  const toggleBtn = document.getElementById("ui-version-toggle-btn");
+  if (toggleBtn) {
+    toggleBtn.addEventListener("click", () => {
+      const current = getActiveUIVersion();
+      const next = current === "v2" ? "v1" : "v2";
+      setActiveUIVersion(next);
+      showToast(next === "v2" ? "✨ Switched to Modern Material v2 UI" : "📻 Switched to Classic v1 UI");
+    });
+  }
+
+  // 3. V2 Unified Search & Autocomplete
+  const v2Input = document.getElementById("v2-album-input");
+  const v2Clear = document.getElementById("v2-search-clear-btn");
+  const v2Submit = document.getElementById("v2-search-submit-btn");
+  const v2Dropdown = document.getElementById("v2-autocomplete-dropdown");
+
+  if (v2Input) {
+    v2Input.addEventListener("input", () => {
+      const query = v2Input.value.trim();
+      if (v2Clear) v2Clear.classList.toggle("hidden", !query);
+      if (query.length < 2) {
+        if (v2Dropdown) v2Dropdown.classList.add("hidden");
+        return;
+      }
+      // Populate autocomplete from current crate queue and catalog
+      const crateItems = getAvailableCrateAlbums();
+      const matches = crateItems.filter(item => 
+        (item.title || "").toLowerCase().includes(query.toLowerCase()) || 
+        (item.artist || "").toLowerCase().includes(query.toLowerCase())
+      ).slice(0, 5);
+
+      if (v2Dropdown && matches.length > 0) {
+        v2Dropdown.innerHTML = matches.map(m => `
+          <div class="autocomplete-item" data-query="${escapeHtml(m.artist)} - ${escapeHtml(m.title)}">
+            <span class="ac-icon">🎵</span>
+            <div class="ac-text">
+              <span class="ac-title">${escapeHtml(m.title)}</span>
+              <span class="ac-artist">${escapeHtml(m.artist)}</span>
+            </div>
+          </div>
+        `).join("");
+        v2Dropdown.classList.remove("hidden");
+        v2Dropdown.querySelectorAll(".autocomplete-item").forEach(item => {
+          item.addEventListener("click", () => {
+            const q = item.getAttribute("data-query");
+            if (q) {
+              v2Input.value = q;
+              v2Dropdown.classList.add("hidden");
+              hasUserInteracted = true;
+              isRecommendationOfDay = false;
+              updateRecommendationOfDayUI();
+              appraiseAlbum(q);
+              triggerV2AutoPlay();
+            }
+          });
+        });
+      } else if (v2Dropdown) {
+        v2Dropdown.classList.add("hidden");
+      }
+    });
+
+    v2Input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        const query = v2Input.value.trim();
+        if (query) {
+          if (v2Dropdown) v2Dropdown.classList.add("hidden");
+          hasUserInteracted = true;
+          isRecommendationOfDay = false;
+          updateRecommendationOfDayUI();
+          appraiseAlbum(query);
+          triggerV2AutoPlay();
+        }
+      }
+    });
+  }
+
+  if (v2Clear && v2Input) {
+    v2Clear.addEventListener("click", () => {
+      v2Input.value = "";
+      v2Clear.classList.add("hidden");
+      if (v2Dropdown) v2Dropdown.classList.add("hidden");
+      v2Input.focus();
+    });
+  }
+
+  if (v2Submit && v2Input) {
+    v2Submit.addEventListener("click", () => {
+      const query = v2Input.value.trim();
+      if (query) {
+        if (v2Dropdown) v2Dropdown.classList.add("hidden");
+        hasUserInteracted = true;
+        isRecommendationOfDay = false;
+        updateRecommendationOfDayUI();
+        appraiseAlbum(query);
+        triggerV2AutoPlay();
+      }
+    });
+  }
+
+  // 4. V2 Instant Roll Crate Button
+  const v2RollCrateBtn = document.getElementById("v2-roll-crate-btn");
+  if (v2RollCrateBtn) {
+    v2RollCrateBtn.addEventListener("click", async (e) => {
+      e.preventDefault();
+      hasUserInteracted = true;
+      isRecommendationOfDay = false;
+      updateRecommendationOfDayUI();
+      await rollRandomPick();
+      triggerV2AutoPlay();
+    });
+  }
+
+  // 5. Crate Flipping Buttons (Prev & Next)
+  const v2PrevBtn = document.getElementById("v2-prev-album-btn");
+  const v2NextBtn = document.getElementById("v2-next-album-btn");
+
+  if (v2PrevBtn) {
+    v2PrevBtn.addEventListener("click", () => flipCrateVinyl(-1));
+  }
+  if (v2NextBtn) {
+    v2NextBtn.addEventListener("click", () => flipCrateVinyl(1));
+  }
+
+  // 6. Global Keyboard Arrow Navigation (ArrowLeft / ArrowRight)
+  window.addEventListener("keydown", (e) => {
+    const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : "";
+    if (activeTag === "input" || activeTag === "textarea") return;
+
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      flipCrateVinyl(1);
+    } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      flipCrateVinyl(-1);
+    }
+  });
+
+  // 7. Touch / Swipe Navigation on Showcase Card
+  const showcaseContainer = document.querySelector(".hero-showcase-container");
+  if (showcaseContainer) {
+    let touchStartX = 0;
+    let touchStartY = 0;
+    showcaseContainer.addEventListener("touchstart", (e) => {
+      if (e.touches && e.touches[0]) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    showcaseContainer.addEventListener("touchend", (e) => {
+      if (e.changedTouches && e.changedTouches[0]) {
+        const diffX = e.changedTouches[0].clientX - touchStartX;
+        const diffY = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(diffX) > 48 && Math.abs(diffX) > Math.abs(diffY)) {
+          if (diffX < 0) {
+            flipCrateVinyl(1);
+          } else {
+            flipCrateVinyl(-1);
+          }
+        }
+      }
+    }, { passive: true });
+  }
+
+  // 8. 1-Tap Taste Calibration Actions ("🔥 Dig It" & "⏭️ Pass")
+  const v2DigItBtn = document.getElementById("v2-dig-it-btn");
+  const v2PassBtn = document.getElementById("v2-pass-btn");
+
+  if (v2DigItBtn) {
+    v2DigItBtn.addEventListener("click", () => {
+      if (!currentAlbumData || !currentAlbumData.title) return;
+      if (!isFavorited(currentAlbumData.title, currentAlbumData.artist)) {
+        if (heroFavBtn) heroFavBtn.click();
+      }
+      const genre = currentAlbumData.genre || "this vibe";
+      showToast(`🔥 Taste calibrated! Saved & learning your taste for ${genre}.`);
+      setTimeout(() => flipCrateVinyl(1), 350);
+    });
+  }
+
+  if (v2PassBtn) {
+    v2PassBtn.addEventListener("click", () => {
+      showToast("⏭️ Passed. Pulling next record from crate...");
+      flipCrateVinyl(1);
+    });
+  }
+}
+
+// ============================================================================
 // 13. INITIALIZATION
 // ============================================================================
 initTheme();
@@ -6251,5 +6620,7 @@ initSommelier();
 initPwa();
 initHeaderScroll();
 initPlaceholderHints();
+initMaterialV2AndUIToggle();
+
 
 

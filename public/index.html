@@ -158,6 +158,14 @@
           <span class="install-btn-text">Install App</span>
         </button>
 
+        <!-- Live UI Mode Toggle Switch (Classic v1 vs Material v2) -->
+        <button id="ui-version-toggle-btn" class="ui-version-toggle-btn" type="button" aria-label="Toggle UI Version" title="Switch between Classic UI and Modern Material v2 UI">
+          <span class="ui-toggle-pill-track">
+            <span class="ui-toggle-opt opt-v1">Classic</span>
+            <span class="ui-toggle-opt opt-v2 active">v2 Material</span>
+          </span>
+        </button>
+
         <!-- Light / Dark Theme Switch (Per gemini.md) -->
         <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Light / Dark Theme">
           <span class="theme-icon light-icon">☀️</span>
@@ -210,6 +218,41 @@
         <div class="crate-center-column">
           <!-- Prominent Hero Section with Full-Width Search Bar -->
           <section class="hero-search-section">
+            <!-- Material v2 Unified Discovery Command Bar -->
+            <div id="v2-discovery-bar" class="v2-discovery-bar">
+              <div class="v2-search-row">
+                <div class="v2-search-wrap">
+                  <span class="v2-search-icon">🔍</span>
+                  <input 
+                    type="text" 
+                    id="v2-album-input" 
+                    class="v2-album-input" 
+                    placeholder="Search artist, album, or vibe... (e.g. Miles Davis or Moody 90s Shoegaze)" 
+                    autocomplete="off" 
+                  />
+                  <button type="button" id="v2-search-clear-btn" class="search-clear-btn hidden" aria-label="Clear search input" title="Clear search">✕</button>
+                  <button type="button" id="v2-search-submit-btn" class="v2-search-btn">Dig Price</button>
+                  <div id="v2-autocomplete-dropdown" class="autocomplete-dropdown hidden" role="listbox" aria-label="Top album suggestions"></div>
+                </div>
+
+                <!-- Instant Roll Crate button -->
+                <button type="button" id="v2-roll-crate-btn" class="v2-roll-crate-btn" title="Roll next landmark pressing from the 365 Vault and auto-spin preview">
+                  <span class="v2-roll-icon">🎲</span>
+                  <span class="v2-roll-text">Roll Crate</span>
+                </button>
+              </div>
+
+              <!-- Single Row of Sub-Genre Vibe Pills -->
+              <div class="v2-vibes-row">
+                <span class="v2-vibes-label">✨ Vibes:</span>
+                <div class="v2-vibes-pills-list" id="v2-vibes-pills-list"></div>
+                <button type="button" id="v2-shuffle-vibes-btn" class="v2-shuffle-vibes-btn" title="Roll 5 new random sub-genres">
+                  <span class="v2-shuffle-icon">🎲</span>
+                  <span>Roll Vibes</span>
+                </button>
+              </div>
+            </div>
+
             <form id="search-form" class="search-form hero-search-form">
           <div class="search-bar-wrap">
             <span class="search-icon">🔍</span>
@@ -375,6 +418,11 @@
         </div>
 
         <div class="hero-showcase-container">
+          <!-- V2 Crate Flipping: Prev Record -->
+          <button id="v2-prev-album-btn" class="v2-crate-nav-btn v2-prev-btn" type="button" aria-label="Previous Vinyl in Crate (ArrowLeft)" title="Previous Record (← ArrowLeft)">
+            <span class="v2-nav-arrow">◀</span>
+          </button>
+
           <!-- Hero Album Appraisal Card (2x2 Grid: Cover & Info in Row 1, Player & Pricing in Row 2) -->
           <div class="album-hero-card">
           <!-- Cell 1: Vinyl Sleeve Cover (Top Left) -->
@@ -400,6 +448,16 @@
                   <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                 </svg>
               </button>
+
+              <!-- V2 1-Tap Taste Calibration Actions -->
+              <div class="v2-taste-actions">
+                <button id="v2-dig-it-btn" class="v2-taste-btn v2-dig-it-btn" type="button" title="Dig It! (Save to favorites & teach taste engine)">
+                  <span>🔥 Dig It</span>
+                </button>
+                <button id="v2-pass-btn" class="v2-taste-btn v2-pass-btn" type="button" title="Pass (Skip to next recommendation)">
+                  <span>⏭️ Pass</span>
+                </button>
+              </div>
             </div>
             <h2 id="album-title" class="album-title">Album Title</h2>
             <h3 id="album-artist" class="album-artist">Artist Name</h3>
@@ -514,6 +572,11 @@
             </div>
           </div>
         </div>
+
+        <!-- V2 Crate Flipping: Next Record -->
+        <button id="v2-next-album-btn" class="v2-crate-nav-btn v2-next-btn" type="button" aria-label="Next Vinyl in Crate (ArrowRight)" title="Next Record (→ ArrowRight)">
+          <span class="v2-nav-arrow">▶</span>
+        </button>
       </div>
 
         <!-- Genre Alternatives Section with Extended Pool & Fresh Picks Shuffle -->

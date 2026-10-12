@@ -2135,39 +2135,39 @@
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": {
-      "overallScore": 98,
+      "overallScore": 99,
       "tier": "Curated Crate Match",
-      "verdict": "Recorded just months before Kind of Blue, this session essentially features the same core lineup with Miles Davis performing as a rare sideman. Davis's muted trumpet on 'Autumn Leaves' shares the exact melancholic resonance and minimalist restraint that defined his 1959 masterpiece."
+      "verdict": "Recorded months before Kind of Blue, this historic session features Miles Davis as a rare sideman playing with the exact same muted, melancholic trumpet timbre over Hank Jones' delicate modal voicings."
     },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/47/0c/66/470c6637-381c-5ad9-073b-8b863d6fa965/00724349532953.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": {
-      "newEur": "€24 – €30",
-      "usedEur": "€16 – €25"
+      "newEur": "€24 – €32",
+      "usedEur": "€18 – €28"
     },
     "alternatives": [],
-    "updatedAt": 1791794175266
+    "updatedAt": 1791799502187
   },
   "john coltrane blue train": {
     "title": "Blue Train",
     "artist": "John Coltrane",
-    "genre": "Hard Bop",
+    "genre": "Hard Bop / Modal Jazz",
     "year": 1958,
     "playtime": "42 min",
     "trackCount": 5,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": {
-      "overallScore": 97,
+      "overallScore": 88,
       "tier": "Curated Crate Match",
-      "verdict": "Showcases Coltrane's ascendant horn power alongside Paul Chambers' driving bass, serving as the fiery hard-bop counterweight to the introspective modal approach of 'Kind of Blue'."
+      "verdict": "Features Coltrane on the brink of modal revolution with Rudy Van Gelder's hallmark punchy acoustic depth and Paul Chambers providing the driving bassline core."
     },
     "coverUrl": "/api/images/john_coltrane_blue_train.jpg",
     "streetPriceGermany": {
-      "newEur": "€26 – €34",
-      "usedEur": "€18 – €26"
+      "newEur": "€26 – €33",
+      "usedEur": "€16 – €23"
     },
     "alternatives": [],
-    "updatedAt": 1791790606028
+    "updatedAt": 1791796907557
   },
   "bill evans trio waltz for debby": {
     "title": "Waltz for Debby",
@@ -2185,118 +2185,25 @@
       "usedEur": "€16 – €24"
     },
     "alternatives": [],
-    "updatedAt": 1791794125889
+    "updatedAt": 1791796878954
   },
   "miles davis kind of blue": {
     "title": "Kind of Blue",
     "artist": "Miles Davis",
     "genre": "Modal Jazz",
     "year": "",
-    "playtime": "",
-    "trackCount": 0,
+    "playtime": "45 min",
+    "trackCount": 5,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": null,
-    "coverUrl": "",
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/7f/9f/d6/mzi.vtnaewef.jpg/600x600bb.jpg",
     "streetPriceGermany": {
-      "newEur": "€24 – €32",
-      "usedEur": "€18 – €26",
-      "conditionNote": "VG+ / EX for common vintage or standard modern reissues"
+      "newEur": "€22 – €32",
+      "usedEur": "€16 – €26"
     },
-    "alternatives": [
-      {
-        "title": "Somethin' Else",
-        "artist": "Cannonball Adderley",
-        "genre": "Modal Jazz",
-        "playtime": "39 min",
-        "trackCount": 5,
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/47/0c/66/470c6637-381c-5ad9-073b-8b863d6fa965/00724349532953.rgb.jpg/600x600bb.jpg",
-        "coverSearchTerm": "Cannonball Adderley Somethin' Else",
-        "streetPriceGermany": {
-          "newEur": "€26 – €32",
-          "usedEur": "€18 – €28"
-        }
-      },
-      {
-        "title": "A Love Supreme",
-        "artist": "John Coltrane",
-        "genre": "Modal Jazz",
-        "playtime": "33 min",
-        "trackCount": 4,
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e5/24/aa/e524aacd-467b-66f3-8931-0fcd6750a4b9/08UMGIM07914.rgb.jpg/600x600bb.jpg",
-        "coverSearchTerm": "John Coltrane A Love Supreme",
-        "streetPriceGermany": {
-          "newEur": "€28 – €35",
-          "usedEur": "€18 – €26"
-        }
-      },
-      {
-        "title": "Maiden Voyage",
-        "artist": "Herbie Hancock",
-        "genre": "Modal Jazz",
-        "playtime": "42 min",
-        "trackCount": 5,
-        "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/64/b6/04/64b6040c-a931-0a5c-6b7c-82e0dd5c3d4c/19UMGIM73745.rgb.jpg/600x600bb.jpg",
-        "coverSearchTerm": "Herbie Hancock Maiden Voyage",
-        "streetPriceGermany": {
-          "newEur": "€25 – €32",
-          "usedEur": "€16 – €25"
-        }
-      },
-      {
-        "title": "Speak No Evil",
-        "artist": "Wayne Shorter",
-        "genre": "Modal Jazz",
-        "playtime": "41 min",
-        "trackCount": 6,
-        "coverUrl": "",
-        "coverSearchTerm": "Wayne Shorter Speak No Evil",
-        "streetPriceGermany": {
-          "newEur": "€27 – €34",
-          "usedEur": "€18 – €27"
-        }
-      },
-      {
-        "title": "Waltz for Debby",
-        "artist": "Bill Evans Trio",
-        "genre": "Cool Jazz",
-        "playtime": "38 min",
-        "trackCount": 6,
-        "coverUrl": "",
-        "coverSearchTerm": "Bill Evans Trio Waltz for Debby",
-        "streetPriceGermany": {
-          "newEur": "€24 – €30",
-          "usedEur": "€16 – €24"
-        }
-      },
-      {
-        "title": "Idle Moments",
-        "artist": "Grant Green",
-        "genre": "Modal Jazz",
-        "playtime": "43 min",
-        "trackCount": 4,
-        "coverUrl": "",
-        "coverSearchTerm": "Grant Green Idle Moments",
-        "streetPriceGermany": {
-          "newEur": "€28 – €35",
-          "usedEur": "€19 – €28"
-        }
-      },
-      {
-        "title": "The Real McCoy",
-        "artist": "McCoy Tyner",
-        "genre": "Modal Jazz",
-        "playtime": "37 min",
-        "trackCount": 5,
-        "coverUrl": "",
-        "coverSearchTerm": "McCoy Tyner The Real McCoy",
-        "streetPriceGermany": {
-          "newEur": "€26 – €32",
-          "usedEur": "€17 – €25"
-        }
-      }
-    ],
-    "updatedAt": 1791794147541
+    "alternatives": [],
+    "updatedAt": 1791799503663
   },
   "kind of blue": {
     "title": "Kind of Blue",
@@ -2570,11 +2477,104 @@
     "collectorScore": null,
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/e5/24/aa/e524aacd-467b-66f3-8931-0fcd6750a4b9/08UMGIM07914.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": {
-      "newEur": "€28 – €35",
-      "usedEur": "€18 – €26"
+      "newEur": "€26 – €34",
+      "usedEur": "€18 – €26",
+      "conditionNote": "VG+ / EX condition for standard repressings"
     },
-    "alternatives": [],
-    "updatedAt": 1791794141669
+    "alternatives": [
+      {
+        "title": "Journey in Satchidananda",
+        "artist": "Alice Coltrane",
+        "genre": "Spiritual Jazz",
+        "playtime": "37 min",
+        "trackCount": 5,
+        "coverUrl": "",
+        "coverSearchTerm": "Alice Coltrane Journey in Satchidananda",
+        "streetPriceGermany": {
+          "newEur": "€28 – €36",
+          "usedEur": "€22 – €38"
+        }
+      },
+      {
+        "title": "Karma",
+        "artist": "Pharoah Sanders",
+        "genre": "Spiritual Jazz",
+        "playtime": "38 min",
+        "trackCount": 2,
+        "coverUrl": "",
+        "coverSearchTerm": "Pharoah Sanders Karma",
+        "streetPriceGermany": {
+          "newEur": "€26 – €34",
+          "usedEur": "€20 – €35"
+        }
+      },
+      {
+        "title": "Kind of Blue",
+        "artist": "Miles Davis",
+        "genre": "Modal Jazz",
+        "playtime": "45 min",
+        "trackCount": 5,
+        "coverUrl": "",
+        "coverSearchTerm": "Miles Davis Kind of Blue",
+        "streetPriceGermany": {
+          "newEur": "€22 – €32",
+          "usedEur": "€16 – €26"
+        }
+      },
+      {
+        "title": "The Real McCoy",
+        "artist": "McCoy Tyner",
+        "genre": "Modal Jazz",
+        "playtime": "37 min",
+        "trackCount": 5,
+        "coverUrl": "",
+        "coverSearchTerm": "McCoy Tyner The Real McCoy",
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€18 – €28"
+        }
+      },
+      {
+        "title": "Maiden Voyage",
+        "artist": "Herbie Hancock",
+        "genre": "Modal Jazz",
+        "playtime": "42 min",
+        "trackCount": 5,
+        "coverUrl": "",
+        "coverSearchTerm": "Herbie Hancock Maiden Voyage",
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€18 – €30"
+        }
+      },
+      {
+        "title": "Speak No Evil",
+        "artist": "Wayne Shorter",
+        "genre": "Modal Jazz",
+        "playtime": "42 min",
+        "trackCount": 6,
+        "coverUrl": "",
+        "coverSearchTerm": "Wayne Shorter Speak No Evil",
+        "streetPriceGermany": {
+          "newEur": "€26 – €32",
+          "usedEur": "€19 – €30"
+        }
+      },
+      {
+        "title": "Mode for Joe",
+        "artist": "Joe Henderson",
+        "genre": "Modal Jazz",
+        "playtime": "41 min",
+        "trackCount": 6,
+        "coverUrl": "",
+        "coverSearchTerm": "Joe Henderson Mode for Joe",
+        "streetPriceGermany": {
+          "newEur": "€26 – €34",
+          "usedEur": "€18 – €28"
+        }
+      }
+    ],
+    "updatedAt": 1791799503339
   },
   "a love supreme": {
     "title": "A Love Supreme",
@@ -9393,61 +9393,61 @@
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": {
-      "overallScore": 96,
+      "overallScore": 97,
       "tier": "Curated Crate Match",
-      "verdict": "Built almost entirely around suspended chords and modal scales, this oceanic suite captures the tranquil, floating sensation of 'Flamenco Sketches'. Hancock and Freddie Hubbard craft an elegant, open-air sonic architecture that vinyl playback renders with immense spatial depth."
+      "verdict": "A direct musical descendant of Kind of Blue's modal innovations, Hancock expands modal harmony into an evocative maritime journey with members of Davis's Second Great Quintet."
     },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/64/b6/04/64b6040c-a931-0a5c-6b7c-82e0dd5c3d4c/19UMGIM73745.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": {
-      "newEur": "€25 – €32",
-      "usedEur": "€16 – €24"
+      "newEur": "€26 – €34",
+      "usedEur": "€18 – €26"
     },
     "alternatives": [],
-    "updatedAt": 1791794175291
+    "updatedAt": 1791799502215
   },
   "wayne shorter speak no evil": {
     "title": "Speak No Evil",
     "artist": "Wayne Shorter",
     "genre": "Modal Jazz / Post-Bop",
     "year": 1966,
-    "playtime": "42 min",
+    "playtime": "41 min",
     "trackCount": 6,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": {
-      "overallScore": 97,
+      "overallScore": 94,
       "tier": "Curated Crate Match",
-      "verdict": "Shorter took the modal harmonic freedom seeded on Kind of Blue and gave it an elusive, poetic edge alongside Herbie Hancock and Elvin Jones. Rudy Van Gelder's analog warmth delivers the same spacious, shadowy room acoustics that make 1960s acoustic jazz so arresting on vinyl."
+      "verdict": "Engineered by Rudy Van Gelder, this record combines haunting modal structures with mysterious, shadowy themes that evoke the darker currents of 'Blue in Green'."
     },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/4f/26/3c/4f263c51-4053-4ca9-602b-47816398c45a/13UAEIM18774.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": {
       "newEur": "€27 – €35",
-      "usedEur": "€18 – €26"
+      "usedEur": "€19 – €27"
     },
     "alternatives": [],
-    "updatedAt": 1791794175278
+    "updatedAt": 1791799502250
   },
   "grant green idle moments": {
     "title": "Idle Moments",
     "artist": "Grant Green",
-    "genre": "Soul Jazz / Modal Jazz",
+    "genre": "Soul Jazz / Cool Jazz",
     "year": 1965,
     "playtime": "43 min",
     "trackCount": 4,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": {
-      "overallScore": 91,
+      "overallScore": 92,
       "tier": "Curated Crate Match",
-      "verdict": "The fifteen-minute title track shares the unhurried, floating tempo and sparse pacing of 'Blue in Green'. Green's clean, unamplified guitar resonance paired with Joe Henderson's breathy tenor tenor creates pure late-night vinyl warmth."
+      "verdict": "The fifteen-minute title cut mirrors the unhurried, breath-catching atmosphere of 'Flamenco Sketches', defined by subtle guitar voicings and Bobby Hutcherson's shimmering vibraphone."
     },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/24/c7/6a/24c76a46-496b-ef6a-c7e1-7ba7997c7c24/13UABIM41432.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": {
-      "newEur": "€26 – €33",
-      "usedEur": "€17 – €26"
+      "newEur": "€26 – €35",
+      "usedEur": "€19 – €29"
     },
     "alternatives": [],
-    "updatedAt": 1791794175287
+    "updatedAt": 1791799502228
   },
   "mccoy tyner the real mccoy": {
     "title": "The Real McCoy",
@@ -10118,21 +10118,37 @@
     "title": "Journey in Satchidananda",
     "artist": "Alice Coltrane",
     "genre": "Spiritual Jazz",
+    "year": "",
     "playtime": "37 min",
     "trackCount": 5,
-    "coverUrl": "",
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/af/5c/40/af5c40a1-54b1-855d-3da2-f875efbd8372/06UMGIM04169.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€28 – €36",
+      "usedEur": "€22 – €38"
+    },
     "alternatives": [],
-    "updatedAt": 1791755896235
+    "updatedAt": 1791799503346
   },
   "pharoah sanders karma": {
     "title": "Karma",
     "artist": "Pharoah Sanders",
     "genre": "Spiritual Jazz",
+    "year": "",
     "playtime": "38 min",
     "trackCount": 2,
-    "coverUrl": "",
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/01/36/a6/0136a666-36d2-caf1-efb1-da77a646d104/06UMGIM03764.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€26 – €34",
+      "usedEur": "€20 – €35"
+    },
     "alternatives": [],
-    "updatedAt": 1791755896241
+    "updatedAt": 1791799503577
   },
   "mccoy tyner sahara": {
     "title": "Sahara",
@@ -10187,24 +10203,24 @@
   "bill evans trio portrait in jazz": {
     "title": "Portrait in Jazz",
     "artist": "Bill Evans Trio",
-    "genre": "Cool Jazz / Post-Bop",
+    "genre": "Modal Jazz / Post-Bop",
     "year": 1960,
     "playtime": "42 min",
-    "trackCount": 9,
+    "trackCount": 10,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": {
       "overallScore": 98,
       "tier": "Curated Crate Match",
-      "verdict": "Pianist Bill Evans was the primary harmonic architect behind Kind of Blue; here, his trio expands those impressionistic chord voicings and deep melancholy into the definitive piano trio format."
+      "verdict": "Bill Evans was the harmonic architect behind Kind of Blue's impressionistic sound; this landmark trio date deepens those gentle, introspective chords alongside bassist Scott LaFaro."
     },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/0a/fe/00/0afe00de-f7dc-b8b9-5faa-55627c4cd10a/00888072024182.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": {
-      "newEur": "€24 – €30",
+      "newEur": "€22 – €30",
       "usedEur": "€16 – €25"
     },
     "alternatives": [],
-    "updatedAt": 1791794155496
+    "updatedAt": 1791799502197
   },
   "portrait in jazz": {
     "title": "Portrait in Jazz",
@@ -10255,22 +10271,22 @@
     "artist": "Chet Baker",
     "genre": "Cool Jazz / Ballads",
     "year": 1959,
-    "playtime": "42 min",
-    "trackCount": 10,
+    "playtime": "41 min",
+    "trackCount": 9,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": {
-      "overallScore": 90,
+      "overallScore": 95,
       "tier": "Curated Crate Match",
-      "verdict": "Sharing Kind of Blue's 1959 vintage and Paul Chambers on bass, this all-ballad session centers on fragile, breathy trumpet tones with immense emotional space. It is a quintessential physical spin for listeners drawn to Miles's lyrical vulnerability."
+      "verdict": "Sharing Kind of Blue's rhythm section—Bill Evans and Paul Chambers—this entirely lyrical, late-night ballad session matches Davis's smoky trumpet poignancy and understated restraint."
     },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/62/b2/eb/62b2ebd5-8037-5e00-381a-2ef83c97171a/20CRGIM25372.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": {
-      "newEur": "€23 – €29",
-      "usedEur": "€14 – €21"
+      "newEur": "€22 – €29",
+      "usedEur": "€15 – €24"
     },
     "alternatives": [],
-    "updatedAt": 1791794175283
+    "updatedAt": 1791799502246
   },
   "chet": {
     "title": "Chet",
@@ -10385,24 +10401,24 @@
   "oliver nelson the blues and the abstract truth": {
     "title": "The Blues and the Abstract Truth",
     "artist": "Oliver Nelson",
-    "genre": "Modal Jazz / Post-Bop",
+    "genre": "Post-Bop / Modal Jazz",
     "year": 1961,
     "playtime": "36 min",
     "trackCount": 6,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": {
-      "overallScore": 94,
+      "overallScore": 96,
       "tier": "Curated Crate Match",
-      "verdict": "Anchored by Bill Evans on piano and Paul Chambers on bass, the landmark cut 'Stolen Moments' is the direct stylistic sibling to 'So What'. Nelson's lush brass voicings translate into a rich, three-dimensional stereo spread on analog pressings."
+      "verdict": "Featuring Bill Evans on piano and Paul Chambers on bass, this album dissects traditional blues forms using the same spacious, sophisticated harmonic sensibilities found on 'Freddie Freeloader'."
     },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/bc/f4/8c/bcf48c5c-5d5c-076d-fb5d-3807faabdf27/21UMGIM51202.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": {
-      "newEur": "€28 – €36",
-      "usedEur": "€17 – €25"
+      "newEur": "€28 – €38",
+      "usedEur": "€20 – €30"
     },
     "alternatives": [],
-    "updatedAt": 1791794175303
+    "updatedAt": 1791799502235
   },
   "the blues and the abstract truth": {
     "title": "The Blues and the Abstract Truth",
@@ -10451,24 +10467,24 @@
   "miles davis in a silent way": {
     "title": "In a Silent Way",
     "artist": "Miles Davis",
-    "genre": "Modal Jazz / Jazz-Fusion / Ambient",
+    "genre": "Ambient Jazz / Fusion",
     "year": 1969,
     "playtime": "38 min",
     "trackCount": 2,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": {
-      "overallScore": 92,
+      "overallScore": 91,
       "tier": "Curated Crate Match",
-      "verdict": "A decade after Kind of Blue, Miles revisited minimal, floating modal sketches to forge proto-ambient jazz with the same exquisite restraint and breathy trumpet tone."
+      "verdict": "Ten years after Kind of Blue, Davis returned to radical modal minimalism, crafting a meditative and ethereal soundscape that stands as the electric equivalent of his 1959 masterpiece."
     },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4a/6c/db/4a6cdbee-444e-9416-93da-c448f5ad5ea1/696998655621.jpg/600x600bb.jpg",
     "streetPriceGermany": {
-      "newEur": "€26 – €32",
-      "usedEur": "€17 – €25"
+      "newEur": "€24 – €32",
+      "usedEur": "€16 – €24"
     },
     "alternatives": [],
-    "updatedAt": 1791794155501
+    "updatedAt": 1791799502221
   },
   "in a silent way": {
     "title": "In a Silent Way",
@@ -10561,24 +10577,24 @@
   "yusef lateef eastern sounds": {
     "title": "Eastern Sounds",
     "artist": "Yusef Lateef",
-    "genre": "Modal Jazz / Spiritual Jazz",
+    "genre": "Modal Jazz / Hard Bop",
     "year": 1961,
     "playtime": "38 min",
     "trackCount": 9,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": {
-      "overallScore": 90,
+      "overallScore": 88,
       "tier": "Curated Crate Match",
-      "verdict": "Lateef applies modal improvisational freedom to meditative, Eastern-influenced scales with an acoustic purity and quiet intensity that modal jazz lovers crave."
+      "verdict": "Blends deep acoustic modal explorations with exotic wind instruments, sharing the contemplative, exotic cadence heard on 'All Blues'."
     },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/f3/bf/c7/f3bfc750-3a5c-c73d-d47d-cb7f7e41e5d6/22CRGIM35345.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": {
-      "newEur": "€27 – €33",
-      "usedEur": "€18 – €28"
+      "newEur": "€26 – €34",
+      "usedEur": "€18 – €26"
     },
     "alternatives": [],
-    "updatedAt": 1791792931478
+    "updatedAt": 1791796800591
   },
   "eastern sounds": {
     "title": "Eastern Sounds",
@@ -10656,17 +10672,17 @@
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": {
-      "overallScore": 93,
+      "overallScore": 90,
       "tier": "Curated Crate Match",
-      "verdict": "Cut in the exact same Columbia 30th Street Studio in 1959, this record shares the same lush acoustic room reverb while exploring deeply emotional blues roots and modal composition."
+      "verdict": "Recorded in 1959 at Columbia 30th Street Studio just weeks apart from Kind of Blue, this LP shares the same legendary acoustic room resonance applied to raw, blues-drenched arrangements."
     },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music2/v4/de/3d/f3/de3df34f-9628-4a61-c14c-d0187fac484c/5099749523128.jpg/600x600bb.jpg",
     "streetPriceGermany": {
-      "newEur": "€24 – €30",
-      "usedEur": "€15 – €24"
+      "newEur": "€23 – €31",
+      "usedEur": "€15 – €22"
     },
     "alternatives": [],
-    "updatedAt": 1791794155533
+    "updatedAt": 1791799502242
   },
   "mingus ah um": {
     "title": "Mingus Ah Um",
@@ -10700,17 +10716,17 @@
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": {
-      "overallScore": 90,
+      "overallScore": 91,
       "tier": "Curated Crate Match",
-      "verdict": "An intimate, nocturnal duo session that strips jazz down to pure conversational nuance, directly echoing the meditative sensitivity of 'Blue in Green'."
+      "verdict": "A stark, poetic duo dialogue that translates the quiet impressionism of 'Flamenco Sketches' into delicate interactions between piano and semi-acoustic guitar."
     },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/dc/0d/ae/dc0daef8-093e-757d-2b09-90a3d0943075/13ULAIM49008.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": {
-      "newEur": "€25 – €31",
-      "usedEur": "€16 – €24"
+      "newEur": "€22 – €29",
+      "usedEur": "€14 – €20"
     },
     "alternatives": [],
-    "updatedAt": 1791794155509
+    "updatedAt": 1791796907547
   },
   "undercurrent": {
     "title": "Undercurrent",
@@ -10803,24 +10819,24 @@
   "john coltrane crescent": {
     "title": "Crescent",
     "artist": "John Coltrane",
-    "genre": "Modal Jazz / Post-Bop",
+    "genre": "Modal Jazz / Spiritual Jazz",
     "year": 1964,
     "playtime": "40 min",
     "trackCount": 5,
     "firstTrackTitle": "",
     "youtubeVideoId": "",
     "collectorScore": {
-      "overallScore": 95,
+      "overallScore": 93,
       "tier": "Curated Crate Match",
-      "verdict": "Coltrane channeled the deeply contemplative mood of his Kind of Blue tenure into this meditative, ballad-heavy quartet date. The warm acoustic presence of Jimmy Garrison's double bass and Coltrane's solemn tenor sax provide an intimate, smoke-filled vinyl listening experience."
+      "verdict": "Coltrane channels the spacious, contemplative restraint from his tenure with Miles Davis into a deeply romantic, nocturnal suite of modal jazz compositions."
     },
     "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/91/b6/bb/91b6bb11-26ab-13fb-95aa-67abec45aa5d/15UMGIM36230.rgb.jpg/600x600bb.jpg",
     "streetPriceGermany": {
-      "newEur": "€26 – €34",
-      "usedEur": "€18 – €27"
+      "newEur": "€25 – €36",
+      "usedEur": "€18 – €28"
     },
     "alternatives": [],
-    "updatedAt": 1791794175299
+    "updatedAt": 1791799502209
   },
   "john coltrane quartet ballads": {
     "title": "Ballads",
@@ -11529,5 +11545,51 @@
     },
     "alternatives": [],
     "updatedAt": 1791794203558
+  },
+  "joe henderson mode for joe": {
+    "title": "Mode for Joe",
+    "artist": "Joe Henderson",
+    "genre": "Modal Jazz",
+    "playtime": "41 min",
+    "trackCount": 6,
+    "coverUrl": "",
+    "alternatives": [],
+    "updatedAt": 1791799503332
+  },
+  "journey in satchidananda": {
+    "title": "Journey in Satchidananda",
+    "artist": "Alice Coltrane",
+    "genre": "Spiritual Jazz",
+    "year": "",
+    "playtime": "37 min",
+    "trackCount": 5,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/af/5c/40/af5c40a1-54b1-855d-3da2-f875efbd8372/06UMGIM04169.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€28 – €36",
+      "usedEur": "€22 – €38"
+    },
+    "alternatives": [],
+    "updatedAt": 1791799503346
+  },
+  "karma": {
+    "title": "Karma",
+    "artist": "Pharoah Sanders",
+    "genre": "Spiritual Jazz",
+    "year": "",
+    "playtime": "38 min",
+    "trackCount": 2,
+    "firstTrackTitle": "",
+    "youtubeVideoId": "",
+    "collectorScore": null,
+    "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/01/36/a6/0136a666-36d2-caf1-efb1-da77a646d104/06UMGIM03764.rgb.jpg/600x600bb.jpg",
+    "streetPriceGermany": {
+      "newEur": "€26 – €34",
+      "usedEur": "€20 – €35"
+    },
+    "alternatives": [],
+    "updatedAt": 1791799503577
   }
 }
