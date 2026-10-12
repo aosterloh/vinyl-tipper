@@ -356,8 +356,17 @@
 
       <!-- Main Appraisal Results Section -->
       <section id="results-section" class="results-section hidden">
-        <!-- Hero Album Appraisal Card (2x2 Grid: Cover & Info in Row 1, Player & Pricing in Row 2) -->
-        <div class="album-hero-card">
+        <div class="hero-showcase-container">
+          <!-- Left Flanking Wing (Recs 1 to 5) -->
+          <aside id="recs-wing-left" class="recs-flanking-wing recs-wing-left hidden" aria-label="Curated Recommendations 1 to 5">
+            <div class="wing-header">
+              <span class="wing-badge">✨ Crate Recs</span>
+            </div>
+            <div class="wing-cards-list" id="wing-cards-left"></div>
+          </aside>
+
+          <!-- Hero Album Appraisal Card (2x2 Grid: Cover & Info in Row 1, Player & Pricing in Row 2) -->
+          <div class="album-hero-card">
           <!-- Cell 1: Vinyl Sleeve Cover (Top Left) -->
           <div class="album-hero-cover-cell">
             <div class="vinyl-sleeve-wrapper">
@@ -473,6 +482,14 @@
               </div>
             </div>
           </div>
+
+          <!-- Right Flanking Wing (Recs 6 to 10) -->
+          <aside id="recs-wing-right" class="recs-flanking-wing recs-wing-right hidden" aria-label="Curated Recommendations 6 to 10">
+            <div class="wing-header">
+              <span class="wing-badge">🎯 Top Matches</span>
+            </div>
+            <div class="wing-cards-list" id="wing-cards-right"></div>
+          </aside>
         </div>
 
         <!-- Genre Alternatives Section with Extended Pool & Fresh Picks Shuffle -->

@@ -1350,6 +1350,8 @@ const expandRecsBtn = document.getElementById("expand-recs-btn");
 let cachedFavRecs = [];
 let isRecsExpanded = false;
 let lastFavsSignature = "";
+let lastRecsUpdatedAt = 0;
+const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
 
 // ============================================================================
 // 3. THEME MANAGEMENT (LIGHT & DARK MODE PROTOCOL)
@@ -4921,12 +4923,135 @@ async function saveRecommendationsToFirestore(payload) {
   } catch (e) {}
 }
 
-async function saveRecommendationsToStorage(recs, signature) {
+function primeRecommendationsInCatalog(recs) {
+  if (!Array.isArray(recs)) return;
+  recs.forEach(rec => {
+    if (!rec || !rec.title) return;
+    try {
+      fetch('/api/catalog', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: rec.title,
+          artist: rec.artist || '',
+          genre: rec.genre || '',
+          year: rec.year || '',
+          playtime: rec.playtime || '45 min',
+          trackCount: rec.trackCount || 10,
+          coverUrl: rec.coverUrl || '',
+          coverSearchTerm: rec.coverSearchTerm || `${rec.artist} ${rec.title}`,
+          streetPriceGermany: rec.streetPriceGermany || null,
+          collectorScore: {
+            overallScore: rec.score || 95,
+            tier: 'Curated Crate Match',
+            verdict: rec.matchReason || 'Matches your recent vinyl crate taste.'
+          },
+          sommelierLore: rec.matchReason || ''
+        })
+      }).catch(() => {});
+    } catch (e) {}
+  });
+}
+
+function renderMiniSleeveList(items, side) {
+  const popoverDir = side === "left" ? "popover-direction-right" : "popover-direction-left";
+
+  return items.map((rec) => {
+    const scoreVal = Math.min(100, Math.max(0, rec.score || 95));
+    const cover = rec.coverUrl || generateSvgCover(rec.title, rec.artist);
+    const query = `${rec.artist || ''} ${rec.title}`.trim();
+    const cleanTitle = typeof escapeHtml === "function" ? escapeHtml(rec.title) : rec.title;
+    const cleanArtist = typeof escapeHtml === "function" ? escapeHtml(rec.artist) : rec.artist;
+    const cleanReason = typeof escapeHtml === "function" ? escapeHtml(rec.matchReason || "Curated crate match based on your saved records.") : (rec.matchReason || "");
+
+    return `
+      <div class="mini-rec-sleeve" data-title="${cleanTitle}" data-artist="${cleanArtist}" data-query="${escapeHtml(query)}" data-score="${scoreVal}" tabindex="0" role="button" title="${cleanTitle} - ${cleanArtist}">
+        <div class="mini-rec-score-pill">🎯 ${scoreVal}%</div>
+        <div class="mini-rec-jacket">
+          <img class="mini-rec-img" src="${cover}" alt="${cleanTitle}" loading="lazy" />
+          <div class="mini-rec-vinyl-peek"></div>
+        </div>
+        <div class="mini-rec-popover ${popoverDir}">
+          <div class="popover-top-row">
+            <span class="popover-score-badge">🎯 ${scoreVal}% Match</span>
+            ${rec.year ? `<span class="popover-year">${rec.year}</span>` : ''}
+          </div>
+          <h4 class="popover-title">${cleanTitle}</h4>
+          <div class="popover-artist">${cleanArtist}</div>
+          <p class="popover-reason">${cleanReason}</p>
+          <div class="popover-action">
+            <span class="popover-action-icon">▶</span> Click to Spin Record
+          </div>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+function renderFlankingWingsRecommendations(recs) {
+  const wingLeft = document.getElementById("recs-wing-left");
+  const wingRight = document.getElementById("recs-wing-right");
+  const cardsLeft = document.getElementById("wing-cards-left");
+  const cardsRight = document.getElementById("wing-cards-right");
+
+  if (!wingLeft || !wingRight || !cardsLeft || !cardsRight) return;
+
+  let displayRecs = (recs || []).filter(r => !isAlbumInFavorites(r.title, r.artist));
+  
+  // Benchmark fallback if user has no recommendations yet
+  if (displayRecs.length < 5) {
+    const fallbackPool = [
+      { title: "Kind of Blue", artist: "Miles Davis", year: 1959, score: 99, matchReason: "Audiophile benchmark modal jazz recorded in 30th Street Studio Columbia.", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bf/25/7f/bf257fe8-1c42-5e60-449e-1144f8f4a13e/074646493526.jpg/600x600bb.jpg" },
+      { title: "The Dark Side of the Moon", artist: "Pink Floyd", year: 1973, score: 99, matchReason: "The definitive analog benchmark mastered at Abbey Road Studios by Alan Parsons.", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/0b/5b/66/0b5b6697-9d7e-86aa-1971-7a370d6b1d34/859744553750_cover.jpg/600x600bb.jpg" },
+      { title: "The Low End Theory", artist: "A Tribe Called Quest", year: 1991, score: 98, matchReason: "Legendary upright jazz bass recorded by Bob Power with timeless boom bap grooves.", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/95/9d/54/959d54a2-cf29-b630-f38e-0b16599cf06b/886443673552.jpg/600x600bb.jpg" },
+      { title: "Selected Ambient Works 85-92", artist: "Aphex Twin", year: 1992, score: 98, matchReason: "Seminal electronic landmark with lush tape textures and intimate analog warmth.", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/6c/42/47/6c424756-31f4-90be-845d-c6a6fbb8d641/cover.jpg/600x600bb.jpg" },
+      { title: "In Utero", artist: "Nirvana", year: 1993, score: 97, matchReason: "Steve Albini raw room recording capturing explosive dynamic contrast and natural room reverb.", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/ec/3b/b3/ec3bb329-a359-3d77-d7d4-0683a4ff8aa1/13UMGIM55074.rgb.jpg/600x600bb.jpg" },
+      { title: "A Love Supreme", artist: "John Coltrane", year: 1965, score: 99, matchReason: "Spiritual jazz pinnacle with Rudy Van Gelder acoustic resonance and transcendent saxophone.", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/21/df/f2/21dff2ea-7e78-0e9e-561b-90f679774fa1/00602547146524.rgb.jpg/600x600bb.jpg" },
+      { title: "Unknown Pleasures", artist: "Joy Division", year: 1979, score: 97, matchReason: "Martin Hannett iconic spatial production with icy reverb and driving basslines.", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/33/c2/f3/33c2f357-1bf6-905c-e58f-287950c4bb63/825646183906.jpg/600x600bb.jpg" },
+      { title: "BCD-2", artist: "Basic Channel", year: 1995, score: 98, matchReason: "Holy-grail Berlin dub techno with cavernous tape delays and continuous 4/4 vinyl pulse.", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/a5/11/bf/a511bf03-3467-33f1-d7ec-547e704179e3/4250101400262.jpg/600x600bb.jpg" },
+      { title: "Madvillainy", artist: "Madvillain", year: 2004, score: 98, matchReason: "Madlib SP-303 analog sample collage and MF DOOM off-kilter rhymes.", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/f4/05/cf/f405cf58-3012-1f41-a1b7-a87754d9203a/659457004456.jpg/600x600bb.jpg" },
+      { title: "Loveless", artist: "My Bloody Valentine", year: 1991, score: 98, matchReason: "The definitive shoegaze monument with swirling reverse reverb and glide guitar tremolo.", coverUrl: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/4d/93/ea/4d93ea4c-d92d-94c6-f761-002d2fc751a0/887830015939.png/600x600bb.jpg" }
+    ];
+    displayRecs = fallbackPool;
+  }
+
+  const leftItems = displayRecs.slice(0, 5);
+  const rightItems = displayRecs.slice(5, 10);
+
+  cardsLeft.innerHTML = renderMiniSleeveList(leftItems, "left");
+  cardsRight.innerHTML = renderMiniSleeveList(rightItems, "right");
+
+  wingLeft.classList.remove("hidden");
+  wingRight.classList.remove("hidden");
+
+  // Attach click listeners to all mini sleeves
+  [cardsLeft, cardsRight].forEach(container => {
+    container.querySelectorAll(".mini-rec-sleeve").forEach(card => {
+      card.addEventListener("click", () => {
+        const query = card.getAttribute("data-query");
+        const title = card.getAttribute("data-title");
+        const artist = card.getAttribute("data-artist");
+        const score = card.getAttribute("data-score");
+        if (query) {
+          hasUserInteracted = true;
+          if (albumInput) albumInput.value = `${artist} - ${title}`;
+          showToast(`🎧 Spinning crate match: "${title}" (${score}% match)`);
+          appraiseAlbum(query);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      });
+    });
+  });
+}
+
+async function saveRecommendationsToStorage(recs, signature, updatedAt) {
   const sig = signature || getLast3LikedSignature();
+  const timestamp = updatedAt || Date.now();
+  lastRecsUpdatedAt = timestamp;
   const payload = {
     signature: sig,
     recommendations: recs,
-    updatedAt: Date.now()
+    updatedAt: timestamp
   };
   try {
     localStorage.setItem(getRecommendationsStorageKey(), JSON.stringify(payload));
@@ -4941,15 +5066,14 @@ async function saveRecommendationsToStorage(recs, signature) {
       body: JSON.stringify({
         uid: currentUser.uid,
         signature: sig,
-        recommendations: recs
+        recommendations: recs,
+        updatedAt: timestamp
       })
     }).catch(() => {});
   }
 }
 
 async function loadAndDisplayCachedRecommendations() {
-  if (!currentUser) return;
-
   const currentSig = getLast3LikedSignature();
   let cachedPayload = null;
 
@@ -4959,8 +5083,8 @@ async function loadAndDisplayCachedRecommendations() {
     if (raw) cachedPayload = JSON.parse(raw);
   } catch (e) {}
 
-  // 2. Fallback to Firestore if localStorage is empty
-  if (!cachedPayload || !Array.isArray(cachedPayload.recommendations) || cachedPayload.recommendations.length === 0) {
+  // 2. Fallback to Firestore if localStorage is empty and user signed in
+  if (currentUser && (!cachedPayload || !Array.isArray(cachedPayload.recommendations) || cachedPayload.recommendations.length === 0)) {
     const cloudData = await fetchUserFromFirestore(currentUser.uid);
     if (cloudData && cloudData.recommendations) {
       const parsed = cloudData.recommendations;
@@ -4973,8 +5097,8 @@ async function loadAndDisplayCachedRecommendations() {
     }
   }
 
-  // 3. Fallback to server storage if still empty
-  if (!cachedPayload || !Array.isArray(cachedPayload.recommendations) || cachedPayload.recommendations.length === 0) {
+  // 3. Fallback to server storage if still empty and user signed in
+  if (currentUser && (!cachedPayload || !Array.isArray(cachedPayload.recommendations) || cachedPayload.recommendations.length === 0)) {
     try {
       const res = await fetch(`/api/recommendations?uid=${encodeURIComponent(currentUser.uid)}`);
       if (res.ok) {
@@ -4995,28 +5119,37 @@ async function loadAndDisplayCachedRecommendations() {
     if (clean.length > 0) {
       cachedFavRecs = clean.slice(0, 10);
       lastFavsSignature = cachedPayload.signature || currentSig;
+      lastRecsUpdatedAt = Number(cachedPayload.updatedAt || Date.now());
       isRecsExpanded = true;
 
-      // Immediately render modal list and update button
+      // Render modal list and update button
       renderFavoritesRecommendations();
       if (favRecsBtn) favRecsBtn.classList.remove("hidden");
 
-      // Immediately render bottom crate carousel and unlock it
+      // Render bottom crate carousel and flanking wings!
       renderRecommendationCarousel(cachedFavRecs);
+      renderFlankingWingsRecommendations(cachedFavRecs);
       recLockedBanner.classList.add("hidden");
       recCarouselContainer.classList.remove("hidden");
 
-      // Only refresh in background if the recommendations signature changed
-      if (currentSig && cachedPayload.signature && cachedPayload.signature !== currentSig && (userFavorites.length > 0 || userSearches.length > 0)) {
-        generateFavoritesRecommendations(true);
+      // Auto-prime in catalog DB
+      primeRecommendationsInCatalog(cachedFavRecs);
+
+      // Only refresh in background if cache is older than 24 hours
+      const isStale = (Date.now() - lastRecsUpdatedAt) > TWENTY_FOUR_HOURS_MS;
+      if (isStale && (userFavorites.length > 0 || userSearches.length > 0)) {
+        setTimeout(() => generateFavoritesRecommendations(true), 600);
       }
       return;
     }
   }
 
-  // 5. If no cache exists yet, but user has favorites or recent searches, trigger initial generation
+  // Render initial benchmark flanking wings if no user recommendations yet
+  renderFlankingWingsRecommendations([]);
+
+  // 5. If no cache exists yet, but user has favorites or recent searches, trigger background generation
   if (userFavorites.length > 0 || userSearches.length > 0) {
-    generateFavoritesRecommendations(true);
+    setTimeout(() => generateFavoritesRecommendations(true), 800);
   }
 }
 
@@ -5196,9 +5329,14 @@ function toggleFavorite(album) {
   saveUserFavorites();
 
   const newSig = getLast3LikedSignature();
-  // Update recommendations whenever favorites are added/removed or signature changes
-  if (wasAdded || (prevSig !== newSig && (userFavorites.length > 0 || userSearches.length > 0))) {
-    generateFavoritesRecommendations(true);
+  // Update recommendations: only call Gemini if older than 24h or if cachedFavRecs is empty!
+  const isStale = !lastRecsUpdatedAt || (Date.now() - lastRecsUpdatedAt) > TWENTY_FOUR_HOURS_MS || cachedFavRecs.length === 0;
+  if (isStale && (userFavorites.length > 0 || userSearches.length > 0)) {
+    setTimeout(() => generateFavoritesRecommendations(true), 800);
+  } else {
+    // Re-render local cache immediately (0ms delay, $0.00 cost)
+    renderFavoritesRecommendations();
+    renderFlankingWingsRecommendations(cachedFavRecs);
   }
 }
 
@@ -5369,21 +5507,34 @@ async function openFavoritesRecommendations() {
       : `Derived from your last ${baseCount} search${baseCount === 1 ? '' : 'es'}`;
   }
 
-  const currentSig = getLast3LikedSignature();
-  if (cachedFavRecs.length > 0 && lastFavsSignature === currentSig) {
+  // If we already have recommendations (cached or from background), display immediately (0ms delay!)
+  if (cachedFavRecs.length > 0) {
     recsModalLoading.classList.add("hidden");
     favRecsList.classList.remove("hidden");
     renderFavoritesRecommendations();
+    renderFlankingWingsRecommendations(cachedFavRecs);
     return;
   }
 
   await generateFavoritesRecommendations(false);
 }
 
-async function generateFavoritesRecommendations(silent = false) {
+async function generateFavoritesRecommendations(silent = false, force = false) {
   const hasFavs = userFavorites && userFavorites.length > 0;
   const hasSearches = userSearches && userSearches.length > 0;
   if (!hasFavs && !hasSearches) return;
+
+  const now = Date.now();
+  // Strict 24h Rate Limiting: If not forced and recommendations were generated <24h ago, serve cache and skip Gemini call!
+  if (!force && lastRecsUpdatedAt && (now - lastRecsUpdatedAt) < TWENTY_FOUR_HOURS_MS && cachedFavRecs.length > 0) {
+    if (!silent) {
+      recsModalLoading.classList.add("hidden");
+      favRecsList.classList.remove("hidden");
+      renderFavoritesRecommendations();
+    }
+    renderFlankingWingsRecommendations(cachedFavRecs);
+    return;
+  }
 
   const isFromFavs = hasFavs;
   const baseAlbums = isFromFavs ? userFavorites.slice(0, 3) : userSearches.slice(0, 3);
@@ -5459,14 +5610,19 @@ Return strictly a valid JSON object matching this schema:
       const nonFavs = data.recommendations.filter(rec => !isAlbumInFavorites(rec.title, rec.artist));
       cachedFavRecs = nonFavs.slice(0, 10);
       lastFavsSignature = currentSig;
+      lastRecsUpdatedAt = Date.now();
       isRecsExpanded = true;
 
-      // Persist to local & server storage
-      saveRecommendationsToStorage(cachedFavRecs, currentSig);
+      // Auto-prime in catalog DB so clicking any recommendation is instantaneous (0ms)
+      primeRecommendationsInCatalog(cachedFavRecs);
+
+      // Persist to local & server storage with timestamp
+      saveRecommendationsToStorage(cachedFavRecs, currentSig, lastRecsUpdatedAt);
 
       recsModalLoading.classList.add("hidden");
       favRecsList.classList.remove("hidden");
       renderFavoritesRecommendations();
+      renderFlankingWingsRecommendations(cachedFavRecs);
 
       // Immediately render bottom crate carousel and unlock it
       renderRecommendationCarousel(cachedFavRecs);
