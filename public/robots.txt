@@ -9,5 +9,9 @@ Disallow: /admin.js
 Disallow: /api/admin/
 Disallow: /healthz
 Disallow: /health
+Disallow: /impressum.html
+Disallow: /datenschutz.html
+Disallow: /impressum
+Disallow: /datenschutz
 
 Sitemap: https://vinylhound.de/sitemap.xml

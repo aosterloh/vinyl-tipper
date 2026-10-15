@@ -6821,7 +6821,34 @@ function initLegalModal() {
     }
   }
 
+  let hydrated = false;
+  function hydrateLegalData() {
+    if (hydrated) return;
+    try {
+      const d = (s) => decodeURIComponent(escape(atob(s)));
+      const n = d("QWxleCBPc3RlcmxvaA==");
+      const s = d("U2NobmVlYmVyZ3N0ci4gNzE=");
+      const c = d("ODE4MjUgTcO8bmNoZW4=");
+      const e = d("YW9zdGVybG9oK3ZpbnlsQGdtYWlsLmNvbQ==");
+
+      const prov = document.getElementById("modal-prov-target");
+      if (prov) prov.innerHTML = n + "<br>" + s + "<br>" + c + "<br>Deutschland";
+
+      const cont = document.getElementById("modal-cont-target");
+      if (cont) cont.innerHTML = 'E-Mail: <a href="mailto:' + e + '" class="legal-link">' + e + '</a><br>Website: <a href="https://vinylhound.de" target="_blank" rel="noopener noreferrer" class="legal-link">https://vinylhound.de</a>';
+
+      const resp = document.getElementById("modal-resp-target");
+      if (resp) resp.innerHTML = n + "<br>" + s + "<br>" + c;
+
+      const ds = document.getElementById("modal-ds-target");
+      if (ds) ds.innerHTML = n + "<br>" + s + "<br>" + c + '<br>Deutschland<br>E-Mail: <a href="mailto:' + e + '" class="legal-link">' + e + '</a>';
+
+      hydrated = true;
+    } catch (err) {}
+  }
+
   function openLegal(tab = "impressum") {
+    hydrateLegalData();
     switchTab(tab);
     modal.classList.remove("hidden");
     document.body.style.overflow = "hidden";
