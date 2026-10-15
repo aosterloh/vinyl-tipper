@@ -6497,29 +6497,39 @@ function renderV3Recommendations(recs) {
 
 let v2CrateQueueIndex = 0;
 
+function isUiToggleAdmin() {
+  return Boolean(currentUser && currentUser.email && currentUser.email.toLowerCase() === "aosterloh@gmail.com");
+}
+
 function getActiveUIVersion() {
+  if (!isUiToggleAdmin()) {
+    return "v3";
+  }
   return localStorage.getItem("vinyl_ui_version") || "v3";
 }
 
 function updateUIToggleVisibility() {
   const toggleBtn = document.getElementById("ui-version-toggle-btn");
   if (!toggleBtn) return;
-  const isLocalhost = window.location.hostname === "localhost" || 
-                      window.location.hostname === "127.0.0.1" || 
-                      window.location.hostname.endsWith(".local");
-  const isAdminEmail = currentUser && currentUser.email && 
-                       currentUser.email.toLowerCase() === "aosterloh@gmail.com";
+  const isAdmin = isUiToggleAdmin();
 
-  if (isLocalhost || isAdminEmail) {
+  if (isAdmin) {
     toggleBtn.classList.remove("hidden");
+    const saved = localStorage.getItem("vinyl_ui_version") || "v3";
+    setActiveUIVersion(saved);
   } else {
     toggleBtn.classList.add("hidden");
+    setActiveUIVersion("v3");
   }
 }
 
 function setActiveUIVersion(version) {
-  const mode = (version === "v1" || version === "v2" || version === "v3") ? version : "v3";
-  localStorage.setItem("vinyl_ui_version", mode);
+  const isAdmin = isUiToggleAdmin();
+  // Strictly enforce v3 for all non-admin users (both signed in and signed out)
+  const mode = isAdmin && (version === "v1" || version === "v2" || version === "v3") ? version : "v3";
+  if (isAdmin) {
+    localStorage.setItem("vinyl_ui_version", mode);
+  }
   document.body.setAttribute("data-ui-version", mode);
 
   const toggleBtn = document.getElementById("ui-version-toggle-btn");
