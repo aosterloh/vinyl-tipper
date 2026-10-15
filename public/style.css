@@ -2,25 +2,25 @@
    VINYL TIPPER — CLEAN MINIMALIST DESIGN SYSTEM (LIGHT & DARK THEMES)
    ========================================================================== */
 
-:root {
-  /* Default: Light Mode */
-  --bg-primary: #F8F9FA;
-  --bg-surface: #FFFFFF;
-  --bg-elevated: #F1F3F5;
-  --bg-subtle: #E9ECEF;
-  --text-primary: #111418;
-  --text-secondary: #5F6775;
-  --text-muted: #868E96;
-  --border-light: rgba(0, 0, 0, 0.08);
-  --border-medium: rgba(0, 0, 0, 0.15);
-  --accent-primary: #1A1A1A;
-  --accent-text: #FFFFFF;
-  --accent-badge: #2B8A3E;
-  --accent-used: #E8590C;
-  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.08);
-  --shadow-vinyl: -10px 10px 30px rgba(0, 0, 0, 0.12);
+:root, [data-theme="light"] {
+  /* Warm Analog Paper & Linen Light Mode (Easy on the Eyes) */
+  --bg-primary: #F4F1EA;
+  --bg-surface: #FAF8F5;
+  --bg-elevated: #EDE8DF;
+  --bg-subtle: #E4DFD5;
+  --text-primary: #212429;
+  --text-secondary: #585F6B;
+  --text-muted: #828B96;
+  --border-light: rgba(60, 45, 20, 0.08);
+  --border-medium: rgba(60, 45, 20, 0.15);
+  --accent-primary: #1C1E22;
+  --accent-text: #FAF8F5;
+  --accent-badge: #247535;
+  --accent-used: #D94E06;
+  --shadow-sm: 0 2px 6px rgba(50, 40, 25, 0.04);
+  --shadow-md: 0 8px 24px rgba(50, 40, 25, 0.06);
+  --shadow-lg: 0 16px 40px rgba(50, 40, 25, 0.09);
+  --shadow-vinyl: -10px 10px 30px rgba(40, 30, 20, 0.13);
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
@@ -244,8 +244,8 @@ body {
 }
 
 [data-theme="light"] .atmospheric-bg-layer {
-  opacity: 0.08;
-  filter: blur(14px) saturate(70%) brightness(1.15);
+  opacity: 0.07;
+  filter: blur(14px) saturate(75%) brightness(1.02);
 }
 
 .atmospheric-bg-vignette {
@@ -260,7 +260,7 @@ body {
 }
 
 [data-theme="light"] .atmospheric-bg-vignette {
-  background: radial-gradient(circle at 50% 30%, transparent 25%, rgba(248, 249, 250, 0.55) 75%, rgba(248, 249, 250, 0.92) 100%);
+  background: radial-gradient(circle at 50% 30%, transparent 25%, rgba(244, 241, 234, 0.55) 75%, rgba(244, 241, 234, 0.95) 100%);
 }
 
 /* ==========================================================================
@@ -1613,9 +1613,9 @@ body {
 }
 
 [data-theme="light"] .mini-rec-popover {
-  background: rgba(255, 255, 255, 0.97);
+  background: rgba(250, 248, 245, 0.98);
   border-color: rgba(212, 175, 55, 0.5);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18), 0 0 16px rgba(212, 175, 55, 0.12);
+  box-shadow: 0 12px 32px rgba(50, 40, 25, 0.14), 0 0 16px rgba(212, 175, 55, 0.12);
 }
 
 /* Left wing floats right toward center */
