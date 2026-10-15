@@ -1580,6 +1580,7 @@ onAuthStateChanged(auth, async (user) => {
 
     currentUser = user;
     updateAuthUI(true);
+    if (typeof updateUIToggleVisibility === "function") updateUIToggleVisibility();
 
     // Load User Search History Memory Bank & Favorites
     loadUserMemory();
@@ -1602,6 +1603,7 @@ onAuthStateChanged(auth, async (user) => {
     userFavorites = [];
     updateAuthUI(false);
     updateFavsUI();
+    if (typeof updateUIToggleVisibility === "function") updateUIToggleVisibility();
 
     if (serverAuthMode === "public") {
       loadUserMemory();
@@ -4095,11 +4097,16 @@ async function appraiseAlbum(albumName) {
     const validAlts = (cached.alternatives || []).filter(alt => !isAlbumInFavorites(alt.title, alt.artist));
     if (validAlts.length >= 3) {
       renderAlternativesProgressive(cached.alternatives, 0);
+      if (typeof renderV3Recommendations === "function") renderV3Recommendations(validAlts);
     } else {
       // In-context animated skeletons for alternatives while resolving
       renderAlternativesSkeletons();
       fetchMissingAlternatives(cached);
+      if (typeof renderV3Recommendations === "function" && cachedFavRecs) {
+        renderV3Recommendations(cachedFavRecs);
+      }
     }
+    if (typeof setAtmosphericBackground === "function") setAtmosphericBackground(cached.genre);
 
     // Async stream in store search links
     asyncResearchBuyLinks(cached.title, cached.artist);
@@ -4319,6 +4326,8 @@ Return strictly a valid JSON object matching this schema:
 
     alternativesGenreName.textContent = album.genre || "";
     renderAlternativesProgressive(alternatives, 0);
+    if (typeof renderV3Recommendations === "function") renderV3Recommendations(alternatives);
+    if (typeof setAtmosphericBackground === "function") setAtmosphericBackground(album.genre);
 
     // =========================================================================
     // PHASE 2: ASYNC MARKET RESEARCH & STORE LINKS
@@ -5294,6 +5303,38 @@ function padRecommendationsToTen(items) {
   return combined.slice(0, 10);
 }
 
+// Autoload 10 random albums from the 365 Vault instantly (0ms) on page load
+function autoloadInstantVaultWings() {
+  const syncPool = get365VaultDiscoverySync() || DEFAULT_VAULT_SEED;
+  // 1. Fresh random 10-album shuffle from the vault pool at 0ms
+  const shuffled = [...syncPool].sort(() => 0.5 - Math.random());
+  const initialTen = padRecommendationsToTen(shuffled);
+  cachedFavRecs = initialTen;
+  renderFlankingWingsRecommendations(initialTen);
+
+  // 2. Fetch fresh 20-album candidate pool from /api/vault/discovery-wings in background
+  fetch("/api/vault/discovery-wings")
+    .then(r => r.ok ? r.json() : null)
+    .then(data => {
+      if (data && data.success && Array.isArray(data.recommendations) && data.recommendations.length >= 10) {
+        window.__VAULT_WINGS_MEM__ = data.recommendations;
+        try {
+          localStorage.setItem("vinyl_vault_wings_cache", JSON.stringify(data.recommendations));
+        } catch (e) {}
+
+        // For users with < 3 favorites, refresh with a fresh 365 Vault random pull
+        const favCount = (userFavorites || []).length;
+        if (favCount < 3) {
+          const freshShuffled = [...data.recommendations].sort(() => 0.5 - Math.random());
+          const freshTen = padRecommendationsToTen(freshShuffled);
+          cachedFavRecs = freshTen;
+          renderFlankingWingsRecommendations(freshTen);
+        }
+      }
+    })
+    .catch(() => {});
+}
+
 async function enrichRecommendationsWithCovers(recs) {
   if (!Array.isArray(recs)) return [];
   const vaultSeed = get365VaultDiscoverySync() || DEFAULT_VAULT_SEED;
@@ -5348,6 +5389,9 @@ async function renderFlankingWingsRecommendations(recs) {
 
   // Sync to global crate queue for flipping!
   window.__CRATE_QUEUE__ = displayRecs;
+  if (typeof renderV3Recommendations === "function") {
+    renderV3Recommendations(displayRecs);
+  }
 
   const leftItems = displayRecs.slice(0, 5);
   const rightItems = displayRecs.slice(5, 10);
@@ -6334,17 +6378,147 @@ function initPlaceholderHints() {
 }
 
 // ============================================================================
-// 12B. MODERN MATERIAL V2 UI & PHYSICAL CRATE-FLIPPING ENGINE
+// 12B. ATMOSPHERIC GENRE BACKGROUNDS & V3 MODERN EDITORIAL UI
 // ============================================================================
+
+const GENRE_ATMOSPHERES = {
+  jazz: "/img/jazz.jpg",
+  blues: "/img/jazz.jpg",
+  soul: "/img/jazz.jpg",
+  funk: "/img/jazz.jpg",
+  rock: "/img/rock.jpg",
+  metal: "/img/rock.jpg",
+  punk: "/img/rock.jpg",
+  grunge: "/img/rock.jpg",
+  techno: "/img/techno.jpg",
+  electronic: "/img/techno.jpg",
+  house: "/img/techno.jpg",
+  edm: "/img/techno.jpg",
+  ambient: "/img/ambient.jpg",
+  classical: "/img/ambient.jpg",
+  folk: "/img/ambient.jpg",
+  acoustic: "/img/ambient.jpg"
+};
+
+const ALL_ATMOSPHERES = [
+  "/img/jazz.jpg",
+  "/img/rock.jpg",
+  "/img/techno.jpg",
+  "/img/ambient.jpg"
+];
+
+function setAtmosphericBackground(specificGenre) {
+  const bgLayer = document.getElementById("atmospheric-bg-layer");
+  if (!bgLayer) return;
+
+  let chosenImg = null;
+  if (specificGenre && typeof specificGenre === "string") {
+    const gLower = specificGenre.toLowerCase();
+    for (const [key, path] of Object.entries(GENRE_ATMOSPHERES)) {
+      if (gLower.includes(key)) {
+        chosenImg = path;
+        break;
+      }
+    }
+  }
+
+  if (!chosenImg) {
+    const randIdx = Math.floor(Math.random() * ALL_ATMOSPHERES.length);
+    chosenImg = ALL_ATMOSPHERES[randIdx];
+  }
+
+  bgLayer.style.backgroundImage = `url('${chosenImg}')`;
+}
+
+function renderV3Recommendations(recs) {
+  const listContainer = document.getElementById("v3-recs-list");
+  if (!listContainer) return;
+
+  const candidatePool = (Array.isArray(recs) && recs.length >= 5) 
+    ? recs 
+    : padRecommendationsToTen(recs || []);
+  const topFive = candidatePool.slice(0, 5);
+  if (topFive.length === 0) return;
+
+  listContainer.innerHTML = topFive.map((rec) => {
+    const scoreVal = Math.min(100, Math.max(0, rec.score || 95));
+    const cover = rec.coverUrl || generateSvgCover(rec.title, rec.artist);
+    const query = `${rec.artist || ''} ${rec.title}`.trim();
+    const cleanTitle = typeof escapeHtml === "function" ? escapeHtml(rec.title) : rec.title;
+    const cleanArtist = typeof escapeHtml === "function" ? escapeHtml(rec.artist) : rec.artist;
+    const cleanYear = rec.year || '';
+
+    return `
+      <div class="v3-rec-card" 
+           data-query="${typeof escapeHtml === "function" ? escapeHtml(query) : query}"
+           data-title="${cleanTitle}"
+           data-artist="${cleanArtist}"
+           data-score="${scoreVal}"
+           role="button"
+           tabindex="0"
+           title="Appraise & Inspect: ${cleanTitle} by ${cleanArtist}">
+        <div class="v3-rec-thumb-wrap">
+          <img class="v3-rec-thumb-img" src="${cover}" alt="${cleanTitle}" loading="lazy" />
+        </div>
+        <div class="v3-rec-details">
+          <div class="v3-rec-title">${cleanTitle}</div>
+          <div class="v3-rec-artist">${cleanArtist}</div>
+          <div class="v3-rec-meta-row">
+            ${cleanYear ? `<span class="v3-rec-year-pill">${cleanYear}</span>` : ''}
+            <span class="v3-rec-score-pill">🎯 ${scoreVal}%</span>
+          </div>
+        </div>
+        <span class="v3-rec-action-icon">→</span>
+      </div>
+    `;
+  }).join('');
+
+  listContainer.querySelectorAll(".v3-rec-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const query = card.getAttribute("data-query");
+      const title = card.getAttribute("data-title");
+      const artist = card.getAttribute("data-artist");
+      const score = card.getAttribute("data-score");
+      if (query) {
+        hasUserInteracted = true;
+        isRecommendationOfDay = false;
+        updateRecommendationOfDayUI();
+        if (albumInput) setAlbumInputValue(`${artist} - ${title}`, true);
+        const v2Input = document.getElementById("v2-album-input");
+        if (v2Input) v2Input.value = `${artist} - ${title}`;
+        showToast(`🎧 Spinning crate match: "${title}" (${score}% match)`);
+        // Appraise without autoplay
+        appraiseAlbum(query);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    });
+  });
+}
 
 let v2CrateQueueIndex = 0;
 
 function getActiveUIVersion() {
-  return localStorage.getItem("vinyl_ui_version") || "v2";
+  return localStorage.getItem("vinyl_ui_version") || "v3";
+}
+
+function updateUIToggleVisibility() {
+  const toggleBtn = document.getElementById("ui-version-toggle-btn");
+  if (!toggleBtn) return;
+  const isLocalhost = window.location.hostname === "localhost" || 
+                      window.location.hostname === "127.0.0.1" || 
+                      window.location.hostname.endsWith(".local");
+  const isAdminEmail = currentUser && currentUser.email && 
+                       currentUser.email.toLowerCase() === "aosterloh@gmail.com";
+
+  if (isLocalhost || isAdminEmail) {
+    toggleBtn.classList.remove("hidden");
+  } else {
+    toggleBtn.classList.add("hidden");
+  }
 }
 
 function setActiveUIVersion(version) {
-  const mode = version === "v1" ? "v1" : "v2";
+  const mode = (version === "v1" || version === "v2" || version === "v3") ? version : "v3";
   localStorage.setItem("vinyl_ui_version", mode);
   document.body.setAttribute("data-ui-version", mode);
 
@@ -6352,29 +6526,27 @@ function setActiveUIVersion(version) {
   if (toggleBtn) {
     const optV1 = toggleBtn.querySelector(".opt-v1");
     const optV2 = toggleBtn.querySelector(".opt-v2");
+    const optV3 = toggleBtn.querySelector(".opt-v3");
     if (optV1) optV1.classList.toggle("active", mode === "v1");
     if (optV2) optV2.classList.toggle("active", mode === "v2");
+    if (optV3) optV3.classList.toggle("active", mode === "v3");
   }
 
-  // In v2 Material mode: ensure persistent music player is docked at bottom
-  if (mode === "v2") {
-    if (djDeckBar) djDeckBar.classList.remove("hidden");
+  // Populate v3 recommendations if in v3 mode
+  if (mode === "v3") {
+    const recsToUse = window.__CRATE_QUEUE__ || cachedFavRecs;
+    if (recsToUse && recsToUse.length > 0) {
+      renderV3Recommendations(recsToUse);
+    }
   }
+
+  // Ensure persistent music player is docked at bottom
+  if (djDeckBar) djDeckBar.classList.remove("hidden");
 }
 
-async function triggerV2AutoPlay() {
+function syncV2PlayerQueue() {
   if (djDeckBar) djDeckBar.classList.remove("hidden");
-  djState.isDeckMinimized = false;
-  setTimeout(async () => {
-    try {
-      ensureDjQueue();
-      if (!djState.isPlaying) {
-        await djPlayIndex(djState.currentIndex || 0, true);
-      }
-    } catch (err) {
-      console.warn("V2 auto-play trigger error:", err);
-    }
-  }, 400);
+  ensureDjQueue();
 }
 
 function getAvailableCrateAlbums() {
@@ -6391,7 +6563,7 @@ async function flipCrateVinyl(direction) {
   const items = getAvailableCrateAlbums();
   if (!items || items.length === 0) {
     await rollRandomPick();
-    triggerV2AutoPlay();
+    syncV2PlayerQueue();
     return;
   }
 
@@ -6410,22 +6582,31 @@ async function flipCrateVinyl(direction) {
 
   showToast(`🗂️ Flipping crate to: "${targetRecord.title}"`);
   await appraiseAlbum(targetRecord.query || displayLabel);
-  triggerV2AutoPlay();
+  syncV2PlayerQueue();
 }
 
 function initMaterialV2AndUIToggle() {
-  // 1. Initialize UI version mode
+  // 1. Initialize UI version mode & toggle visibility
   const currentMode = getActiveUIVersion();
   setActiveUIVersion(currentMode);
+  updateUIToggleVisibility();
 
-  // 2. Toggle button listener
+  // 2. Toggle button listener (Cycles: v3 -> v2 -> v1 -> v3)
   const toggleBtn = document.getElementById("ui-version-toggle-btn");
   if (toggleBtn) {
     toggleBtn.addEventListener("click", () => {
       const current = getActiveUIVersion();
-      const next = current === "v2" ? "v1" : "v2";
+      let next = "v3";
+      if (current === "v3") next = "v2";
+      else if (current === "v2") next = "v1";
+      else next = "v3";
       setActiveUIVersion(next);
-      showToast(next === "v2" ? "✨ Switched to Modern Material v2 UI" : "📻 Switched to Classic v1 UI");
+      const labels = {
+        v3: "✨ Switched to Modern v3 Design (70/30 Split)",
+        v2: "🗂️ Switched to Material v2 UI",
+        v1: "📻 Switched to Classic v1 UI"
+      };
+      showToast(labels[next] || `Switched to ${next}`);
     });
   }
 
@@ -6471,7 +6652,7 @@ function initMaterialV2AndUIToggle() {
               isRecommendationOfDay = false;
               updateRecommendationOfDayUI();
               appraiseAlbum(q);
-              triggerV2AutoPlay();
+              syncV2PlayerQueue();
             }
           });
         });
@@ -6490,7 +6671,7 @@ function initMaterialV2AndUIToggle() {
           isRecommendationOfDay = false;
           updateRecommendationOfDayUI();
           appraiseAlbum(query);
-          triggerV2AutoPlay();
+          syncV2PlayerQueue();
         }
       }
     });
@@ -6514,7 +6695,7 @@ function initMaterialV2AndUIToggle() {
         isRecommendationOfDay = false;
         updateRecommendationOfDayUI();
         appraiseAlbum(query);
-        triggerV2AutoPlay();
+        syncV2PlayerQueue();
       }
     });
   }
@@ -6528,7 +6709,7 @@ function initMaterialV2AndUIToggle() {
       isRecommendationOfDay = false;
       updateRecommendationOfDayUI();
       await rollRandomPick();
-      triggerV2AutoPlay();
+      syncV2PlayerQueue();
     });
   }
 
@@ -6609,8 +6790,92 @@ function initMaterialV2AndUIToggle() {
 }
 
 // ============================================================================
+// 14. LEGAL MODAL (IMPRESSUM & DATENSCHUTZ)
+// ============================================================================
+function initLegalModal() {
+  const modal = document.getElementById("legal-modal");
+  const backdrop = document.getElementById("legal-modal-backdrop");
+  const closeBtn = document.getElementById("close-legal-modal-btn");
+  const tabImpressumBtn = document.getElementById("tab-btn-impressum");
+  const tabPrivacyBtn = document.getElementById("tab-btn-privacy");
+  const paneImpressum = document.getElementById("legal-tab-impressum");
+  const panePrivacy = document.getElementById("legal-tab-privacy");
+
+  if (!modal) return;
+
+  function switchTab(tabName) {
+    if (tabName === "privacy" || tabName === "datenschutz") {
+      tabPrivacyBtn?.classList.add("active");
+      tabPrivacyBtn?.setAttribute("aria-selected", "true");
+      tabImpressumBtn?.classList.remove("active");
+      tabImpressumBtn?.setAttribute("aria-selected", "false");
+      panePrivacy?.classList.add("active");
+      paneImpressum?.classList.remove("active");
+    } else {
+      tabImpressumBtn?.classList.add("active");
+      tabImpressumBtn?.setAttribute("aria-selected", "true");
+      tabPrivacyBtn?.classList.remove("active");
+      tabPrivacyBtn?.setAttribute("aria-selected", "false");
+      paneImpressum?.classList.add("active");
+      panePrivacy?.classList.remove("active");
+    }
+  }
+
+  function openLegal(tab = "impressum") {
+    switchTab(tab);
+    modal.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeLegal() {
+    modal.classList.add("hidden");
+    document.body.style.overflow = "";
+    if (window.location.hash === "#impressum" || window.location.hash === "#datenschutz") {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
+  }
+
+  closeBtn?.addEventListener("click", closeLegal);
+  backdrop?.addEventListener("click", closeLegal);
+
+  tabImpressumBtn?.addEventListener("click", () => switchTab("impressum"));
+  tabPrivacyBtn?.addEventListener("click", () => switchTab("privacy"));
+
+  const openImpBtn = document.getElementById("open-impressum-btn");
+  const openPrivBtn = document.getElementById("open-privacy-btn");
+  const authImpBtn = document.getElementById("auth-impressum-btn");
+  const authPrivBtn = document.getElementById("auth-privacy-btn");
+
+  openImpBtn?.addEventListener("click", (e) => { e.preventDefault(); openLegal("impressum"); });
+  openPrivBtn?.addEventListener("click", (e) => { e.preventDefault(); openLegal("privacy"); });
+  authImpBtn?.addEventListener("click", (e) => { e.preventDefault(); openLegal("impressum"); });
+  authPrivBtn?.addEventListener("click", (e) => { e.preventDefault(); openLegal("privacy"); });
+
+  // Escape key closes modal
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+      closeLegal();
+    }
+  });
+
+  // Deep-linking hash support (#impressum or #datenschutz)
+  function checkUrlHash() {
+    const hash = window.location.hash.toLowerCase();
+    if (hash === "#impressum") {
+      openLegal("impressum");
+    } else if (hash === "#datenschutz" || hash === "#privacy") {
+      openLegal("privacy");
+    }
+  }
+
+  window.addEventListener("hashchange", checkUrlHash);
+  checkUrlHash();
+}
+
+// ============================================================================
 // 13. INITIALIZATION
 // ============================================================================
+autoloadInstantVaultWings();
 initTheme();
 initRegionSelector();
 checkServerConfig().then(() => {
@@ -6620,7 +6885,9 @@ initSommelier();
 initPwa();
 initHeaderScroll();
 initPlaceholderHints();
+setAtmosphericBackground();
 initMaterialV2AndUIToggle();
+initLegalModal();
 
 
 

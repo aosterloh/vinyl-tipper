@@ -74,9 +74,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=3.7">
+  <link rel="stylesheet" href="style.css?v=3.9">
 </head>
-<body>
+<body data-ui-version="v3">
+  <!-- Atmospheric Genre Background with Cinematic Vignette -->
+  <div id="atmospheric-bg-layer" class="atmospheric-bg-layer" aria-hidden="true"></div>
+  <div id="atmospheric-bg-vignette" class="atmospheric-bg-vignette" aria-hidden="true"></div>
+
   <!-- AUTHENTICATION GATE (Visible only when corporate mode is enforced and user logged out) -->
   <div id="auth-gate" class="auth-gate-overlay hidden">
     <div class="auth-card">
@@ -99,6 +103,11 @@
         Sign in with Google
       </button>
       <div id="auth-error-msg" class="auth-error-msg hidden"></div>
+      <div class="auth-legal-footer">
+        <button type="button" class="auth-legal-link-btn" id="auth-impressum-btn">Impressum</button>
+        <span class="auth-legal-sep">•</span>
+        <button type="button" class="auth-legal-link-btn" id="auth-privacy-btn">Datenschutz</button>
+      </div>
     </div>
   </div>
 
@@ -158,11 +167,12 @@
           <span class="install-btn-text">Install App</span>
         </button>
 
-        <!-- Live UI Mode Toggle Switch (Classic v1 vs Material v2) -->
-        <button id="ui-version-toggle-btn" class="ui-version-toggle-btn" type="button" aria-label="Toggle UI Version" title="Switch between Classic UI and Modern Material v2 UI">
+        <!-- Live UI Mode Toggle Switch (Classic v1 vs Material v2 vs Modern v3) -->
+        <button id="ui-version-toggle-btn" class="ui-version-toggle-btn hidden" type="button" aria-label="Toggle UI Version" title="Switch between Classic, v2, and v3 Modern UI">
           <span class="ui-toggle-pill-track">
-            <span class="ui-toggle-opt opt-v1">Classic</span>
-            <span class="ui-toggle-opt opt-v2 active">v2 Material</span>
+            <span class="ui-toggle-opt opt-v1" data-ver="v1">Classic</span>
+            <span class="ui-toggle-opt opt-v2" data-ver="v2">v2</span>
+            <span class="ui-toggle-opt opt-v3 active" data-ver="v3">v3 Modern</span>
           </span>
         </button>
 
@@ -207,7 +217,7 @@
       <!-- Unified 3-Column Crate Digging Layout (Flanking Wings Starting at Search Bar Level) -->
       <div class="crate-layout-wrapper">
         <!-- Left Flanking Wing (Recs 1 to 5) -->
-        <aside id="recs-wing-left" class="recs-flanking-wing recs-wing-left hidden" aria-label="Curated Recommendations 1 to 5">
+        <aside id="recs-wing-left" class="recs-flanking-wing recs-wing-left" aria-label="Curated Recommendations 1 to 5">
           <div class="wing-header">
             <span class="wing-badge">✨ Crate Recs</span>
           </div>
@@ -577,6 +587,20 @@
         <button id="v2-next-album-btn" class="v2-crate-nav-btn v2-next-btn" type="button" aria-label="Next Vinyl in Crate (ArrowRight)" title="Next Record (→ ArrowRight)">
           <span class="v2-nav-arrow">▶</span>
         </button>
+
+        <!-- V3 Right 30% Recommendations Column -->
+        <aside id="v3-recs-column" class="v3-recs-column" aria-label="Curated Recommendations">
+          <div class="v3-recs-header">
+            <div class="v3-recs-title-group">
+              <span class="v3-recs-sparkle">🎯</span>
+              <h3 class="v3-recs-heading">Curated Crate Matches</h3>
+            </div>
+            <span class="v3-recs-count">5 Picks</span>
+          </div>
+          <div id="v3-recs-list" class="v3-recs-list">
+            <!-- Dynamically populated with 5 clean recommendation cards -->
+          </div>
+        </aside>
       </div>
 
         <!-- Genre Alternatives Section with Extended Pool & Fresh Picks Shuffle -->
@@ -600,7 +624,7 @@
     </div><!-- /.crate-center-column -->
 
     <!-- Right Flanking Wing (Recs 6 to 10) -->
-    <aside id="recs-wing-right" class="recs-flanking-wing recs-wing-right hidden" aria-label="Curated Recommendations 6 to 10">
+    <aside id="recs-wing-right" class="recs-flanking-wing recs-wing-right" aria-label="Curated Recommendations 6 to 10">
       <div class="wing-header">
         <span class="wing-badge">🎯 Top Matches</span>
       </div>
@@ -638,6 +662,21 @@
         </div>
       </section>
     </main>
+    <!-- Site Footer with Legal Links (Impressum & Datenschutz) -->
+    <footer class="site-footer" id="site-footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <span class="footer-dot"></span>
+          <span class="footer-brand-name">Vinyl Hound</span>
+          <span class="footer-tagline">— AI Vinyl Sommelier &amp; German Vinyl Market Appraisal</span>
+        </div>
+        <div class="footer-links">
+          <button type="button" class="footer-link-btn" id="open-impressum-btn">Impressum</button>
+          <span class="footer-sep">•</span>
+          <button type="button" class="footer-link-btn" id="open-privacy-btn">Datenschutz</button>
+        </div>
+      </div>
+    </footer>
   </div>
 
   <!-- MY FAV VINYL SLIDE-OVER DRAWER -->
@@ -846,10 +885,148 @@
   <!-- Interactive Toast Notification -->
   <div id="vinyl-toast" class="vinyl-toast"></div>
 
+  <!-- LEGAL MODAL (Impressum & Datenschutz) -->
+  <div id="legal-modal" class="legal-modal hidden" role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
+    <div id="legal-modal-backdrop" class="legal-modal-backdrop"></div>
+    <div class="legal-modal-card">
+      <div class="legal-modal-header">
+        <div class="legal-tabs-nav" role="tablist">
+          <button id="tab-btn-impressum" class="legal-tab-btn active" role="tab" aria-selected="true" aria-controls="legal-tab-impressum">Impressum</button>
+          <button id="tab-btn-privacy" class="legal-tab-btn" role="tab" aria-selected="false" aria-controls="legal-tab-privacy">Datenschutz</button>
+        </div>
+        <button id="close-legal-modal-btn" class="modal-close-btn" type="button" aria-label="Schließen">&times;</button>
+      </div>
+
+      <div class="legal-modal-body">
+        <!-- Tab 1: Impressum -->
+        <div id="legal-tab-impressum" class="legal-tab-pane active" role="tabpanel">
+          <h2 id="legal-modal-title" class="legal-section-title">Impressum</h2>
+          <p class="legal-subtext">Angaben gemäß § 5 DDG (Digitale-Dienste-Gesetz)</p>
+
+          <div class="legal-block">
+            <h3>Diensteanbieter</h3>
+            <p>
+              <strong>Alex Osterloh</strong><br>
+              Schneebergstr. 71<br>
+              81825 München<br>
+              Deutschland
+            </p>
+          </div>
+
+          <div class="legal-block">
+            <h3>Kontakt</h3>
+            <p>
+              E-Mail: <a href="mailto:aosterloh+vinyl@gmail.com" class="legal-link">aosterloh+vinyl@gmail.com</a><br>
+              Website: <a href="https://vinylhound.de" target="_blank" rel="noopener noreferrer" class="legal-link">https://vinylhound.de</a>
+            </p>
+          </div>
+
+          <div class="legal-block">
+            <h3>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h3>
+            <p>
+              Alex Osterloh<br>
+              Schneebergstr. 71<br>
+              81825 München
+            </p>
+          </div>
+
+          <div class="legal-block">
+            <h3>Hinweis zu KI-generierten Inhalten &amp; Marktpreis-Schätzungen</h3>
+            <p>
+              Die auf Vinyl Hound bereitgestellten Schallplatten-Gutachten, Marktwert-Schätzungen (z.&thinsp;B. für Neuauflagen und Second-Hand-Zustände VG+/EX in Deutschland), Titellaufzeiten und Sommelier-Empfehlungen werden automatisiert mithilfe von Künstlicher Intelligenz (Google Gemini) erstellt. Diese Angaben dienen ausschließlich der allgemeinen Orientierung von Musikliebhabern und Sammlern und stellen keine verbindlichen Kauf- oder Verkaufsempfehlungen und keine gutachterliche Wertermittlung dar. Es wird keine Gewähr für die Richtigkeit, Vollständigkeit oder tagesaktuelle Gültigkeit der angegebenen Preise übernommen.
+            </p>
+          </div>
+
+          <div class="legal-block">
+            <h3>Haftung für Inhalte</h3>
+            <p>
+              Als Diensteanbieter sind wir gemäß § 7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt.
+            </p>
+          </div>
+
+          <div class="legal-block">
+            <h3>Haftung für Links</h3>
+            <p>
+              Unser Angebot enthält Links zu externen Websites Dritter (z.&thinsp;B. Discogs, JPC, HHV, Amazon, YouTube), auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+            </p>
+          </div>
+
+          <div class="legal-block">
+            <h3>Urheberrecht &amp; Markenhinweise</h3>
+            <p>
+              Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Schallplatten-Cover, Albumbilder, Titellisten und Künstlernamen dienen ausschließlich der Identifikation und Information im Rahmen der redaktionellen Werkanalyse. Die Bildrechte liegen bei den jeweiligen Künstlern, Plattenlabels bzw. Rechteinhabern und werden über öffentliche Metadaten-Schnittstellen (u.&thinsp;a. iTunes Search API, Deezer API) bezogen.
+            </p>
+          </div>
+
+          <div class="legal-block">
+            <h3>Online-Streitbeilegung</h3>
+            <p>
+              Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" class="legal-link">https://ec.europa.eu/consumers/odr</a>.<br>
+              Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tab 2: Datenschutz -->
+        <div id="legal-tab-privacy" class="legal-tab-pane" role="tabpanel">
+          <h2 class="legal-section-title">Datenschutzerklärung</h2>
+          <p class="legal-subtext">Informationen nach Art. 13 DSGVO</p>
+
+          <div class="legal-block">
+            <h3>1. Verantwortliche Stelle</h3>
+            <p>
+              <strong>Alex Osterloh</strong><br>
+              Schneebergstr. 71<br>
+              81825 München<br>
+              Deutschland<br>
+              E-Mail: <a href="mailto:aosterloh+vinyl@gmail.com" class="legal-link">aosterloh+vinyl@gmail.com</a>
+            </p>
+          </div>
+
+          <div class="legal-block">
+            <h3>2. Hosting &amp; Server-Log-Dateien</h3>
+            <p>
+              Diese Anwendung wird über <strong>Google Cloud Run</strong> und <strong>Firebase Hosting</strong> (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) gehostet. Beim Aufruf unserer Webseiten erfasst der Webserver automatisch technische Informationen (z.&thinsp;B. IP-Adresse, Browsertyp, Betriebssystem, Datum und Uhrzeit der Serveranfrage). Die Erfassung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO zur Sicherstellung eines fehlerfreien Betriebs und der IT-Sicherheit.
+            </p>
+          </div>
+
+          <div class="legal-block">
+            <h3>3. Benutzerkonten &amp; Google Sign-In (Firebase Authentication)</h3>
+            <p>
+              Wenn Sie sich zur Synchronisation Ihrer Favoriten anmelden, nutzen wir <strong>Firebase Authentication</strong> via Google Sign-In. Hierbei werden Ihre E-Mail-Adresse, Ihr Anzeigename und eine eindeutige Benutzer-ID (UID) verarbeitet, um Ihre persönliche Plattensammlung (Vinyl Crate) geräteübergreifend bereitzustellen (Art. 6 Abs. 1 lit. b DSGVO).
+            </p>
+          </div>
+
+          <div class="legal-block">
+            <h3>4. Lokale Speicherung (LocalStorage)</h3>
+            <p>
+              Vinyl Hound speichert Benutzereinstellungen (wie Farbschema/Theme, zuletzt aufgerufene Alben und lokale Sammlungsentwürfe) lokal in Ihrem Browser (LocalStorage). Es werden hierbei keine Werbe-Tracker oder Marketing-Cookies eingesetzt.
+            </p>
+          </div>
+
+          <div class="legal-block">
+            <h3>5. Externe Dienste &amp; APIs</h3>
+            <p>
+              <strong>Cover-Art &amp; Metadaten:</strong> Zur visuellen Darstellung von Albumcovern werden Anfragen an öffentliche Schnittstellen (Apple iTunes API, Deezer API) gerichtet.<br>
+              <strong>Audio-Vorschau (YouTube Player):</strong> Sofern Sie den Vinyl DJ Player oder Hörproben starten, wird der offizielle YouTube iFrame Player (Google Ireland Ltd.) nachgeladen. Hierbei können Daten an YouTube/Google übermittelt werden.
+            </p>
+          </div>
+
+          <div class="legal-block">
+            <h3>6. Ihre Rechte (DSGVO)</h3>
+            <p>
+              Sie haben nach Maßgabe der DSGVO jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten (Art. 15 DSGVO), Berichtigung (Art. 16 DSGVO), Löschung (Art. 17 DSGVO) sowie Einschränkung der Verarbeitung (Art. 18 DSGVO). Wenden Sie sich hierzu bitte formlos per E-Mail an uns.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- YOUTUBE IFRAME PLAYER API -->
   <script src="https://www.youtube.com/iframe_api"></script>
 
   <!-- FIREBASE AND CLIENT APPLICATION SCRIPT -->
-  <script type="module" src="app.js?v=3.7"></script>
+  <script type="module" src="app.js?v=3.8"></script>
 </body>
 </html>
